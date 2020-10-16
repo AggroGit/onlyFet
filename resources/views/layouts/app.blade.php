@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>OnlyFet</title>
 
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>

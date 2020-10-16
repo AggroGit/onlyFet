@@ -1,6 +1,8 @@
 :root {
   --color1: #22f0c8;
   --color2:#ff45cd;
+  --rojo1:#F20505;
+  --rojo2:#F3343B;
 
 }
 #app {
@@ -334,6 +336,14 @@ input {
 .boton {
   width: 100%;
   margin-top: 20px;
+
+  border: none !important;
+}
+.btn-primary {
+  background: var(--rojo1) !important;
+}
+.btn-secondary {
+  background: var(--rojo2) !important;
 }
 .down-1 {
   margin-top: 10px;
@@ -496,4 +506,20 @@ input {
         .transition-property(opacity, visibility);
         .transition-delay(0, 200ms);
     }
+}
+
+
+
+
+
+
+
+
+/* OnlyFet */
+.navbar {
+  background: #ffffff !important;
+
+}
+.card {
+  border: none !important;
 }

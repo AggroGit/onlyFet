@@ -24,7 +24,7 @@
   <!-- Base -->
   <link href="{{ asset('css/base.css') }}" rel="stylesheet">
   <!-- Own Styles -->
-  @yield('myStyle')
+
 </head>
 <body>
     <app :app_code="{{env('APP_ID')}}" id="app"></app>

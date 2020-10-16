@@ -8,7 +8,7 @@
       </div>
 
       <!-- NAVBAR -->
-      <navBar v-if="!this.loading" :auth="this.auth"></navBar>
+      <!-- <navBar v-if="!this.loading" :auth="this.auth"></navBar> -->
       <!-- THE VIEW -->
       <div v-if="!this.loading" class="contenedor">
         <router-view   :key="$route.fullPath" v-bind:data="this"></router-view>

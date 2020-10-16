@@ -27,4 +27,5 @@ Route::get('/success',                 'HomeController@sucess');
 
 
 // Route::get('home',     'HomeController@index');
-Route::get('{any}', 'HomeController@index')->where('any', '.*');
+// Route::get('{any}', 'HomeController@index')->where('any', '.*');
+Route::get('/register', 'HomeController@index')->where('any', '.*');

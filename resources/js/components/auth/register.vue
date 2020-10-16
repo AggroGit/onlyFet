@@ -4,24 +4,30 @@
 
 
     <div class="row justify-content-center">
-      <div class="col-md-3 logoLogin">
+      <div class="col-md-5 logoLogin">
         <img class="img-fluid" src="/logo.png" alt="">
       </div>
     </div>
 
+    <div v-if="this.temporal.status && this.temporal.success" class="row justify-content-center aparecer">
+      <div class="col-md-8 text-center">
+        <h3>Ya estás registrado en OnlyFet, esperamos verte pronto</h3>
+      </div>
+    </div>
+
     <!-- Formulario login -->
-      <div class="row justify-content-center">
+      <div v-if="!this.temporal.success" class="row justify-content-center">
           <div class="col-md-6">
               <div class="card">
                   <div class="card-body">
                       <form  @submit.stop.prevent="register()" >
 
                           <div class="form-group row">
-                              <entrada v-model="form.name" :label="'name'" :name="'name'" :autocomplete="'name'" :type="'text'" :autofocus="true" :required="true"></entrada>
+                              <entrada v-model="form.name" :label="'Nombre'" :name="'name'" :autocomplete="'name'" :type="'text'" :autofocus="true" :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
-                              <entrada v-model="form.email" :label="'email'" :name="'email'" :autocomplete="'email'" :type="'email'"  :required="true"></entrada>
+                              <entrada v-model="form.email" :label="'Email'" :name="'email'" :autocomplete="'email'" :type="'email'"  :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
@@ -36,9 +42,20 @@
                           <div class="form-group row">
                               <div class="col-md-12">
                                   <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" required name="remember" id="remember" >
-                                      <label class="form-check-label" for="remember">
-                                          Politica de privacidad
+                                      <input class="form-check-input" type="checkbox" required name="legal" id="legal" >
+                                      <label class="form-check-label" for="legal">
+                                          He leído y acepto los términos legales
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <div class="col-md-12">
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" name="influencer" id="influencer" >
+                                      <label class="form-check-label" for="influencer">
+                                          ¿Te consideras influencer?
                                       </label>
                                   </div>
                               </div>
@@ -55,10 +72,10 @@
                           </form>
 
 
-                          <div class="form-group row ">
+                          <div v-if="!this.temporal.status" class="form-group row ">
                               <div class="col-md-12 offset-md-12">
                                  <router-link to="/login">
-                                    <button  class="btn btn-primary boton">
+                                    <button  class="btn btn-primary btn-secondary boton">
                                         {{$ml.get('auth').changelogin}}
                                         <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
                                     </button>
@@ -66,7 +83,7 @@
                               </div>
                           </div>
 
-                          <div class="row">
+                          <div class="row down-2">
                             <div class="col-md-12">
                               <div v-if="this.error" class="alert alert-danger">
                                 <strong>{{$ml.get('auth').prError}}</strong> {{$ml.get('auth').error}}
@@ -76,8 +93,6 @@
                               </div>
                             </div>
                           </div>
-
-
                   </div>
               </div>
           </div>
@@ -95,11 +110,15 @@ export default {
       loading:false,
       error:false,
       exists:false,
+      temporal: {
+        status:true,
+        success:false
+      },
       test:"",
       form: {
         email:null,
-        password:null,
-        passwordRepeat:null,
+        password:"",
+        passwordRepeat:"",
         name:null,
       }
     }
@@ -118,7 +137,10 @@ export default {
       console.log(event)
     },
     register() {
-      //
+      if(this.form.password !== this.form.passwordRepeat && this.form.password !== "" && this.form.password!==null) {
+        alert('vaya, las contraseñas no coinciden')
+        return true;
+      }
       this.loading=true
       //
       var self = this;
@@ -126,7 +148,7 @@ export default {
       .post('/api/register',this.form)
       // then
       .then(function (response) {
-        self.interpretate(response)
+        self.interpretateTemporal(response)
       })
       // finally
       .finally(() => this.loading = false)
@@ -160,6 +182,27 @@ export default {
         this.error = true;
       }
 
+    },
+    interpretateTemporal(response) {
+      // si es correcto ponemos el token en cookie
+      if(response.data.rc == 1) {
+        // datos del usuario
+        this.temporal.success = true;
+
+
+      } else {
+        if(response.data.rc == 2) {
+          this.exists = true;
+          return true;
+        } else {
+          if(response.data.rc == 2) {
+            this.exists = true;
+            return true;
+          }
+          this.error = true;
+        }
+        this.error = true;
+      }
     }
 
 

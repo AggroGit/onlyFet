@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('stripe_reciver_id')->nullable();
             $table->rememberToken();
             $table->boolean('admin')->default(false);
+            $table->string('country')
+                  ->nullable()
+                  ->default('client');
             $table->string('type')
                   ->nullable()
                   ->default('client');
