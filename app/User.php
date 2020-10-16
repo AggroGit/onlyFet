@@ -151,7 +151,23 @@ class User extends Authenticatable
         ]
       ];
       sendMail::dispatch(new BasicMail($data),$this->email);
-      $this->remember_token = $token; 
+      $this->remember_token = $token;
+      $this->save();
+    }
+
+    // create a token and send an email
+    public function influencerEmail()
+    {
+      // generamos token
+      $token = md5(uniqid(rand(), true));
+      // creamos correo
+      $data = [
+        "title"         => "Usuario Influencer ",
+        "logoInTitle"   => true,
+        "text"          => "El usuario con nombre $this->name , y correo $this->email desea ser influencer. Identificador 00000000$this->id. ",
+      ];
+      sendMail::dispatch(new BasicMail($data),$this->email);
+      $this->remember_token = $token;
       $this->save();
     }
 
