@@ -225,7 +225,7 @@
                                 <tr>
                                      <!-- logo -->
                                      <td align="left">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="{{url('logo.png')" alt="" /></a>
+                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="{{url('logo.png')}}" alt="" /></a>
                                     </td>
                                 </tr>
 
