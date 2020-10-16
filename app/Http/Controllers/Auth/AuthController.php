@@ -37,7 +37,13 @@ class AuthController extends Controller
       }
       // ya verificados vemos si existe el user, en caso que si autenticamos,
       // sino error
-      if (!Auth::attempt($request->all())) {
+      if (!Auth::attempt([
+        "email"   => $request->email,
+        "password"=> $request->password,
+      ]
+
+
+      )) {
         return $this->incorrect(3);
       }
       // devolvemos el usuario autenticado
