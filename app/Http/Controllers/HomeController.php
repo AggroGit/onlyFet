@@ -36,7 +36,7 @@ class HomeController extends Controller
       return view('success');
     }
 
-    public redirectRegister()
+    public function redirectRegister()
     {
       return redirect('/register');
     }
