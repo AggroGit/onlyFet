@@ -1,0 +1,499 @@
+:root {
+  --color1: #22f0c8;
+  --color2:#ff45cd;
+
+}
+#app {
+  padding-bottom: 10%;
+}
+
+img {
+    pointer-events: none !important;
+}
+
+*:focus {
+    outline: none !important;
+    border-color: #c1c1c1 !important;
+    box-shadow: none !important;
+}
+
+.contenedor {
+  max-width: 800px;
+  margin: auto;
+}
+
+.logoLogin {
+  max-width: 250px;
+  padding: 30px;
+}
+.casitodo {
+  width: 100% !important;
+}
+.contieneBuscadorLogo {
+  display: flex;
+  margin: auto;
+  padding: 20px;
+}
+.contieneBuscadorLogo >input {
+  margin: auto;
+
+}
+.contieneBuscadorLogo >.icon {
+  margin: auto;
+  display: flex;
+  margin: 10px;
+}
+.contieneBuscadorLogo>span {
+  margin: auto !important;
+  display: flex !important;
+}
+.ContieneCabezeraChat {
+  padding-top: 10px;
+  display: flex;
+
+}
+.ContieneMensajes {
+  height: 100%;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  min-height: 70vh;
+  max-height: 70vh;
+  width: 100%;
+   height: 100%;
+   display: block;
+}
+.ContieneEntradaChat {
+  display: flex;
+  background: #ffffff;
+}
+.ContieneEntradaChat >* {
+  margin: auto;
+}
+.ContieneEntradaChat input{
+  width: 80%;
+  margin-left: 15px;
+  border: none !important;
+  padding: 0px !important;
+}
+.ContieneIconosEnviar {
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 25px;
+
+}
+.ContieneIconosEnviar>* {
+  margin-left: 10px;
+}
+.sombreado {
+   box-shadow: 0 4px 8px 0 #f3f3f39c, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ContieneEntradaChat {
+  padding: 10px !important;
+  border-radius: 23px !important;
+  border: none !important;
+  box-shadow: 0 4px 8px 0 rgb(255 255 255 / 20%), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.entradaTextoChat:focus {
+  outline-width: 0 !important;
+  outline: none !important;
+  border: none !important;
+}
+.ContieneMensajes {
+  padding: 4%;
+
+}
+
+
+.Mensaje{
+  margin-top: 10px;
+  /* width: 100%; */
+  clear:both;
+   float:left;
+}
+.globoMensaje {
+   border-radius: 20px 20px 20px 0px;
+   background: #ffbbbb;
+   padding: 18px;
+   max-width: 80%;
+   min-width:100px;
+   width: auto;
+   margin-bottom: 0px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb(255 255 255 / 19%);
+}
+.globoMensaje > p {
+  margin-bottom: 0px !important;
+}
+.mensaje {
+  margin-bottom: 0px;
+
+}
+small {
+  margin-top: 0px;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 100%;
+
+}
+.fromMe {
+  align-items: right !important;
+  width: 100%;
+}
+.fromMe >* {
+  float: right;
+}
+.fromMe >div {
+  border-radius: 20px 20px 0px 20px !important;
+
+}
+.fromMe>small {
+  text-align: right;
+}
+
+
+.conection-dot {
+  width: 12px;
+  height: 12px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  transition: all 0.4s ease;
+  transform: translateX(30px) translateY(-12px);
+}
+input {
+  border: 1px solid silver;
+  border-radius: 4px;
+  background: white;
+  padding: 5px 10px;
+}
+
+.dirty {
+  border-color: #5A5;
+  background: #EFE;
+}
+
+.dirty:focus {
+  outline-color: #8E8;
+}
+
+.error {
+  border-color: red !important;
+  background: #FDD;
+}
+
+.error:focus {
+  outline-color: #F99;
+}
+.contieneCargador {
+  height: 100vh;
+}
+.cargador {
+  margin-top: 30vh;
+  width: 5rem !important;
+  height: 5rem !important;
+}
+.hourchat {
+  text-align: right;
+}
+@keyframes slideInFromLeft {
+  0% {
+    /* height: 0px; */
+    transform: translateX(-100%);
+  }
+  100% {
+
+    transform: translateY(0);
+  }
+}
+@keyframes slideInFromRight {
+  0% {
+    /* height: 0px; */
+    transform: translateX(100%);
+  }
+  100% {
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    /* height: 0px; */
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+@keyframes botar {
+  0% { transform: translateY(0px); }
+  25% { transform: translateY(5px); }
+  50% { transform: translateY(0px); }
+  75% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+.Mensaje {
+  /* transition: all 0.4s ease; */
+  animation: 0.4s ease-out 0s 1 slideInFromLeft;
+}
+.fromMe {
+  animation: 0.4s ease-out 0s 1 slideInFromRight;
+}
+.containsTyping {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  padding: 20px 0px 20px 0px;
+  /* margin-left: 20px; */
+  /* margin-bottom: 10px; */
+}
+.containsTyping > div {
+  margin-left: 5px;
+  width: 7px;
+  height: 7px;
+  background: #ffbbbb;
+  border-radius: 50%;
+  animation: botar 0.7s linear infinite;
+}
+.containsTyping > div:nth-child(2) {
+  animation-delay: 0.2s
+}
+.containsTyping > div:nth-child(3) {
+  animation-delay: 0.4s
+}
+.invisible {
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+.visible {
+  opacity: 1;
+}
+.connected {
+  background: #4bff4b;
+}
+.imageChat {
+  min-width: 100px;
+  height: auto;
+}
+.imageChat > img {
+  width: 100%;
+}
+.ContieneNotificaciones {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+
+}
+.notification {
+  margin: auto;
+  max-width: none;
+  width: 95%;
+  max-width: 800px;
+
+}
+.form-group {
+  display: block;
+  margin-bottom: 0px !important;
+}
+.entrada {
+  /* background: white; */
+  width: auto;
+  padding: 0px 5px 0px 5px;
+
+  z-index: 999 !important;
+  transition: all 0.4s ease;
+  background: white;
+  color: #717171;
+  transform: translateX(11px) translateY(-31px);
+}
+
+.detextarea, .labelHastags {
+  transform: translateX(12px) translateY(21px) scale(0.85);
+}
+
+
+/* INPUTS AND LABELS */
+.contieneInput>input:focus ~ label{
+  transform: translateX(12px) translateY(-49px) scale(0.85);
+  color: #212529;
+}
+.inuttags > div{
+  padding: 10px 0px 10px 0px !important;
+}
+.noUp {
+  transform: translateX(15px) translateY(-52px) scale(0.85);
+  color: #212529;
+}
+.boton {
+  width: 100%;
+  margin-top: 20px;
+}
+.down-1 {
+  margin-top: 10px;
+}
+.down-2 {
+  margin-top: 20px;
+}
+.down-3 {
+  margin-top: 30px;
+}
+.down-4 {
+  margin-top: 40px;
+}
+
+.down-5 {
+  margin-top: 50px;
+}
+.ProfileImg, .contieneIconoEditar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+.ProfileImg>img {
+  width: 110%;
+  margin: auto;
+}
+
+.ContieneDatosperfil {
+  /* display: flex; */
+  padding-left: 20px;
+}
+
+.ContieneDatosperfil > * {
+  margin: auto;
+  width: 100%;
+}
+.ProfileImg > span {
+  margin: auto;
+}
+
+.contieneIconoEditar {
+  background: var(--color1);
+  display: flex;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  margin-top: -30px;
+  z-index: 999999;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.contieneIconoEditar >* {
+  margin: auto;
+  margin-top:
+}
+
+.inputFixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 20px;
+  width: 100vw;
+  z-index: 9999 !important !important;
+}
+
+
+.ContieneEntradaChat{
+  width: 97% !important;
+  margin: auto;
+  max-width: 800px !important;
+  z-index: 9999 !important !important;
+
+}
+.elimichat {
+  position: absolute !important;
+  top:0;
+  right: 0;
+  margin: 20px;
+  transform: scale(1.3);
+}
+.rojo {
+  /* background: red; */
+  color: red !important;
+}
+
+.Empty {
+  margin: auto;
+  max-width: 200px;
+  animation:  0.6s ease-out slideInFromBottom;
+}
+.Empty>* {
+  margin: auto;
+  width: 100%;
+}
+.Empty >h5{
+  font-size: 1rem;
+  color: grey;
+}
+.aparecer {
+  animation:  0.4s ease-out slideInFromBottom;
+}
+.stripe > p {
+  margin-bottom: 0px;
+}
+.InputElement {
+  font-size: 1.4rem;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.contieneInputPost {
+  max-width: 240px;
+  margin: auto;
+}
+.contieneRecomendador {
+  background: #ffffff;
+  padding: 8px;
+  padding-top: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0px 0px 13px 13px ;
+  z-index: 99999 !important;
+}
+.Recomendation {
+
+  width: 100%;
+  display: flex;
+}
+.contieneRecomendadorImg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0px 20px 0px 20px;
+}
+.contieneRecomendadorImg > img {
+  width: 120%;
+}
+.loadingReco {
+  width: 100%;
+  display: flex;
+}
+.loadingReco>span {
+  margin: auto;
+  padding: 10px;
+}
+.fadeInOut {
+    .transition-duration(0, 200ms);
+    .transition-property(visibility, opacity);
+    .transition-delay(0);
+
+    &.hidden {
+        visibility: hidden;
+        .opacity(0);
+        .transition-duration(200ms, 0);
+        .transition-property(opacity, visibility);
+        .transition-delay(0, 200ms);
+    }
+}

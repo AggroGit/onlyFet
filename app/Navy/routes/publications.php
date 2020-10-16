@@ -1,0 +1,38 @@
+<?php
+
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| RUTAS DE  CHATS
+	|--------------------------------------------------------------------------
+	|
+	*/
+
+
+
+
+
+
+
+    Route::group(['middleware' => ['auth:api','existPost']], function()
+    {
+        Route::post('/posts',                  'PublicationController@posts');
+        Route::post('/user/{user_id}/posts',   'PublicationController@postsOfUser');
+        Route::post('/post/create',            'PublicationController@create');
+        Route::post('/post/recomend',          'PublicationController@recomendUser');
+        Route::post('/post/{post_id}/comment', 'PublicationController@comment');
+        Route::post('/post/{post_id}/like',    'PublicationController@like');
+        Route::post('/post/{post_id}/edit',    'PublicationController@edit');
+        Route::post('/post/{post_id}/remove',  'PublicationController@remove');
+    });
+
+    // chats
+    Route::group(['middleware' => 'existPost'], function()
+    {
+      Route::post('/post/{post_id}',    'PublicationController@see');
+
+
+
+
+    });

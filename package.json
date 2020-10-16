@@ -1,0 +1,47 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.19",
+        "bootstrap": "^4.5.2",
+        "cross-env": "^7.0",
+        "jquery": "^3.2",
+        "laravel-mix": "^5.0.5",
+        "lodash": "^4.17.20",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.26.11",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.6.12",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "bootstrap-vue": "^2.17.3",
+        "laravel-echo": "^1.8.1",
+        "pusher-js": "^6.0.3",
+        "stripe": "^8.97.0",
+        "vee-validate": "^3.4.0",
+        "vue-cookies": "^1.7.4",
+        "vue-credit-card-validation": "^0.1.9",
+        "vue-file-agent": "^1.7.3",
+        "vue-file-upload": "^0.1.12",
+        "vue-input-tag": "^2.0.7",
+        "vue-multilanguage": "^4.0.10",
+        "vue-picture-input": "^2.1.6",
+        "vue-router": "^3.4.3",
+        "vue-star-rating": "^1.6.1",
+        "vue-stripe": "^0.1.52",
+        "vue-stripe-checkout": "^3.5.11",
+        "vue-text-highlight": "^2.0.10",
+        "vuelidate": "^0.7.5",
+        "vuex": "^3.5.1"
+    }
+}
