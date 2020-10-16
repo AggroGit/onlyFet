@@ -167,7 +167,7 @@
 
                                 <tr>
                                     <td align="center" height="70" style="height:70px;">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="100" border="0" style="display: block; width: 100px;" src="{{url('logo.png')}}" alt="" /></a>
+                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="100" border="0" style="display: block; width: 100px;" src="https://onlyfet.com/logo.png" alt="" /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -183,7 +183,7 @@
 
                         <div style="line-height: 35px">
                             @if(!isset($title))
-                              Mensaje de  <span style="color: #{{env('LIGHT_COLOR','#48A999')}};">MERCO</span>
+                              Mensaje de  <span style="color: #{{env('LIGHT_COLOR','#48A999')}};">OnlyFet</span>
                             @else
                             {{$title}} @if($logoInTitle?? false)<span style="color: #{{env('LIGHT_COLOR','#48A999')}};">MERCO</span>@endif
                             @endif
@@ -225,7 +225,7 @@
                                 <tr>
                                      <!-- logo -->
                                      <td align="left">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="{{url('logo.png')}}" alt="" /></a>
+                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="80" border="0" style="display: block; width: 80px;" src="https://onlyfet.com/logo.png" alt="" /></a>
                                     </td>
                                 </tr>
 
