@@ -63,6 +63,9 @@ class AuthController extends Controller
       $new = new User($request->all());
       $new->password = bcrypt($request->password);
       $new->save();
+      if($request->influencer == true) {
+        $new->influencerEmail();
+      }
       // devolvemos logeado
       return $this->login($request);
     }

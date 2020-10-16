@@ -53,7 +53,7 @@
                           <div class="form-group row">
                               <div class="col-md-12">
                                   <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" name="influencer" id="influencer" >
+                                      <input v-model="form.influencer" class="form-check-input" type="checkbox" name="influencer" id="influencer" >
                                       <label class="form-check-label" for="influencer">
                                           ¿Te consideras influencer?
                                       </label>
@@ -120,6 +120,7 @@ export default {
         password:"",
         passwordRepeat:"",
         name:null,
+        influencer:false
       }
     }
   },
