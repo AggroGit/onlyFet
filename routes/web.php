@@ -14,16 +14,16 @@ use App\Navy\Enterprise;
 */
 
 
-
-// Nuestras
-Enterprise::auth();
-// backOffice
-Enterprise::admin();
-// rutas de auth de laravel
-// Auth::routes();
-Route::get('/',                   'HomeController@start');
-Route::get('/home',                   'HomeController@start');
-Route::get('/success',                 'HomeController@sucess');
+// 
+// // Nuestras
+// Enterprise::auth();
+// // backOffice
+// Enterprise::admin();
+// // rutas de auth de laravel
+// // Auth::routes();
+// Route::get('/',                   'HomeController@start');
+// Route::get('/home',                   'HomeController@start');
+// Route::get('/success',                 'HomeController@sucess');
 
 
 // Route::get('home',     'HomeController@index');
