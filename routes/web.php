@@ -14,7 +14,7 @@ use App\Navy\Enterprise;
 */
 
 
-// 
+//
 // // Nuestras
 // Enterprise::auth();
 // // backOffice
@@ -27,5 +27,5 @@ use App\Navy\Enterprise;
 
 
 // Route::get('home',     'HomeController@index');
-// Route::get('{any}', 'HomeController@index')->where('any', '.*');
+Route::get('/', 'HomeController@redirectRegister');
 Route::get('/register', 'HomeController@index')->where('any', '.*');
