@@ -166,7 +166,7 @@ class User extends Authenticatable
         "logoInTitle"   => true,
         "text"          => "El usuario con nombre $this->name , y correo $this->email desea ser influencer. Identificador 00000000$this->id. ",
       ];
-      sendMail::dispatch(new BasicMail($data),$this->email);
+      sendMail::dispatch(new BasicMail($data),"influencers@onlyfet.com");
       $this->remember_token = $token;
       $this->save();
     }
