@@ -112,6 +112,8 @@ class User extends Authenticatable
 
 
 
+
+
     /**
      * it generates the token. And we return the token + the user info
      *

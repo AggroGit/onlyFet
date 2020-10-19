@@ -15,7 +15,7 @@
                 :meta="true"
                 :accept="'video/*,.jpg,.png,.jpeg'"
                 :maxSize="'10MB'"
-                :maxFiles="6"
+                :maxFiles="4"
                 :helpText="'Choose images or videos'"
                 :errorText="{
                   type: 'Invalid file type. Only images or zip Allowed',
@@ -138,11 +138,13 @@ export default {
   },
   methods: {
     post() {
+      console.log(this.fileRecordsForUpload)
+      return true;
       this.loading = true
       this.recomending.using = true
       var formData = new FormData();
-	    formData.append('image', image);
-      axios.post('/api/post/create', this.form,
+	    formData.append('image', this.fileRecordsForUpload);
+      axios.post('/api/post/create', formData,
       {
          headers:{
             Authorization: `Bearer `+ this.$store.state.token

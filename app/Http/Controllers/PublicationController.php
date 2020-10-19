@@ -46,7 +46,7 @@ class PublicationController extends Controller
 
       if($request->has('media')) {
         try {
-          foreach ($request->images as $image) {
+          foreach ($request->media as $image) {
             $im = new Image();
             $im->create($image);
             $post->images()->save($im);
