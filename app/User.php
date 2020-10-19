@@ -63,7 +63,7 @@ class User extends Authenticatable
     //
     public function allChats()
     {
-      return $this->belongsToMany('App\Chat','chats_users')->orderBy('created_at','DESC');
+      return $this->belongsToMany('App\Chat','chats_users')->orderBy('updated_at','DESC');
     }
 
     //

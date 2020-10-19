@@ -58,7 +58,8 @@ return [
     ],
 
     'addPost' => [
-      'image'     => 'image:mimes:jpg,jpeg,png',
+      'media'         =>  'array',
+        // 'media.*'    => 'image:mimes:jpg,jpeg,png,video:mov,',
       'content'   => 'required|string',
       'hastags'   => 'array',
         'hastags.*'   =>  'required|string',

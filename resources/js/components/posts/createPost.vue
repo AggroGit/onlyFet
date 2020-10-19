@@ -13,10 +13,10 @@
                 :multiple="true"
                 :deletable="true"
                 :meta="true"
-                :accept="'video/*,.zip'"
+                :accept="'video/*,.jpg,.png,.jpeg'"
                 :maxSize="'10MB'"
-                :maxFiles="14"
-                :helpText="'Choose images or zip files'"
+                :maxFiles="6"
+                :helpText="'Choose images or videos'"
                 :errorText="{
                   type: 'Invalid file type. Only images or zip Allowed',
                   size: 'Files should not exceed 10MB in size',
@@ -26,9 +26,9 @@
                 @delete="fileDeleted($event)"
                 v-model="fileRecords"
               ></VueFileAgent>
-              <button :disabled="!fileRecordsForUpload.length" @click="uploadFiles()">
+              <!-- <button :disabled="!fileRecordsForUpload.length" @click="uploadFiles()">
                 Upload {{ fileRecordsForUpload.length }} files
-              </button>
+              </button> -->
             <!-- </div> -->
             <br>
             <div class="form-group row down-2">
@@ -54,6 +54,9 @@
             </div>
 
 
+
+
+
             <div class="form-group row down-2">
               <div class="col-md-12 contieneInput">
                   <label for="hastags" class=" entrada labelHastags" >Hastags</label>
@@ -70,7 +73,18 @@
             </div>
 
 
-            <div class="form-group row ">
+            <div class="form-group row down-2">
+              <div class="checkbox col-md-12">
+                <label><input type="checkbox" v-model="program" value=""> {{$ml.get('post').program}}</label>
+              </div>
+              <div v-if="this.program" class="col-md-12 contieneInput aparecer">
+                  <label for="hastags" class=" entrada labelHastags" >{{$ml.get('post').date_program}}</label>
+                  <datetime type="datetime" v-model="form.program_date" class="theme-orange" ></datetime>
+              </div>
+            </div>
+
+
+            <div class="form-group row down-2">
                 <div class="col-md-12 offset-md-12">
                     <button type="submit" class="btn btn-primary boton">
                         {{$ml.get('post').publy}}
@@ -109,10 +123,12 @@ export default {
       },
       loading:false,
       error: false,
+      program:false,
       form: {
         content: null,
         hastags:[],
-        tags:[]
+        tags:[],
+        program_date: null
 
       }
     }
@@ -124,6 +140,8 @@ export default {
     post() {
       this.loading = true
       this.recomending.using = true
+      var formData = new FormData();
+	    formData.append('image', image);
       axios.post('/api/post/create', this.form,
       {
          headers:{

@@ -21,6 +21,9 @@ import VueRouter from 'vue-router'
 import InputTag from 'vue-input-tag'
 import VueCookies from 'vue-cookies'
 import VeeValidate from 'vee-validate'
+import { Datetime } from 'vue-datetime'
+// You need a specific loader for CSS files
+import 'vue-datetime/dist/vue-datetime.css'
 import TextHighlight from 'vue-text-highlight';
 import { StripeCheckout } from 'vue-stripe'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -36,7 +39,8 @@ import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
 // nuestras
 import './ml.js' // idiomas
 
-
+//
+Vue.use(Datetime)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
@@ -106,7 +110,8 @@ Vue.component('stripe-add-visa', require('./components/stripe/addVisa.vue').defa
 Vue.component('stripe-cards', require('./components/stripe/cards.vue').default);
 // postear
 Vue.component('postear',  require('./components/posts/createPost.vue').default);
-
+// datetime
+Vue.component('datetime', Datetime);
 
 
 

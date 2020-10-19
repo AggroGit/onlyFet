@@ -51,9 +51,11 @@ export default new MLCreate({
         noCards:"Vaya, parece que no hay tarjetas de crédito"
       },
       post: {
+        program: "Programar Publicación",
         post: "Publicación",
         publy: "Publicar",
-        error: "Error al publicar"
+        error: "Error al publicar",
+        date_program: "Fecha de publicación"
       }
     })
   ]

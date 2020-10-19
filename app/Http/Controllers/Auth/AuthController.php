@@ -39,11 +39,8 @@ class AuthController extends Controller
       // sino error
       if (!Auth::attempt([
         "email"   => $request->email,
-        "password"=> $request->password,
-      ]
-
-
-      )) {
+        "password"=> $request->password
+      ])) {
         return $this->incorrect(3);
       }
       // devolvemos el usuario autenticado
@@ -222,7 +219,7 @@ class AuthController extends Controller
         return $this->incorrect(0,$missings);
       }
       if($request->has('image')) {
-        if(auth()->user()->image) {
+        if(auth()->user()->image !== null) {
           auth()->user()->image->updateImage($request->image);
         } else {
           $new = new Image();

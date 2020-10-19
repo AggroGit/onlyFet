@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publication as Post;
+use App\Image;
 use App\User;
 
 class PublicationController extends Controller
@@ -43,7 +44,7 @@ class PublicationController extends Controller
       ]);
       $post->save();
 
-      if($request->has('images')) {
+      if($request->has('media')) {
         try {
           foreach ($request->images as $image) {
             $im = new Image();

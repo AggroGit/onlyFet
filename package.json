@@ -26,11 +26,13 @@
     "dependencies": {
         "bootstrap-vue": "^2.17.3",
         "laravel-echo": "^1.8.1",
+        "luxon": "^1.25.0",
         "pusher-js": "^6.0.3",
         "stripe": "^8.97.0",
         "vee-validate": "^3.4.0",
         "vue-cookies": "^1.7.4",
         "vue-credit-card-validation": "^0.1.9",
+        "vue-datetime": "^1.0.0-beta.14",
         "vue-file-agent": "^1.7.3",
         "vue-file-upload": "^0.1.12",
         "vue-input-tag": "^2.0.7",
@@ -42,6 +44,7 @@
         "vue-stripe-checkout": "^3.5.11",
         "vue-text-highlight": "^2.0.10",
         "vuelidate": "^0.7.5",
-        "vuex": "^3.5.1"
+        "vuex": "^3.5.1",
+        "weekstart": "^1.0.1"
     }
 }

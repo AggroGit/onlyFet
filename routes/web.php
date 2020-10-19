@@ -27,5 +27,5 @@ use App\Navy\Enterprise;
 
 
 // Route::get('home',     'HomeController@index');
-Route::get('/', 'HomeController@redirectRegister');
-Route::get('/register', 'HomeController@index')->where('any', '.*');
+Route::get('/{any}',        'HomeController@index')->where('any', '.*');
+Route::get('/register', 'HomeController@index');

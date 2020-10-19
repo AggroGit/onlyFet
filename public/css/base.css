@@ -523,3 +523,26 @@ input {
 .card {
   border: none !important;
 }
+.bg-light {
+  background: #ffffff !important;
+}
+.vdatetime-input {
+  width: 100%;
+}
+
+.theme-orange .vdatetime-popup__header,
+.theme-orange .vdatetime-calendar__month__day--selected > span > span,
+.theme-orange .vdatetime-calendar__month__day--selected:hover > span > span {
+  background: var(--rojo1);
+  color: #ffffff;
+}
+
+.theme-orange .vdatetime-year-picker__item--selected,
+.theme-orange .vdatetime-time-picker__item--selected,
+.theme-orange .vdatetime-popup__actions__button {
+  background: var(--rojo1);
+  color: #ffffff;
+}
+
+.entradaDateTime > .vdatetime-popup__date {
+}
