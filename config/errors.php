@@ -18,6 +18,7 @@ return [
     "3"     =>    "this user doesn't exists",
     "4"     =>    "the user does not have privilegies",
     "5"     =>    "the user is invited",
+    "6"     =>    "the user nickname exists",
     "9"     =>    "unknown error",
     "13"    =>    "User no logged",
     "14"    =>    "User almost has a business",

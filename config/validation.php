@@ -58,11 +58,12 @@ return [
     ],
 
     'addPost' => [
-      'media'         =>  'array',
-        // 'media.*'    => 'image:mimes:jpg,jpeg,png,video:mov,',
+      // 'media'         =>  'array',
+        'media.*'    => 'image:mimes:jpg,jpeg,png,video:mov,',
       'content'   => 'required|string',
-      'hastags'   => 'array',
-        'hastags.*'   =>  'required|string',
+      // 'publish_at'=> 'nullable|date_format:Y.m.d H:i'
+      // 'hastags'   => 'nullable|array',
+      //   'hastags.*'   =>  'string',
 
 
     ],

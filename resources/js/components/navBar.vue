@@ -1,4 +1,4 @@
-<template>
+ <template>
 
     <div>
       <b-navbar toggleable="lg"  type="light" class="sombreado navbar blanco" toggle-class="blanco">
@@ -15,6 +15,7 @@
           <b-navbar-nav>
             <b-nav-item to='/home'>Home</b-nav-item>
             <b-nav-item to='/chats'>Chats</b-nav-item>
+            <b-nav-item to='/post/create'>Publicar</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items NO LOGGED-->

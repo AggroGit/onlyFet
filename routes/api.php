@@ -20,9 +20,10 @@ Enterprise::noAuth();
 Enterprise::stripe();
 Enterprise::publications();
 
-Route::post('/video',     'TestController@video');
+Route::post('/upload',     'TestController@video');
+Route::post('/user/{nickcname}',     'PublicationController@wallOfUser');
 
-Route::group(['middleware' => ['auth:api']], function()
+Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
   //
   Enterprise::chats();

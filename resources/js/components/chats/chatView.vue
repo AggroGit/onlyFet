@@ -15,9 +15,8 @@
         <template v-slot:button-content>
           <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
         </template>
-        <b-dropdown-item href="#">Action</b-dropdown-item>
-        <b-dropdown-item href="#">Another action</b-dropdown-item>
-        <b-dropdown-item href="#">Something else here</b-dropdown-item>
+        <b-dropdown-item href="#">Bloquear</b-dropdown-item>
+        <b-dropdown-item href="#">Reportar</b-dropdown-item>
       </b-dropdown>
     </div>
 
@@ -36,11 +35,11 @@
         <small>{{$store.state.time(message.created_at)}}</small>
       </div>
 
-      <div class="containsTyping">
+      <!-- <div class="containsTyping">
         <div></div>
         <div></div>
         <div></div>
-      </div>
+      </div> -->
 
     </div>
 

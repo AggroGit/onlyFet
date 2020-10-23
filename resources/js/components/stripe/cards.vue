@@ -21,7 +21,7 @@
           </div>
 
 
-          <div v-for="(card) in this.cards" :key="card.id" class="card down-2">
+          <div v-for="(card) in this.cards" :key="card.id" class="sombreado card down-2">
             <div class="card-header">
               <b-icon icon="credit-card" aria-hidden="true"></b-icon>
               {{card.card.brand}}

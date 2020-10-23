@@ -77,6 +77,14 @@ class Image extends Model
       $this->rmdir_recursive($this->getPathToSave()."/$this->name");
       $this->name = $this->generateToken();
       return $this->create($image,$this->url);
+    }else {
+      try {
+        $this->name = $this->generateToken();
+        return $this->create($image,$this->url);
+      } catch (\Exception $e) {
+
+      }
+
     }
   }
   public function delete()

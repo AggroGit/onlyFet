@@ -101,16 +101,16 @@ class Video extends Model
         return false;
       }
       // base url
-      $base = "public/videos/".$this->name."/original".".".$this->format;
+      $base = "public/".$this->url.'/'.$this->name."/original".".".$this->format;
       // abrimos archivo
       $video = FFMpeg::open($base);
-      // Dimension
-      $dimensions = $video->getVideoStream()->getDimensions();
-      // cogemos height and with
-      $height = $dimensions->getHeight();
-      //
-      $width = $dimensions->getWidth();
-      //
+      // // Dimension
+      // $dimensions = $video->getVideoStream()->getDimensions();
+      // // cogemos height and with
+      // $height = $dimensions->getHeight();
+      // //
+      // $width = $dimensions->getWidth();
+      // //
 
       // echo "w: $width , h: $height";
       // ahora debemos mirar, si la altura es mas grande que anchura entonces el rescale será a 480, 720
@@ -128,21 +128,23 @@ class Video extends Model
         $lowBitrateFormat = (new \FFMpeg\Format\Video\X264('copy'))->setKiloBitrate(2000);
         $video->export()
         ->inFormat($lowBitrateFormat)
-        ->save("public/videos/".$this->name."/exported".".".$this->format);
+        ->save('public/'.$this->url.'/'.$this->name."/exported".".".$this->format);
 
       } catch (\Exception $e) {
         $this->failed = true;
         $this->save();
         return false;
       }
+      if(!$this->failed) {
+        $this->exported = true;
+        $this->save();
+        try {
+          $this->removeOriginalVideo();
+        } catch (\Exception $e) {
 
-      $this->exported = true;
-      $this->save();
-      try {
-        $this->removeOriginalVideo();
-      } catch (\Exception $e) {
-
+        }
       }
+
       return true;
 
 
@@ -157,5 +159,16 @@ class Video extends Model
             else unlink("$dir/$file");
         }
         rmdir($dir);
+    }
+    
+    public function delete()
+    {
+      try {
+        $base = $this->getPathToSave()."/".$this->name;
+        rmdir_recursive($base);
+      } catch (\Exception $e) {
+
+      }
+      return parent::delete();
     }
 }

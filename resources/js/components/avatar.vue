@@ -1,9 +1,9 @@
 <template>
-  <div class="">
+  <router-link :to="this.route()" class="">
     <b-avatar class="mr-3" :src="this.image()"></b-avatar>
     <div v-if="this.conection && !this.connected" class="conection-dot"></div>
     <div v-if="this.conection && this.connected" class="conection-dot connected"></div>
-  </div>
+  </router-link>
 
 </template>
 
@@ -75,6 +75,11 @@ this.initConnect();
       }
 
 
+    },
+    route() {
+      if(this.us !== false) {
+        return "/user/"+this.us.nickname
+      }
     }
 
   }

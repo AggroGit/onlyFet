@@ -23,6 +23,7 @@ export default new MLCreate({
         lookUser: "Buscar chat"
       },
       auth: {
+        nickname:"Nombre de Usuario",
         prError: "Vaya",
         error: "Parece que el usuario no existe o tienes mal los datos",
         exist: "Parece que el usuario ya existe",
@@ -37,7 +38,10 @@ export default new MLCreate({
         RepPassword: "Repetir Contraseña",
         name: "Nombre",
         newPass: "Nueva Contraseña",
-        edit: "Editar"
+        edit: "Editar",
+        existNickName:"Ya existe un usuario con el nickname ",
+        country: "País",
+        lang: "Idioma"
       },
       stripe: {
         create: "Crear Cuenta de Stripe",
@@ -55,7 +59,14 @@ export default new MLCreate({
         post: "Publicación",
         publy: "Publicar",
         error: "Error al publicar",
-        date_program: "Fecha de publicación"
+        date_program: "Fecha de publicación",
+        posting: "Subiendo publicación...",
+        nopost: "No existe ésta publicación",
+        noComments: "Vaya, parece que no hay comentarios",
+        comment: "Comentar",
+        comments: "Comentarios",
+        remove:"Eliminar",
+        noposts:"Vaya, parece que no hay más publicaciones"
       }
     })
   ]

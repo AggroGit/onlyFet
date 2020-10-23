@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $with="user";
+
     protected $fillable = [
       'user_id', 'publication_id', 'comment'
+    ];
+
+    protected $appends = [
+      'fecha'
     ];
 
     public function user()
@@ -20,6 +26,11 @@ class Comment extends Model
       return $this->belongsTo('App\Publication');
     }
 
+    public function getFechaAttribute()
+    {
+      return $this->created_at->diffForHumans();
+    }
+
     //
     public static function boot()
     {
@@ -27,13 +38,16 @@ class Comment extends Model
         //
         self::created(function($model){
             //
-            $model->publication->user->send([
-              "title"   => auth()->user()->name,
-              "body"    => "Ha comentado tu publicación",
-              "type"    => "publication",
-              "data"    => $model->id,
-              "sound"   => "default"
-            ]);
+            if($model->publication->user->id !== auth()->user()->id) {
+              $model->publication->user->send([
+                "title"   => auth()->user()->name,
+                "body"    => "Ha comentado tu publicación",
+                "type"    => "publication",
+                "data"    => $model->publication->id,
+                "sound"   => "default"
+              ]);
+            }
+
         });
     }
 }

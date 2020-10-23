@@ -88,7 +88,7 @@ img {
   margin-left: 10px;
 }
 .sombreado {
-   box-shadow: 0 4px 8px 0 #f3f3f39c, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   box-shadow: 0 4px 2px 0 #f3f3f39c, 0 6px 20px 0 rgb(214 214 214 / 19%);
 }
 .ContieneEntradaChat {
   padding: 10px !important;
@@ -197,24 +197,26 @@ input {
 .hourchat {
   text-align: right;
 }
+
 @keyframes slideInFromLeft {
   0% {
-    /* height: 0px; */
-    transform: translateX(-100%);
+    transform: translateX(100px);
+    opacity: 0;
   }
   100% {
 
-    transform: translateY(0);
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 @keyframes slideInFromRight {
   0% {
     /* height: 0px; */
-    transform: translateX(100%);
+    transform: translateX(-100px);
   }
   100% {
 
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -329,6 +331,17 @@ input {
 .inuttags > div{
   padding: 10px 0px 10px 0px !important;
 }
+.inuttags {
+  padding: 20px !important;
+  height: calc(3.5em + 0.75rem + 2px) !important;
+}
+.input-tag {
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  border: none !important;
+  box-shadow: 1px 1px 4px 5px #dadada9c, 0 6px 20px 0 rgb(214 214 214 / 19%);
+  color: black !important;
+}
 .noUp {
   transform: translateX(15px) translateY(-52px) scale(0.85);
   color: #212529;
@@ -346,20 +359,20 @@ input {
   background: var(--rojo2) !important;
 }
 .down-1 {
-  margin-top: 10px;
+  margin-top: 10px !important;
 }
 .down-2 {
-  margin-top: 20px;
+  margin-top: 20px !important;
 }
 .down-3 {
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 .down-4 {
-  margin-top: 40px;
+  margin-top: 40px !important;
 }
 
 .down-5 {
-  margin-top: 50px;
+  margin-top: 50px !important;
 }
 .ProfileImg, .contieneIconoEditar {
   border-radius: 50%;
@@ -367,6 +380,8 @@ input {
   width: 100px;
   height: 100px;
   display: flex;
+  margin: auto;
+  margin-right: 23%;
 }
 .ProfileImg>img {
   width: 110%;
@@ -446,6 +461,14 @@ input {
 }
 .aparecer {
   animation:  0.4s ease-out slideInFromBottom;
+}
+.aparecerIzquierda {
+  transition: all 0.4s ease;
+  animation: 0.4s ease-out slideInFromLeft !important;
+}
+.aparecerDerecha {
+  transition: all 0.4s ease;
+  animation: 0.4s ease-out slideInFromRight !important;
 }
 .stripe > p {
   margin-bottom: 0px;
@@ -543,6 +566,147 @@ input {
   background: var(--rojo1);
   color: #ffffff;
 }
-
+.card-header {
+  /* border-radius: 0px 20px 0px 20px !important; */
+}
+.post {
+  border-radius: 1.25rem !important;
+  margin: auto;
+}
+.post>div {
+  padding: 0.75rem 1.25rem;
+}
 .entradaDateTime > .vdatetime-popup__date {
+}
+.post > .card-header,.post > .card-footer {
+  display: flex;
+  background: #ffffff;
+}
+.cabecerapoST {
+  display: flex;
+}
+.contieneDetPost > p {
+  width: 100%;
+  margin: auto;
+}
+.contieneDetPost {
+  text-align: left;
+}
+.contieneImgPubli {
+  padding: 0px !important;
+  display: flex;
+  margin: auto;
+  width: 100%;
+}
+.contieneImgPubli > img {
+  width: 100%;
+}
+.contieneLikeComents {
+  display: inline-block;
+}
+.likes {
+  float: left;
+}
+.comments {
+  float: right;
+}
+.post > .separador {
+  padding: 0px !important;
+  width: 100%;
+  height: 0.5px;
+  background: grey;
+}
+.contieneOpcionComentar {
+  display: flex;
+}
+.opcionesPost {
+  float: right;
+    margin: auto;
+    margin-right: 0;
+}
+.dropdown {
+  border: none !important;
+}
+.dropdown-item:active {
+  background: grey !important;
+}
+ .no-border{
+}
+
+.btn {
+  border: none !important;
+}
+.contieneOpcion {
+  text-align: center;
+}
+.contienevacio > img {
+  max-width: 200px;
+}
+.carrousel {
+  width: 100% !important;
+}
+.allA {
+  display: flex !important;
+}
+.no-border {
+  border: none !important;
+}
+.grisaceo {
+  color: #9e9e9e;
+}
+.contieneBoton {
+  text-align: center;
+  display: inline-block;
+}
+.entradaComment {
+  width: 90% !important;
+  margin: auto;
+}
+.botoncoment {
+  width: 90%;
+}
+.imagenCompleta {
+  width: 100%;
+  height: auto;
+}
+
+.noLink,noLink:hover {
+    text-decoration: none !important;
+    color: black !important;
+
+}
+.contieneEnrutador {
+  background: #ffffff !important;
+}
+.contieneEnrutador >div{
+  padding: 20px;
+}
+.contieneLinea {
+  width: 100%;
+  padding: 0px !important;
+
+}
+.lineaSeparadora {
+  width: 100% ;
+  height: 2px;
+  background: red;
+  margin-left: 0px;
+}
+.sobreadoPlus{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.sombreadoInferior {
+  box-shadow: 0px 9px 2px 0 #f3f3f39c, 0px 20px 20px 0 rgb(214 214 214 / 19%);
+}
+.ContieneSuscripcionesButton {
+  width: 100%;
+
+}
+.ContieneSuscripcionesButton>div {
+  width: 100%;
+  margin: auto;
+}
+.ContieneSuscripcionesButton>.dropdown-menu {
+  width: 100% !important;
 }

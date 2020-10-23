@@ -99,6 +99,12 @@ class Controller extends BaseController
      }
 
 
+     public function listToArray($list)
+     {
+       return explode(',',$list);
+     }
+
+
 
 
 

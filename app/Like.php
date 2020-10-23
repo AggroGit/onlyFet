@@ -41,13 +41,15 @@ class Like extends Model
 
           }
             //
-            $model->publication->user->send([
-              "title"   => auth()->user()->name,
-              "body"    => "Le ha dado like a tu foto",
-              "type"    => "publication",
-              "data"    => $model->id,
-              "sound"   => "default"
-            ]);
+            if($model->publication->user->id !== auth()->user()->id) {
+              $model->publication->user->send([
+                "title"   => auth()->user()->name,
+                "body"    => "Le ha dado like a tu foto",
+                "type"    => "like",
+                "data"    => $model->id,
+                "sound"   => "default"
+              ]);
+            }
         });
 
         self::updating(function($model){

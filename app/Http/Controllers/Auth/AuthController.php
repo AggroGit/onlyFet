@@ -66,6 +66,7 @@ class AuthController extends Controller
       $new = new User($request->all());
       $new->password = bcrypt($request->password);
       $new->save();
+      $new->nickname = $new->name.$new->id;
       if($request->influencer == true) {
         $new->influencerEmail();
       }
@@ -212,6 +213,11 @@ class AuthController extends Controller
       if($request->has('email')){
         if(User::where('email',$request->email)->first()) {
           return $this->incorrect(2);
+        }
+      }
+      if($request->has('nickname')){
+        if(User::where('nickname',$request->nickname)->first()) {
+          return $this->incorrect(6);
         }
       }
       // envia un correo que solicita cambiar la contraseña

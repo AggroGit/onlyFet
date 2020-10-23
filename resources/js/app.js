@@ -95,9 +95,12 @@ Vue.component('register',require('./components/auth/register.vue').default);
 Vue.component('entrada',require('./components/entrada.vue').default);
 // textarea
 Vue.component('entradaText',require('./components/entradatextarea.vue').default);
-
+// post
+Vue.component('post',require('./components/posts/post.vue').default);
 // perfil
 Vue.component('profile',require('./components/auth/profile.vue').default);
+// otros
+Vue.component('user',require('./components/auth/user.vue').default);
 // ditar perfil
 Vue.component('editProfile',require('./components/auth/editProfile.vue').default);
 //input image
@@ -110,6 +113,17 @@ Vue.component('stripe-add-visa', require('./components/stripe/addVisa.vue').defa
 Vue.component('stripe-cards', require('./components/stripe/cards.vue').default);
 // postear
 Vue.component('postear',  require('./components/posts/createPost.vue').default);
+// carrousel
+Vue.component('carousel',  require('./components/posts/carrousel.vue').default);
+// coments
+Vue.component('comments',  require('./components/posts/commentsList.vue').default);
+//
+Vue.component('home',  require('./components/home.vue').default);
+//
+Vue.component('news',  require('./components/posts/news.vue').default);
+
+Vue.component('wall',  require('./components/posts/news.vue').default);
+
 // datetime
 Vue.component('datetime', Datetime);
 
@@ -125,20 +139,68 @@ Vue.component('datetime', Datetime);
  */
 
  const routes = [
- {path: '/',              component: Vue.component('fullChatView')},
+ {path: '/',              component: Vue.component('home')},
  // auth
  {path: '/login',         component: Vue.component('login')},
  {path: '/register',      component: Vue.component('register')},
  // user
  {path: '/profile',       component: Vue.component('profile')},
  {path: '/profile/edit',  component: Vue.component('editProfile')},
+ {path: '/user/:nickname/',      component: Vue.component('user'),
+ children: [
+   {
+     path:'',
+     component: Vue.component('wall'),
+     name:'wall',
+   },
+   {
+     path:'pics',
+     component: Vue.component('wall'),
+     name:'pics',
+   },
+   {
+     path:'videos',
+     component: Vue.component('example'),
+     name:'videos',
+   },
+   {
+     path:'wall',
+     name:'wall',
+     component: Vue.component('wall'),
+   }
+ ]
+
+},
  // stripe
  {path: '/profile/cards',  component: Vue.component('stripe-cards')},
  // posts
- {path: '/post/create',   component: Vue.component('postear')},
+ {path: '/post/create',           component: Vue.component('postear')},
+ {path: '/post/test',             component: Vue.component('carousel')},
+ {path: '/post/:post_id',         component: Vue.component('post')},
+ {path: '/post/:post_id/coments', component: Vue.component('comments')},
 
+ // home
+ {  path: '/home',component: Vue.component('home'),
+      children: [
+        {
+          path:'suscriptions',
+          component: Vue.component('example'),
+          name:'suscriptions'
+        },
+        {
+          path:'news',
+          component: Vue.component('news'),
+          name:'news'
+        },
+        {
+          path:'',
+          name:'news',
+          component: Vue.component('news'),
+        }
+      ]
+
+},
  //
- {path: '/home',          component: Vue.component('fullChatView')},
  {path: '/chats',         component: Vue.component('chatsList')},
  {path: '/chats/:id',     component: Vue.component('chatView')},
  {path: '/full/chats',    component: Vue.component('fullChatView')},

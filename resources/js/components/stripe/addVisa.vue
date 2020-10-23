@@ -1,5 +1,5 @@
 <template>
-      <div class="card">
+      <div class="card sombreado">
         <div class="card-header">
           <b-icon icon="credit-card" aria-hidden="true"></b-icon> Añadir método de pago
         </div>

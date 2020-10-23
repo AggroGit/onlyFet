@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
         $new = new User;
         $new->name = "Alex";
         $new->email = "admin@gmail.com";
+        $new->nickname = "alex1";
         $new->password = bcrypt("123456789");
         $new->save();
         // user admin
         $new2 = new User;
         $new2->name = "Juan";
+        $new2->nickname = "juan1";
         $new2->email = "admin2@gmail.com";
         $new2->password = bcrypt("123456789");
         $new2->save();

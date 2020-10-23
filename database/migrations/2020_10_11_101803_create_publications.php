@@ -18,9 +18,8 @@ class CreatePublications extends Migration
             $table->timestamps();
             $table->text('content')->nullable();
             $table->string('type')->default('default');
-            // $table->integer('likes')->default(0);
-            // $table->integer('comments')->default(0);
-            // usuario quien hace la publicación
+            $table->datetime('publish_at')->nullable();
+            //
             $table->integer('user_id')
                   ->references('id')
                   ->on('users')
@@ -43,6 +42,22 @@ class CreatePublications extends Migration
                 ->onUpdate('cascade');
           $table->timestamps();
           });
+
+          // Vídeos de publicaciones
+          Schema::create('publications_videos', function (Blueprint $table) {
+            $table->integer('video_id')
+                  ->references('id')
+                  ->on('videos')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->integer('publication_id')
+                  ->references('id')
+                  ->on('publications')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->timestamps();
+            });
 
           // Likes
           Schema::create('likes', function (Blueprint $table) {
@@ -86,7 +101,7 @@ class CreatePublications extends Migration
 
               Schema::create('hastags', function (Blueprint $table) {
                   $table->id();
-                  $table->text('text')->nullable();
+                  $table->string('text')->nullable();
               });
 
               Schema::create('publications_hastags', function (Blueprint $table) {
@@ -123,6 +138,7 @@ class CreatePublications extends Migration
         Schema::dropIfExists('comments');
         Schema::dropIfExists('likes');
         Schema::dropIfExists('publications_images');
+        Schema::dropIfExists('publications_videos');
         Schema::dropIfExists('publications_hastags');
         Schema::dropIfExists('hastags');
 

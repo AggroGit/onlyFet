@@ -5,20 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Comment;
 use App\Like;
+use Carbon\Carbon;
 
 class Publication extends Model
 {
     //
     protected $with = [
-      'user', 'images',
+      'user', 'images', 'videos'
     ];
     //
     protected $fillable = [
-      'content', 'user_id',
+      'content', 'user_id', 'publish_at'
     ];
     //
     protected $appends = [
-      'numLikes', 'numComments', 'haveLiked'
+      'numLikes', 'numComments', 'haveLiked', 'fecha'
     ];
 
     // likes
@@ -31,14 +32,25 @@ class Publication extends Model
     // comments
     public function comments()
     {
-       return $this->hasMany('App\Comment')
-                   ->orderBy('created_at','desc');
+       return $this->hasMany('App\Comment');
     }
 
     // images
     public function images()
     {
       return $this->belongsToMany('App\Image', 'publications_images');
+    }
+
+    // hastags
+    public function hastags()
+    {
+      return $this->belongsToMany('App\Hastag', 'publications_hastags');
+    }
+
+    // videos
+    public function videos()
+    {
+      return $this->belongsToMany('App\Video', 'publications_videos');
     }
 
     public function like()
@@ -62,9 +74,14 @@ class Publication extends Model
       return $this->likes()->count();
     }
 
+    public function getFechaAttribute()
+    {
+      return $this->created_at->diffForHumans();
+    }
+
     public function getHaveLikedAttribute()
     {
-      
+
       if(auth()->user() and $this->likes()->where('user_id',auth()->user()->id)->first()) {
         return true;
 
@@ -82,10 +99,35 @@ class Publication extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function addHastags($request)
+    {
+      // comprobamos y añadimos
+      foreach ($request as $hastag) {
+        if(!$h = Hastag::where('text',$hastag)->first()) {
+          // lo creamos
+          $h = new Hastag(["text" => $hastag]);
+          $h->save();
+        }
+        // lo añadimos
+        $this->hastags()->save($h);
+      }
+
+    }
+
     public function delete()
     {
       $this->likes()->delete();
-      $this->comments()->delete();
+      foreach ($this->comments as $comment) {
+        $comment->delete();
+      }
+      foreach ($this->images as $image) {
+        $image->delete();
+      }
+      // quit but dont delete
+      $this->hastags()->sync([]);
+      //
+      $this->images()->delete();
+      $this->videos()->delete();
       return parent::delete();
     }
 

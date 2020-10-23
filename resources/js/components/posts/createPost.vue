@@ -2,8 +2,14 @@
     <div class="container down-2">
       <div class="row justify-content-center">
         <div class="col-md-12">
+          <div v-if="this.loading" class="container text-center contieneCargador aparecer">
+            <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <h3 class="down-4">{{$ml.get('post').posting}}</h3>
+          </div>
 
-          <form @submit.stop.prevent="post()">
+          <form  @submit.stop.prevent="post()">
 
             <!-- <div class="contieneInputPost"> -->
               <!-- <picture-input ></picture-input> -->
@@ -48,7 +54,7 @@
                   <img v-else src="/default.png" alt="">
                 </div>
                 <div class="">
-                  <p>{{recomendation.name}}</p>
+                  <p>{{recomendation.name}} - @{{recomendation.nickname}}</p>
                 </div>
               </div>
             </div>
@@ -75,11 +81,11 @@
 
             <div class="form-group row down-2">
               <div class="checkbox col-md-12">
-                <label><input type="checkbox" v-model="program" value=""> {{$ml.get('post').program}}</label>
+                <label><input type="checkbox" v-model="programOpen" value=""> {{$ml.get('post').program}}</label>
               </div>
-              <div v-if="this.program" class="col-md-12 contieneInput aparecer">
-                  <label for="hastags" class=" entrada labelHastags" >{{$ml.get('post').date_program}}</label>
-                  <datetime type="datetime" v-model="form.program_date" class="theme-orange" ></datetime>
+              <div v-if="this.programOpen" class="col-md-12 contieneInput aparecer">
+                  <label for="datetime" class=" entrada labelHastags" >{{$ml.get('post').date_program}}</label>
+                  <datetime type="datetime" v-model="program" name='datetime' class="theme-orange" ></datetime>
               </div>
             </div>
 
@@ -93,9 +99,6 @@
                 </div>
             </div>
           </form>
-
-
-
 
 
 
@@ -119,12 +122,13 @@ export default {
         loading:true,
         list:[],
 
-
       },
       loading:false,
       error: false,
-      program:false,
+      program:null,
+      programOpen:false,
       form: {
+        files:[],
         content: null,
         hastags:[],
         tags:[],
@@ -138,12 +142,23 @@ export default {
   },
   methods: {
     post() {
-      console.log(this.fileRecordsForUpload)
-      return true;
+
+      //
+      var hastags = (this.form.hastags)
+      console.log()
+      // this.form.files.push(this.$refs.vueFileAgent.fileRecords[0].file)
+      // console.log(this.fileRecords)
+      // return true;
       this.loading = true
       this.recomending.using = true
       var formData = new FormData();
-	    formData.append('image', this.fileRecordsForUpload);
+      if(this.programOpen !== false) {
+        formData.append('publish_at', this.program);
+      }
+	    formData.append('media', this.form.files);
+      formData.append('content',this.form.content);
+      formData.append('hastags',hastags);
+      var self = this;
       axios.post('/api/post/create', formData,
       {
          headers:{
@@ -151,16 +166,24 @@ export default {
          }
        })
       // then
-      .then(function (response) {
+      .then(function (response)  {
+        console.log(response)
         if(response.data.rc == 1) {
+          self.uploadFiles(response.data.data.id)
 
         }
         if(response.data.rc == 2) {
           self.exists = true
           return true
         }
+        if(response.data.rc == 13) {
+          self.$router.push('/login')
+        }
       })
-      .catch(() => this.error = true)
+      .catch(err => {
+        self.error = true;
+        console.log(err)
+      })
       // finally
       .finally(() => this.loading = false)
     },
@@ -205,7 +228,7 @@ export default {
       var s = this.form.content;
       var todo = s.split(" ");
       var palabra = todo[todo.length - 1]
-      var ret = this.form.content.replace(palabra,'@'+person.name+' ');
+      var ret = this.form.content.replace(palabra,'@'+person.nickname+' ');
       this.form.content = ret
       this.recomending.using = false;
       this.$refs.content.focus()
@@ -223,19 +246,35 @@ export default {
 
 
     // VIDEOS
-    uploadFiles: function () {
-        // Using the default uploader. You may use another uploader instead.
-        this.$refs.vueFileAgent.upload('/api/video', this.uploadHeaders, this.fileRecordsForUpload);
-        this.fileRecordsForUpload = [];
+    uploadFiles: function (id) {
+        console.log(this)
+        console.log(id)
+        var self = this
+        // this.loading = true;
+        this.$refs.vueFileAgent.upload('/api/post/'+id+'/upload', this.uploadHeaders, this.fileRecordsForUpload)
+        .then(function (response) {
+          console.log(response)
+
+        })
+        // .catch(() => alert('Error al subir Archivo'))
+
+        // finally
+        .finally(function (response) {
+          self.fileRecordsForUpload = [];
+          self.$router.push('/post/'+id)
+        })
+
       },
       deleteUploadedFile: function (fileRecord) {
         // Using the default uploader. You may use another uploader instead.
         this.$refs.vueFileAgent.deleteUpload(this.uploadUrl, this.uploadHeaders, fileRecord);
       },
       filesSelected: function (fileRecordsNewlySelected) {
-        console.log(fileRecordsNewlySelected);
+
+        // console.log(fileRecordsNewlySelected);
         var validFileRecords = fileRecordsNewlySelected.filter((fileRecord) => !fileRecord.error);
         this.fileRecordsForUpload = this.fileRecordsForUpload.concat(validFileRecords);
+        // this.uploadFiles();
       },
       onBeforeDelete: function (fileRecord) {
         var i = this.fileRecordsForUpload.indexOf(fileRecord);
