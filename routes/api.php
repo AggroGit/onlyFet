@@ -21,12 +21,12 @@ Enterprise::stripe();
 Enterprise::publications();
 
 Route::post('/upload',     'TestController@video');
-Route::post('/user/{nickcname}',     'PublicationController@wallOfUser');
 
 Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
   //
   Enterprise::chats();
   Enterprise::auth();
+
   //
 });

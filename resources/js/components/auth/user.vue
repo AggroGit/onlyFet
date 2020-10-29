@@ -68,14 +68,13 @@
             <!-- <h3>Suscribiendo</h3> -->
           </div>
         </div>
-        {{this.user.canSee}}
+
 
         <div v-if="!this.loading" class="row">
-          <div v-if="this.user.influencer && this.user.canSee==false" class="col-md-12 down-2">
+          <div v-if="this.user.influencer && this.user.canSee == false" class="col-md-12 down-2">
             <stripe-add-visa :redirect="'/profile/cards'" v-if="this.hasToPay" class="aparecer sombreado"></stripe-add-visa>
             <div class="ContieneSuscripcionesButton">
-
-              <b-dropdown v-if="this.user.influencer && this.user.plans && this.user.id !== this.auth.id && this.user.canSee == false" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2 text-right">
+              <b-dropdown v-if="this.user.influencer && this.user.plans.length !==0 && this.user.id!==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2 text-right">
                 <b-dropdown-item @click="seleccionar('month1')">
                   <span v-if="this.priceOfer('month1') !== null " class="tachado grisaceo">{{this.priceOfer('month1')}}€ </span>
                   {{this.priceOf('month1')}}€ - 30 {{$ml.get('stripe').days}}
@@ -93,6 +92,17 @@
                   {{this.priceOf('month12')}}€ - 12 {{$ml.get('stripe').months}}
                 </b-dropdown-item>
               </b-dropdown>
+              <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
+                <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
+              </b-dropdown>
+
+            </div>
+
+          </div>
+
+
+          <div v-else class="col-md-12 down-2">
+            <div class="ContieneSuscripcionesButton">
               <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
                 <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
               </b-dropdown>

@@ -39,6 +39,7 @@ class PublicationController extends Controller
       if(!$user = User::find($user_id)) {
         return $this->incorrect(3);
       }
+      // $user->canSee = $user->getCanSeeAttribute();
       return $this->correct($user->publications()->paginate(50));
     }
 

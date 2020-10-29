@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     protected $with=['image','plans'];
 
-    protected $appends = ['canSee'];
+    protected $appends =['canSee'];
 
     /**
      * The attributes that are mass assignable.
@@ -64,23 +64,19 @@ class User extends Authenticatable
                   ]);
     }
 
-    public function giveMeAuth()
-    {
-      if(auth()->user()) {
-        return "si";
-      }
-      return "no";
-    }
 
-    // nos dice si el usuario logeado puede ver su contenido
+
+    // // nos dice si el usuario logeado puede ver su contenido
     public function getCanSeeAttribute()
     {
       // si el usuario es influencer
       if($this->influencer) {
-        return $this->giveMeAuth();
         // si hay usuario logeado
-        if($user = Auth::user()) {
-          return "esta logeado";
+        if($user = auth()->user()) {
+          // si el usuario es si mismo no hace falta mostrarlo, pero sí se muestra
+          if($this->id == $user->id) {
+            return true;
+          }
           // si éste logeado está suscrito
           // cogemos los planes
           $myPlans = $this->plans;
@@ -90,8 +86,6 @@ class User extends Authenticatable
               return true;
             }
           }
-        } else {
-          return "NO ESTA LOGEADO";
         }
         return false;
       }

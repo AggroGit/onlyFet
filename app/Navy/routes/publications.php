@@ -17,6 +17,7 @@
 
     Route::group(['middleware' => ['auth:api','existPost','hasStripe']], function()
     {
+        Route::post('/user/{nickcname}',       'PublicationController@wallOfUser');
         Route::post('/posts',                  'PublicationController@posts');
         Route::post('/user/{user_id}/posts',   'PublicationController@postsOfUser');
         Route::post('/post/create',            'PublicationController@create');

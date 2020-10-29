@@ -42,6 +42,7 @@
               @click="alertar()"
               class="imagenCompleta"
               :src="media.sizes.Big"
+              v-if="post.canSee"
               alt="image slot"
             >
             </router-link>

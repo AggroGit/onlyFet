@@ -22,6 +22,9 @@ class Image extends Model
       "NotSmall" => "$base/200$end",
       "Med" => "$base/300$end",
       "Big" => "$base/700$end",
+      "Hidden"  => "$base/sadgsasdasa$this$this->id$end"
+
+      // $this->getPathToSave()."/$this->name/sadgsasdasa$this->id.$this->format"
       // "Original" => "$base/original$end",
     ];
   }
@@ -184,6 +187,9 @@ class Image extends Model
       $edit->resize(50, null, function ($constraint) {
           $constraint->aspectRatio();
       })->save($this->getPathToSave()."/$this->name/50.$this->format");
+      // hidden
+      $edit->blur(70)->save($this->getPathToSave()."/$this->name/sadgsasdasa$this->id.$this->format");
+
 
 
 
