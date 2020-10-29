@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Message;
 use App\Chat;
 
 class ChatsController extends Controller
 {
+
+    public function __construct()
+    {
+      Carbon::setLocale(auth()->user()->lang?? 'es');
+        // $this->middleware('auth');
+    }
     // it sends the message
     public function send(int $chat_id,Request $request)
     {

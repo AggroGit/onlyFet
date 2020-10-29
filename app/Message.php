@@ -17,6 +17,10 @@ class Message extends Model
       'chat_id'
     ];
 
+    protected $appends = [
+      'fecha',
+    ];
+
     // the chat of the message
     public function chat()
     {
@@ -65,6 +69,11 @@ class Message extends Model
         ]);
       }
 
+    }
+
+    public function getFechaAttribute()
+    {
+      return $this->created_at->diffForHumans();
     }
 
     //

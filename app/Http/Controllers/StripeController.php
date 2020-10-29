@@ -75,17 +75,23 @@ class StripeController extends Controller
         if ($user = User::where('temporal_token',$request->state)->first()) {
           // if exists then we create and asociate
           if ($r = $user->createAccount($request->code)) {
+            if($user->createAsAProduct()) {
+
+            } else {
+              return "ERROR";
+            }
+            $user->save();
             $user->refresh();
             //
-            return redirect('/profile');
-            return $this->correct($user);
+            return redirect('/profile/suscriptions');
+            // return $this->correct($user);
           }
 
         }
       }
       return redirect('/');
-      dd($request);
-      return $this->correct($request);
+      // dd($request);
+      // return $this->correct($request);
     }
 
     public function urlToCreate()

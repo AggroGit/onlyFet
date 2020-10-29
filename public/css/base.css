@@ -402,10 +402,11 @@ input {
 }
 
 .contieneIconoEditar {
-  background: var(--color1);
+  background: var(--rojo1);
   display: flex;
   width: 30px;
   height: 30px;
+  color:white;
   position: absolute;
   margin-top: -30px;
   z-index: 999999;
@@ -709,4 +710,35 @@ input {
 }
 .ContieneSuscripcionesButton>.dropdown-menu {
   width: 100% !important;
+}
+.minusTops {
+  margin-top: -25px !important;
+}
+.center {
+  margin: auto;
+}
+.flex {
+  display: flex;
+}
+.informativoGris {
+  color: grey;
+  font-size: 0.8rem;
+}
+.tachado {
+  text-decoration: line-through;
+}
+.contienePantallaCompletaDark {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #231212d9;
+  display: flex;
+  z-index: 9999 !important;
+  /* animation: aparecer; */
+}
+.cargaBlanco {
+  border: 0.25em solid white !important;
+  border-right-color: transparent !important;
 }

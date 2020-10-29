@@ -52,15 +52,26 @@
                   <entrada v-model="form.passwordRepeat" :label="$ml.get('auth').RepPassword" :name="'password_confirmation'" :type="'password'" autocomplete="new-password" :required="false"></entrada>
               </div>
 
+
+
               <!-- <div class="form-group row"> -->
-                <label for="country">{{$ml.get('auth').country}} :</label>
+                <label class="down-2 minusTops" for="country">{{$ml.get('auth').country}} :</label>
                 <b-form-select v-model="form.country" name="country" :options="options" class=""></b-form-select>
               <!-- </div> -->
 
               <label class="down-2" for="country">{{$ml.get('auth').lang}} :</label>
               <b-form-select v-model="form.lang" name="country" :options="languages" class=""></b-form-select>
 
-              <div class="row">
+              <div class="form-group row ">
+                <div class="col-md-12 contieneInput">
+                    <label for="post" class="entrada detextarea" >{{$ml.get('auth').description}}</label>
+                    <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea>
+                </div>
+                  <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
+              </div>
+
+
+              <div class="row down-2">
                 <div class="col-md-12">
                   <div v-if="this.error" class="alert alert-danger">
                     <strong>{{$ml.get('auth').prError}}</strong> {{$ml.get('auth').error}}
@@ -118,6 +129,7 @@ export default {
         name:null,
         country:this.$store.state.auth.country,
         lang:this.$store.state.auth.lang,
+        description:this.$store.state.auth.description,
       },
       options: [
         {text: 'Afghanistan', value: 'AF'},

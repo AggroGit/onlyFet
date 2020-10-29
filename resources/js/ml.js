@@ -24,6 +24,9 @@ export default new MLCreate({
       },
       auth: {
         nickname:"Nombre de Usuario",
+        confSuscriptions: "Configurar suscripciones",
+        suscriptions:"Suscripciones",
+        uHaveToStripe: "Debes configurar Stripe para poder crear suscripciones",
         prError: "Vaya",
         error: "Parece que el usuario no existe o tienes mal los datos",
         exist: "Parece que el usuario ya existe",
@@ -41,20 +44,40 @@ export default new MLCreate({
         edit: "Editar",
         existNickName:"Ya existe un usuario con el nickname ",
         country: "País",
-        lang: "Idioma"
+        lang: "Idioma",
+        description:"Descripción",
+        price:"Precio",
+        confSusciptions: "Configurar Suscripciones"
       },
       stripe: {
+        addVisa:"Antes debes introducir un método de pago",
         create: "Crear Cuenta de Stripe",
+        successSuscription: "Te has suscrito correctamente a ",
+        sureRemoveSuscriptions: "¿Estás seguro que quieres eliminar tus suscripciones?",
         login: "Login en Stripe",
+        days:"días",
+        months: "meses",
+        problem: "Vaya, parece que hay algún problema con Stripe",
+        successSuscriptions: "Sus suscripciones han sido configuradas correctamente",
         info: {
+
           create: "Registrate en Stripe para recibir dinero",
           login: "Haz login en Stripe para ver tu dinero pendiente de envío"
         },
+        confirmChange: "¿Estás seguro que quieres cambiar los precios? Éste proceso puede durar más de lo normal",
         add: "Añadir método de pago",
         cards: "Métodos de pago",
-        noCards:"Vaya, parece que no hay tarjetas de crédito"
+        noCards:"Vaya, parece que no hay tarjetas de crédito",
+        sus1:"Suscripción por 30 días",
+        sus2:"Suscripción por 3 meses",
+        sus3:"Suscripción por 6 meses",
+        sus4:"Suscripción por 12 meses",
+        conditionsSuscriptions: "*Por cada suscripción la plataforma TPV y la plataforma Onlyfet comisiona un porcentaje para poder continuar operando y mejorando el sitio para ti y tus suscriptores.",
+        conditionPrivate: "* Requerirá pagar suscripción",
+
       },
       post: {
+        nowCan: "Ya puedes realizar compras, pagos y suscripciones",
         program: "Programar Publicación",
         post: "Publicación",
         publy: "Publicar",

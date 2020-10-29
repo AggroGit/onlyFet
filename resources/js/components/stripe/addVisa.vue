@@ -19,6 +19,12 @@
 
 
 export default {
+  props: {
+    redirect: {
+      default: "/profile",
+
+    }
+  },
   data() {
     return {
       auth: this.$store.state.auth,
@@ -63,10 +69,11 @@ export default {
            console.log(response)
            if(response.data.rc == 1) {
              // this.auth = response.data.data;
-             this.$router.push('/profile')
+             alert(this.$ml.get('post').nowCan)
+             window.location.reload()
 
            } else {
-             alert("Vaya, parece que hay algun problema")
+             alert(this.$ml.get('stripe').problem)
 
            }
 

@@ -92,6 +92,32 @@ trait PayStripe
 
   }
 
+  // crea en Stripe un producto
+  public function createAsAProduct()
+  {
+    try {
+      $product = $this->stripe()->products->create([
+        'name'  =>  $this->name,
+        'id'    =>  $this->id,
+        'metadata'  => [
+          'user_onlyFet_id' => $this->id,
+          'description' => $this->name,
+        ],
+        'statement_descriptor' => "OnlyFet",
+        'images' => [
+          $this->image->sizes->Big?? "no-image",
+        ]
+      ]);
+      $this->influencer = true;
+    } catch (\Exception $e) {
+      return false;
+    }
+    $this->save();
+    return true;
+
+
+  }
+
 
   // 🐀 Ratatouillea, A Mr Ego
   // no le gustó el plato 🍛

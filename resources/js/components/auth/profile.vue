@@ -4,20 +4,31 @@
       <!-- CACEBZERA FOTO  -->
       <div class="row justify-content-center ">
         <div class="col-xs-6">
-          <div class="ProfileImg">
+          <div class="ProfileImg down-2">
             <img v-if="this.auth.image" :src="this.auth.image.sizes.NotSmall" alt="">
             <img v-else src="/default.png" alt="">
           </div>
         </div>
         <div class="col-xs-6 ContieneDatosperfil">
-          <h4>{{auth.name}}</h4>
+          <h4> <router-link class="noLink" :to="'/user/'+auth.nickname">{{auth.name}}</router-link> </h4>
           <br>
           <p><strong>{{$ml.get('auth').nickname}}: </strong>{{auth.nickname}}</p>
           <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{auth.phone_number}}</p> -->
           <p><strong>{{$ml.get('auth').email}}: </strong> {{auth.email}}</p>
           <p><strong>{{$ml.get('auth').name}}: </strong> {{auth.name}}</p>
+
         </div>
+
       </div>
+
+      <div class="row justify-content-center down-2">
+          <div class="col-md-6">
+             <p><strong>{{$ml.get('auth').description}}: </strong> {{auth.description}}</p>
+          </div>
+      </div>
+
+
+
       <!-- EDITAR -->
       <div class="row justify-content-center">
           <div class="col-md-6">
@@ -26,12 +37,6 @@
                     {{$ml.get('auth').edit}}
                 </button>
             </router-link>
-          </div>
-      </div>
-      <!-- STRIPE -->
-      <div class="row justify-content-center">
-          <div class="col-md-6">
-             <stripe-express></stripe-express>
           </div>
       </div>
 
@@ -46,6 +51,28 @@
           </div>
       </div>
 
+      <!-- STRIPE -->
+      <div v-if="!auth.influecer" class="row justify-content-center">
+          <div class="col-md-6">
+             <stripe-express></stripe-express>
+          </div>
+      </div>
+
+      <!-- STRIPE -->
+      <div class="row justify-content-center">
+          <div v-if="auth.stripe_reciver_id !== null" class="col-md-6">
+             <router-link to="/profile/suscriptions">
+                <button  class="btn btn-primary boton">
+                    {{$ml.get('auth').confSuscriptions}}
+                </button>
+            </router-link>
+          </div>
+          <div v-else class="col-md-6">
+            <b-button  v-b-tooltip.hover.bottom="$ml.get('auth').uHaveToStripe" class="btn btn-primary boton stripe">
+                  {{$ml.get('auth').confSuscriptions}}
+            </b-button>
+          </div>
+      </div>
 
 
 
@@ -59,7 +86,8 @@
 export default {
   data() {
     return {
-      auth: this.$store.state.auth
+      auth: this.$store.state.auth,
+      text:"create"
     }
   },
   created() {

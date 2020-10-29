@@ -30,6 +30,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import { ValidationProvider, extend } from 'vee-validate';
 import PictureInput from 'vue-picture-input'
 import VueCardFormat from 'vue-credit-card-validation';
+import ToggleButton from 'vue-js-toggle-button'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueFileAgent from 'vue-file-agent';
@@ -56,8 +58,8 @@ Vue.use(VueCardFormat);
 // Video
 Vue.use(VueFileAgent);
 
-
-
+// switch button
+Vue.use(ToggleButton)
 // tags
 Vue.component('input-tag', InputTag)
 // resaltar en texto
@@ -121,9 +123,10 @@ Vue.component('comments',  require('./components/posts/commentsList.vue').defaul
 Vue.component('home',  require('./components/home.vue').default);
 //
 Vue.component('news',  require('./components/posts/news.vue').default);
-
+//
 Vue.component('wall',  require('./components/posts/news.vue').default);
-
+//
+Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
 // datetime
 Vue.component('datetime', Datetime);
 
@@ -146,6 +149,7 @@ Vue.component('datetime', Datetime);
  // user
  {path: '/profile',       component: Vue.component('profile')},
  {path: '/profile/edit',  component: Vue.component('editProfile')},
+ {path: '/profile/suscriptions',  component: Vue.component('suscriptions')},
  {path: '/user/:nickname/',      component: Vue.component('user'),
  children: [
    {

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $new->email = "admin@gmail.com";
         $new->nickname = "alex1";
         $new->password = bcrypt("123456789");
+        $new->stripe_reciver_id = "acct_1HaLZbKHpt7C9uaL";
         $new->save();
         // user admin
         $new2 = new User;

@@ -165,7 +165,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         // video
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
-
+        //
+        // App\Providers\PassportServiceProvider::class,
 
         /*
          * Package Service Providers...

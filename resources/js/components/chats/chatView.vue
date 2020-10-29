@@ -32,7 +32,7 @@
         </div>
 
 
-        <small>{{$store.state.time(message.created_at)}}</small>
+        <small>{{message.fecha}}</small>
       </div>
 
       <!-- <div class="containsTyping">
@@ -52,7 +52,7 @@
           <input type="file" ref="file" style="display: none" accept="image/x-png,image/gif,image/jpeg,image/jpg" @change="sendImage">
           <b-icon font-scale="1.7" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon>
           <b-icon font-scale="1.7" @click="$refs.file.click()" style="color:#383d41;" icon="camera-fill" aria-hidden="true" class="icon"></b-icon>
-          <b-icon @onclick="sendMessage()" font-scale="1.7" style="color: #20F0C8;" icon="arrow-up-right-circle-fill" aria-hidden="true" class="icon iconshadow"></b-icon>
+          <b-icon @onclick="sendMessage()" font-scale="1.7" style="color: #F20505;" icon="arrow-up-right-circle-fill" aria-hidden="true" class="icon iconshadow"></b-icon>
         </div>
       </div>
     </div>

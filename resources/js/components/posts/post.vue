@@ -43,7 +43,7 @@
           <div class="likes" @click="like()">
             <b-icon  v-if="this.liked" style="color: red;" icon="heart-fill" font-scale="1.5"></b-icon>
             <b-icon v-else style="color: black;" icon="heart-fill" font-scale="1.5"></b-icon>
-            42
+            {{this.data.numLikes}}
           </div>
           <div class="comments">
             <router-link class="noLink" :to="'/post/'+this.data.id+'/coments'">
@@ -188,6 +188,12 @@ export default {
 
       })
       this.liked = !this.liked
+      if(this.liked) {
+        this.data.numLikes = this.data.numLikes+1
+      } else {
+        this.data.numLikes = this.data.numLikes-1
+      }
+
 
     }
   }

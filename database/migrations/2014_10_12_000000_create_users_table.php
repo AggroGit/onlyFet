@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('surnames')->nullable();
             $table->string('phone_number')->nullable();
+            $table->boolean('wantToBeInfluencer')->default(false);
+            $table->boolean('influencer')->default(false); // que ha hecho pasarela
             $table->string('email')->unique();
             $table->string('nickname')->nullable()->unique();
             $table->string('lang')->default('es');
@@ -30,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('country')
                   ->nullable()
                   ->default('ES');
+            $table->text('description')->nullable();
             $table->string('type')
                   ->nullable()
                   ->default('client');

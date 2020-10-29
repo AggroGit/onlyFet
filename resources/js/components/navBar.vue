@@ -6,7 +6,7 @@
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-        <b-navbar-brand type="light" class="center" href="#">
+        <b-navbar-brand to="/home" type="light" class="center" href="#">
           <img src="/logo-mini.png" alt="">
         </b-navbar-brand>
           <!-- <b-navbar-brand type="light" href="#">{{this.name}}</b-navbar-brand> -->

@@ -22,7 +22,6 @@ return [
     "9"     =>    "unknown error",
     "13"    =>    "User no logged",
     "14"    =>    "User almost has a business",
-
     "97"    =>    "Update the App",
     "99"    =>    "Code of the App is not corresponding",
 
@@ -38,6 +37,8 @@ return [
     "201"   =>    "no money in the user account",
     "205"   =>    "no minium price",
     "206"   =>    "cant add this credit card. See Stripe logs",
+    "207"   =>    "Error on suscribe to Stripe",
+    "208"   =>    "Suscription not found",
 
     //800 business
     "800"   =>    "missing business id",

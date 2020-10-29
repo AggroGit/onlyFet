@@ -10,8 +10,12 @@
       <!-- NAVBAR -->
       <navBar v-if="!this.loading" :auth="this.auth"></navBar>
       <!-- THE VIEW -->
-      <div v-if="!this.loading" class="contenedor">
+      <!-- <div v-if="!this.loading" class="contenedor">
         <router-view   :key="$route.fullPath" v-bind:data="this"></router-view>
+      </div> -->
+      <!-- THE VIEW -->
+      <div v-if="!this.loading" class="contenedor">
+        <router-view v-bind:data="this"></router-view>
       </div>
       <!-- NOTIFICATIONS -->
       <notifications v-if="!this.loading && this.$store.state.auth"></notifications>
@@ -54,8 +58,12 @@ export default {
         this.$store.state.auth = false;
         this.loading = false;
       }
-
-
+      // idioma de la app
+      var userLang = navigator.language || navigator.userLanguage;
+      console.log('idioma '+userLang)
+      // país de la app
+      $.get("http://ip-api.com/json", function(response) {
+        console.log('pais '+response.countryCode);}, "jsonp");
 
     },
     // comprueba si existe token

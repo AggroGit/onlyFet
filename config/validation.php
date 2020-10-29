@@ -70,6 +70,15 @@ return [
 
     'addComment' => [
       'comment' => 'required|string'
+    ],
+
+    'makePremium' => [
+      'influencer'  => 'boolean',
+      'suscriptions'  => 'array',
+      'month1'  => 'required|digits_between:1,400',
+      'month3'  => 'required|digits_between:1,400',
+      'month6'  => 'required|digits_between:1,400',
+      'month12' => 'required|digits_between:1,400',
     ]
 
 

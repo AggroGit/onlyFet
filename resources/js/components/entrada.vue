@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12 contieneInput">
-      <input  @change="checkEmpty()" v-model="inputVal" :id="name" :name="name" :type="type"  class="form-control" :required="required" :autocomplete="autocomplete" :autofocus="autofocus">
+      <input  @change="checkEmpty()" v-model="inputVal" :id="name" :inputmode="inputmode" :min="min" :max="max" :step="step" :name="name" :type="type"  class="form-control" :required="required" :autocomplete="autocomplete" :autofocus="autofocus">
       <label :for="this.name" class=" entrada" v-bind:class="{ noUp: empty }">{{this.label}}</label>
   </div>
 </template>
@@ -14,8 +14,20 @@ export default {
     value :{
       default: "",
     },
+    inputmode:{
+      default:null,
+    },
     type: {
       default:"text"
+    },
+    min:{
+      default:null
+    },
+    max:{
+      default:null
+    },
+    step: {
+      default:null
     },
     required: {
       default:false
@@ -53,7 +65,7 @@ export default {
   },
   methods: {
     checkEmpty() {
-      if(this.value.length !== 0) {
+      if(this.value.length !== 0 || this.value >= 0) {
         this.empty = true
       } else {
         this.empty = false

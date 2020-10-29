@@ -19,7 +19,7 @@ class Publication extends Model
     ];
     //
     protected $appends = [
-      'numLikes', 'numComments', 'haveLiked', 'fecha'
+      'numLikes', 'numComments', 'haveLiked', 'fecha', 'canView'
     ];
 
     // likes
@@ -72,6 +72,14 @@ class Publication extends Model
     public function getNumLikesAttribute()
     {
       return $this->likes()->count();
+    }
+
+    public function getCanViewAttribute($value='')
+    {
+      // si el usuario es premium y estas suscrito puedes ver la publicación
+      // if($this->user->influencer) {
+      //   if(auth())
+      // }
     }
 
     public function getFechaAttribute()

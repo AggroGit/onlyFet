@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Cashier\Billable;
 use App\Traits\Sockeable;
@@ -19,7 +20,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image'];
+    protected $with=['image','plans'];
+
+    protected $appends = ['canSee'];
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surnames', 'email', 'password', 'device_token','social_name','social_token','nickname','country'
+        'name','surnames', 'email', 'password', 'device_token','social_name','social_token','nickname','country','description'
     ];
 
     /**
@@ -47,6 +50,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'influencer' => 'boolean',
     ];
 
 
@@ -59,6 +63,41 @@ class User extends Authenticatable
                     ['hidden',false]
                   ]);
     }
+
+    public function giveMeAuth()
+    {
+      if(auth()->user()) {
+        return "si";
+      }
+      return "no";
+    }
+
+    // nos dice si el usuario logeado puede ver su contenido
+    public function getCanSeeAttribute()
+    {
+      // si el usuario es influencer
+      if($this->influencer) {
+        return $this->giveMeAuth();
+        // si hay usuario logeado
+        if($user = Auth::user()) {
+          return "esta logeado";
+          // si éste logeado está suscrito
+          // cogemos los planes
+          $myPlans = $this->plans;
+          // miramos
+          foreach ($myPlans as $plan) {
+            if($plan->isUser($user)) {
+              return true;
+            }
+          }
+        } else {
+          return "NO ESTA LOGEADO";
+        }
+        return false;
+      }
+      return true;
+    }
+
 
     //
     public function allChats()
@@ -171,6 +210,24 @@ class User extends Authenticatable
       sendMail::dispatch(new BasicMail($data),"influencers@onlyfet.com");
       $this->remember_token = $token;
       $this->save();
+    }
+
+    public function cancelInfluencer()
+    {
+      $this->influencer = false;
+      $this->save();
+    }
+
+    // planes a los que estas suscrito
+    public function suscribedPlans()
+    {
+      return $this->belongsToMany('App\Plan','users_plans')->orderBy('updated_at','DESC');
+    }
+
+    // planes que tu has creado
+    public function plans()
+    {
+      return $this->hasMany('App\Plan');
     }
 
     // on delete make the cascade
