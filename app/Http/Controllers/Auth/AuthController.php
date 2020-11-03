@@ -73,7 +73,8 @@ class AuthController extends Controller
       $new = new User($request->all());
       $new->password = bcrypt($request->password);
       $new->save();
-      $new->nickname = $new->name.$new->id;
+      $new->nickname = $request->name.$new->id;
+      $new->save();
       if($request->influencer == true) {
         $new->influencerEmail();
       }
