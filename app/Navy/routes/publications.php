@@ -29,6 +29,7 @@
 
 
     });
+    Route::post('/user/{nickcname}/public',       'PublicationController@wallOfUser');
 
     Route::group(['middleware' => 'existPost'], function()
     {

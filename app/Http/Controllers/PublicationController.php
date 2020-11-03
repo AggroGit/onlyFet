@@ -139,7 +139,6 @@ class PublicationController extends Controller
       } else {
         return $this->incorrect(3);
       }
-
     }
 
     public function image($post_id,$name,Request $request)
