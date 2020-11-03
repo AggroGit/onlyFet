@@ -1008,7 +1008,9 @@ height: 100% !important;
     z-index: 9999;
     width: 100%;
     max-width: 400px;
-    transform: translateX(-130%);
+    transform: translateX(-130vw);
+    position: fixed;
+    left: 0;
   }
   .open {
     transform: translateX(0%);
