@@ -15,9 +15,12 @@ class ProfilesController extends Controller
         return $this->incorrect(0,$missings);
       }
       // usuarios
-      $users = User::where('nickname','!=',auth()->user()->nickname);
+      $users = User::where('nickname','!=',auth()->user()->nickname?? null);
       // mis suscripciones
       if($request->orderBy == "mySuscriptions") {
+        if(!auth()->user()) {
+          return $this->incorrect(13);
+        }
         $ids = auth()->user()->suscribedPlans->pluck('user_id');
         $users = $users->whereIn('id',$ids);
       }

@@ -1,6 +1,6 @@
 <template>
   <router-link :to="this.route()" class="">
-    <b-avatar class="mr-3" :src="this.image()"></b-avatar>
+    <b-avatar :size="this.giveMeSize()" class="mr-3" :src="this.image()"></b-avatar>
     <div v-if="this.conection && !this.connected" class="conection-dot"></div>
     <div v-if="this.conection && this.connected" class="conection-dot connected"></div>
   </router-link>
@@ -18,6 +18,9 @@ export default {
     },
     conection :{
       default:false
+    },
+    size: {
+      default: "VerySmall"
     }
   },
   data() {
@@ -35,10 +38,15 @@ this.initConnect();
   }
   ,
   methods: {
+    giveMeSize() {
+      if(this.size == "VerySmall") {
+        return "3rem";
+      }
+      return "6rem";
+    },
     image() {
       if(this.us.image) {
-
-        return this.us.image.sizes.VerySmall
+        return this.us.image.sizes[this.size]
       } else {
         return ""
       }

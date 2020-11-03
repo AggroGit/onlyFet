@@ -72,7 +72,7 @@ class CreateChats extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
           $table->boolean('read')
-                ->default(true);
+                ->default(false);
         });
 
     }

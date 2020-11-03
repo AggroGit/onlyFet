@@ -98,7 +98,7 @@ export default {
     console.log(window.name);
     // si ya hay usuario lo echamos
     if(this.$store.state.auth) {
-      this.$router.push('home')
+      this.$router.push('/')
     }
   },
   methods: {
@@ -141,7 +141,7 @@ export default {
         this.$store.state.authChannel = window.Echo.join(appCode+'.User.'+user.id);//+self.$store.state.auth.id);
         this.$store.state.appchannel = window.Echo.join(appCode+'.App');//+self.$store.state.auth.id);
         //
-        this.$router.push('home')
+        this.$router.push('/')
 
       } else {
         this.error = true;

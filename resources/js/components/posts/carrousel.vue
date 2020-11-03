@@ -55,7 +55,6 @@
                          @ready="playerReadied"
                          @statechanged="playerStateChanged($event)"
                           oncontextmenu="return false;"
-                         :controlsList="'nodownload'"
                          >
                           >
 
@@ -70,18 +69,18 @@
       </template>
       </b-carousel-slide>
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide v-for="(media) in this.post.images" :key="media.id" @click="alertar()">
+      <b-carousel-slide v-for="(media) in this.post.images" :key="media.id" >
         <template #img>
           <router-link class="allA" :image="media" :to="'/'+post.id+'/image/'+media.name">
             <img
-              @click="alertar()"
+
               class="imagenCompleta"
               :src="media.sizes.Big"
               v-if="post.user.canSee || post.user.id == auth.id"
               alt="image slot"
             >
             <img
-              @click="alertar()"
+
               class="imagenCompleta"
               :src="media.sizes.Hidden"
               v-else
@@ -133,7 +132,7 @@ console.log(this.post)
         this.sliding = false
       },
       alertar() {
-        alert('hey')
+
       },
       giveMeOptions(media) {
         return {
@@ -144,7 +143,7 @@ console.log(this.post)
             language: 'en',
             playbackRates: [0.7, 1.0, 1.5, 2.0],
             sources: [{
-              type: "video/"+media.format,
+              type: "video/mp4",//+media.format,
               // mp4
               src: media.path,
               // webm

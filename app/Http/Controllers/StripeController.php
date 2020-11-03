@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Events\StripeEvent;
+use App\Jobs\sendMail;
+use App\Jobs\sendMoney;
+use App\Message;
+
+use App\PayOut;
 use App\User;
 
 class StripeController extends Controller
@@ -110,6 +115,44 @@ class StripeController extends Controller
     {
       $this->ifNotCreate();
       return $this->correct(auth()->user()->cards());
+    }
+
+    public function sendPropina($user_id,Request $request)
+    {
+      if ($missings = $this->hasError($request->all(),'validation.propina')) {
+        return $this->incorrect(0,$missings);
+      }
+
+      if($user = User::find($user_id)) {
+          if($user->canReciveMoney()) {
+            $comision = 0;
+            try {
+              auth()->user()->cobrar($request->quantity,$comision);
+            } catch (\Exception $e) {
+              return $this->incorrect(201);
+            }
+            // si llegamos hasta aqui es que se ha cobrado
+            $cant = number_format($request->quantity - $comision,2);
+            // pagamos al usuario
+            // if(!$user->pay($cant)) {
+            //   return $this->incorrect(209);
+            // } else {
+            //   return $this->correct();
+            // }
+            $payment = PayOut::create($cant,$user);
+
+            //
+            return $this->correct();
+
+
+          } else {
+            return $this->incorrect(210);
+          }
+          return $this->incorrect(809);
+      } else {
+        $this->incorrect();
+      }
+      return $this->incorrect();
     }
 
 

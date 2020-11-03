@@ -132,7 +132,7 @@ class User extends Authenticatable
     // publications
     public function publications()
     {
-      return $this->hasMany('App\Publication')->orderBy('created_at','desc');
+      return $this->hasMany('App\Publication')->orderBy('created_at','desc')->where('publish_at', '<=',now());
     }
 
 

@@ -39,6 +39,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+import multiguard from 'vue-router-multiguard';
 
 
 // nuestras
@@ -137,6 +138,8 @@ Vue.component('inicio',  require('./components/main.vue').default);
 //
 Vue.component('imageView',  require('./components/posts/image.vue').default);
 //
+Vue.component('propina',  require('./components/propina.vue').default);
+//
 Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
 //
 Vue.component('listPlans',  require('./components/auth/plansList.vue').default);
@@ -148,7 +151,22 @@ Vue.component('datetime', Datetime);
 
 
 
+// MIDDLEWARES
+const auth = function(to, from, next) {
+  var t = Vue.$cookies.get('token')
+    if(t == undefined || t== false) {
+      try {
+        redirect('/login');
+      } catch (e) {
+        window.location.href = "/login"
+      } finally {
 
+      }
+
+    } else {
+      next()
+    }
+}
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -162,11 +180,11 @@ Vue.component('datetime', Datetime);
  {path: '/login',         component: Vue.component('login')},
  {path: '/register',      component: Vue.component('register')},
  // user
- {path: '/profile',       component: Vue.component('profile')},
- {path: '/profile/edit',  component: Vue.component('editProfile')},
- {path: '/profile/suscriptions',  component: Vue.component('suscriptions')},
- {path: '/:post_id/image/:name',  component: Vue.component('imageView')},
- {path: '/user/:nickname/',      component: Vue.component('user'),
+ {path: '/profile',       component: Vue.component('profile'),beforeEnter: multiguard([auth])},
+ {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
+ {path: '/profile/suscriptions',  component: Vue.component('suscriptions'),beforeEnter: multiguard([auth])},
+ {path: '/:post_id/image/:name',  component: Vue.component('imageView'),beforeEnter: multiguard([auth])},
+ {path: '/user/:nickname/',      component: Vue.component('user'),beforeEnter: multiguard([auth]),
  children: [
    {
      path:'',
@@ -177,11 +195,13 @@ Vue.component('datetime', Datetime);
      path:'pics',
      component: Vue.component('images'),
      name:'pics',
+     beforeEnter: multiguard([auth])
    },
    {
      path:'videos',
      component: Vue.component('videos'),
      name:'videos',
+     beforeEnter: multiguard([auth])
    },
    {
      path:'wall',
@@ -192,11 +212,11 @@ Vue.component('datetime', Datetime);
 
 },
  // stripe
- {path: '/profile/cards',  component: Vue.component('stripe-cards')},
+ {path: '/profile/cards',  component: Vue.component('stripe-cards'),beforeEnter: multiguard([auth])},
  // posts
- {path: '/post/create',           component: Vue.component('postear')},
- {path: '/post/test',             component: Vue.component('carousel')},
- {path: '/post/:post_id',         component: Vue.component('post')},
+ {path: '/post/create',           component: Vue.component('postear'),beforeEnter: multiguard([auth])},
+ {path: '/post/test',             component: Vue.component('carousel'),beforeEnter: multiguard([auth])},
+ {path: '/post/:post_id',         component: Vue.component('post'),beforeEnter: multiguard([auth])},
  {path: '/post/:post_id/coments', component: Vue.component('comments')},
 
  // home
@@ -221,10 +241,10 @@ Vue.component('datetime', Datetime);
 
 },
  //
- {path: '/chats',         component: Vue.component('chatsList')},
- {path: '/chats/:id',     component: Vue.component('chatView')},
- {path: '/full/chats',    component: Vue.component('fullChatView')},
- {path: '/full/chats/:id',component: Vue.component('fullChatView')},
+ {path: '/chats',         component: Vue.component('chatsList'),beforeEnter: multiguard([auth])},
+ {path: '/chats/:id',     component: Vue.component('chatView'),beforeEnter: multiguard([auth])},
+ // {path: '/full/chats',    component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
+ // {path: '/full/chats/:id',component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
 
 
 ]

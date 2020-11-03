@@ -11,9 +11,8 @@
         <!-- CACEBZERA FOTO  -->
         <div v-if="!this.loading" class="row justify-content-center down-2">
           <div class="col-6 text-center">
-            <div class="ProfileImg">
-              <img v-if="this.user.image" :src="this.user.image.sizes.NotSmall" alt="">
-              <img v-else src="/default.png" alt="">
+            <div class="ProfileImgCon">
+              <avatar :conection="true" class="ProfileImgCon" :us="this.user" :size="'Small'"></avatar>
             </div>
           </div>
           <div class="col-6 ContieneDatosperfil">

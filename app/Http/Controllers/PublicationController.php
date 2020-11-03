@@ -26,7 +26,7 @@ class PublicationController extends Controller
 
     public function posts(Request $request)
     {
-      return $this->correct(Post::orderBy('created_at','DESC')->paginate(4));
+      return $this->correct(Post::orderBy('created_at','DESC')->where('publish_at', '<=',now())->paginate(4));
     }
 
     public function remove(Request $request)
@@ -65,7 +65,7 @@ class PublicationController extends Controller
       $post = new Post([
         "content" => $request->content,
         "user_id" => auth()->user()->id,
-        "publish_at" => $c?? null,
+        "publish_at" => $c?? now(),
       ]);
       $post->save();
       $h = $this->listToArray($request->hastags);

@@ -7,7 +7,7 @@
       </div>
     </div>
     <!-- CEBEZERA -->
-    <div v-if="!this.loading" class="col-md-12 ContieneCabezeraChat sombreado container ">
+    <div v-if="!this.loading" class="col-md-12 ContieneCabezeraChat sombreado ">
       <div class="contenedorChatHead">
         <avatar :conection="true" :us="otherUser" ></avatar>
         <span class="mr-auto">{{otherUser.name}} </span>
@@ -16,8 +16,8 @@
           <template v-slot:button-content>
             <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
           </template>
-          <b-dropdown-item href="#">Bloquear</b-dropdown-item>
-          <b-dropdown-item href="#">Reportar</b-dropdown-item>
+          <b-dropdown-item @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
+          <b-dropdown-item @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -49,10 +49,11 @@
     <!-- INPUT DEL CHAT -->
     <div class="inputFixed">
       <div v-if="!this.loading" class=" col-md-12 ContieneEntradaChat">
-        <b-form-input autofocus v-model="newMessage" @keyup.enter="sendMessage()" autocomplete="off" id="input-small" class="col-xs-8 entradaTextoChat" :placeholder="$ml.get('chat').entrada"></b-form-input>
+        <b-form-input  autofocus v-model="newMessage" @keyup.enter="sendMessage()" autocomplete="off" id="input-small" class="col-xs-8 entradaTextoChat ContieneEntradaChatInput" :placeholder="$ml.get('chat').entrada"></b-form-input>
         <div class="ContieneIconosEnviar">
           <input type="file" ref="file" style="display: none" accept="image/x-png,image/gif,image/jpeg,image/jpg" @change="sendImage">
-          <b-icon font-scale="1.7" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon>
+          <!-- <b-icon font-scale="1.7" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon> -->
+          <propina :chat_id="this.chat" :otherUser="this.otherUser" class="icon"></propina>
           <b-icon font-scale="1.7" @click="$refs.file.click()" style="color:#383d41;" icon="camera-fill" aria-hidden="true" class="icon"></b-icon>
           <b-icon @click="sendMessage()" font-scale="1.7" style="color: #F20505;" icon="arrow-up-right-circle-fill" aria-hidden="true" class="icon iconshadow"></b-icon>
         </div>
@@ -138,7 +139,9 @@ export default {
           console.log(response)
           self.messages = response.data.data.messages.data.slice().reverse()
           self.otherUser = response.data.data.otherUser
-
+        }
+        if(response.data.rc == 102) {
+          alert(self.$ml.get('chat').notAvailable)
         }
       })
       .catch(function (error) {
@@ -231,6 +234,33 @@ export default {
       })
       this.newMessage = ""
     },
+    block() {
+      if(confirm(this.$ml.get('chat').confBlock+this.otherUser.name+'?')) {
+        this.loading = true
+        var self = this
+        axios.post('/api/chat/'+self.chat+'/block', null,
+        {
+           headers:{
+              Authorization: `Bearer `+ this.$store.state.token
+           }
+         })
+         .then(function (response)  {
+           console.log(response)
+           if(response.data.rc == 1) {
+             self.$router.push('/')
+
+           } else {
+             alert('error')
+           }
+
+         })
+         .catch(err => {
+           alert('Error')
+         })
+         // finally
+         .finally(() => self.loading = false)
+      }
+    }
   }
 };
 </script>

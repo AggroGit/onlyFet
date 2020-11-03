@@ -9,7 +9,7 @@
 
       <div v-if="!this.loading" class="row contenedor">
         <!-- <div class="container"> -->
-          <div v-for="(image) in this.posts" :key="image.id"  class=" col-6 down-4">
+          <div v-for="(image) in this.posts" :key="image.id"  class=" col-md-6 down-4">
             <div class="ContieneVideoGrid">
 
               <img
@@ -154,6 +154,8 @@ export default {
         autoplay: false,
         // muted: true,
         language: this.$store.state.auth.lang,
+        height: '200px',
+        width:'100%',
         playbackRates: [],
         sources: [{
           type: "video/"+media.format,

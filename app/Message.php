@@ -21,6 +21,10 @@ class Message extends Model
       'fecha',
     ];
 
+    protected $casts = [
+        'read' => 'boolean',
+    ];
+
     // the chat of the message
     public function chat()
     {
@@ -44,7 +48,11 @@ class Message extends Model
       // first we save the message
       $this->save();
       // lanzamos el event
-      broadcast(new MessageEvent(Message::without('user')->find($this->id)));
+      try {
+        broadcast(new MessageEvent(Message::without('user')->find($this->id)));
+      } catch (\Exception $e) {
+      }
+
       // notificamos
       $this->notifyUsers();
       // updated_at of the chat, for the order lists

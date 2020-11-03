@@ -9,7 +9,7 @@
             <h3 class="down-4">{{$ml.get('post').posting}}</h3>
           </div>
 
-          <form  @submit.stop.prevent="post()">
+          <form v-bind:class="{ invisible: loading }"  @submit.stop.prevent="post()">
 
             <!-- <div class="contieneInputPost"> -->
               <!-- <picture-input ></picture-input> -->
@@ -20,7 +20,7 @@
                 :deletable="true"
                 :meta="true"
                 :accept="'video/*,.jpg,.png,.jpeg'"
-                :maxSize="'10MB'"
+                :maxSize="'100MB'"
                 :maxFiles="4"
                 :helpText="'Choose images or videos'"
                 :errorText="{
@@ -126,7 +126,7 @@ export default {
       fileRecordsForUpload:[],
       recomending:{
         using:false,
-        loading:true,
+        loading:false,
         list:[],
 
       },
@@ -134,7 +134,6 @@ export default {
       error: false,
       program:null,
       programOpen:false,
-      loading : false,
       form: {
         files:[],
         content: null,
@@ -193,7 +192,7 @@ export default {
         console.log(err)
       })
       // finally
-      .finally(() => this.loading = false)
+      .finally(() => this.loading = true)
     },
     detectPeople() {
       // cogemos la ultima palabra

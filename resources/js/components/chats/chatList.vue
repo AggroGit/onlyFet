@@ -22,7 +22,7 @@
         <h5>{{$ml.get('chat').nochat}}</h5>
       </div>
       <b-list-group class=" contenedor aparecer down-3">
-          <b-list-group-item v-for="(chat) in this.chats" :key="chat.id"    :to="getUrlChat(chat)" class="flex-column align-items-start chatListItem" v-bind:class="{remvongg:removing}">
+          <b-list-group-item v-for="(chat) in this.chats" :key="chat.id" :disabled="!chat.open"   :to="getUrlChat(chat)" class="flex-column align-items-start chatListItem" v-bind:class="{remvongg:removing}">
               <avatar :conection="true" :us="chat.otherUser"></avatar>
               <span class="mr-auto">{{chat.otherUser.name}}</span>
 
@@ -33,6 +33,7 @@
               <div v-if="chat.lastMessage" class="d-flex w-100 justify-content-between">
                 <p  class="mb-1">{{chat.lastMessage.message}}</p>
                 <small class="hourchat">{{chat.lastMessage.fecha}}</small>
+                <div v-if="chat.lastMessage.read === false && chat.lastMessage.user_id !== $store.state.auth.id" class="noLeido"></div>
               </div>
 
           </b-list-group-item>
@@ -68,6 +69,7 @@ export default {
 
 
     getUrlChat(chat){
+
       if(this.removing == false) {
         if(this.full) {
           return "/full/chats/"+chat.id

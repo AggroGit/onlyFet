@@ -1,18 +1,18 @@
 <template>
   <div class="container-fluid contenedor">
     <!-- BUSCADOR Y -->
-    <div class="row">
+    <div class="row down-4">
       <div class="contieneBuscadorLogoAntes MainBuscador">
           <div class="contenedor contieneBuscadorLogo MainBuscador">
-            <b-form-input autocomplete="off" v-model="search" @keyup="getProfiles(true)" id="input-small" class="col-xs-8" :placeholder="$ml.get('main').search"></b-form-input>
+            <b-form-input :autocomplete="'off'" type="text" v-model="search" @keyup="getProfiles(true)" id="input-small" class="col-xs-8" :placeholder="$ml.get('main').search"></b-form-input>
             <b-icon  font-scale="2" @click="OrderByClick()" icon="filter" aria-hidden="true" class="icon"></b-icon>
           </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row down-3">
       <div class="col-md-12">
-        <h4>Perfiles recomendados</h4>
+        <h4>{{$ml.get('main').title}}</h4>
       </div>
     </div>
     <!-- NO USERS -->
@@ -30,7 +30,7 @@
     </div>
     <!-- LISTADO -->
     <div v-if="!this.loading" class="row ContienePerfilesMain" >
-      <div v-for="(user) in this.profiles" :key="user.id" class="col-6 ">
+      <div v-for="(user) in this.profiles" :key="user.id" class="col-6 aparecer">
         <router-link :to="'/user/'+user.nickname" class="PerfilMain  noLink">
           <div class="PerfilMainImagen">
             <img v-if="user.image == null" src="/default.png" alt="">
@@ -72,12 +72,14 @@ export default {
       current:1,
       scrolling:false,
       search: null,
-      searching:false
+      searching:false,
+      auth: this.$store.state.auth,
 
     }
   },
   created() {
     this.getProfiles();
+
   },
   methods: {
     getProfiles(force) {
@@ -94,7 +96,11 @@ export default {
       }
       if(self.current<self.total && self.scrolling==false || force == true) {
         this.searching = true
-        axios.post('/api/main/users', {
+        var url = "/api/main/users"
+        if(this.auth == false) {
+          url = "/api/main/nologged/users"
+        }
+        axios.post(url, {
           orderBy: self.option,
           search: self.search
         },
@@ -108,6 +114,11 @@ export default {
            if(response.data.rc == 1) {
              response.data.data.data.forEach(element => this.profiles.push(element));
              this.total = response.data.data.last_page
+           }
+           if(response.data.rc == 13) {
+             // response.data.data.data.forEach(element => this.profiles.push(element));
+             // this.total = response.data.data.last_page
+             // this.$router.push('/login')
            }
 
          })

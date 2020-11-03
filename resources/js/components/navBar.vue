@@ -52,40 +52,48 @@
             </div>
           </div>
         </div> -->
-        <div class="MenuMob">
+        <div class="MenuMob" v-bind:class="{ open: open }" @click="AbrirCerrar()">
           <div class="ContienePerfilNav down-3">
-            <div class="ContieneOpcionCerrar">
-              <b-icon font-scale="1.7" style="color:black;" icon="x" aria-hidden="true" class="icon"></b-icon>
+            <div class="ContieneOpcionCerrar" @click="AbrirCerrar()">
+              <b-icon @click="AbrirCerrar()" font-scale="2" style="color:black;" icon="x" aria-hidden="true" class="icon"></b-icon>
             </div>
-            <div class="row justify-content-center ">
+            <div  v-if="$store.state.auth !== false"  class="row justify-content-center ">
               <div class="col-xs-6">
-                <div class="ProfileImg down-2">
-                  <img v-if="this.auth.image" :src="this.auth.image.sizes.NotSmall" alt="">
+                <router-link :to="'/user/'+$store.state.auth.nickname" class="ProfileImg down-2">
+                  <img v-if="$store.state.auth.image" :src="$store.state.auth.image.sizes.NotSmall" alt="">
                   <img v-else src="/default.png" alt="">
-                </div>
+                </router-link>
               </div>
               <div class="col-xs-6 ContieneDatosperfil">
                 <h4> <router-link class="noLink" :to="'/user/'+auth.nickname">{{auth.name}}</router-link> </h4>
                 <br>
-                <p><strong>{{$ml.get('auth').nickname}}: </strong>{{auth.nickname}}</p>
-                <p><strong>{{$ml.get('auth').email}}: </strong> {{auth.email}}</p>
-                <p><strong>{{$ml.get('auth').name}}: </strong> {{auth.name}}</p>
+                <p><strong>{{$ml.get('auth').nickname}}: </strong>{{$store.state.auth.nickname}}</p>
+                <p><strong>{{$ml.get('auth').email}}: </strong> {{$store.state.auth.email}}</p>
+                <p><strong>{{$ml.get('auth').name}}: </strong> {{$store.state.auth.name}}</p>
+                <router-link class="rojo" to="/profile">{{$ml.get('auth').editProfile}}</router-link>
 
               </div>
             </div>
           </div>
           <div class="ContieneElementosMenu">
-            <b-nav-item to='/'>Home</b-nav-item>
-            <b-nav-item to='/novedades'>Novedades</b-nav-item>
-            <b-nav-item to='/post/create'>Publicar</b-nav-item>
-            <b-nav-item to='/chats'>Chats</b-nav-item>
+            <b-nav-item to='/'>{{$ml.get('menu').home}}</b-nav-item>
+            <b-nav-item to='/novedades'>{{$ml.get('menu').news}}</b-nav-item>
+            <b-nav-item to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
+            <b-nav-item class="onlyMob" to='/profile'>{{$ml.get('menu').profile}}</b-nav-item>
+            <b-nav-item class="onlyMob" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
+            <b-nav-item to='/chats'>{{$ml.get('menu').chats}}</b-nav-item>
+            <b-nav-item v-if="this.$store.state.auth !==false" @click="logout()">{{$ml.get('menu').logout}}</b-nav-item>
+            <b-nav-item v-if="this.$store.state.auth ===false"  to='/login'>{{$ml.get('menu').login}}</b-nav-item>
+            <b-nav-item v-if="this.$store.state.auth ===false"  to='/register'>{{$ml.get('menu').register}}</b-nav-item>
           </div>
         </div>
 
-
-        <div class="contieneLogoMenu">
-          <img src="/logo-mini.png" alt="logo">
+        <div @click="AbrirCerrar()" class="onlyMob ContieneMenuAbrir">
+          <b-icon font-scale="2" style="color:black;" icon="list" aria-hidden="true" class="icon"></b-icon>
         </div>
+        <router-link to="/" class="contieneLogoMenu">
+          <img src="/logo-mini.png" alt="logo">
+        </router-link>
 
       </nav>
   </div>
@@ -101,7 +109,8 @@ export default {
   data() {
     return {
       name: 'OnlyFet',
-      auth:  this.$store.state.auth
+      auth:  this.$store.state.auth,
+      open: false
     }
 
   },
@@ -120,12 +129,16 @@ export default {
       })
       this.$store.state.auth = false
       this.$store.state.quitTokenInCookie();
+      this.auth = false;
       window.user = false;
       Echo.disconnect();
       Echo = false;
       window.authChannel = false;
       this.$router.push({ path: '/login' })
 
+    },
+    AbrirCerrar(){
+      this.open = !this.open;
     }
   }
 

@@ -32,3 +32,4 @@ Route::group(['middleware' => ['auth:api','hasStripe']], function()
 
   //
 });
+Route::post('/main/nologged/users',  'ProfilesController@getAllUsers');

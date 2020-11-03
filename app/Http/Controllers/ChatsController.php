@@ -45,6 +45,9 @@ class ChatsController extends Controller
     {
       $chat = Chat::find($chat_id);
       $chat->messages = $chat->messagesPaginated();
+      $chat->messages()->where('messages.user_id','!=',auth()->user()->id)->update([
+        'read' => true
+      ]);
       return $this->correct($chat);
     }
 
@@ -53,6 +56,16 @@ class ChatsController extends Controller
         'id', $request->ids
       )->delete();
       return $this->chats();
+    }
+
+    public function block(int $chat_id)
+    {
+      $chat = Chat::find($chat_id);
+      if($chat->isUser(auth()->user())) {
+        $chat->block($chat->otherUser);
+        $chat->open = false;
+        $chat->save();
+      }
     }
 
 

@@ -16,11 +16,15 @@ export default new MLCreate({
     // CATALÁN
     new MLanguage('es').create({
       title: 'Hola {0}!',
-      msg: 'Tienes {f} amigos y {l} me gustas',
       chat: {
         entrada: "Escribe tu mensaje",
         nochat: "Vaya, parece que no tienes chats",
-        lookUser: "Buscar chat"
+        lookUser: "Buscar chat",
+        block: "Bloquear",
+        report: "Reportar",
+        confBlock: "¿Estas seguro que quieres bloquar a ",
+        confReport: "¿Estas seguro que reportar a ",
+        notAvailable: "Este chat ya no está disponible"
       },
       auth: {
         recoverEmail : "Te hemos enviado un correo de recuperación",
@@ -47,6 +51,7 @@ export default new MLCreate({
         name: "Nombre",
         newPass: "Nueva Contraseña",
         edit: "Editar",
+        editProfile: "Editar Perfil",
         existNickName:"Ya existe un usuario con el nickname ",
         country: "País",
         lang: "Idioma",
@@ -105,8 +110,26 @@ export default new MLCreate({
         popu: "Más populares",
         news: "Nuevos usuarios",
         susc: "Mis suscripciones",
+        title: "Perfiles Recomendados",
         nop: "Vaya, parece que no hay usuarios que mostrar"
 
+      },
+      menu : {
+        home:"Inicio",
+        news:"Novedades",
+        publi: "Publicar",
+        profile: "Mi perfil",
+        chats:"Chats",
+        login: "Login",
+        register: "Register",
+        logout: "Desconectar",
+        faqs: "FAQs"
+      },
+      propina: {
+        label: "Cantidad de Propina",
+        send: "Enviar",
+        mensaje: "Mensaje",
+        cantRecive: "Parece que el usuario no puede aceptar propinas"
       }
     })
   ]

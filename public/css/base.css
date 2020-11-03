@@ -19,6 +19,10 @@ img {
     border-color: #c1c1c1 !important;
     box-shadow: none !important;
 }
+.inputPropin {
+  width: 100%;
+  border:1px solid #ced4da !important;
+}
 
 .contenedor {
   transition: all 0.3s ease;
@@ -100,7 +104,7 @@ img {
 .ContieneEntradaChat >* {
   margin: auto;
 }
-.ContieneEntradaChat input{
+.ContieneEntradaChatInput{
   width: 80%;
   margin-left: 15px;
   border: none !important;
@@ -111,6 +115,7 @@ img {
   right: 0;
   margin-top: 5px;
   margin-right: 25px;
+  display: flex;
 
 }
 .ContieneIconosEnviar>* {
@@ -537,7 +542,7 @@ input {
   margin: 0px 20px 0px 20px;
 }
 .contieneRecomendadorImg > img {
-  width: 120%;
+  width: 150%;
 }
 .loadingReco {
   width: 100%;
@@ -954,6 +959,7 @@ height: 100% !important;
 }
 .MenuMob {
   margin: auto;
+  transition: all 0.4s ease;
 }
 .nav-item>a {
   text-decoration: none;
@@ -974,19 +980,93 @@ height: 100% !important;
 .ContienePerfilNav {
   display: none;
 }
+.onlyMob {
+  display: none;
+}
+.ContieneOpcionCerrar {
+  position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+.open {
+
+}
+.ContieneMenuAbrir {
+  position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
 @media only screen and (max-width: 600px) {
   .MenuMob {
     position: fixed;
-    background: red;
     height: 100vh;
+    overflow-y: scroll;
+    background: #ffffff;
+    box-shadow: 10px 10px 5px #98989824;
     z-index: 9999;
     width: 100%;
     max-width: 400px;
+    transform: translateX(-130%);
+  }
+  .open {
+    transform: translateX(0%);
+  }
+  .onlyMob {
+    display: inherit;
   }
   .ContieneElementosMenu {
-    display: block
+    display: block;
+    margin-top: 30px;
+
   }
   .ContienePerfilNav {
     display: block;
   }
+  .nav-item>a {
+    border-bottom: 1px solid #e8e8e8;
+  }
+}
+.invisible {
+  height: 0px;
+  overflow: hidden;
+}
+.noLeido {
+  position: absolute;
+    top: 0;
+    right: 0;
+    width: 13px;
+    margin: 20px;
+    height: 13px;
+    border-radius: 50%;
+    background: orange;
+}
+.noFlex {
+  display: block;
+}
+.ContienePropinaSend {
+  background: #ffffff;
+    max-width: 350px;
+    margin: auto;
+    margin-top: 20vh;
+    padding: 40px;
+    border-radius: 17px;
+
+}
+.ProfileImgCon{
+  text-align: right;
+}
+.ProfileImgCon > .conection-dot {
+  width: 1.1rem;
+  height: 1.1rem;
+  float: right;
+  float: right;
+    position: relative !important;
+    margin: auto;
+    transform: translateX(-38px) translateY(76px);
+}
+.maxVisa {
+  max-width: 350px;
+  margin: auto;
 }

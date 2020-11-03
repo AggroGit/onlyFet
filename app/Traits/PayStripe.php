@@ -215,6 +215,8 @@ trait PayStripe
       } catch (\Exception $e) {
         return false;
       }
+
+
     }
 
 

@@ -82,6 +82,10 @@ return [
     ],
     'chooseOrder' => [
       'orderBy' => 'string|in:populars,news,mySuscriptions'
+    ],
+    'propina' => [
+      'quantity'    => 'required|digits_between:1,400',
+      'description' =>  'string'
     ]
 
 

@@ -19,6 +19,7 @@
     Route::post('/stripe/cards',                          'StripeController@cardsList');
     Route::post('/stripe/add',                            'StripeController@addCard');
     Route::any('/pay',                                    'StripeController@pay');
+    Route::any('/propina/{user_id}',                        'StripeController@sendPropina');
 
 
   });

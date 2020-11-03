@@ -13,7 +13,7 @@
 
       <div v-if="!this.loading && this.exist" class="card post sobreadoPlus aparecer">
         <div class="cabecerapoST">
-          <avatar :us="data.user"></avatar>
+          <avatar :conection="true" :us="data.user"></avatar>
             <div class="contieneDetPost">
               <p>{{data.user.name}}</p>
               <p>{{data.fecha}}</p>

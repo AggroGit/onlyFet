@@ -410,7 +410,7 @@ export default {
       .post('/api/register',this.form)
       // then
       .then(function (response) {
-        self.interpretateTemporal(response)
+        self.interpretate(response)
       })
       // finally
       .finally(() => this.loading = false)
@@ -434,7 +434,7 @@ export default {
         this.$store.state.authChannel = window.Echo.join(appCode+'.User.'+user.id);//+self.$store.state.auth.id);
         this.$store.state.appchannel = window.Echo.join(appCode+'.App');//+self.$store.state.auth.id);
         //
-        this.$router.push('home')
+        this.$router.push('/')
 
       } else {
         if(response.data.rc == 2) {
