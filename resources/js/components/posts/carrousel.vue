@@ -41,6 +41,7 @@
         <video-player
         class="video"
                          ref="videoPlayer"
+                         v-else
                          :options="giveMeOptions(media)"
                          :playsinline="true"
                          @play="onPlayerPlay($event)"
