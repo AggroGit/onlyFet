@@ -45,14 +45,7 @@
                             </div>
                           </div>
 
-                          <div class="form-group row ">
-                              <router-link to="/register" class="col-md-12 offset-md-12">
-                                  <button type="submit" class="btn btn-primary boton">
-                                      {{$ml.get('auth').changeRgister}}
-                                      <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                  </button>
-                              </router-link>
-                          </div>
+
 
                           <div class="form-group row ">
                               <div class="col-md-12 offset-md-12">
@@ -61,6 +54,15 @@
                                       <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                   </button>
                               </div>
+                          </div>
+
+                          <div class="form-group row ">
+                              <router-link to="/register" class="col-md-12 offset-md-12">
+                                  <button class="btn btn-primary boton">
+                                      {{$ml.get('auth').changeRgister}}
+                                      <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                  </button>
+                              </router-link>
                           </div>
 
                       </form>
