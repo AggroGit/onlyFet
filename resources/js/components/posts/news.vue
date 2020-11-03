@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="contenedor">
       <!-- {{this.current}}/{{this.total}} -->
       <div v-if="this.loading" class="container text-center contieneCargador">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
