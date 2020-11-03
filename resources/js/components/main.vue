@@ -36,7 +36,7 @@
             <img v-if="user.image == null" src="/default.png" alt="">
             <img v-else :src="user.image.sizes.Med" alt="">
           </div>
-          <p class="NombreMain">@{{user.nickname}}</p>
+          <p class="NombreMain down-1">@{{user.nickname}}</p>
         </router-link>
       </div>
     </div>
