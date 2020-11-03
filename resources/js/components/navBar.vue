@@ -79,8 +79,8 @@
             <b-nav-item to='/'>{{$ml.get('menu').home}}</b-nav-item>
             <b-nav-item to='/novedades'>{{$ml.get('menu').news}}</b-nav-item>
             <b-nav-item to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
-            <b-nav-item class="onlyMob" to='/profile'>{{$ml.get('menu').profile}}</b-nav-item>
-            <b-nav-item class="onlyMob" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
+            <b-nav-item class="" to='/profile'>{{$ml.get('menu').profile}}</b-nav-item>
+            <b-nav-item class="" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
             <b-nav-item to='/chats'>{{$ml.get('menu').chats}}</b-nav-item>
             <b-nav-item v-if="this.$store.state.auth !==false" @click="logout()">{{$ml.get('menu').logout}}</b-nav-item>
             <b-nav-item v-if="this.$store.state.auth ===false"  to='/login'>{{$ml.get('menu').login}}</b-nav-item>
