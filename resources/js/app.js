@@ -224,17 +224,20 @@ const auth = function(to, from, next) {
       children: [
         {
           path:'suscriptions',
+          beforeEnter: multiguard([auth]),
           component: Vue.component('listPlans'),
           name:'suscriptions'
         },
         {
           path:'news',
+          beforeEnter: multiguard([auth]),
           component: Vue.component('news'),
           name:'news'
         },
         {
           path:'',
           name:'news',
+          beforeEnter: multiguard([auth]),
           component: Vue.component('news'),
         }
       ]
