@@ -75,7 +75,7 @@
               </div>
             </div>
           </div>
-          <div class="ContieneElementosMenu">
+          <div class="ContieneElementosMenu ">
             <b-nav-item to='/'>{{$ml.get('menu').home}}</b-nav-item>
             <b-nav-item to='/novedades'>{{$ml.get('menu').news}}</b-nav-item>
             <b-nav-item to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
