@@ -4,7 +4,7 @@
 
             <div class="">
               <router-link class="noLink" to="/novedades/news">
-                Novedadess
+                {{$ml.get('menu').news}}
               </router-link>
               <div v-if="this.$route.name == 'news'"  class="lineaSeparadora aparecerIzquierda"></div>
 
@@ -12,7 +12,7 @@
 
             <div class="">
               <router-link class="noLink" to="/novedades/suscriptions">
-                Suscripciones
+                {{$ml.get('auth').suscriptions}}
               </router-link>
               <div v-if="this.$route.name == 'suscriptions'"  class="lineaSeparadora aparecerDerecha"></div>
             </div>
