@@ -8,13 +8,13 @@
       </div>
 
       <!-- NAVBAR -->
-      <navBar v-if="!this.loading" :auth="this.auth"></navBar>
+      <navBar v-if="!this.loading"  class="navbarsUP sombreado" :auth="this.auth"></navBar>
       <!-- THE VIEW -->
       <!-- <div v-if="!this.loading" class="contenedor">
         <router-view   :key="$route.fullPath" v-bind:data="this"></router-view>
       </div> -->
       <!-- THE VIEW -->
-      <div v-if="!this.loading" class="contenedor">
+      <div v-if="!this.loading" v-bind:class="{ 'entero': this.$store.state.entero }">
         <router-view v-bind:data="this"></router-view>
       </div>
       <!-- NOTIFICATIONS -->
@@ -73,6 +73,11 @@ export default {
         return false;
       }
       return token;
+    },
+    entero() {
+      if(this.$store.state.entero) {
+        return "contenedor"
+      }
     },
     // add the user info
     addUser: (data,self) => {

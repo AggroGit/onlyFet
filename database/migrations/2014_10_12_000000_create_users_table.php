@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('surnames')->nullable();
+            $table->integer('numSuscriptions')->default(0);
             $table->string('phone_number')->nullable();
             $table->boolean('wantToBeInfluencer')->default(false);
             $table->boolean('influencer')->default(false); // que ha hecho pasarela

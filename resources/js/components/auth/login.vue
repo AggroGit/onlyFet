@@ -16,11 +16,11 @@
                   <div class="card-body">
                       <form  @submit.stop.prevent="login()" >
                           <div class="form-group row">
-                            <entrada v-model="form.email" :label="'email'" :name="'email'" :type="'email'" :autofocus="true" autocomplete="email" :required="true"></entrada>
+                            <entrada v-model="form.email" :label="$ml.get('auth').email" :name="'email'" :type="'email'" :autofocus="true" autocomplete="email" :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
-                            <entrada v-model="form.password" :label="'Contraseña'" :name="'password'" :type="'password'" :autocomplete="'current-password'" :required="true"></entrada>
+                            <entrada v-model="form.password" :label="$ml.get('auth').password" :name="'password'" :type="'password'" :autocomplete="'current-password'" :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
@@ -28,7 +28,7 @@
                                   <div class="form-check">
                                       <input class="form-check-input" type="checkbox" required name="remember" id="remember" >
                                       <label class="form-check-label" for="remember">
-                                          Politica de privacidad
+                                          {{this.$ml.get('auth').legalTerms}}
                                       </label>
                                   </div>
                               </div>
@@ -37,12 +37,10 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div v-if="this.error" class="alert alert-danger">
-                                <strong>Vaya!</strong> Parece que el usuario no existe o tienes mal los datos
+                                <strong>{{this.$ml.get('auth').prError}}</strong> {{this.$ml.get('auth').error}}
                               </div>
-                              <div class="col-md-12 text-center" to="/login">
-                                <a class="btn btn-link" >
-                                  Forgot Your Password?
-                                </a>
+                              <div class="col-md-12 text-left down-1" to="/login">
+                                <p>{{this.$ml.get('auth').forget}} <a class="rojo" @click="openForget()" href="#">{{this.$ml.get('auth').recu}}</a></p>
                               </div>
                             </div>
                           </div>
@@ -56,12 +54,27 @@
                               </div>
                           </div>
 
-
                       </form>
                   </div>
               </div>
           </div>
       </div>
+
+      <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
+        <div class="container text-center contieneCargador aparecer">
+          <div class="ContienecONTRAfoRGET">
+              <label for="forgetEmail">{{$ml.get('auth').email}}</label>
+              <input name="forgetEmail"  v-model="form.email" type="email">
+              <button @click="forgetPass()" class="btn btn-primary boton">
+                  {{$ml.get('auth').recu}}
+                  <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+          </div>
+          <!-- <h3>Suscribiendo</h3> -->
+        </div>
+      </div>
+
+
   </div>
 </template>
 
@@ -74,6 +87,7 @@ export default {
     return {
       loading:false,
       error:false,
+      forget:false,
       form: {
         email:null,
         password:null
@@ -132,6 +146,28 @@ export default {
       } else {
         this.error = true;
       }
+
+    },
+    openForget() {
+      this.forget = !this.forget
+    },
+    forgetPass() {
+      this.loading=true
+      //
+      var self = this;
+      axios
+      .post('/api/forget',{
+        email: this.form.email
+      })
+      // then
+      .then(function (response) {
+        alert(self.$ml.get('auth').recoverEmail)
+      })
+      .catch(function (response) {
+        alert('Server Error')
+      })
+      // finally
+      .finally(() => this.loading = false,self.forget = false)
 
     }
 

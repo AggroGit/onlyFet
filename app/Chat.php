@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Sockeable;
 use App\User;
+use App\Chat;
 
 class Chat extends Model
 {
@@ -49,6 +50,22 @@ class Chat extends Model
     {
       $this->users()->detach($user);
       $this->save();
+    }
+
+    public static function giveMeorCreateChatWith($user)
+    {
+      $chats = $user->chats;
+      foreach ($chats as $chat) {
+        if($chat->isUser(auth()->user())) {
+          return $chat;
+        }
+      }
+      $new = new Chat();
+      $new->save();
+      $new->addUser($user);
+      $new->addUser(auth()->user());
+      $new->save();
+      return Chat::find($new->id);
     }
 
 
@@ -116,7 +133,7 @@ class Chat extends Model
         foreach ($this->users as $user) {
           $this->quitUser($user);
         }
-        $this->messages()->delete();
+        // $this->messages()->delete();
         return parent::delete();
     }
 

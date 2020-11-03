@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container contenedor">
       <!-- {{this.current}}/{{this.total}} -->
       <div v-if="this.loading" class="container text-center contieneCargador">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
@@ -82,7 +82,7 @@ export default {
         let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
         if (bottomOfWindow) {
          this.scrolledToBottom = true // replace it with your code
-         if(this.scrlling== false)
+         if(this.scrolling== false)
          {
             this.getPosts()
          }
@@ -123,7 +123,7 @@ export default {
         let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
         if (bottomOfWindow) {
          this.scrolledToBottom = true // replace it with your code
-         if(this.scrlling== false)
+         if(this.scrolling== false)
          {
             this.getPosts()
          }

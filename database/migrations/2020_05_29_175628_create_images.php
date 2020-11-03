@@ -28,6 +28,20 @@ class CreateImages extends Migration
                   ->nullable();
             $table->string("path")
                   ->nullable();
+            //
+            $table->integer('user_id')
+                  ->nullable()
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            $table->integer('post_id')
+                  ->nullable()
+                  ->references('id')
+                  ->on('posts')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

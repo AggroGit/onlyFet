@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use App\Chat;
 use App\Plan;
 use App\User;
 //
 
 class Plan extends Model
 {
+    protected $appends = ["rest"];
     // cuando se actualiza un precio entonces deberíamos cambiar de plan todos los uaurios.
     public function updateThePlans($key,$suscriptions)
     {
@@ -30,6 +33,13 @@ class Plan extends Model
       $this->delete();
       // ahora deberiamos actualizar a todos sus usuarios
       // PENDING
+    }
+
+    public function getRestAttribute()
+    {
+      // $datework = Carbon::createFromDate($this->);
+      // $now = Carbon::now();
+      // $testdate = $datework->diffInDays($now);
     }
 
     // nos crea un nuevo plan en STRIPE
@@ -89,6 +99,18 @@ class Plan extends Model
       return false;
     }
 
+    public function cancelUser(User $user)
+    {
+      if($this->isUser($user)) {
+
+        $user->subscription('default',$this->stripe_tarifa_id)->cancelNow();
+        $user->suscribedPlans()->detach($this->id);
+
+        return true;
+      }
+      return false;
+    }
+
     // suscribimos un usuario
     public function suscribeUser(User $user) {
       if (!$this->isUser($user)) {
@@ -100,6 +122,12 @@ class Plan extends Model
         }
         // add to plans
         $this->usersSuscribed()->save($user);
+        // plus 1 suscriber
+        $user = $this->user;
+        $user->numSuscriptions = $user->numSuscriptions+1;
+        $user->save();
+        // create chat
+        Chat::giveMeorCreateChatWith($this->user);
         return $this->save();
       }
       return false;

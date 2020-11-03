@@ -1,6 +1,6 @@
 <template>
   <div class="ContieneNotificaciones">
-    <notification v-for="(notification) in this.notifications" :data="notification" :key="notification.id" >
+    <notification v-for="(notification) in this.notifications" :data="notification" :key="notification.id" class="notificationn" >
   </notification>
 </div>
 </template>

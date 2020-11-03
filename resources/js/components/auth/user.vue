@@ -24,6 +24,7 @@
               {{this.user.description}}
             </p>
 
+            <router-link to='/profile/suscriptions' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">Comienza a ganar dinero</router-link>
             <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{user.phone_number}}</p>
             <p><strong>{{$ml.get('auth').email}}: </strong> {{user.email}}</p>
             <p><strong>{{$ml.get('auth').name}}: </strong> {{user.name}}</p> -->
@@ -68,53 +69,55 @@
             <!-- <h3>Suscribiendo</h3> -->
           </div>
         </div>
+        <div class="row">
+        <div class="container contenedor">
+          <div v-if="!this.loading" class="row justify-content-center aparecer">
 
+            <div v-if="this.user.influencer && this.user.canSee == false" class="col-md-12 down-2">
+              <stripe-add-visa :redirect="'/profile/cards'" v-if="this.hasToPay" class="aparecer sombreado"></stripe-add-visa>
+              <div class="ContieneSuscripcionesButton" v-if="this.hasToPay !== true">
+                <b-dropdown v-if="this.user.influencer && this.user.plans.length !==0 && this.user.id!==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="col-md-12 text-right">
+                  <b-dropdown-item @click="seleccionar('month1')">
+                    <span v-if="this.priceOfer('month1') !== null " class="tachado grisaceo">{{this.priceOfer('month1')}}€ </span>
+                    {{this.priceOf('month1')}}€ - 30 {{$ml.get('stripe').days}}
+                  </b-dropdown-item>
+                  <b-dropdown-item @click="seleccionar('month3')">
+                    <span v-if="this.priceOfer('month3') !== null " class="tachado grisaceo">{{this.priceOfer('month3')}}€ </span>
+                    {{this.priceOf('month3')}}€ - 3 {{$ml.get('stripe').months}}
+                  </b-dropdown-item>
+                  <b-dropdown-item @click="seleccionar('month6')">
+                    <span v-if="this.priceOfer('month6') !== null " class="tachado grisaceo">{{this.priceOfer('month6')}}€ </span>
+                    {{this.priceOf('month6')}}€ - 6 {{$ml.get('stripe').months}}
+                  </b-dropdown-item>
+                  <b-dropdown-item @click="seleccionar('month12')">
+                    <span v-if="this.priceOfer('month12') !== null " class="tachado grisaceo">{{this.priceOfer('month12')}}€ </span>
+                    {{this.priceOf('month12')}}€ - 12 {{$ml.get('stripe').months}}
+                  </b-dropdown-item>
+                </b-dropdown>
+                <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
+                  <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
+                </b-dropdown>
 
-        <div v-if="!this.loading" class="row">
-          <div v-if="this.user.influencer && this.user.canSee == false" class="col-md-12 down-2">
-            <stripe-add-visa :redirect="'/profile/cards'" v-if="this.hasToPay" class="aparecer sombreado"></stripe-add-visa>
-            <div class="ContieneSuscripcionesButton">
-              <b-dropdown v-if="this.user.influencer && this.user.plans.length !==0 && this.user.id!==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2 text-right">
-                <b-dropdown-item @click="seleccionar('month1')">
-                  <span v-if="this.priceOfer('month1') !== null " class="tachado grisaceo">{{this.priceOfer('month1')}}€ </span>
-                  {{this.priceOf('month1')}}€ - 30 {{$ml.get('stripe').days}}
-                </b-dropdown-item>
-                <b-dropdown-item @click="seleccionar('month3')">
-                  <span v-if="this.priceOfer('month3') !== null " class="tachado grisaceo">{{this.priceOfer('month3')}}€ </span>
-                  {{this.priceOf('month3')}}€ - 3 {{$ml.get('stripe').months}}
-                </b-dropdown-item>
-                <b-dropdown-item @click="seleccionar('month6')">
-                  <span v-if="this.priceOfer('month6') !== null " class="tachado grisaceo">{{this.priceOfer('month6')}}€ </span>
-                  {{this.priceOf('month6')}}€ - 6 {{$ml.get('stripe').months}}
-                </b-dropdown-item>
-                <b-dropdown-item @click="seleccionar('month12')">
-                  <span v-if="this.priceOfer('month12') !== null " class="tachado grisaceo">{{this.priceOfer('month12')}}€ </span>
-                  {{this.priceOf('month12')}}€ - 12 {{$ml.get('stripe').months}}
-                </b-dropdown-item>
-              </b-dropdown>
-              <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
-                <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
-              </b-dropdown>
-
-            </div>
-
-          </div>
-
-
-          <div v-else class="col-md-12 down-2">
-            <div class="ContieneSuscripcionesButton">
-              <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
-                <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
-              </b-dropdown>
+              </div>
 
             </div>
 
-          </div>
+
+            <div v-else class="col-md-12 down-2">
+              <div class="ContieneSuscripcionesButton">
+                <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
+                  <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
+                </b-dropdown>
+
+              </div>
+
+            </div>
+            </div>
 
         </div>
+        </div>
 
-
-        <div v-if="!this.loading" class="row aparecer">
+        <div v-if="!this.loading" class="row justify-content-center aparecer ">
           <router-view :wall="this.user.id"></router-view>
         </div>
 

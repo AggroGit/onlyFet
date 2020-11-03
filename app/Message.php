@@ -65,7 +65,8 @@ class Message extends Model
           "body"    => "$this->message",
           "type"    => "chat",
           "data"    => $this->chat->id,
-          "sound"   => "default"
+          "sound"   => "default",
+
         ]);
       }
 

@@ -22,7 +22,8 @@ class Image extends Model
       "NotSmall" => "$base/200$end",
       "Med" => "$base/300$end",
       "Big" => "$base/700$end",
-      "Hidden"  => "$base/sadgsasdasa$this$this->id$end"
+      "Full" => "$base/full$end",
+      "Hidden"  => "$base/sadgsasdasa".$this->id.$end,
 
       // $this->getPathToSave()."/$this->name/sadgsasdasa$this->id.$this->format"
       // "Original" => "$base/original$end",
@@ -34,6 +35,7 @@ class Image extends Model
       parent::__construct($attributes);
       // $this->editor = new ImageEditor();
   }
+
 
   // return the editor tool
   public function editable()
@@ -115,6 +117,8 @@ class Image extends Model
         // create the data
         $this->save();
         //
+        // $this->user_id = auth()->user()->id;
+        //
         $r = $this->getPathToSave()."/$this->name";
         mkdir($r,0777,true);
         // we save the original pic
@@ -167,7 +171,11 @@ class Image extends Model
   {
       // take the editable
       $edit = $this->editable();
-      // 700
+      // Full
+      $edit->resize(1200, null, function ($constraint) {
+          $constraint->aspectRatio();
+      })->save($this->getPathToSave()."/$this->name/full.$this->format");
+      //
       $edit->resize(700, null, function ($constraint) {
           $constraint->aspectRatio();
       })->save($this->getPathToSave()."/$this->name/700.$this->format");
@@ -260,6 +268,11 @@ class Image extends Model
     $this->recurse_copy($this->getFolder(),$new->getFolder());
     $new->refresh();
     return $new;
+  }
+
+  public function hasPermision()
+  {
+    return true;
   }
 
 

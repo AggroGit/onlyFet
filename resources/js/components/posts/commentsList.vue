@@ -7,7 +7,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <h5 v-if="this.comments.length !== 0" class="text-right">{{this.comments.length}} comentarios</h5>
+          <h5 v-if="!this.loading &&  this.comments.length !== 0" class="text-right">{{this.comments.length}} comentarios</h5>
         </div>
 
         <div v-if="!this.loading" class="col-md-8">

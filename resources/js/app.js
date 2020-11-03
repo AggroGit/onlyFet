@@ -24,6 +24,9 @@ import VeeValidate from 'vee-validate'
 import { Datetime } from 'vue-datetime'
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
+import VueVideoPlayer from 'vue-video-player'
+// require videojs style
+import 'video.js/dist/video-js.css'
 import TextHighlight from 'vue-text-highlight';
 import { StripeCheckout } from 'vue-stripe'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -126,7 +129,19 @@ Vue.component('news',  require('./components/posts/news.vue').default);
 //
 Vue.component('wall',  require('./components/posts/news.vue').default);
 //
+Vue.component('images',  require('./components/posts/images.vue').default);
+//
+Vue.component('videos',  require('./components/posts/videos.vue').default);
+//
+Vue.component('inicio',  require('./components/main.vue').default);
+//
+Vue.component('imageView',  require('./components/posts/image.vue').default);
+//
 Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
+//
+Vue.component('listPlans',  require('./components/auth/plansList.vue').default);
+//
+Vue.use(VueVideoPlayer)
 // datetime
 Vue.component('datetime', Datetime);
 
@@ -142,7 +157,7 @@ Vue.component('datetime', Datetime);
  */
 
  const routes = [
- {path: '/',              component: Vue.component('home')},
+ {path: '/',              component: Vue.component('inicio')},
  // auth
  {path: '/login',         component: Vue.component('login')},
  {path: '/register',      component: Vue.component('register')},
@@ -150,6 +165,7 @@ Vue.component('datetime', Datetime);
  {path: '/profile',       component: Vue.component('profile')},
  {path: '/profile/edit',  component: Vue.component('editProfile')},
  {path: '/profile/suscriptions',  component: Vue.component('suscriptions')},
+ {path: '/:post_id/image/:name',  component: Vue.component('imageView')},
  {path: '/user/:nickname/',      component: Vue.component('user'),
  children: [
    {
@@ -159,12 +175,12 @@ Vue.component('datetime', Datetime);
    },
    {
      path:'pics',
-     component: Vue.component('wall'),
+     component: Vue.component('images'),
      name:'pics',
    },
    {
      path:'videos',
-     component: Vue.component('example'),
+     component: Vue.component('videos'),
      name:'videos',
    },
    {
@@ -184,11 +200,11 @@ Vue.component('datetime', Datetime);
  {path: '/post/:post_id/coments', component: Vue.component('comments')},
 
  // home
- {  path: '/home',component: Vue.component('home'),
+ {  path: '/novedades',component: Vue.component('home'),
       children: [
         {
           path:'suscriptions',
-          component: Vue.component('example'),
+          component: Vue.component('listPlans'),
           name:'suscriptions'
         },
         {
@@ -241,6 +257,8 @@ const store = new Vuex.Store({
     token: t,
     // conexion
     pusher: false,
+    // pantalla completa
+    entero:false,
     // auth channel
     authChannel: false,
     // app channel

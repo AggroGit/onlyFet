@@ -9,12 +9,6 @@
 	|
 	*/
 
-
-
-
-
-
-
     Route::group(['middleware' => ['auth:api','existPost','hasStripe']], function()
     {
         Route::post('/user/{nickcname}',       'PublicationController@wallOfUser');
@@ -27,11 +21,17 @@
         Route::post('/post/{post_id}/like',    'PublicationController@like');
         Route::post('/post/{post_id}/edit',    'PublicationController@edit');
         Route::post('/post/{post_id}/remove',  'PublicationController@remove');
+        Route::post('/{post_id}/image/{name}',  'PublicationController@image');
+        Route::post('/post/{post_id}/image/{name}',  'PublicationController@image');
+        Route::post('/images/{name}',  'PublicationController@imagesUser');
+        Route::post('/videos/{name}',  'PublicationController@videosUser');
+        Route::post('/post/{post_id}',          'PublicationController@see');
+
+
     });
 
     Route::group(['middleware' => 'existPost'], function()
     {
-      Route::post('/post/{post_id}',          'PublicationController@see');
       Route::post('/post/{post_id}/upload',   'PublicationController@upload');
 
     });

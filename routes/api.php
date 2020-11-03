@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth:api','hasStripe']], function()
   //
   Enterprise::chats();
   Enterprise::auth();
+  //
+  Route::post('/main/users',  'ProfilesController@getAllUsers');
 
   //
 });

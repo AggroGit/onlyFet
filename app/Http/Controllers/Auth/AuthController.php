@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notification;
+use Carbon\Carbon;
 use App\Message;
 use App\Image;
 use App\Token;
@@ -17,11 +18,17 @@ use App\User;
 class AuthController extends Controller
 {
 
+    public function __construct()
+    {
+      Carbon::setLocale(auth()->user()->lang?? 'es');
+        // $this->middleware('auth');
+    }
+
     // return the logged user
     public function currentUser(Request $request)
     {
       return auth()->user()?
-      $this->correct(auth()->user()) : $this->incorrect();
+      $this->correct(User::with('plans')->find(auth()->user()->id)) : $this->incorrect(13);
     }
 
     /**
@@ -248,6 +255,14 @@ class AuthController extends Controller
       //
       return $this->correct(User::find(auth()->user()->id));
 
+    }
+
+    public function notifications()
+    {
+      $notifications = auth()->user()->allNotifications()->where('type','chat');
+      $notis = $notifications->get();
+      $notifications->delete();
+      return $this->correct($notis);
     }
 
     public function unsuscribe()

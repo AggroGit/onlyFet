@@ -3,7 +3,7 @@
         <div class="row justify-content-center contieneEnrutador sombreado">
 
             <div class="">
-              <router-link class="noLink" to="/home/news">
+              <router-link class="noLink" to="/novedades/news">
                 Novedadess
               </router-link>
               <div v-if="this.$route.name == 'news'"  class="lineaSeparadora aparecerIzquierda"></div>
@@ -11,7 +11,7 @@
             </div>
 
             <div class="">
-              <router-link class="noLink" to="/home/suscriptions">
+              <router-link class="noLink" to="/novedades/suscriptions">
                 Suscripciones
               </router-link>
               <div v-if="this.$route.name == 'suscriptions'"  class="lineaSeparadora aparecerDerecha"></div>

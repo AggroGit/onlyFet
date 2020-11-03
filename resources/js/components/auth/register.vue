@@ -23,20 +23,20 @@
                       <form  @submit.stop.prevent="register()" >
 
                           <div class="form-group row">
-                              <entrada v-model="form.name" :label="'Nombre'" :name="'name'" :autocomplete="'name'" :type="'text'" :autofocus="true" :required="true"></entrada>
+                              <entrada v-model="form.name" :label="$ml.get('auth').name" :name="'name'" :autocomplete="'name'" :type="'text'" :autofocus="true" :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
-                              <entrada v-model="form.email" :label="'Email'" :name="'email'" :autocomplete="'email'" :type="'email'"  :required="true"></entrada>
+                              <entrada v-model="form.email" :label="'Email'" :name="$ml.get('auth').email" :autocomplete="'email'" :type="'email'"  :required="true"></entrada>
                           </div>
 
                           <div class="form-group row">
-                              <entrada v-model="form.password" :label="'Contraseña'" :name="'password'" :type="'password'" autocomplete="new-password" :required="true"></entrada>
+                              <entrada v-model="form.password" :label="'Contraseña'" :name="$ml.get('auth').password" :type="'password'" autocomplete="new-password" :required="true"></entrada>
                           </div>
 
 
                           <div class="form-group row">
-                              <entrada v-model="form.passwordRepeat" :label="'Repetir Contraseña'" :name="'password_confirmation'" :type="'password'" autocomplete="new-password" :required="true"></entrada>
+                              <entrada v-model="form.passwordRepeat" :label="$ml.get('auth').RepPassword" :name="'password_confirmation'" :type="'password'" autocomplete="new-password" :required="true"></entrada>
                           </div>
 
                           <label for="country">{{$ml.get('auth').country}} :</label>
@@ -48,7 +48,7 @@
                                   <div class="form-check">
                                       <input class="form-check-input" type="checkbox" required name="legal" id="legal" >
                                       <label class="form-check-label" for="legal">
-                                          He leído y acepto los términos legales
+                                        {{$ml.get('auth').legalTerms}}
                                       </label>
                                   </div>
                               </div>
@@ -59,7 +59,7 @@
                                   <div class="form-check">
                                       <input v-model="form.influencer" class="form-check-input" type="checkbox" name="influencer" id="influencer" >
                                       <label class="form-check-label" for="influencer">
-                                          ¿Te consideras influencer?
+                                          {{$ml.get('auth').influencerQ}}
                                       </label>
                                   </div>
                               </div>
@@ -116,7 +116,7 @@ export default {
       error:false,
       exists:false,
       temporal: {
-        status:true,
+        status:false,
         success:false
       },
       test:"",

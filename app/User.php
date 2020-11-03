@@ -20,7 +20,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image','plans'];
+    protected $with=['image','plans', 'notifications'];
 
     protected $appends =['canSee'];
 
@@ -215,7 +215,7 @@ class User extends Authenticatable
     // planes a los que estas suscrito
     public function suscribedPlans()
     {
-      return $this->belongsToMany('App\Plan','users_plans')->orderBy('updated_at','DESC');
+      return $this->belongsToMany('App\Plan','users_plans')->withTimestamps()->with('user')->orderBy('updated_at','DESC');
     }
 
     // planes que tu has creado

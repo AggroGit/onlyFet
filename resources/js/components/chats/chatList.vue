@@ -1,10 +1,13 @@
 <template>
-  <div>
+  <div class="">
 
     <!-- BUSCADOR Y BORRAR CHATS-->
-    <div class="col-md-12 contieneBuscadorLogo">
-        <b-form-input autocomplete="off" v-model="search" @keyup="filteredList()" id="input-small" class="col-xs-8" :placeholder="$ml.get('chat').lookUser"></b-form-input>
-        <b-icon  font-scale="2" @click="Remove()" icon="trash-fill" v-bind:class="{rojo:removing}" aria-hidden="true" class="icon"></b-icon>
+    <div class="contieneBuscadorLogoAntes">
+        <div class="contenedor contieneBuscadorLogo">
+          <b-form-input autocomplete="off" v-model="search" @keyup="filteredList()" id="input-small" class="col-xs-8" :placeholder="$ml.get('chat').lookUser"></b-form-input>
+          <b-icon  font-scale="2" @click="Remove()" icon="trash" v-bind:class="{removing:removing}" aria-hidden="true" class="icon"></b-icon>
+        </div>
+
     </div>
 
     <div v-if="this.loading" class="container text-center contieneCargador">
@@ -13,23 +16,23 @@
       </div>
     </div>
 
-    <div v-if="!this.loading" class="col-md-12">
+    <div v-if="!this.loading" class="col-md-12 down-3">
       <div v-if="this.chats.length == 0" class="Empty text-center">
         <img src="/iconos/empty-tag.png" alt="">
         <h5>{{$ml.get('chat').nochat}}</h5>
       </div>
-      <b-list-group class="aparecer">
-          <b-list-group-item v-for="(chat) in this.chats" :key="chat.id"   :to="getUrlChat(chat)" class="flex-column align-items-start">
+      <b-list-group class=" contenedor aparecer down-3">
+          <b-list-group-item v-for="(chat) in this.chats" :key="chat.id"    :to="getUrlChat(chat)" class="flex-column align-items-start chatListItem" v-bind:class="{remvongg:removing}">
               <avatar :conection="true" :us="chat.otherUser"></avatar>
               <span class="mr-auto">{{chat.otherUser.name}}</span>
 
               <div v-if="removing" class="custom-control elimichat">
-                <input class="form-check-input" type="checkbox" id="chatremove" name="idremove" :ref="chat" @change="SelectChat(chat)" :value="chat.id">
+                <input class="form-check-input bigger" type="checkbox" id="chatremove" name="idremove" :ref="chat" @change="SelectChat(chat)" :value="chat.id">
               </div>
 
               <div v-if="chat.lastMessage" class="d-flex w-100 justify-content-between">
                 <p  class="mb-1">{{chat.lastMessage.message}}</p>
-                <small class="hourchat">{{time(chat.lastMessage.created_at)}}</small>
+                <small class="hourchat">{{chat.lastMessage.fecha}}</small>
               </div>
 
           </b-list-group-item>

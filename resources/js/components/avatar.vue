@@ -79,6 +79,8 @@ this.initConnect();
     route() {
       if(this.us !== false) {
         return "/user/"+this.us.nickname
+      } else {
+        return ""
       }
     }
 

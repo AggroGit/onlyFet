@@ -79,6 +79,9 @@ return [
       'month3'  => 'required|digits_between:1,400',
       'month6'  => 'required|digits_between:1,400',
       'month12' => 'required|digits_between:1,400',
+    ],
+    'chooseOrder' => [
+      'orderBy' => 'string|in:populars,news,mySuscriptions'
     ]
 
 

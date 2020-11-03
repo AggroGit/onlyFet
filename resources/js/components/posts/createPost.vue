@@ -105,6 +105,13 @@
 
         </div>
       </div>
+      <!-- <div v-if="this.loading" class="contienePantallaCompletaDark aparecer">
+        <div class="container text-center contieneCargador">
+          <div class="spinner-border cargador cargaBlanco" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div> -->
     </div>
 </template>
 
@@ -127,6 +134,7 @@ export default {
       error: false,
       program:null,
       programOpen:false,
+      loading : false,
       form: {
         files:[],
         content: null,
@@ -251,7 +259,10 @@ export default {
         console.log(id)
         var self = this
         // this.loading = true;
-        this.$refs.vueFileAgent.upload('/api/post/'+id+'/upload', this.uploadHeaders, this.fileRecordsForUpload)
+        this.$refs.vueFileAgent.upload('/api/post/'+id+'/upload',{
+              Authorization: `Bearer `+ self.$store.state.token
+
+         }, this.fileRecordsForUpload)
         .then(function (response) {
           console.log(response)
 

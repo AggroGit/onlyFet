@@ -37,7 +37,9 @@
         </div>
         <div class="card-body">
           <p v-html="this.interpretateContent()"></p>
-
+          <p class="hastags">
+            <span  v-for="(hastag) in this.data.hastags" :key="hastag.id" >#{{hastag.text}} </span>
+          </p>
         </div>
         <div class="contieneLikeComents">
           <div class="likes" @click="like()">
@@ -88,6 +90,7 @@ export default {
 
   },
   created() {
+
     this.checkPost();
   },
   methods: {

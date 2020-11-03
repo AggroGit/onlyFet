@@ -11,7 +11,7 @@ class Publication extends Model
 {
     //
     protected $with = [
-      'user', 'images', 'videos'
+      'user', 'images', 'videos', 'hastags'
     ];
     //
     protected $fillable = [
@@ -19,7 +19,7 @@ class Publication extends Model
     ];
     //
     protected $appends = [
-      'numLikes', 'numComments', 'haveLiked', 'fecha', 'canSee'
+      'numLikes', 'numComments', 'haveLiked', 'fecha',
     ];
 
     // likes
@@ -74,11 +74,11 @@ class Publication extends Model
       return $this->likes()->count();
     }
 
-    public function getCanSeeAttribute()
-    {
-      // si el usuario es premium y estas suscrito puedes ver la publicación
-      return $this->user->canSee;
-    }
+    // public function getCanSeeAttribute()
+    // {
+    //   // si el usuario es premium y estas suscrito puedes ver la publicación
+    //   return $this->user->canSee;
+    // }
 
     public function getFechaAttribute()
     {

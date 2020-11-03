@@ -26,7 +26,7 @@ class PublicationController extends Controller
 
     public function posts(Request $request)
     {
-      return $this->correct(Post::orderBy('created_at','DESC')->paginate(50));
+      return $this->correct(Post::orderBy('created_at','DESC')->paginate(4));
     }
 
     public function remove(Request $request)
@@ -36,10 +36,9 @@ class PublicationController extends Controller
 
     public function postsOfUser($user_id)
     {
-      if(!$user = User::find($user_id)) {
+      if(!$user = User::with('plans')->find($user_id)) {
         return $this->incorrect(3);
       }
-      // $user->canSee = $user->getCanSeeAttribute();
       return $this->correct($user->publications()->paginate(50));
     }
 
@@ -113,12 +112,18 @@ class PublicationController extends Controller
         // probamos vídeo
         $video = new Video();
         $video->create($request->file,"video/$post->id");
+        $video->user_id = $post->user_id?? null;
+        $video->post_id = $post->id;
+        $video->save();
         $post->videos()->save($video);
 
       } else {
         // imagen
         $image = new Image();
         $image->create($request->file,"image/$post->id");
+        $image->user_id = $post->user_id?? null;
+        $image->post_id = $post->id;
+        $image->save();
         $post->images()->save($image);
       }
       return $this->correct();
@@ -128,14 +133,54 @@ class PublicationController extends Controller
     {
       if($user = User::where('nickname',$nickcname)->first()){
         return $this->correct([
-          "user"  => $user,
-          "posts" => $user->publications
+          "user"  => $user
+          // "posts" => $user->publications
         ]);
       } else {
         return $this->incorrect(3);
       }
 
     }
+
+    public function image($post_id,$name,Request $request)
+    {
+      $post = Post::find($post_id);
+      if($post->user->canSee) {
+        if($image = Image::where('name',$name)->first()){
+          if($image->hasPermision(auth()->user())) {
+            return $this->correct($image);
+          }
+        }
+      }
+
+      return $this->incorrect();
+    }
+
+    public function imagesUser($name)
+    {
+      if($user = User::where('nickname',$name)->first()){
+        return $this->correct([
+          "user" => $user,
+          "images" => Image::where('user_id',$user->id)->paginate(20)
+        ]);
+
+      }
+      return $this->incorrect();
+    }
+
+    public function videosUser($name)
+    {
+      if($user = User::where('nickname',$name)->first()){
+        return $this->correct([
+          "user" => $user,
+          "images" => Video::where('user_id',$user->id)->get()
+        ]);
+
+      }
+      return $this->incorrect();
+    }
+
+
 
 
 }

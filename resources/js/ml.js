@@ -23,7 +23,12 @@ export default new MLCreate({
         lookUser: "Buscar chat"
       },
       auth: {
+        recoverEmail : "Te hemos enviado un correo de recuperación",
+        forget: "¿Has perdido la contraseña?",
+        recu: "Recuperar contraseña",
+        legalTerms:"He leído y acepto los términos legales",
         nickname:"Nombre de Usuario",
+        influencerQ: "¿Te consideras influencer?",
         confSuscriptions: "Configurar suscripciones",
         suscriptions:"Suscripciones",
         uHaveToStripe: "Debes configurar Stripe para poder crear suscripciones",
@@ -47,9 +52,12 @@ export default new MLCreate({
         lang: "Idioma",
         description:"Descripción",
         price:"Precio",
+        noSus:"Aún no te has suscrito a ningún influencer",
         confSusciptions: "Configurar Suscripciones"
       },
       stripe: {
+        sureUnsuscribe: "¿Estás seguro que deseas eliminar tu suscrpción?",
+        ev:"cada",
         addVisa:"Antes debes introducir un método de pago",
         create: "Crear Cuenta de Stripe",
         successSuscription: "Te has suscrito correctamente a ",
@@ -57,6 +65,7 @@ export default new MLCreate({
         login: "Login en Stripe",
         days:"días",
         months: "meses",
+        onlyPremium: "Debes suscribirte para ver el contenido",
         problem: "Vaya, parece que hay algún problema con Stripe",
         successSuscriptions: "Sus suscripciones han sido configuradas correctamente",
         info: {
@@ -90,6 +99,14 @@ export default new MLCreate({
         comments: "Comentarios",
         remove:"Eliminar",
         noposts:"Vaya, parece que no hay más publicaciones"
+      },
+      main: {
+        search: "🔍   Búsqueda de usuario",
+        popu: "Más populares",
+        news: "Nuevos usuarios",
+        susc: "Mis suscripciones",
+        nop: "Vaya, parece que no hay usuarios que mostrar"
+
       }
     })
   ]

@@ -24,6 +24,11 @@ class CreateNotifications extends Migration
                     ->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
+              $table->integer('from_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
               $table->string('title')
                     ->nullable();
               $table->string('body')

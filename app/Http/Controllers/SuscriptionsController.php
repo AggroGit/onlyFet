@@ -95,4 +95,23 @@ class SuscriptionsController extends Controller
         return $this->incorrect(208);
       }
     }
+
+    // list all your suscriptions
+    public function listPlans()
+    {
+      return $this->correct(auth()->user()->suscribedPlans);
+    }
+
+    public function unsuscribePlan($plan_id)
+    {
+
+      // miremos que exista la orden
+      if($plan = Plan::find($plan_id)) {
+        // que esté suscrito
+        $plan->cancelUser(auth()->user());
+        return $this->correct();
+      }
+      return $this->incorrect();
+      // code...
+    }
 }
