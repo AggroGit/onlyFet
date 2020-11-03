@@ -4,7 +4,7 @@
 
 
     <div class="row justify-content-center">
-      <div class="col-md-3 logoLogin">
+      <div class="col-md-4 logoLogin">
         <img class="img-fluid" src="/logo.png" alt="">
       </div>
     </div>
