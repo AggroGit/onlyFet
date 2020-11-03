@@ -43,7 +43,11 @@ class Image extends Model
       // devolvemos un nuevo objeto de tipo ImageEditor, no devolvemos el
       // del pbjeto porque quizas no interesa que se guarda los cambios
       // siempre en el original
-      return ImageEditor::make($this->getOriginalImage());
+      if(env('APP_ENV') == 'server') {
+        return ImageEditor::configure(array('driver' => 'imagick'))->make($this->getOriginalImage());
+      } else {
+        return ImageEditor::make($this->getOriginalImage());
+      }
 
   }
 
