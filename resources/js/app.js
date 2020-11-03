@@ -184,7 +184,7 @@ const auth = function(to, from, next) {
  {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
  {path: '/profile/suscriptions',  component: Vue.component('suscriptions'),beforeEnter: multiguard([auth])},
  {path: '/:post_id/image/:name',  component: Vue.component('imageView'),beforeEnter: multiguard([auth])},
- {path: '/user/:nickname/',      component: Vue.component('user'),beforeEnter: multiguard([auth]),
+ {path: '/user/:nickname/',      component: Vue.component('user'),
  children: [
    {
      path:'',
