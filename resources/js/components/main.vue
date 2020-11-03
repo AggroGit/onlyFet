@@ -118,7 +118,7 @@ export default {
            if(response.data.rc == 13) {
              // response.data.data.data.forEach(element => this.profiles.push(element));
              // this.total = response.data.data.last_page
-             // this.$router.push('/login')
+             this.$router.push('/login')
            }
 
          })
