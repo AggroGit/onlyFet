@@ -113,14 +113,20 @@
             </div>
 
         </div>
+
+
         </div>
-        <div v-if="auth == false" class="col-md-12 offset-md-12">
-           <router-link to="/login">
-              <button  class="btn btn-primary btn-secondary boton">
-                  {{$ml.get('auth').changelogin}}
-                  <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
-              </button>
-          </router-link>
+
+
+        <div class="row justify-content-center aparecer">
+          <div v-if="auth == false" class="col-md-6 ">
+             <router-link to="/login">
+                <button  class="btn btn-primary btn-secondary boton">
+                    {{$ml.get('auth').changelogin}}
+                    <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                </button>
+            </router-link>
+          </div>
         </div>
 
         <div  v-if="!this.loading && this.auth !==false" class="row justify-content-center aparecer ">
