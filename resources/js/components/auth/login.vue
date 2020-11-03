@@ -23,7 +23,7 @@
                             <entrada v-model="form.password" :label="$ml.get('auth').password" :name="'password'" :type="'password'" :autocomplete="'current-password'" :required="true"></entrada>
                           </div>
 
-                          <div class="form-group row">
+                          <!-- <div class="form-group row">
                               <div class="col-md-12">
                                   <div class="form-check">
                                       <input class="form-check-input" type="checkbox" required name="remember" id="remember" >
@@ -32,7 +32,7 @@
                                       </label>
                                   </div>
                               </div>
-                          </div>
+                          </div> -->
 
                           <div class="row">
                             <div class="col-md-12">
