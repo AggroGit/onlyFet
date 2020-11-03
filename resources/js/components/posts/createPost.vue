@@ -1,5 +1,5 @@
 <template>
-    <div class="container down-2">
+    <div class="contenedor down-2">
       <div class="row justify-content-center">
         <div class="col-md-12">
           <div v-if="this.loading" class="container text-center contieneCargador aparecer">
