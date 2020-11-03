@@ -13,7 +13,7 @@ export default new MLCreate({
       msg: 'You have {f} friends and {l} likes'
     }),
 
-    // CATALÁN
+    // espanol
     new MLanguage('es').create({
       title: 'Hola {0}!',
       chat: {

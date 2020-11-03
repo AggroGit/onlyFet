@@ -12,7 +12,9 @@
 
     <div class="row down-3">
       <div class="col-md-12">
-        <h4>{{$ml.get('main').title}}</h4>
+        <h4 v-if="this.option == 'populars'">{{$ml.get('main').popu}}</h4>
+        <h4 v-if="this.option == 'news'">{{$ml.get('main').news}}</h4>
+        <h4 v-if="this.option == 'mySuscriptions'">{{$ml.get('main').susc}}</h4>
       </div>
     </div>
     <!-- NO USERS -->
