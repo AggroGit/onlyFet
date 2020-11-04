@@ -298,11 +298,11 @@ const store = new Vuex.Store({
       window.Echo = new Echo({
         broadcaster: 'pusher',
           key:289463930,
-          wsHost: "82.223.216.96",
+          wsHost: "newprojects-st.com",
           wsPort: 6002,
           wssPort: 6002,
           disableStats: true,
-          wssHost: 'https://newprojects-st.com',
+          wssHost: 'newprojects-st.com',
           // encrypted:false,
           // enable_client_messages:true,
           cluster:'eu',
