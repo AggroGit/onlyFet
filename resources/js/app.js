@@ -305,7 +305,7 @@ const store = new Vuex.Store({
       window.Echo = new Echo({
         broadcaster: 'pusher',
           key:'289463930',
-          wsHost: '127.0.0.1',
+          wsHost: 'localhost',
           wsPort: 6001,
           disableStats: true,
           // enable_client_messages:true,
