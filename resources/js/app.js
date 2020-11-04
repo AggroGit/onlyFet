@@ -9,13 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
-// PROBLEMA CORS
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-window.axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'DELETE, POST, GET, OPTIONS';
-window.axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With';
-
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Echo from 'laravel-echo';
@@ -304,8 +297,8 @@ const store = new Vuex.Store({
     initConection: (token) => {
       window.Echo = new Echo({
         broadcaster: 'pusher',
-          key:'289463930',
-          wsHost: '82.223.216.96',
+          key:289463930,
+          wsHost: "82.223.216.96",
           wsPort: 6001,
           disableStats: true,
           // enable_client_messages:true,
@@ -340,6 +333,9 @@ const store = new Vuex.Store({
       var date = new Date(time);
       return date.getHours() +":"+date.getMinutes()
     }
+
+
+
 
   }
 })
