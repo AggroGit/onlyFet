@@ -298,15 +298,15 @@ const store = new Vuex.Store({
       window.Echo = new Echo({
         broadcaster: 'pusher',
           key:289463930,
-          wsHost: "merco.app",
+          wsHost: "82.223.216.96",
           wsPort: 6001,
           disableStats: true,
-           enabledTransports: ['ws','wss'],
-           encrypted:false,
+
           // enable_client_messages:true,
           cluster:'eu',
           forceTLS:false,
           authEndpoint:'/api/broadcasting/auth',
+           enabledTransports: ['ws', 'flash'],
           auth: {
             headers: {
               Authorization: `Bearer `+ token
