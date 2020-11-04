@@ -37,9 +37,9 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'useTLS' => true,
+                'useTLS' => false,
                 'encrypted' => false,
-                'host' => env('SOCKETS_IP','newprojects-st.com'),
+                'host' => env('SOCKETS_IP','34.121.39.177'),
                 'port' => 6002,
                 'scheme' => 'https'
             ],
