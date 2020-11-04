@@ -72,16 +72,14 @@
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
       <b-carousel-slide v-for="(media) in this.post.images" :key="media.id" >
         <template #img>
-          <router-link class="allA" :image="media" :to="'/'+post.id+'/image/'+media.name">
+          <router-link class="allA" :image="media" :to="this.giveMeUrl(media,post)">
             <img
-
               class="imagenCompleta"
               :src="media.sizes.Big"
               v-if="post.user.canSee || post.user.id == auth.id"
               alt="image slot"
             >
             <img
-
               class="imagenCompleta"
               :src="media.sizes.Hidden"
               v-else
@@ -133,6 +131,13 @@ console.log(this.post)
         this.sliding = false
       },
       alertar() {
+
+      },
+      giveMeUrl(media,post) {
+        if(post.user.canSee == false) {
+
+        }
+        return null
 
       },
       giveMeOptions(media) {

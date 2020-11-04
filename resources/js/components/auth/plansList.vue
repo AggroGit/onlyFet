@@ -87,7 +87,6 @@
               <div class="opcionesPost">
                   {{notification.fecha}}
               </div>
-
             </div>
 
             <div class="card-body">
