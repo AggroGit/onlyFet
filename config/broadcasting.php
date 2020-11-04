@@ -40,8 +40,12 @@ return [
                 'useTLS' => true,
                 'encrypted' => false,
                 'host' => env('SOCKETS_IP','34.121.39.177'),
-                'port' => 6002,
-                'scheme' => 'https'
+                'port' => 443,
+                'scheme' => 'https',
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ]
             ],
         ],
 
