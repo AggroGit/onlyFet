@@ -137,7 +137,7 @@ console.log(this.post)
         if(post.user.canSee == false) {
 
         }
-        return null
+        return ""
 
       },
       giveMeOptions(media) {

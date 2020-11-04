@@ -303,7 +303,7 @@ const store = new Vuex.Store({
           disableStats: true,
           // enable_client_messages:true,
           cluster:'eu',
-          forceTLS:true,
+          forceTLS:false,
           authEndpoint:'/api/broadcasting/auth',
           auth: {
             headers: {
