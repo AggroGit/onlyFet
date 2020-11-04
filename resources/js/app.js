@@ -300,8 +300,9 @@ const store = new Vuex.Store({
           key:289463930,
           wsHost: "82.223.216.96",
           wsPort: 6001,
+          wssPort: 6001,
           disableStats: true,
-
+          encrypted:false,
           // enable_client_messages:true,
           cluster:'eu',
           forceTLS:false,
