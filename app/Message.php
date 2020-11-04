@@ -48,10 +48,10 @@ class Message extends Model
       // first we save the message
       $this->save();
       // lanzamos el event
-      try {
+      // try {
         broadcast(new MessageEvent(Message::without('user')->find($this->id)));
-      } catch (\Exception $e) {
-      }
+      // } catch (\Exception $e) {
+      // }
 
       // notificamos
       $this->notifyUsers();
