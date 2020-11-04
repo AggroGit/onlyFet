@@ -297,7 +297,7 @@ const store = new Vuex.Store({
     initConection: (token) => {
       window.Echo = new Echo({
         broadcaster: 'pusher',
-          key:'289463930',
+          key: 289463930,
           wsHost: '82.223.216.96',
           host:'82.223.216.96',
           wsPort: 6001,
@@ -305,7 +305,7 @@ const store = new Vuex.Store({
           // enable_client_messages:true,
           cluster:'eu',
           forceTLS:false,
-          authEndpoint:'/api/broadcasting/auth',
+          authEndpoint:'https://newprojects-st.com/api/broadcasting/auth',
           auth: {
             headers: {
               Authorization: `Bearer `+ token
@@ -334,9 +334,6 @@ const store = new Vuex.Store({
       var date = new Date(time);
       return date.getHours() +":"+date.getMinutes()
     }
-
-
-
 
   }
 })
