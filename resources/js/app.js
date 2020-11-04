@@ -302,10 +302,10 @@ const store = new Vuex.Store({
           wsPort: 6002,
           disableStats: true,
            enabledTransports: ['ws'],
-           encrypted:true,
+           encrypted:false,
           // enable_client_messages:true,
           cluster:'eu',
-          forceTLS:true,
+          forceTLS:false,
           authEndpoint:'/api/broadcasting/auth',
           auth: {
             headers: {
