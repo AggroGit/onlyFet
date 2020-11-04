@@ -298,8 +298,8 @@ const store = new Vuex.Store({
       window.Echo = new Echo({
         broadcaster: 'pusher',
           key:289463930,
-          wsHost: "82.223.216.96",
-          wsPort: 6002,
+          wsHost: "merco.app",
+          wsPort: 6001,
           disableStats: true,
            enabledTransports: ['ws','wss'],
            encrypted:false,
