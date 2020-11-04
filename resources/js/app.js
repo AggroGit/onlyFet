@@ -299,13 +299,13 @@ const store = new Vuex.Store({
         broadcaster: 'pusher',
           key:289463930,
           wsHost: "82.223.216.96",
-          wsPort: 6001,
+          wsPort: 6002,
           disableStats: true,
            enabledTransports: ['ws'],
-           encrypted:false,
+           encrypted:true,
           // enable_client_messages:true,
           cluster:'eu',
-          forceTLS:false,
+          forceTLS:true,
           authEndpoint:'/api/broadcasting/auth',
           auth: {
             headers: {

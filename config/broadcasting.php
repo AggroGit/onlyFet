@@ -43,7 +43,7 @@ return [
                 'encrypted' => true,
                 'host' => env('SOCKETS_IP','82.223.216.96'),
                 'port' => 6002,
-                'scheme' => 'http',
+                'scheme' => 'https',
                 'enable_client_messages' => true,
 
             ],
