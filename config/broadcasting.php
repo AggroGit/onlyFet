@@ -50,7 +50,7 @@ return [
             // ],
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'host' => 'socket.example.com',
+                'host' => 'newprojects-st.com',
                 'port' => 443,
                 'scheme' => 'https',
                 'curl_options' => [
