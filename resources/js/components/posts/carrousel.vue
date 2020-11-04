@@ -72,7 +72,7 @@
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
       <b-carousel-slide v-for="(media) in this.post.images" :key="media.id" >
         <template #img>
-          <router-link class="allA" :image="media" :to="this.giveMeUrl(media,post)">
+          <router-link class="allA" :image="media" :to="giveMeUrl(media,post)">
             <img
               class="imagenCompleta"
               :src="media.sizes.Big"
