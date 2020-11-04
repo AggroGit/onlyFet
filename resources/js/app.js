@@ -304,8 +304,8 @@ const store = new Vuex.Store({
           disableStats: true,
           // enable_client_messages:true,
           cluster:'eu',
-          forceTLS:true,
-          authEndpoint:'https://newprojects-st.com/api/broadcasting/auth',
+          forceTLS:false,
+          authEndpoint:'/api/broadcasting/auth',
           auth: {
             headers: {
               Authorization: `Bearer `+ token
