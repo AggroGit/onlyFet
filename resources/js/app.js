@@ -270,7 +270,7 @@ const auth = function(to, from, next) {
   routes: routes,
   mode: 'history'
 });
-
+alert(window.location.hostname)
 var t = Vue.$cookies.get('token');
 const store = new Vuex.Store({
   state: {
