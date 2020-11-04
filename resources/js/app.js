@@ -297,12 +297,11 @@ const store = new Vuex.Store({
     initConection: (token) => {
       window.Echo = new Echo({
         broadcaster: 'pusher',
-          key: 289463930,
+          key:'289463930',
           wsHost: '82.223.216.96',
-          host:'82.223.216.96',
+          host:'https://newprojects-st.com',
           wsPort: 6001,
           disableStats: true,
-          encrypted:false,
           // enable_client_messages:true,
           cluster:'eu',
           forceTLS:false,
