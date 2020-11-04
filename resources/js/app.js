@@ -270,7 +270,6 @@ const auth = function(to, from, next) {
   routes: routes,
   mode: 'history'
 });
-alert(window.location.hostname)
 var t = Vue.$cookies.get('token');
 const store = new Vuex.Store({
   state: {
@@ -304,7 +303,7 @@ const store = new Vuex.Store({
           // enable_client_messages:true,
           cluster:'eu',
           forceTLS:false,
-          authEndpoint:'/api/broadcasting/auth',
+          authEndpoint: window.location.hostname+'/api/broadcasting/auth',
           auth: {
             headers: {
               Authorization: `Bearer `+ token
