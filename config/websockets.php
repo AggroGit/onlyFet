@@ -1,42 +1,42 @@
 <?php
 
-use BeyondCode\LaravelWebSockets\Dashboard\Http\Middleware\Authorize;
+  use BeyondCode\LaravelWebSockets\Dashboard\Http\Middleware\Authorize;
 
-return [
+  return [
 
-    /*
-     * Set a custom dashboard configuration
-     */
-    'dashboard' => [
-        'port' => env('LARAVEL_WEBSOCKETS_PORT', 6002),
-    ],
+      /*
+       * Set a custom dashboard configuration
+       */
+      'dashboard' => [
+          'port' => env('LARAVEL_WEBSOCKETS_PORT', 6002),
+      ],
 
-    /*
-     * This package comes with multi tenancy out of the box. Here you can
-     * configure the different apps that can use the webSockets server.
-     *
-     * Optionally you specify capacity so you can limit the maximum
-     * concurrent connections for a specific app.
-     *
-     * Optionally you can disable client events so clients cannot send
-     * messages to each other via the webSockets.
-     */
-    'apps' => [
-        [
-            'id' => env('PUSHER_APP_ID'),
-            'name' => env('APP_NAME'),
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'path' => env('PUSHER_APP_PATH'),
-            'capacity' => null,
-            'enable_client_messages' => false,
-            'enable_statistics' => true,
-        ],
-    ],
+      /*
+       * This package comes with multi tenancy out of the box. Here you can
+       * configure the different apps that can use the webSockets server.
+       *
+       * Optionally you specify capacity so you can limit the maximum
+       * concurrent connections for a specific app.
+       *
+       * Optionally you can disable client events so clients cannot send
+       * messages to each other via the webSockets.
+       */
+      'apps' => [
+          [
+              'id' => env('PUSHER_APP_ID'),
+              'name' => env('APP_NAME'),
+              'key' => env('PUSHER_APP_KEY'),
+              'secret' => env('PUSHER_APP_SECRET'),
+              'path' => env('PUSHER_APP_PATH'),
+              'capacity' => null,
+              'enable_client_messages' => false,
+              'enable_statistics' => true,
+          ],
+      ],
 
-    /*
-     * This class is responsible for finding the apps. The default provider
-     * will use the apps defined in this config file.
+      /*
+       * This class is responsible for finding the apps. The default provider
+       * will use the apps defined in this config file.
      *
      * You can create a custom provider by implementing the
      * `AppProvider` interface.
@@ -71,9 +71,9 @@ return [
      * the existing middleware. Or, you can simply stick with this list.
      */
     'middleware' => [
-        'web',
-        'auth',
-        Authorize::class,
+        // 'web',
+        // 'auth',
+        // Authorize::class,
     ],
 
     'statistics' => [
@@ -113,13 +113,13 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', '/opt/psa/var/certificates/scfzTpHUm/server.crt'),
-        
+        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
+
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
-        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', '/opt/psa/var/certificates/scfzTpHUm/server.key'),
+        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
 
         /*
          * Passphrase for your local_cert file.
