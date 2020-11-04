@@ -114,7 +114,7 @@ return [
          * in a separate file specified by local_pk.
          */
         'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', '/opt/psa/var/certificates/scfzTpHUm/server.crt'),
-
+        
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
