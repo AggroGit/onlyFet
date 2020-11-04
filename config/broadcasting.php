@@ -41,7 +41,7 @@ return [
                 // 'useTLS' => true,
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => false,
-                'host' => env('SOCKETS_IP','127.0.0.1'),
+                'host' => env('SOCKETS_IP','82.223.216.96'),
                 'port' => 6001,
                 'scheme' => 'http',
                 'enable_client_messages' => true,
