@@ -36,18 +36,27 @@ return [
             'enable_client_messages' => true,
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
+            // 'options' => [
+            //     // 'cluster' => env('PUSHER_APP_CLUSTER'),
+            //     // 'useTLS' => true,
+            //     'cluster' => env('PUSHER_APP_CLUSTER'),
+            //     'encrypted' => true,
+            //     'host' => env('SOCKETS_IP','82.223.216.96'),
+            //     'port' => 443,
+            //     'useTLS' => true,
+            //     'scheme' => 'https',
+            //     'enable_client_messages' => true,
+            //
+            // ],
             'options' => [
-                // 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'useTLS' => true,
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
-                'host' => env('SOCKETS_IP','82.223.216.96'),
+                'host' => 'socket.example.com',
                 'port' => 443,
-                'useTLS' => true,
                 'scheme' => 'https',
-                'enable_client_messages' => true,
-
-            ],
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ],
         ],
 
         'redis' => [
