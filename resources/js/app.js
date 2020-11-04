@@ -306,7 +306,7 @@ const store = new Vuex.Store({
           cluster:'eu',
           forceTLS:false,
           authEndpoint:'/api/broadcasting/auth',
-           // enabledTransports: ['wss', 'flash'],
+           enabledTransports: ['ws'],
           auth: {
             headers: {
               Authorization: `Bearer `+ token
