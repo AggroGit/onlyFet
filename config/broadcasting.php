@@ -42,7 +42,7 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 // 'encrypted' => false,
                 'host' => env('SOCKETS_IP','82.223.216.96'),
-                'port' => 6002,
+                'port' => 443,
                 'useTLS' => true,
                 'scheme' => 'https',
                 'enable_client_messages' => true,
