@@ -39,13 +39,9 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
                 'encrypted' => false,
-                'host' => env('SOCKETS_IP','34.121.39.177'),
-                'port' => 443,
-                'scheme' => 'https',
-                'curl_options' => [
-                    CURLOPT_SSL_VERIFYHOST => 0,
-                    CURLOPT_SSL_VERIFYPEER => 0,
-                ]
+                'host' => env('SOCKETS_IP','newprojects-st.com'),
+                'port' => 6002,
+                'scheme' => 'https'
             ],
         ],
 
