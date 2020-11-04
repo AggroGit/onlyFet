@@ -9,6 +9,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
+// PROBLEMA CORS
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+window.axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'DELETE, POST, GET, OPTIONS';
+window.axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With';
+
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Echo from 'laravel-echo';
