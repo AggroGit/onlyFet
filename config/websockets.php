@@ -113,13 +113,13 @@
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
-        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
+        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', '/opt/psa/var/certificates/scfzTpHUm'),
 
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
-        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
+        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', '/opt/psa/var/certificates/scfzTpHUm'),
 
         /*
          * Passphrase for your local_cert file.
