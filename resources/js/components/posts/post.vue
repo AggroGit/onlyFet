@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="separador"></div>
-        <div v-if="this.post.user.canSee" class="contieneOpcion">
+        <div v-if="this.data.user.canSee" class="contieneOpcion">
           <b-icon style="color: black;" class="left" icon="chat-left" font-scale="1.2"></b-icon>
           <router-link :to="'/post/'+this.data.id+'/coments'" class="noLink"  name="button">Comentar</router-link>
         </div>
