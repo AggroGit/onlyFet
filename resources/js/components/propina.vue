@@ -13,7 +13,7 @@
           <div class="form-group row ">
             <div class="col-md-12 contieneInput">
                 <label for="post" class="entrada detextarea" >{{$ml.get('propina').mensaje}}</label>
-                <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea>
+                <textarea ref="content" v-model="form.message" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea>
             </div>
           </div>
           <div class="form-group row down-2">

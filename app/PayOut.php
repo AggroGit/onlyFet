@@ -53,7 +53,6 @@ class PayOut extends Model
 
     public static function notiMoneySended($to,$from,$cantidad,$mensaje,$original)
     {
-      echo "$mensaje";
       $to->send([
         "title"   => "Has recibido $cantidad € de ".$from->name?? "un usuario",
         "body"    => $mensaje?? "Te ha enviado una propina",
