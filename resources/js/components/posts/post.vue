@@ -47,7 +47,7 @@
             <b-icon v-else style="color: black;" icon="heart-fill" font-scale="1.5"></b-icon>
             {{this.data.numLikes}}
           </div>
-          <div class="comments">
+          <div v-if="this.data.user.canSee" class="comments">
             <router-link class="noLink" :to="'/post/'+this.data.id+'/coments'">
               {{this.data.numComments}} {{$ml.get('post').comments}}
             </router-link>
