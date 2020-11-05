@@ -38,7 +38,7 @@ export default {
         return "/post/"+this.data.data
       }
       if(this.data.type == "propina") {
-        return "/post/"+this.data.data
+        return "/user/"+this.data.data
       }
       else {
         return ""
