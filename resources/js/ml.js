@@ -63,7 +63,7 @@ export default new MLCreate({
       },
       stripe: {
         suscribed: "Suscrito",
-        sureUnsuscribe: "¿Estás seguro que deseas eliminar tu suscrpción?",
+        sureUnsuscribe: "¿Estás seguro que quieres eliminar tus suscripciones? Ten en cuenta que no podrás acceder de nuevo a este perfil y tu suscripción no será reembolsada.",
         ev:"cada",
         addVisa:"Antes debes introducir un método de pago",
         create: "Crear Cuenta de Stripe",
