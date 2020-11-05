@@ -31,12 +31,26 @@ class PayOut extends Model
       $new->money_send_at = now()->addDays(8);
       $new->save();
       sendMoney::dispatch(PayOut::find($new->id));
-      $this->notiMoneySended($to,$from,$cantidad);
+      $new->notiMoneySended($to,$from,$cantidad);
       //
 
     }
 
-    public function notiMoneySended($to,$from,$cantidad,$mensaje)
+
+
+    public function pagar()
+    {
+      $r = $this->user->pay($this->quantity);
+      if($r !== false) {
+        $this->sended = true;
+        $this->stripe_payout_id = $r->id;
+      } else {
+        $this->failed = true;
+      }
+      $this->save();
+    }
+
+    public static function notiMoneySended($to,$from,$cantidad,$mensaje)
     {
       $to->send([
         "title"   => "Has recibido $cantidad € de $from->name",
@@ -54,18 +68,6 @@ class PayOut extends Model
         "sound"   => "default",
 
       ]);
-    }
-
-    public function pagar()
-    {
-      $r = $this->user->pay($this->quantity);
-      if($r !== false) {
-        $this->sended = true;
-        $this->stripe_payout_id = $r->id;
-      } else {
-        $this->failed = true;
-      }
-      $this->save();
     }
 
 
