@@ -18,7 +18,7 @@ class ChatsController extends Controller
     // it sends the message
     public function send(int $chat_id,Request $request)
     {
-      $if(!$request->chat->open) {
+      if(!$request->chat->open) {
         return $this->incorrect();
       }
       // validation
