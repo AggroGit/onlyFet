@@ -32,7 +32,7 @@ class PayOut extends Model
       $new->money_send_at = now()->addDays(8);
       $new->save();
       sendMoney::dispatch(PayOut::find($new->id));
-      $new->notiMoneySended($to,$from,$cantidad,$original);
+      $new->notiMoneySended($to,$from,$cantidad,null,$original);
       //
 
     }
@@ -62,7 +62,7 @@ class PayOut extends Model
 
       ]);
       $from->send([
-        "title"   => "Has enviado una propina de $original a $to->name",
+        "title"   => "Has enviado una propina de $original € a $to->name",
         "body"    => "Has enviado tu propina",
         "type"    => "propina",
         "data"    => "$to->nickname",
