@@ -58,13 +58,13 @@
               <b-icon @click="AbrirCerrar()" font-scale="2" style="color:black;" icon="x" aria-hidden="true" class="icon"></b-icon>
             </div>
             <div  v-if="$store.state.auth !== false"  class="row justify-content-center menuu">
-              <div class="col-6">
+              <div class="col-4">
                 <router-link :to="'/user/'+$store.state.auth.nickname" class="ProfileImg down-2">
                   <img v-if="$store.state.auth.image" :src="$store.state.auth.image.sizes.NotSmall" alt="">
                   <img v-else src="/default.png" alt="">
                 </router-link>
               </div>
-              <div class="col-6 ContieneDatosperfil">
+              <div class="col-8 ContieneDatosperfil">
                 <h4> <router-link class="noLink" :to="'/user/'+auth.nickname">{{auth.name}}</router-link> </h4>
                 <br>
                 <p><strong>{{$ml.get('auth').nickname}}: </strong>{{$store.state.auth.nickname}}</p>
