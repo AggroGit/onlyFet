@@ -37,6 +37,12 @@ export default {
       if(this.data.type == "like") {
         return "/post/"+this.data.data
       }
+      if(this.data.type == "propina") {
+        return "/post/"+this.data.data
+      }
+      else {
+        return ""
+      }
     }
   }
 };
