@@ -7,6 +7,12 @@ use App\Plan;
 use App\User;
 class SuscriptionsController extends Controller
 {
+
+    public function __construct()
+    {
+      Carbon::setLocale(auth()->user()->lang?? 'es');
+        // $this->middleware('auth');
+    }
     //
     // creamos los planes, con nosotros y cin stripe
     public function makePremium(Request $request)

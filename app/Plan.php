@@ -11,8 +11,13 @@ use App\User;
 
 class Plan extends Model
 {
-    protected $appends = ["rest"];
+    protected $appends = ["rest","fecha"];
     // cuando se actualiza un precio entonces deberíamos cambiar de plan todos los uaurios.
+    public function getFechaAttribute()
+    {
+      return $this->created_at->diffForHumans();
+    }
+
     public function updateThePlans($key,$suscriptions)
     {
       // lo primero de todo es crear la nueva suscripción
