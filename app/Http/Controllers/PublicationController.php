@@ -158,12 +158,11 @@ class PublicationController extends Controller
     public function imagesUser($name)
     {
       // imagenes de publicaciones que no se deberían ver
-      $publis = Post::where('publish_at','>=',now())->get();
-      $ids = $publis->images()->pluck('id');
+      $publis = Post::where('publish_at','>=',now())->pluck('id');
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Image::where('user_id',$user->id)->paginate(20)
+          "images" => Image::where('user_id',$user->id)->whereNotIn('post_id',$publis)->paginate(20)
         ]);
 
       }
