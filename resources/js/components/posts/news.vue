@@ -56,7 +56,7 @@ export default {
       // alert('hey')
       if(self.current<self.total && self.scrolling==false)
         self.scrolling = true
-        axios.post('/api/news', {
+        axios.post('/api/posts/news', {
           page: self.current
         }, {
           headers:{
