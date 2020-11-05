@@ -1092,6 +1092,8 @@ position: absolute;
 margin: 20px;
 }
 .menuu {
-  width: 100%;
+  width: 100vw;
+  max-width: 400px;
   margin: auto;
+  background: red;
 }
