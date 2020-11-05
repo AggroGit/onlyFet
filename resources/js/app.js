@@ -145,6 +145,8 @@ Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').def
 //
 Vue.component('listPlans',  require('./components/auth/plansList.vue').default);
 //
+Vue.component('faqs',  require('./components/faqs.vue').default);
+//
 Vue.use(VueVideoPlayer)
 // datetime
 Vue.component('datetime', Datetime);
@@ -180,6 +182,7 @@ const auth = function(to, from, next) {
  // auth
  {path: '/login',         component: Vue.component('login')},
  {path: '/register',      component: Vue.component('register')},
+ {path: '/faqs',          component: Vue.component('faqs')},
  // user
  {path: '/profile',       component: Vue.component('profile'),beforeEnter: multiguard([auth])},
  {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
