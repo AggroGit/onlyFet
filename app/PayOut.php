@@ -22,7 +22,7 @@ class PayOut extends Model
     }
 
     // creamos un pago
-    public static function create($cantidad,$to,$from = null,$original)
+    public static function create($cantidad,$to,$from = null,$original,$mensaje = null)
     {
       $from = $from?? auth()->user();
       $new = new PayOut();
@@ -32,7 +32,7 @@ class PayOut extends Model
       $new->money_send_at = now()->addDays(8);
       $new->save();
       sendMoney::dispatch(PayOut::find($new->id));
-      $new->notiMoneySended($to,$from,$cantidad,null,$original);
+      $new->notiMoneySended($to,$from,$cantidad,$mensaje,$original);
       //
 
     }
