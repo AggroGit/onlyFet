@@ -3,7 +3,7 @@
         <div v-if="this.loading" class="container text-center contieneCargador">
           <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
-                    </div>
+          </div>
         </div>
 
 
@@ -22,6 +22,10 @@
               <br>
               {{this.user.description}}
             </p>
+            <div v-if="user.influencer && auth.id !== user.id">
+              <br>
+              <propina :otherUser="user"></propina>
+            </div>
 
             <router-link to='/profile/suscriptions' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">Comienza a ganar dinero</router-link>
             <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{user.phone_number}}</p>

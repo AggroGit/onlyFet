@@ -31,6 +31,29 @@ class PayOut extends Model
       $new->money_send_at = now()->addDays(8);
       $new->save();
       sendMoney::dispatch(PayOut::find($new->id));
+      $this->notiMoneySended($to,$from,$cantidad);
+      //
+
+    }
+
+    public function notiMoneySended($to,$from,$cantidad,$mensaje)
+    {
+      $to->send([
+        "title"   => "Has recibido $cantidad € de $from->name",
+        "body"    => $mensaje?? "Te ha enviado una propina",
+        "type"    => "propina",
+        "data"    => null,
+        "sound"   => "default",
+
+      ]);
+      $from->send([
+        "title"   => "Has enviado $cantidad € a $to->name",
+        "body"    => "Has enviado tu propina",
+        "type"    => "propina",
+        "data"    => null,
+        "sound"   => "default",
+
+      ]);
     }
 
     public function pagar()
