@@ -135,9 +135,9 @@ console.log(this.post)
       },
       giveMeUrl(media,post) {
         if(post.user.canSee == false) {
-
+          return null
         }
-        return ""
+        return "/"+post.id+"/image/"+media.name
 
       },
       giveMeOptions(media) {
