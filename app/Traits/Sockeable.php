@@ -45,7 +45,7 @@ trait Sockeable
               array(
                   'cluster' => env('PUSHER_APP_CLUSTER'),
                   'host'=> env('SOCKETS_IP','127.0.0.1'),
-                  'port'=>'6001')
+                  'port'=>'6002')
               );
   }
 

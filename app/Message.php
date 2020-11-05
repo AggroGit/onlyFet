@@ -74,7 +74,6 @@ class Message extends Model
           "type"    => "chat",
           "data"    => $this->chat->id,
           "sound"   => "default",
-
         ]);
       }
 
