@@ -16,12 +16,14 @@ import Echo from 'laravel-echo';
 
 
 
+
 import VFacebookLogin from 'vue-facebook-login-component'
 import VueRouter from 'vue-router'
 import InputTag from 'vue-input-tag'
 import VueCookies from 'vue-cookies'
 import VeeValidate from 'vee-validate'
 import { Datetime } from 'vue-datetime'
+import vClickOutside from 'v-click-outside'
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
 import VueVideoPlayer from 'vue-video-player'
@@ -47,7 +49,8 @@ import multiguard from 'vue-router-multiguard';
 // nuestras
 import './ml.js' // idiomas
 
-
+Vue.use(vClickOutside)
+//
 Vue.component('VFacebookLogin', VFacebookLogin)
 //
 Vue.use(Datetime)
