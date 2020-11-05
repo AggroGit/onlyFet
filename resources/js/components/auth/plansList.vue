@@ -42,7 +42,7 @@
               </div>
 
               <div class="opcionesPost">
-                  {{notification.fecha}}
+                  {{data.fecha}}
               </div>
 
             </div>
