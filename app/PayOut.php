@@ -63,7 +63,7 @@ class PayOut extends Model
       ]);
       $from->send([
         "title"   => "Has enviado una propina de $original € a $to->name",
-        "body"    => "Has enviado tu propina",
+        "body"    =>  $mensaje?? "Has enviado tu propina. ",
         "type"    => "propina",
         "data"    => "$to->nickname",
         "sound"   => "default",
