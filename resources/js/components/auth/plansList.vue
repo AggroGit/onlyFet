@@ -39,11 +39,11 @@
               </div>
               <div class="opcionesPost">
                 {{givePrice(data)}}
+                <br>
+                {{data.fecha}}
               </div>
 
-              <div class="opcionesPost">
-                  {{data.fecha}}
-              </div>
+            
 
             </div>
 
