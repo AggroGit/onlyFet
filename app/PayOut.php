@@ -22,7 +22,7 @@ class PayOut extends Model
     }
 
     // creamos un pago
-    public static function create($cantidad,$to,$from = null)
+    public static function create($cantidad,$to,$from = null,$original)
     {
       $from = $from?? auth()->user();
       $new = new PayOut();
@@ -32,7 +32,7 @@ class PayOut extends Model
       $new->money_send_at = now()->addDays(8);
       $new->save();
       sendMoney::dispatch(PayOut::find($new->id));
-      $new->notiMoneySended($to,$from,$cantidad);
+      $new->notiMoneySended($to,$from,$cantidad,$original);
       //
 
     }
@@ -51,7 +51,7 @@ class PayOut extends Model
       $this->save();
     }
 
-    public static function notiMoneySended($to,$from,$cantidad,$mensaje=null)
+    public static function notiMoneySended($to,$from,$cantidad,$mensaje=null,$original)
     {
       $to->send([
         "title"   => "Has recibido $cantidad € de ".$from->name?? "un usuario",
@@ -62,7 +62,7 @@ class PayOut extends Model
 
       ]);
       $from->send([
-        "title"   => "Has enviado una propina de $cantidad a $to->name",
+        "title"   => "Has enviado una propina de $original a $to->name",
         "body"    => "Has enviado tu propina",
         "type"    => "propina",
         "data"    => "$to->nickname",
