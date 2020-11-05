@@ -82,7 +82,7 @@ class Publication extends Model
 
     public function getFechaAttribute()
     {
-      return $this->created_at->diffForHumans();
+      return $this->publish_at->diffForHumans();
     }
 
     public function getHaveLikedAttribute()

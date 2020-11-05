@@ -159,7 +159,7 @@ class PublicationController extends Controller
     {
       // imagenes de publicaciones que no se deberían ver
       $publis = Post::where('publish_at','>=',now())->get();
-      // $ids = $publis->images()->pluck('id');
+      $ids = $publis->images()->pluck('id');
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
