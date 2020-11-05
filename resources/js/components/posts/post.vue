@@ -1,5 +1,5 @@
 <template>
-    <div class="container down-4">
+    <div class="container contenedor down-4">
       <div v-if="this.loading" class="container text-center contieneCargador aparecer">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
           <span class="sr-only">Loading...</span>
