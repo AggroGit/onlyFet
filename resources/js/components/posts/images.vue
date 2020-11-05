@@ -24,6 +24,10 @@
 
           </div>
         <!-- </div> -->
+        <div v-if="this.posts.length == 0" class="Empty text-center">
+          <img src="/iconos/empty-tag.png" alt="">
+          <h5>{{$ml.get('post').noposts}}</h5>
+        </div>
 
       </div>
 

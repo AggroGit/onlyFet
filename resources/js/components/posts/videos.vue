@@ -8,6 +8,12 @@
 
 
       <div v-if="!this.loading" class="row contenedor">
+
+        <div v-if="this.posts.length == 0" class="Empty text-center">
+          <img src="/iconos/empty-tag.png" alt="">
+          <h5>{{$ml.get('post').noposts}}</h5>
+        </div>
+
         <!-- <div class="container"> -->
           <div v-for="(image) in this.posts" :key="image.id"  class=" col-md-6 down-4">
             <div class="ContieneVideoGrid">
