@@ -134,7 +134,7 @@ class StripeController extends Controller
             // si llegamos hasta aqui es que se ha cobrado
             $cant = number_format($request->quantity - $comision,2);
 
-            $payment = PayOut::create($cant,$user,null,$request->quantity,$request->description);
+            $payment = PayOut::create($cant,$user,null,$request->quantity,$request->message);
 
             //
             return $this->correct();

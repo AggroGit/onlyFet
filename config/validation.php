@@ -85,7 +85,7 @@ return [
     ],
     'propina' => [
       'quantity'    => 'required|digits_between:1,400',
-      'description' =>  'string'
+      'message' =>  'string'
     ]
 
 
