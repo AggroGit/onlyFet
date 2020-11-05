@@ -55,7 +55,7 @@
                          @canplaythrough="onPlayerCanplaythrough($event)"
                          @ready="playerReadied"
                          @statechanged="playerStateChanged($event)"
-                          oncontextmenu="return false;"
+                          
                          >
                           >
 
