@@ -66,7 +66,7 @@
             <div class="form-group row down-2">
               <div class="col-md-12 contieneInput">
                   <label for="hastags" class=" entrada labelHastags" >Hastags</label>
-                  <input-tag  v-model="form.hastags" name="hastags"  class="form-control inuttags" required autocomplete="off" ></input-tag>
+                  <input-tag  v-model="form.hastags" add-tag-on-keys="" name="hastags"  class="form-control inuttags" required autocomplete="off" ></input-tag>
               </div>
             </div>
 
