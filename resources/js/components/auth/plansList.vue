@@ -245,6 +245,9 @@ giveMeRoute(noti) {
   if(noti.type == "like") {
     return "/post/"+noti.data
   }
+  if(noti.type == "propina") {
+    return "/user/"+noti.data
+  }
   return "";
 }
 }

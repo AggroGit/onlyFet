@@ -260,7 +260,7 @@ class AuthController extends Controller
 
     public function notifications()
     {
-      $notifications = auth()->user()->allNotifications()->where('type','chat');
+      $notifications = auth()->user()->allNotifications();//->where('type','chat');
       $notis = $notifications->get();
       $notifications->delete();
       return $this->correct($notis);

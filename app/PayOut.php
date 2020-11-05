@@ -24,8 +24,9 @@ class PayOut extends Model
     // creamos un pago
     public static function create($cantidad,$to,$from = null)
     {
+      $from = $from?? auth()->user();
       $new = new PayOut();
-      $new->from_user = $from?? auth()->user()->id;
+      $new->from_user = $from->id?? auth()->user()->id;
       $new->user_id = $to->id;
       $new->price_sended = $cantidad;
       $new->money_send_at = now()->addDays(8);
@@ -50,21 +51,21 @@ class PayOut extends Model
       $this->save();
     }
 
-    public static function notiMoneySended($to,$from,$cantidad,$mensaje)
+    public static function notiMoneySended($to,$from,$cantidad,$mensaje=null)
     {
       $to->send([
-        "title"   => "Has recibido $cantidad € de $from->name",
+        "title"   => "Has recibido $cantidad € de ".$from->name?? "un usuario",
         "body"    => $mensaje?? "Te ha enviado una propina",
         "type"    => "propina",
-        "data"    => null,
+        "data"    => "$from->nickname",
         "sound"   => "default",
 
       ]);
       $from->send([
-        "title"   => "Has enviado $cantidad € a $to->name",
+        "title"   => "Has enviado una propina a $to->name",
         "body"    => "Has enviado tu propina",
         "type"    => "propina",
-        "data"    => null,
+        "data"    => "$to->nickname",
         "sound"   => "default",
 
       ]);
