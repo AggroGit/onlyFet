@@ -18,6 +18,9 @@ class ChatsController extends Controller
     // it sends the message
     public function send(int $chat_id,Request $request)
     {
+      $if(!$request->chat->open) {
+        return $this->incorrect();
+      }
       // validation
       if ($missings = $this->hasError($request->all(),'validation.sendChat')) {
         return $this->incorrect(0,$missings);
