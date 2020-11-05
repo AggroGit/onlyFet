@@ -44,7 +44,7 @@ trait Sockeable
               env('PUSHER_APP_ID'),
               array(
                   'cluster' => env('PUSHER_APP_CLUSTER'),
-                  'host'=> env('SOCKETS_IP','127.0.0.1'),
+                  'host'=> env('SOCKETS_IP','sockets.mobisoft.works'),
                   'port'=>'6002')
               );
   }
