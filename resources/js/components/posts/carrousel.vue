@@ -57,7 +57,7 @@
                          @statechanged="playerStateChanged($event)"
                           oncontextmenu="return false;"
                          >
-                          
+
 
          </video-player>
         <!-- <video-player v-else>
