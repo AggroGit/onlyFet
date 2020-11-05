@@ -23,7 +23,7 @@
 
       <div class="row justify-content-center down-2">
           <div class="col-md-6">
-             <p><strong>{{$ml.get('auth').description}}: </strong> {{auth.description}}</p>
+             <p><strong>{{$ml.get('auth').description}}: </strong> <p v-html="auth.description"></p>
           </div>
       </div>
 

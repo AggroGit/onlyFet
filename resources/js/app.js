@@ -44,7 +44,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
 import multiguard from 'vue-router-multiguard';
+// import { Editor, EditorContent, EditorMenuBar, EditorMenuBubble, EditorFloatingMenu } from 'tiptap';
+// Basic Use - Covers most scenarios
+// import { VueEditor } from "vue2-editor";
 
+// Advanced Use - Hook into Quill's API for Custom Functionality
+import { VueEditor, Quill } from "vue2-editor";
+// Advanced Use - Hook into Quill's API for Custom Functionality
+// import { VueEditor, Quill } from "vue2-editor";
 
 // nuestras
 import './ml.js' // idiomas
@@ -53,6 +60,8 @@ Vue.use(vClickOutside)
 //
 Vue.component('VFacebookLogin', VFacebookLogin)
 //
+Vue.use(VueEditor)
+
 Vue.use(Datetime)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -70,6 +79,8 @@ Vue.use(VueCardFormat);
 Vue.use(VueFileAgent);
 // switch button
 Vue.use(ToggleButton)
+Vue.component('vue-editor', VueEditor)
+
 // tags
 Vue.component('input-tag', InputTag)
 // resaltar en texto

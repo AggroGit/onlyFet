@@ -18,11 +18,13 @@
           <div class="col-6 ContieneDatosperfil ">
             <h4>{{user.name}}</h4>
             <br>
-            <p><strong>@</strong>{{this.user.nickname}}
+            <p ><strong>@</strong>{{this.user.nickname}}
               <br>
+              </p>
+              <p v-html="this.user.description">
+              </p>
 
-              {{this.user.description}}
-            </p>
+
             <div v-if="user.influencer && auth.id !== user.id">
               <br>
               <propina :otherUser="user"></propina>

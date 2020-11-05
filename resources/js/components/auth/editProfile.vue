@@ -65,10 +65,13 @@
               <div class="form-group row ">
                 <div class="col-md-12 contieneInput">
                     <label for="post" class="entrada detextarea" >{{$ml.get('auth').description}}</label>
-                    <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea>
+                    <vue-editor :editorToolbar="custom" v-model="form.description"></vue-editor>
+                    <!-- <VueEditor v-model="form.description"></VueEditor> -->
+                    <!-- <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea> -->
                 </div>
                   <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
               </div>
+
 
 
               <div class="row down-2">
@@ -121,6 +124,7 @@ export default {
       exists:false,
       existnickname:false,
       auth: this.$store.state.auth,
+      custom: [["bold", "italic", "underline"], [{ list: "ordered" }, { list: "bullet" }], ["link"]],
       test:"",
       form: {
         email:null,
