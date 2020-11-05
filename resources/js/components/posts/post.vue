@@ -47,14 +47,14 @@
             <b-icon v-else style="color: black;" icon="heart-fill" font-scale="1.5"></b-icon>
             {{this.data.numLikes}}
           </div>
-          <div v-if="this.data.user.canSee" class="comments">
+          <div  class="comments">
             <router-link class="noLink" :to="'/post/'+this.data.id+'/coments'">
               {{this.data.numComments}} {{$ml.get('post').comments}}
             </router-link>
           </div>
         </div>
         <div class="separador"></div>
-        <div class="contieneOpcion">
+        <div v-if="this.post.user.canSee" class="contieneOpcion">
           <b-icon style="color: black;" class="left" icon="chat-left" font-scale="1.2"></b-icon>
           <router-link :to="'/post/'+this.data.id+'/coments'" class="noLink"  name="button">Comentar</router-link>
         </div>
