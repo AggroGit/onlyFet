@@ -200,7 +200,7 @@ class Image extends Model
           $constraint->aspectRatio();
       })->save($this->getPathToSave()."/$this->name/50.$this->format");
       // hidden
-      $edit->blur(10)->save($this->getPathToSave()."/$this->name/sadgsasdasa$this->id.$this->format");
+      $edit->blur(7)->save($this->getPathToSave()."/$this->name/sadgsasdasa$this->id.$this->format");
 
 
 
