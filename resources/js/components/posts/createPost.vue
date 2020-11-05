@@ -25,7 +25,7 @@
                 :helpText="'Choose images or videos'"
                 :errorText="{
                   type: 'Invalid file type. Only images or zip Allowed',
-                  size: 'Files should not exceed 10MB in size',
+                  size: 'Files should not exceed 100MB in size',
                 }"
                 @select="filesSelected($event)"
                 @beforedelete="onBeforeDelete($event)"
