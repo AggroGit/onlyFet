@@ -9,7 +9,7 @@
             <h3 class="down-4">{{$ml.get('post').posting}}</h3>
           </div>
 
-          <form v-bind:class="{ invisible: loading }"  @submit.stop.prevent="post()">
+          <div v-bind:class="{ invisible: loading }" >
 
             <!-- <div class="contieneInputPost"> -->
               <!-- <picture-input ></picture-input> -->
@@ -61,8 +61,6 @@
 
 
 
-
-
             <div class="form-group row down-2">
               <div class="col-md-12 contieneInput">
                   <label for="hastags" class=" entrada labelHastags" >Hastags</label>
@@ -92,13 +90,13 @@
 
             <div class="form-group row down-2">
                 <div class="col-md-12 offset-md-12">
-                    <button type="submit" class="btn btn-primary boton">
+                    <button @click="post()" class="btn btn-primary boton">
                         {{$ml.get('post').publy}}
                         <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     </button>
                 </div>
             </div>
-          </form>
+          </div>
 
 
 
@@ -136,7 +134,7 @@ export default {
       programOpen:false,
       form: {
         files:[],
-        content: null,
+        content: "",
         hastags:[],
         tags:[],
         program_date: null
@@ -149,7 +147,6 @@ export default {
   },
   methods: {
     post() {
-
       //
       var hastags = (this.form.hastags)
       console.log()
