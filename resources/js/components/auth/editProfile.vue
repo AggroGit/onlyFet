@@ -7,7 +7,7 @@
           <div class="ProfileImg">
             <picture-input ref="image" accept="image/jpeg,image/jpg,image/png,png,jpg,jpeg"  :v-model="image"  @change="onChange"  :prefill="profileImage()"></picture-input>
           </div>
-          <div class="contieneIconoEditar" @click="onChange">
+          <div class="contieneIconoEditar">
             <b-icon v-if="!this.loadingImage" icon="pencil-fill"></b-icon>
             <span v-if="this.loadingImage" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </div>
