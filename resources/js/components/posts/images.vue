@@ -20,7 +20,6 @@
                 v-else
                 alt="image slot"
               >
-
             </div>
 
           </div>
