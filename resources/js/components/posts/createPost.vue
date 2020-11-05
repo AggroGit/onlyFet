@@ -1,6 +1,6 @@
 <template>
-    <div class="contenedor down-2">
-      <div class="row justify-content-center">
+    <div class="container down-2">
+      <div class="row justify-content-center contenedor">
         <div class="col-md-12">
           <div v-if="this.loading" class="container text-center contieneCargador aparecer">
             <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
