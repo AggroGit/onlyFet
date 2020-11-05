@@ -57,7 +57,7 @@ export default {
       haveToAdd: false,
       form: {
         quantity: null,
-        message: ""
+        message: null
       }
     }
   },
