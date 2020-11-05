@@ -157,7 +157,7 @@ export default {
     },
     giveMeOptions(media) {
       return {
-        autoplay: false,
+        autoplay: true,
         // muted: true,
         language: this.$store.state.auth.lang,
         height: '200px',

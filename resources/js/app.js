@@ -63,7 +63,6 @@ Vue.use(VueCookies)
 Vue.use(VueCardFormat);
 // Video
 Vue.use(VueFileAgent);
-
 // switch button
 Vue.use(ToggleButton)
 // tags
