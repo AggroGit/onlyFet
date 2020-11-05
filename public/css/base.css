@@ -1091,3 +1091,7 @@ right: 0;
 position: absolute;
 margin: 20px;
 }
+.menuu {
+  width: 100%;
+  margin: auto;
+}

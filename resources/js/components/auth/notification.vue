@@ -32,7 +32,7 @@ export default {
         return "/chats/"+this.data.data
       }
       if(this.data.type == "publication") {
-        return "/post/"+this.data.data+"/coments"
+        return "/post/"+this.data.data
       }
       if(this.data.type == "like") {
         return "/post/"+this.data.data

@@ -57,7 +57,7 @@
             <div class="ContieneOpcionCerrar" @click="AbrirCerrar()">
               <b-icon @click="AbrirCerrar()" font-scale="2" style="color:black;" icon="x" aria-hidden="true" class="icon"></b-icon>
             </div>
-            <div  v-if="$store.state.auth !== false"  class="row justify-content-center ">
+            <div  v-if="$store.state.auth !== false"  class="row justify-content-center menuu">
               <div class="col-6">
                 <router-link :to="'/user/'+$store.state.auth.nickname" class="ProfileImg down-2">
                   <img v-if="$store.state.auth.image" :src="$store.state.auth.image.sizes.NotSmall" alt="">
