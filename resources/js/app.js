@@ -25,6 +25,8 @@ import { Datetime } from 'vue-datetime'
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
 import VueVideoPlayer from 'vue-video-player'
+import ClickOutside from 'vue-click-outside'
+
 // require videojs style
 import 'video.js/dist/video-js.css'
 import TextHighlight from 'vue-text-highlight';

@@ -74,6 +74,7 @@ class ChatsController extends Controller
       $chat = Chat::find($chat_id);
       if($chat->isUser(auth()->user())) {
         $chat->block($chat->otherUser,false);
+        $chat->block(auth()->user(),false);
         $chat->open = true;
         $chat->save();
       }
