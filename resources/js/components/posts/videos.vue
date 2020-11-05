@@ -157,7 +157,7 @@ export default {
     },
     giveMeOptions(media) {
       return {
-        autoplay: true,
+        autoplay: false,
         // muted: true,
         language: this.$store.state.auth.lang,
         height: '200px',
@@ -170,7 +170,7 @@ export default {
           // webm
           // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
         }],
-        poster: "/iconos/video.png",
+        // poster: "/iconos/video.png",
       }
     },
 
