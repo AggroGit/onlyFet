@@ -3,7 +3,7 @@
     <b-icon font-scale="1.7" @click="sendPropina()" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon>
     <div  v-if="this.sending" class="contienePantallaCompletaDark noFlex aparecer">
       <stripe-add-visa v-if="this.haveToAdd" class="aparecer sombreado down-5 maxVisa"></stripe-add-visa>
-      <b-icon v-if="this.sending" font-scale="3" @click="onClickOutside()" style="color:#ffff;" icon="x" aria-hidden="true" class="icon Cerrar"></b-icon>
+      <b-icon v-if="this.sending" font-scale="3" @click="onClickOutside()" style="color:#ffff;" icon="x" aria-hidden="true" class="aparecer icon Cerrar"></b-icon>
 
       <div v-if="this.haveToAdd == false" class="ContienePropinaSend">
         <form  @submit.stop.prevent="send()" >
