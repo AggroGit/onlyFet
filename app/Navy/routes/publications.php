@@ -13,6 +13,7 @@
     {
         Route::post('/user/{nickcname}',       'PublicationController@wallOfUser');
         Route::post('/posts',                  'PublicationController@posts');
+        Route::post('/news',                   'PublicationController@novedadesPosts');
         Route::post('/user/{user_id}/posts',   'PublicationController@postsOfUser');
         Route::post('/post/create',            'PublicationController@create');
         Route::post('/post/recomend',          'PublicationController@recomendUser');

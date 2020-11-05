@@ -179,6 +179,13 @@ class PublicationController extends Controller
       return $this->incorrect();
     }
 
+    public function novedadesPosts($value='')
+    {
+      $ids = auth()->user()->suscribedPlans->pluck('user_id');
+      return $this->correct(Post::orderBy('created_at','DESC')->whereIn('user_id',$ids)->where('publish_at', '<=',now())->paginate(4));
+
+    }
+
 
 
 
