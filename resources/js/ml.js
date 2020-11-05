@@ -62,6 +62,7 @@ export default new MLCreate({
         confSusciptions: "Configurar Suscripciones"
       },
       stripe: {
+        suscribed: "Suscrito",
         sureUnsuscribe: "¿Estás seguro que deseas eliminar tu suscrpción?",
         ev:"cada",
         addVisa:"Antes debes introducir un método de pago",
