@@ -23,6 +23,9 @@ img {
   width: 100%;
   border:1px solid #ced4da !important;
 }
+.contieneDesc {
+  max-width: 200px;
+}
 
 .contenedor {
   transition: all 0.3s ease;

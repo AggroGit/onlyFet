@@ -35,6 +35,7 @@
         "vue-cookies": "^1.7.4",
         "vue-credit-card-validation": "^0.1.10",
         "vue-datetime": "^1.0.0-beta.14",
+        "vue-facebook-login-component": "^3.0.0",
         "vue-file-agent": "^1.7.3",
         "vue-file-upload": "^0.1.12",
         "vue-input-tag": "^2.0.7",

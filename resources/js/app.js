@@ -16,7 +16,7 @@ import Echo from 'laravel-echo';
 
 
 
-
+import VFacebookLogin from 'vue-facebook-login-component'
 import VueRouter from 'vue-router'
 import InputTag from 'vue-input-tag'
 import VueCookies from 'vue-cookies'
@@ -45,6 +45,8 @@ import multiguard from 'vue-router-multiguard';
 // nuestras
 import './ml.js' // idiomas
 
+
+Vue.component('VFacebookLogin', VFacebookLogin)
 //
 Vue.use(Datetime)
 // Install BootstrapVue
