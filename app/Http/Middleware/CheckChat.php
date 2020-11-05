@@ -25,9 +25,9 @@ class CheckChat
         return app()->call('App\Http\Controllers\ChatsController@incorrect',
                             ['code'=> 101]);
         // check the chat is open
-        if (!$chat->open)
-        return app()->call('App\Http\Controllers\ChatsController@incorrect',
-                            ['code'=> 102]);
+        // if (!$chat->open)
+        // return app()->call('App\Http\Controllers\ChatsController@incorrect',
+        //                     ['code'=> 102]);
 
 
         return $next($request);

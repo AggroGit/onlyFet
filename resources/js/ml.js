@@ -21,6 +21,7 @@ export default new MLCreate({
         nochat: "Vaya, parece que no tienes chats",
         lookUser: "Buscar chat",
         block: "Bloquear",
+        unBlock: "Desbloquear",
         report: "Reportar",
         confBlock: "¿Estas seguro que quieres bloquar a ",
         confReport: "¿Estas seguro que reportar a ",

@@ -11,7 +11,11 @@ class Chat extends Model
 {
     use Sockeable;
     protected $with = ['users'];
-    protected $appends = ['otherUser','lastMessage'];
+    protected $appends = ['otherUser','lastMessage','currentHaveBlocked'];
+
+    protected $casts = [
+        "open" => "boolean"
+    ];
 
     // messages of the chat
     public function messages()
@@ -30,7 +34,7 @@ class Chat extends Model
     // users in the chat
     public function users()
     {
-      return $this->belongsToMany('App\User', 'chats_users');
+      return $this->belongsToMany('App\User', 'chats_users')->withPivot('blocked','hidden');
     }
 
     // the last message sended in the chat
@@ -39,6 +43,8 @@ class Chat extends Model
       return $this->messages()
                   ->first();
     }
+
+
 
     public function getOtherUserAttribute()
     {
@@ -52,9 +58,14 @@ class Chat extends Model
       $this->save();
     }
 
+    public function getCurrentHaveBlockedAttribute()
+    {
+      return (!$this->otherUser->pivot->blocked)? true:false;
+    }
+
     public static function giveMeorCreateChatWith($user)
     {
-      $chats = $user->chats;
+      $chats = $user->allChats;
       foreach ($chats as $chat) {
         if($chat->isUser(auth()->user())) {
           return $chat;
@@ -67,6 +78,13 @@ class Chat extends Model
       $new->save();
       return Chat::find($new->id);
     }
+
+    //
+    // // nos dice si el usuario actual ha bloqueado al otro
+    // public function gethaveBlockedAttribute()
+    // {
+    //   return $this->pivot;
+    // }
 
 
     // check if is user in a chat

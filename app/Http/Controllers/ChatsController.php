@@ -66,6 +66,18 @@ class ChatsController extends Controller
         $chat->open = false;
         $chat->save();
       }
+      return $this->correct();
+    }
+
+    public function unBlock(int $chat_id)
+    {
+      $chat = Chat::find($chat_id);
+      if($chat->isUser(auth()->user())) {
+        $chat->block($chat->otherUser,false);
+        $chat->open = true;
+        $chat->save();
+      }
+      return $this->correct();
     }
 
 

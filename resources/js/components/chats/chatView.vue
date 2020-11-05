@@ -11,13 +11,13 @@
       <div class="contenedorChatHead">
         <avatar :conection="true" :us="otherUser" ></avatar>
         <span class="mr-auto">{{otherUser.name}} </span>
-
         <b-dropdown id="dropdown-right" right text="Right align" variant="secondary" class="m-2">
           <template v-slot:button-content>
             <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
           </template>
-          <b-dropdown-item @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
-          <b-dropdown-item @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
+          <b-dropdown-item v-if="chatData.open" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
+          <b-dropdown-item v-if="chatData.open" @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
+          <b-dropdown-item v-if="chatData.open == false && chatData.currentHaveBlocked" @click="unblock()">{{$ml.get('chat').unBlock}}</b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -79,6 +79,7 @@ export default {
       newMessage:"",
       channel:false,
       otherUser:false,
+      chatData: null,
     }
 
   },
@@ -139,6 +140,11 @@ export default {
           console.log(response)
           self.messages = response.data.data.messages.data.slice().reverse()
           self.otherUser = response.data.data.otherUser
+          self.chatData = response.data.data
+
+          if(response.data.data.open == false) {
+            self.messages = false;
+          }
         }
         if(response.data.rc == 102) {
           alert(self.$ml.get('chat').notAvailable)
@@ -158,6 +164,32 @@ export default {
     ifisMe(message) {
       if(message.user.id == user.id)
       return "fromMe"
+    },
+    unblock() {
+        this.loading = true
+        var self = this
+        axios.post('/api/chat/'+self.chat+'/unblock', null,
+        {
+           headers:{
+              Authorization: `Bearer `+ this.$store.state.token
+           }
+         })
+         .then(function (response)  {
+           console.log(response)
+           if(response.data.rc == 1) {
+             window.location.reload();
+
+           } else {
+             alert('error')
+           }
+
+         })
+         .catch(err => {
+           alert('Error')
+         })
+         // finally
+         .finally(() => self.loading = false)
+
     },
 
     sendMessage() {
@@ -247,7 +279,7 @@ export default {
          .then(function (response)  {
            console.log(response)
            if(response.data.rc == 1) {
-             self.$router.push('/')
+             window.location.reload();
 
            } else {
              alert('error')

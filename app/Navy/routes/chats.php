@@ -20,4 +20,6 @@
       Route::post('{chat_id}/send',         'ChatsController@send');
       Route::post('{chat_id}/messages',     'ChatsController@messages');
       Route::post('{chat_id}/block',        'ChatsController@block');
+      Route::post('{chat_id}/unblock',      'ChatsController@unblock');
+
     });
