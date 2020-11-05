@@ -36,6 +36,7 @@ export default new MLCreate({
         influencerQ: "¿Te consideras influencer?",
         confSuscriptions: "Configurar suscripciones",
         suscriptions:"Suscripciones",
+        suscriptionsAndNotis: "Suscripciones y Notificaciones",
         uHaveToStripe: "Debes configurar Stripe para poder crear suscripciones",
         prError: "Vaya",
         error: "Parece que el usuario no existe o tienes mal los datos",
