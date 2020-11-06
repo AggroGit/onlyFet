@@ -2,7 +2,7 @@
   <div class="carrousel">
     <b-carousel
       id="carousel-1"
-      :interval="40000"
+      :interval="40000000"
       v-model="slide"
       controls
       indicators
