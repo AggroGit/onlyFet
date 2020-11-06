@@ -166,7 +166,7 @@ export default {
           sources: [{
             type: "video/mp4",
             // mp4
-            src: "http://vjs.zencdn.net/v/oceans.mp4",
+             src: media.path,
             // webm
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
           }],
