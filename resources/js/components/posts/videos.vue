@@ -26,6 +26,7 @@
               >
 
               <video-player
+                                @click="asd()"
                                 v-else
                                 :options="giveMeOptions(image)"
                                  oncontextmenu="return false;"
@@ -155,6 +156,9 @@ export default {
         }
       }
     },
+    asd() {
+      alert('hey')
+    },
     giveMeOptions(media) {
       return {
 
@@ -170,7 +174,6 @@ export default {
             // webm
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
           }],
-          poster: "",
 
 
         // autoplay: false,
