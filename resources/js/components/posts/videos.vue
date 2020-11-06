@@ -159,7 +159,7 @@ export default {
       return {
 
         height: '360',
-          autoplay: true,
+          autoplay: false,
           muted: true,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
