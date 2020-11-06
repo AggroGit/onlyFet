@@ -46,7 +46,7 @@ class Like extends Model
                 "title"   => auth()->user()->name,
                 "body"    => "Le ha dado like a tu foto",
                 "type"    => "like",
-                "data"    => $model->id,
+                "data"    => $model->publication->id,
                 "sound"   => "default"
               ]);
             }
