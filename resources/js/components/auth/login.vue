@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin app-id="3392800034173345"></VFacebookLogin>
+                              <VFacebookLogin  v-model="model" app-id="3392800034173345"></VFacebookLogin>
                           </div>
 
                       </form>
@@ -75,6 +75,7 @@
               </div>
           </div>
       </div>
+      {{model}}
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
@@ -101,6 +102,7 @@
 export default {
   data(){
     return {
+      model:null,
       loading:false,
       error:false,
       forget:false,
