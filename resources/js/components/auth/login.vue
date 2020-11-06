@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin @sdk-init="handleSdkInit" v-model="model" app-id="3392800034173345"></VFacebookLogin>
+                              <facebookLogin @sdk-init="handleSdkInit" v-model="model" @login="getUserData" appId="3392800034173345"></facebookLogin>
                           </div>
 
                       </form>
@@ -126,6 +126,9 @@ export default {
     }
   },
   methods: {
+    getUserData(data) {
+      console.log(data)
+    },
 
     handleSdkInit({ FB, scope }) {
         this.FB = FB
