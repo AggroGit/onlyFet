@@ -105,7 +105,7 @@ export default {
   data(){
     return {
       model:null,
-      optionsFB:null,
+      optionsFB: 'email',
       loading:false,
       error:false,
       forget:false,
