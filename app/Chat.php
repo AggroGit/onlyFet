@@ -34,7 +34,7 @@ class Chat extends Model
     // users in the chat
     public function users()
     {
-      return $this->belongsToMany('App\User', 'chats_users')->withPivot('blocked','hidden');
+      return $this->belongsToMany('App\User', 'chats_users')->withPivot('blocked','hidden')->without(['plans','notifications','plans']);
     }
 
     // the last message sended in the chat
