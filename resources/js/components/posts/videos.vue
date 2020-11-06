@@ -161,19 +161,34 @@ export default {
     },
     giveMeOptions(media) {
       return {
-
-        height: '360',
-          autoplay: false,
+          height: '360',
+          autoplay: true,
           muted: true,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
             // mp4
-             src: media.path,
+            src: "http://vjs.zencdn.net/v/oceans.mp4",
             // webm
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
           }],
+
+        // height: '360',
+        //   autoplay: false,
+        //   muted: true,
+        //   language: 'en',
+        //   playbackRates: [0.7, 1.0, 1.5, 2.0],
+        //   sources: [{
+        //     type: "video/mp4",
+        //     // mp4
+        //      src: media.path,
+        //     // webm
+        //     // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+        //   }],
+
+
+
 
 
         // autoplay: false,
