@@ -65,17 +65,28 @@
                               </router-link>
                           </div>
 
-                          <!-- FACEBOOK -->
-                          <div class="form-group row ">
-                              <facebookLogin @sdk-init="handleSdkInit" :loginOptions="optionsFB" v-model="model" @login="getUserData" appId="3392800034173345"></facebookLogin>
-                          </div>
+
 
                       </form>
+
+                      <!-- FACEBOOK -->
+
+                      <div class="form-group row ">
+                           <v-facebook-login v-model="model" @sdk-init="handleSdkInit" />
+                      </div>
+
+
+
+
+
+
                   </div>
               </div>
           </div>
       </div>
       {{model}}
+      {{FB}}
+      {{scope}}
 
       <br>
       {{FB}}
@@ -106,9 +117,12 @@
 export default {
   data(){
     return {
-      asd:"asd",
-      model:null,
-      optionsFB:{scope:'email'},
+
+      //FACEBOOK
+      FB: {},
+      model: {},
+      scope: {},
+
       loading:false,
       error:false,
       forget:false,
@@ -126,16 +140,6 @@ export default {
     }
   },
   methods: {
-    getUserData(data) {
-      console.log(data)
-    },
-
-    handleSdkInit({ FB, scope }) {
-        this.FB = FB
-        this.scope = scope
-      },
-
-
 
 
 
