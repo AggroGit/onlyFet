@@ -28,7 +28,6 @@
               <video-player
                                 v-else
                                 :options="giveMeOptions(image)"
-                                 oncontextmenu="return false;"
                                 :controlsList="'nodownload'"
                                 class="video">
 
