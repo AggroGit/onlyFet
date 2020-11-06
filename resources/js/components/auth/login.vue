@@ -72,7 +72,7 @@
                       <!-- FACEBOOK -->
 
                       <div class="form-group row ">
-                           <v-facebook-login v-model="model" @sdk-init="handleSdkInit" />
+                           <v-facebook-login v-model="model" @sdk-init="handleSdkInit" app-id="3392800034173345" />
                       </div>
 
 
