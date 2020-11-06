@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin :login-options="optionsFB" v-model="model" app-id="3392800034173345"></VFacebookLogin>
+                              <VFacebookLogin  @sdk-init="handleSdkInit" v-model="model" app-id="3392800034173345"></VFacebookLogin>
                           </div>
 
                       </form>
@@ -104,8 +104,9 @@
 export default {
   data(){
     return {
-      model:null,
-      optionsFB: { scope: 'email' },
+      FB: {},
+      model: {},
+      scope: {},
       loading:false,
       error:false,
       forget:false,
