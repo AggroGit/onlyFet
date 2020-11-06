@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin  v-model="model" app-id="3392800034173345"></VFacebookLogin>
+                              <VFacebookLogin :login-options="optionsFB" v-model="model" app-id="3392800034173345"></VFacebookLogin>
                           </div>
 
                       </form>
@@ -76,6 +76,8 @@
           </div>
       </div>
       {{model}}
+      <br>
+      {{optionsFB}}
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
@@ -103,6 +105,7 @@ export default {
   data(){
     return {
       model:null,
+      optionsFB:null,
       loading:false,
       error:false,
       forget:false,
@@ -187,6 +190,31 @@ export default {
       // finally
       .finally(() => this.loading = false,self.forget = false)
 
+    },
+
+
+    // FACEBOOK
+    getUserData() {
+    this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+      user => {
+          this.personalID = user.id;
+          this.email = user.email;
+          this.name = user.name;
+          this.picture = user.picture.data.url;
+        }
+      )
+    },
+    sdkLoaded(payload) {
+      this.isConnected = payload.isConnected
+      this.FB = payload.FB
+      if (this.isConnected) this.getUserData()
+    },
+    onLogin() {
+      this.isConnected = true
+      this.getUserData()
+    },
+    onLogout() {
+      this.isConnected = false;
     }
 
 
