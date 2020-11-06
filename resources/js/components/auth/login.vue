@@ -77,7 +77,7 @@
       </div>
       {{model}}
       <br>
-      {{optionsFB}}
+      {{options}}
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
@@ -104,9 +104,8 @@
 export default {
   data(){
     return {
-      FB: {},
-      model: {},
-      scope: {},
+      model:null,
+      optionsFB:null,
       loading:false,
       error:false,
       forget:false,
@@ -194,7 +193,21 @@ export default {
     },
 
 
-    // FACEBOOK
+    // FACEBOOKç
+
+    handleSdkInit({ FB, scope }) {
+        this.FB = FB
+        this.scope = scope
+        this.getUserData()
+      },
+
+
+
+
+
+
+
+
     getUserData() {
     this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
       user => {
