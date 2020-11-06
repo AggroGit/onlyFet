@@ -108,7 +108,7 @@ export default {
     return {
       asd:"asd",
       model:null,
-      optionsFB:{scope:'email,name'},
+      optionsFB:{scope:'email'},
       loading:false,
       error:false,
       forget:false,

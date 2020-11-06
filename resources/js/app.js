@@ -16,9 +16,8 @@ import Echo from 'laravel-echo';
 
 
 
-import facebookLogin from 'facebook-login-vuejs';
 
-// import VFacebookLogin from 'vue-facebook-login-component'
+import VFacebookLogin from 'vue-facebook-login-component'
 import VueRouter from 'vue-router'
 import InputTag from 'vue-input-tag'
 import VueCookies from 'vue-cookies'
@@ -59,7 +58,7 @@ import './ml.js' // idiomas
 
 Vue.use(vClickOutside)
 //
-Vue.component('facebookLogin', facebookLogin)
+Vue.component('VFacebookLogin', VFacebookLogin)
 //
 Vue.use(VueEditor)
 
