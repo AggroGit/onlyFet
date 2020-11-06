@@ -142,6 +142,12 @@ export default {
   methods: {
 
 
+    handleSdkInit({ FB, scope }) {
+       this.FB = FB
+       this.scope = scope
+     },
+
+
 
 
 
