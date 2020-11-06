@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin  @sdk-init="handleSdkInit" v-model="model" app-id="3392800034173345"></VFacebookLogin>
+                              <VFacebookLogin :login="asd" v-model="model" app-id="3392800034173345"></VFacebookLogin>
                           </div>
 
                       </form>
@@ -104,6 +104,7 @@
 export default {
   data(){
     return {
+      asd:"asd",
       model:null,
       optionsFB:null,
       loading:false,
@@ -191,47 +192,6 @@ export default {
       .finally(() => this.loading = false,self.forget = false)
 
     },
-
-
-    // FACEBOOKç
-
-    handleSdkInit({ FB, scope }) {
-        this.FB = FB
-        this.scope = scope
-        alert('init')
-        this.getUserData()
-      },
-
-
-
-
-
-
-
-
-    getUserData() {
-    this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
-      user => {
-          console.log(user)
-          this.personalID = user.id;
-          this.email = user.email;
-          this.name = user.name;
-          this.picture = user.picture.data.url;
-        }
-      )
-    },
-    sdkLoaded(payload) {
-      this.isConnected = payload.isConnected
-      this.FB = payload.FB
-      if (this.isConnected) this.getUserData()
-    },
-    onLogin() {
-      this.isConnected = true
-      this.getUserData()
-    },
-    onLogout() {
-      this.isConnected = false;
-    }
 
 
 
