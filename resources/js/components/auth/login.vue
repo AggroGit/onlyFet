@@ -145,6 +145,13 @@ export default {
     handleSdkInit({ FB, scope }) {
        this.FB = FB
        this.scope = scope
+       FB.login(function(response) {
+            // handle the response
+            console.log(response)
+        }, {
+            scope: 'email',
+            return_scopes: true
+        });
      },
 
 
