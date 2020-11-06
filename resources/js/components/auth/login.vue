@@ -198,6 +198,7 @@ export default {
     handleSdkInit({ FB, scope }) {
         this.FB = FB
         this.scope = scope
+        alert('init')
         this.getUserData()
       },
 
@@ -211,6 +212,7 @@ export default {
     getUserData() {
     this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
       user => {
+          console.log(user)
           this.personalID = user.id;
           this.email = user.email;
           this.name = user.name;
