@@ -25,31 +25,15 @@
                 alt="image slot"
               >
 
-              <!-- <video-player
+              <video-player
                                 v-else
                                 :options="giveMeOptions(image)"
                                  oncontextmenu="return false;"
                                 :controlsList="'nodownload'"
                                 class="video">
 
-               </video-player> -->
+               </video-player>
 
-               <video-player  class="vjs-custom-skin"
-                        ref="videoPlayer"
-                        :options="playerOptions"
-                        :playsinline="true"
-                        @play="onPlayerPlay($event)"
-                        @pause="onPlayerPause($event)"
-                        @ended="onPlayerEnded($event)"
-                        @loadeddata="onPlayerLoadeddata($event)"
-                        @waiting="onPlayerWaiting($event)"
-                        @playing="onPlayerPlaying($event)"
-                        @timeupdate="onPlayerTimeupdate($event)"
-                        @canplay="onPlayerCanplay($event)"
-                        @canplaythrough="onPlayerCanplaythrough($event)"
-                        @ready="playerReadied"
-                        @statechanged="playerStateChanged($event)">
-         </video-player>
 
 
 
@@ -98,22 +82,7 @@ export default {
       user:null,
       auth:this.$store.state.auth,
       total:1,
-      scrolling:false,
-      playerOptions: {
-         height: '360',
-         autoplay: false,
-         muted: true,
-         language: 'en',
-         playbackRates: [0.7, 1.0, 1.5, 2.0],
-         sources: [{
-           type: "video/mp4",
-           // mp4
-           src: "http://vjs.zencdn.net/v/oceans.mp4",
-           // webm
-           // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-         }],
-         poster: "https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg",
-       }
+      scrolling:false
 
 
     }
@@ -189,18 +158,19 @@ export default {
     giveMeOptions(media) {
       return {
         autoplay: false,
-        // muted: true,
-        language: this.$store.state.auth.lang,
-        height: '200px',
-        width:'100%',
-        playbackRates: [],
-        sources: [{
-          type: "video/"+media.format,
-          // mp4
-          src: media.path,
-          // webm
-          // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-        }],
+        height: '360',
+         autoplay: true,
+         muted: true,
+         language: 'en',
+         playbackRates: [0.7, 1.0, 1.5, 2.0],
+         sources: [{
+           type: "video/mp4",
+           // mp4
+           src: "http://vjs.zencdn.net/v/oceans.mp4",
+           // webm
+           // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+         }],
+         poster: "https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg",
         // poster: "/iconos/video.png",
       }
     },
