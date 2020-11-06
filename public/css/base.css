@@ -425,6 +425,9 @@ input {
   height: 100%;
   margin: auto;
 }
+.enMenuProfile {
+  margin: auto !important; 
+}
 
 .ContieneDatosperfil {
   /* display: flex; */
