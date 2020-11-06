@@ -53,7 +53,7 @@
           </div>
         </div> -->
         <div class="MenuMob" v-bind:class="{ open: open }" @click="AbrirCerrar()">
-          <div class="ContienePerfilNav down-3">
+          <div class="ContienePerfilNav container down-3">
             <div class="ContieneOpcionCerrar" @click="AbrirCerrar()">
               <b-icon @click="AbrirCerrar()" font-scale="2" style="color:black;" icon="x" aria-hidden="true" class="icon"></b-icon>
             </div>
