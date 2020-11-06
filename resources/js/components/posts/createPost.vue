@@ -9,7 +9,7 @@
             <h3 class="down-4">{{$ml.get('post').posting}}</h3>
           </div>
 
-          <div v-bind:class="{ invisible: loading }" >
+          <form v-bind:class="{ invisible: loading }" @submit.stop.prevent="post()" >
 
             <!-- <div class="contieneInputPost"> -->
               <!-- <picture-input ></picture-input> -->
@@ -40,7 +40,7 @@
             <div class="form-group row down-2">
               <div class="col-md-12 contieneInput">
                   <label for="post" class="entrada detextarea" >{{$ml.get('post').post}}</label>
-                  <textarea ref="content" @keyup="detectPeople()" v-model="form.content" rows="5"  name="post" class="form-control" required autocomplete="off" autofocus="true"></textarea>
+                  <textarea ref="content" @keyup="detectPeople()" required v-model="form.content" rows="5"  name="post" class="form-control"  autocomplete="off" autofocus="true"></textarea>
               </div>
                 <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
             </div>
@@ -64,7 +64,7 @@
             <div class="form-group row down-2">
               <div class="col-md-12 contieneInput">
                   <label for="hastags" class=" entrada labelHastags" >Hastags</label>
-                  <input-tag  v-model="form.hastags" add-tag-on-keys="" name="hastags"  class="form-control inuttags" required autocomplete="off" ></input-tag>
+                  <input-tag :before-adding="QuitHastag()" :add-tag-on-keys="validarTags()" v-model="form.hastags" name="hastags"  class="form-control inuttags" required autocomplete="off" ></input-tag>
               </div>
             </div>
 
@@ -90,13 +90,13 @@
 
             <div class="form-group row down-2">
                 <div class="col-md-12 offset-md-12">
-                    <button @click="post()" class="btn btn-primary boton">
+                    <button type="submit" class="btn btn-primary boton">
                         {{$ml.get('post').publy}}
                         <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     </button>
                 </div>
             </div>
-          </div>
+          </form>
 
 
 
@@ -146,6 +146,12 @@ export default {
     console.log(window.name);
   },
   methods: {
+    validarTags() {
+      return [13,188,32]
+    },
+    QuitHastag() {
+      // alert(tag)
+    },
     post() {
       //
       var hastags = (this.form.hastags)
