@@ -45,6 +45,7 @@
                          :options="giveMeOptions(media)"
                          :playsinline="false"
                          @play="onPlayerPlay($event)"
+                         @click="Play()"
                          @pause="onPlayerPause($event)"
                          @ended="onPlayerEnded($event)"
                          @loadeddata="onPlayerLoadeddata($event)"
@@ -232,6 +233,9 @@ console.log(this.post)
         console.log('example player 1 readied', player)
         player.currentTime(10)
         // console.log('example 01: the player is readied', player)
+      },
+      Play() {
+        alert('hey')
       }
 
     }
