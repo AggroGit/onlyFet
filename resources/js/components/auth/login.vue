@@ -77,7 +77,7 @@
       </div>
       {{model}}
       <br>
-      {{options}}
+      {{email}}
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
