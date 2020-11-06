@@ -16,7 +16,7 @@
 
         <!-- <div class="container"> -->
           <div v-for="(image) in this.posts" :key="image.id"  class=" col-md-6 down-4">
-            <div class="ContieneVideoGrid">
+            <div class="ContieneVideoGrid" @click="asd()">
 
               <img
                 class="imagenCompleta"
@@ -26,7 +26,7 @@
               >
 
               <video-player
-                                @click="asd()"
+
                                 v-else
                                 :options="giveMeOptions(image)"
                                  oncontextmenu="return false;"
