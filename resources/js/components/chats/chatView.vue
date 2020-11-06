@@ -27,9 +27,9 @@
 
       <div v-for="(message) in this.messages" :key="message.id" class="Mensaje" v-bind:class="ifisMe(message)">
         <div class="globoMensaje">
-          <div v-if="message.image" class="imageChat">
+          <router-link  :to="chat+'/'+message.image.name" v-if="message.image" class="imageChat">
             <img :src="message.image.sizes.NotSmall" alt="">
-          </div>
+          </router-link>
           <p>{{message.message}}</p>
         </div>
 

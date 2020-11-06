@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Message;
+use App\Image;
 use App\Chat;
 
 class ChatsController extends Controller
@@ -36,6 +37,14 @@ class ChatsController extends Controller
     public function chats()
     {
       return $this->correct(auth()->user()->chats);
+    }
+
+    public function image($chat_id,$image_name)
+    {
+      if($image = Image::where('name',$image_name)->first()) {
+        return $this->correct($image);
+      }
+      return $this->incorrect();
     }
 
 

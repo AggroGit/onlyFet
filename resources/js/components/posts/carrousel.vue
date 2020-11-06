@@ -43,7 +43,7 @@
                          ref="videoPlayer"
                          v-else
                          :options="giveMeOptions(media)"
-                         :playsinline="true"
+                         :playsinline="false"
                          @play="onPlayerPlay($event)"
                          @pause="onPlayerPause($event)"
                          @ended="onPlayerEnded($event)"
@@ -120,9 +120,14 @@
 console.log('AQUI')
 console.log(this.post)
     },
-    premium() {
-      alert(this.$ml.get('stripe').onlyPremium)
+    computed: {
+      player() {
+        return this.$refs.videoPlayer.player;
+      }
     },
+    // premium() {
+    //   alert(this.$ml.get('stripe').onlyPremium)
+    // },
     methods: {
       onSlideStart(slide) {
         this.sliding = true

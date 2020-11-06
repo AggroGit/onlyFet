@@ -21,5 +21,6 @@
       Route::post('{chat_id}/messages',     'ChatsController@messages');
       Route::post('{chat_id}/block',        'ChatsController@block');
       Route::post('{chat_id}/unblock',      'ChatsController@unblock');
+      Route::post('{chat_id}/{image_name}', 'ChatsController@image');
 
     });

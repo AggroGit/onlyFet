@@ -318,6 +318,7 @@ input {
 .imageChat {
   min-width: 100px;
   height: auto;
+  display: flex;
 }
 .imageChat > img {
   width: 100%;
@@ -446,7 +447,7 @@ input {
   color:white;
   position: absolute;
   margin-top: -30px;
-  z-index: 999999;
+  z-index: 10002;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -1095,4 +1096,7 @@ margin: 20px;
   width: 100vw;
   max-width: 400px;
   margin: auto;
+}
+.open {
+  z-index: 10003 !important;
 }

@@ -155,6 +155,9 @@ Vue.component('inicio',  require('./components/main.vue').default);
 //
 Vue.component('imageView',  require('./components/posts/image.vue').default);
 //
+Vue.component('imageChat',  require('./components/chats/image.vue').default);
+
+//
 Vue.component('propina',  require('./components/propina.vue').default);
 //
 Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
@@ -266,6 +269,8 @@ const auth = function(to, from, next) {
  //
  {path: '/chats',         component: Vue.component('chatsList'),beforeEnter: multiguard([auth])},
  {path: '/chats/:id',     component: Vue.component('chatView'),beforeEnter: multiguard([auth])},
+ {path: '/chats/:id/:image_name',     component: Vue.component('imageChat'),beforeEnter: multiguard([auth])},
+
  // {path: '/full/chats',    component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
  // {path: '/full/chats/:id',component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
 
