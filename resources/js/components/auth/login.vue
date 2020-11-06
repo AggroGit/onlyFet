@@ -65,6 +65,11 @@
                               </router-link>
                           </div>
 
+                          <!-- FACEBOOK -->
+                          <div class="form-group row ">
+                              <VFacebookLogin app-id="3392800034173345"></VFacebookLogin>
+                          </div>
+
                       </form>
                   </div>
               </div>
