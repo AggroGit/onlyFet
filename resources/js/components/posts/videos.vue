@@ -16,7 +16,7 @@
 
         <!-- <div class="container"> -->
           <div v-for="(image) in this.posts" :key="image.id"  class=" col-md-6 down-4">
-            <div class="ContieneVideoGrid" @click="asd()">
+            <div class="ContieneVideoGrid" >
 
               <img
                 class="imagenCompleta"
@@ -155,9 +155,6 @@ export default {
 
         }
       }
-    },
-    asd() {
-      alert('hey')
     },
     giveMeOptions(media) {
       return {
