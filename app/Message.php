@@ -11,7 +11,7 @@ use App\Message;
 class Message extends Model
 {
 
-    protected $with = ['user','image'];
+    protected $with = ['image'];
 
     protected $fillable = [
       'chat_id'

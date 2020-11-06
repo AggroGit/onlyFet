@@ -41,6 +41,7 @@ class Chat extends Model
     public function getLastMessageAttribute()
     {
       return $this->messages()
+                  ->with('user')
                   ->first();
     }
 
