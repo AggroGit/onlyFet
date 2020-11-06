@@ -28,10 +28,9 @@
       <!-- <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide> -->
 
       <!-- Slides with img slot -->
-      <b-carousel-slide v-for="(media) in this.post.videos" :key="media.id" img-blank img-alt="Blank image">
+      <b-carousel-slide v-for="(media) in this.post.videos" :key="media.id" @click="asd()" img-blank img-alt="Blank image">
         <template #img>
         <img
-          @click="premium()"
           class="imagenCompleta"
           :src="'/iconos/video.png'"
           v-if="!post.user.canSee"
@@ -45,7 +44,7 @@
                          :options="giveMeOptions(media)"
                          :playsinline="false"
                          @play="onPlayerPlay($event)"
-                         @click="Play()"
+
                          @pause="onPlayerPause($event)"
                          @ended="onPlayerEnded($event)"
                          @loadeddata="onPlayerLoadeddata($event)"
@@ -234,7 +233,7 @@ console.log(this.post)
         player.currentTime(10)
         // console.log('example 01: the player is readied', player)
       },
-      Play() {
+      asd() {
         alert('hey')
       }
 
