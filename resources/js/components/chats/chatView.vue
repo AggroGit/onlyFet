@@ -24,7 +24,6 @@
 
     <!-- MENSAJES -->
     <div v-if="!this.loading" class="ContieneMensajes contenedor" ref="messageDisplay">
-
       <div v-for="(message) in this.messages" :key="message.id" class="Mensaje" v-bind:class="ifisMe(message)">
         <div class="globoMensaje">
           <router-link  :to="chat+'/'+message.image.name" v-if="message.image" class="imageChat">
@@ -32,17 +31,8 @@
           </router-link>
           <p>{{message.message}}</p>
         </div>
-
-
         <small>{{message.fecha}}</small>
       </div>
-
-      <!-- <div class="containsTyping">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div> -->
-
     </div>
 
 
