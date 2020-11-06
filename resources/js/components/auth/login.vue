@@ -67,7 +67,7 @@
 
                           <!-- FACEBOOK -->
                           <div class="form-group row ">
-                              <VFacebookLogin :login="asd" v-model="model" app-id="3392800034173345"></VFacebookLogin>
+                              <VFacebookLogin @sdk-init="handleSdkInit" v-model="model" app-id="3392800034173345"></VFacebookLogin>
                           </div>
 
                       </form>
@@ -76,8 +76,10 @@
           </div>
       </div>
       {{model}}
+
       <br>
-      {{email}}
+      {{FB}}
+      <br>
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
@@ -124,6 +126,23 @@ export default {
     }
   },
   methods: {
+
+    handleSdkInit({ FB, scope }) {
+        this.FB = FB
+        this.scope = scope
+      },
+
+
+
+
+
+
+
+
+
+
+
+
 
     // call to login sesion
     login() {
