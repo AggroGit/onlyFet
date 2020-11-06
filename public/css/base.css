@@ -426,7 +426,7 @@ input {
   margin: auto;
 }
 .enMenuProfile {
-  margin: auto !important; 
+  margin: auto !important;
 }
 
 .ContieneDatosperfil {
@@ -995,6 +995,7 @@ height: 100% !important;
     top: 0;
     right: 0;
     margin: 10px; */
+    text-align: right !important;
 }
 .open {
 
