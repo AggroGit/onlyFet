@@ -244,12 +244,15 @@ giveMeRoute(noti) {
     return "/chats/"+noti.data
   }
   if(noti.type == "publication") {
-    return "/post/"+noti.data+"/coments"
+    return "/post/"+noti.data
   }
   if(noti.type == "like") {
     return "/post/"+noti.data
   }
   if(noti.type == "propina") {
+    return "/user/"+noti.data
+  }
+  if(noti.type == "suscription") {
     return "/user/"+noti.data
   }
   return "";
