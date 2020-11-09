@@ -47,7 +47,7 @@ export default {
         return "/user/"+this.data.data
       }
       else {
-        return ""
+        return "/novedades/suscriptions"
       }
     }
   }
