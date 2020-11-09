@@ -31,6 +31,7 @@ img {
   transition: all 0.3s ease;
   max-width: 800px !important;
   margin: auto !important;
+  width: 100%;
 }
 .removing {
   transition: all 0.3s ease;
