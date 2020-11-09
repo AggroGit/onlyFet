@@ -37,7 +37,13 @@ export default {
       if(this.data.type == "like") {
         return "/post/"+this.data.data
       }
+      if(this.data.type == "comment") {
+        return "/post/"+this.data.data
+      }
       if(this.data.type == "propina") {
+        return "/user/"+this.data.data
+      }
+      if(this.data.type == "suscription") {
         return "/user/"+this.data.data
       }
       else {
