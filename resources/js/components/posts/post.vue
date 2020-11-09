@@ -104,8 +104,9 @@ export default {
         this.id = this.post_id
         this.data = this.datos
         this.loading = false
+        this.liked = this.datos.haveLiked
       }
-      this.liked = this.data.haveLiked
+
     },
     getPost() {
       var self = this
