@@ -127,7 +127,7 @@ class Plan extends Model
         }
         // notificación
         $interval = $this->getInterval($this->payForEvery);
-        $user->send([
+        $this->user->send([
           "title"   => auth()->user()->name,
           "body"    => "New Suscriber for ".$interval." months",
           "type"    => "suscription",
