@@ -47,8 +47,6 @@ class Plan extends Model
       $this->save();
       $new->save();
       $this->delete();
-      // ahora deberiamos actualizar a todos sus usuarios
-      // PENDING
     }
 
     public function getRestAttribute()
