@@ -8,7 +8,7 @@
             max-width: 200px;
             width: 100%;
             margin: auto;
-            " src="{{asset('/logos/merco.png')}}" alt="">
+            " src="{{asset('/logo.png')}}" alt="">
           </div>
           <br>
             <div class="col-md-12 text-center">
