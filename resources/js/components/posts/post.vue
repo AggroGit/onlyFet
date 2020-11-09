@@ -100,7 +100,7 @@ export default {
         // debemos obtener la info del post
         this.getPost();
       } else {
-
+        console.log(this.datos)
         this.id = this.post_id
         this.data = this.datos
         this.loading = false
