@@ -131,7 +131,7 @@ class Plan extends Model
           "title"   => auth()->user()->name,
           "body"    => "New Suscriber for ".$interval." months",
           "type"    => "suscription",
-          "data"    => $this->chat->id,
+          "data"    => $this->user->id,
           "sound"   => "default",
         ]);
         // add to plans
