@@ -162,7 +162,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Image::where('user_id',$user->id)->whereNotIn('post_id',$publis)->paginate(20)
+          "images" => Image::where('user_id',$user->id)->orderBy('created_at')->whereNotIn('post_id',$publis)->paginate(20)
         ]);
 
       }
