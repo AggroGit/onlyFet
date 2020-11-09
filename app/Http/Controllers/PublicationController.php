@@ -174,7 +174,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Video::where('user_id',$user->id)->get()
+          "images" => Video::where('user_id',$user->id)->orderBy('created_at','desc')->get()
         ]);
 
       }
