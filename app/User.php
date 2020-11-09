@@ -239,7 +239,7 @@ class User extends Authenticatable
         "text"          => "Hi $this->name. Your suscription to $userplan->nickname has been updated to $plan->price € every $months months",
         "option"        => [
           'text'  =>  "$userplan->nickname",
-          'url'   =>  url('/user/').$userplan->nickname
+          'url'   =>  url("/user/$userplan->nickname")
         ]
       ];
       sendMail::dispatch(new BasicMail($data),$this->email);
