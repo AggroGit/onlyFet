@@ -26,7 +26,7 @@ class ProfilesController extends Controller
       }
       // populares
       if($request->orderBy == "populars") {
-        $users = $users->orderBy('numSuscriptions');
+        $users = $users->orderBy('numSuscriptions','DESC');
         // $this->correct($users->get());
       }
       // nuevos
