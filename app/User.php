@@ -229,7 +229,7 @@ class User extends Authenticatable
       return $this->hasMany('App\Plan');
     }
 
-    public function FunctionName($plan)
+    public function notifyChangedPlan($plan)
     {
       $userplan = $plan->user;
       $months = $plan->getInterval($plan->payForEvery);
