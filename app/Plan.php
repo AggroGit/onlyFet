@@ -25,14 +25,25 @@ class Plan extends Model
       $new->payForEvery = $key;
       $new->price = $suscriptions;
       $new->oldPrice = $this->price;
-      $new->user_id = auth()->user()->id;
+      $new->user_id = $this->user->id;
       $new->save();
       // ahora en stripe
       if($id = $new->createNewPlanStripe()) {
         $new->previuous_stripe_id = $this->stripe_tarifa_id;
         $new->stripe_tarifa_id = $id;
       }
-      //
+      // ahora debemos ir usuario a usuario y cmabiarle el plan
+      foreach ($this->usersSuscribed as $suscriber) {
+        // lo añadimos al plan nuevo
+        $new->usersSuscribed()->save($suscriber);
+        // lo actualizamos de cara a Stripe
+        $suscriber->subscription('default',$this->stripe_tarifa_id)->swap($new->stripe_tarifa_id);
+        // ahora lo quitamos
+        $this->usersSuscribed()->detach($suscriber);
+        // lo notificamos
+        $suscriber->notifyChangedPlan($new);
+      }
+
       $this->save();
       $new->save();
       $this->delete();

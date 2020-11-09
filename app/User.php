@@ -229,6 +229,24 @@ class User extends Authenticatable
       return $this->hasMany('App\Plan');
     }
 
+    public function FunctionName($plan)
+    {
+      $userplan = $plan->user;
+      $months = $plan->getInterval($plan->payForEvery);
+      $data = [
+        "title"         => "Updated Plan ",
+        "logoInTitle"   => true,
+        "text"          => "Hi $this->name. Your suscription to $userplan->nickname has been updated to $plan->price every $months months",
+        "option"        => [
+          'text'  =>  "$userplan->nickname",
+          'url'   =>  url('/user/').$userplan->nickname
+        ]
+      ];
+      sendMail::dispatch(new BasicMail($data),$this->email);
+      $this->remember_token = $token;
+      $this->save();
+    }
+
     // on delete make the cascade
     public function delete()
     {
@@ -237,4 +255,6 @@ class User extends Authenticatable
         $this->notifications()->delete();
         return parent::delete();
     }
+
+
 }
