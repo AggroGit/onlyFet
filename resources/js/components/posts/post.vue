@@ -119,7 +119,7 @@ export default {
        .then(function (response)  {
          if(response.data.rc == 1) {
            self.data=response.data.data
-           self.liked = true
+           self.liked = response.data.data.haveLiked
 
          }
          if(response.data.rc == 1500) {
