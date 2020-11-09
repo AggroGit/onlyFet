@@ -25,7 +25,7 @@ use App\Navy\Enterprise;
 // Route::get('/home',                   'HomeController@start');
 // Route::get('/success',                 'HomeController@sucess');
 Route::any('/forget',                       'Auth\AuthController@requestChangePassword');
-Route::get('/password',                       'Auth\AuthController@forgetView');
+Route::any('/password',                       'Auth\AuthController@forgetView');
 
 // RRSS
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
