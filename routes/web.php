@@ -25,6 +25,10 @@ use App\Navy\Enterprise;
 // Route::get('/home',                   'HomeController@start');
 // Route::get('/success',                 'HomeController@sucess');
 
+// RRSS
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('social.callback');
+
 
 // Route::get('home',     'HomeController@index');
 Route::get('/{any}',        'HomeController@index')->where('any', '.*');

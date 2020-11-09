@@ -74,7 +74,43 @@
                                     </button>
                                 </div>
                             </div>
-                          </form>
+
+                            </form>
+
+
+                            <div  class="form-group row contieneSeparadorRRSS down-2">
+                                <div class="separadorRRSS"></div>
+                            </div>
+
+                            <!-- FACEBOOK -->
+                            <div class="form-group row ">
+                                <a href="/login/facebook" class="col-md-12 offset-md-12">
+                                    <button class="btn btn-primary boton facebook">
+                                        Register with Facebook
+                                        <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <!-- Google -->
+                            <div  class="form-group row ">
+                                <a disabled href="/login/google" class="col-md-12 offset-md-12">
+                                    <button class="btn btn-primary boton Google">
+                                        Register with Google
+                                        <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <div  class="form-group row contieneSeparadorRRSS down-2">
+                                <div class="separadorRRSS"></div>
+                            </div>
+
+
+
+
+
+
 
 
                           <div v-if="!this.temporal.status" class="form-group row ">

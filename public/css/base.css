@@ -1105,3 +1105,18 @@ margin: 20px;
 .open {
   z-index: 10003 !important;
 }
+.facebook {
+  background: #2975e7 !important;
+}
+.Google {
+  background: #dd4c39 !important;
+}
+.contieneSeparadorRRSS {
+  display: flex;
+}
+.separadorRRSS {
+  width: 90%;
+  margin: auto;
+  height: 0.6px;
+  background: #dedede;
+}

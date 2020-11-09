@@ -33,7 +33,7 @@ class Message extends Model
 
     public function user()
     {
-      return $this->belongsTo('App\User')->without('image','plans','notifications');
+      return $this->belongsTo('App\User')->without(['image','plans','notifications']);
     }
 
     // the image of the message

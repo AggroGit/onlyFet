@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surnames', 'email', 'password', 'device_token','social_name','social_token','nickname','country','description'
+        'name','surnames', 'email', 'password', 'device_token','social_name','social_token','nickname','country','description', 'provider'
     ];
 
     /**
@@ -167,6 +167,11 @@ class User extends Authenticatable
 
         ];
         return $response;
+      } else {
+        $tokenResult = $this->createToken('Personal Access Token');
+        return [
+          'access_token' => $tokenResult->accessToken,
+        ];
       }
     }
 

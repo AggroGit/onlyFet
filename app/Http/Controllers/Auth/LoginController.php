@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
+use Hash;
+use Socialite;
+use Str;
+use App\User;
+use App\Image;
 
 class LoginController extends Controller
 {
@@ -37,4 +44,82 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectToProvider($provider) {
+      return Socialite::driver($provider)->stateless()->redirect();
+    }
+
+    // logea al usuario pero no por el método tradicional,
+    public function loginWithToken(User $user)
+    {
+      // dd($user->creteTokenUser());
+      $token = $user->creteTokenUser()['access_token'];
+      // dd($token);
+      // ponemos el token
+      setcookie('token', $token, time() + (86400 * 30), "/");
+      //
+      return redirect('/');
+    }
+
+  public function handleProviderCallback($provider, Request $request)
+  {
+
+    // Obtenemos los datos del usuario
+    $social_user = Socialite::driver($provider)->stateless()->user();
+    // dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
+    // debemos ver si existe usuario o no,
+    // si existe ->  login
+    // si no existe-> creamos user y login
+    if(!$user = User::where('email',$social_user->email)->first()) {
+      // lo creamos
+      // creamos el usuario
+      $user = User::create([
+            'name'      => $social_user->getName(),
+            'email'     => $social_user->getEmail(),
+            'password'  => Hash::make(Str::random(24)),
+            'provider'  => $provider
+          ]);
+      // profile Image
+      if($social_user->avatar_original !== null) {
+        $image = new Image();
+        $image->createFromUrl($social_user->avatar_original,"user");
+        $image->save();
+        $user->image_id = $image->id;
+      }
+      $user->save();
+      $user->nickname  = str_replace(' ', '',   $user->name.$user->id);
+      $user->save();
+      // si influencer
+      if($request->influencer == true) {
+        $user->influencerEmail();
+      }
+
+    }
+    return $this->loginWithToken($user);
+
+
+    // if ($user = User::where('email', $social_user->email)->first()) {
+    //   return $this->authAndRedirect($user); // Login y redirección
+    // } else {
+    //    // add user to database
+    //     if ($social_user->getName()==null) {
+    //       $social_user->name = $social_user->nickname;
+    //     }
+    //     $user = User::create([
+    //       // 'token' => $user->token;
+    //       'name' => $social_user->getName(),
+    //       'email' => $social_user->getEmail(),
+    //       'password' => Hash::make(Str::random(24)),
+    //       'avatar' => $social_user->avatar,
+    //       'provider' => $provider
+    //     ]);
+    //     return $this->authAndRedirect($user); // Login y redirección
+    // }
+  }
+
+  // Login y redirección
+  public function authAndRedirect($user) {
+    Auth::login($user);
+    return redirect($this->redirectTo);
+  }
 }

@@ -69,11 +69,33 @@
 
                       </form>
 
-                      <!-- FACEBOOK -->
 
-                      <div class="form-group row ">
-                           <v-facebook-login v-model="model" @sdk-init="handleSdkInit" app-id="3392800034173345" />
+                      <div  class="form-group row contieneSeparadorRRSS down-2">
+                          <div class="separadorRRSS"></div>
                       </div>
+
+                      <!-- FACEBOOK -->
+                      <div class="form-group row ">
+                          <a href="/login/facebook" class="col-md-12 offset-md-12">
+                              <button class="btn btn-primary boton facebook">
+                                  Login with Facebook
+                                  <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                              </button>
+                          </a>
+                      </div>
+
+                      <!-- Google -->
+                      <div  class="form-group row ">
+                          <a disabled href="/login/google" class="col-md-12 offset-md-12">
+                              <button class="btn btn-primary boton Google">
+                                  Login with Google
+                                  <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                              </button>
+                          </a>
+                      </div>
+
+
+
 
 
 
@@ -84,13 +106,7 @@
               </div>
           </div>
       </div>
-      {{model}}
-      {{FB}}
-      {{scope}}
 
-      <br>
-      {{FB}}
-      <br>
 
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
