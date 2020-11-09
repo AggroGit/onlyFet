@@ -159,9 +159,9 @@ class AuthController extends Controller
 
     public function changePass(Request $request)
     {
-      if ($missings = $this->hasError($request->all(),'validation.changePass')) {
-        return redirect('/');
-      }
+      // if ($missings = $this->hasError($request->all(),'validation.changePass')) {
+      //   return redirect('/');
+      // }
       if($request->has('token') and $user = User::where('remember_token',$request->token)->first()) {
         $user->password = bcrypt($request->password);
         $user->save();
