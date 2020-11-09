@@ -45,6 +45,9 @@ export default {
     const cardButton = document.getElementById('card-button');
 
     cardButton.addEventListener('click', async (e) => {
+        if(this.loading) {
+          return true;
+        }
         // console.log(cardElement)
         const { paymentMethod, error } = await stripe.createPaymentMethod(
             'card', cardElement, {

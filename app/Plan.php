@@ -125,6 +125,15 @@ class Plan extends Model
         } catch (\Exception $e) {
           return false;
         }
+        // notificación
+        $interval = $this->getInterval($this->payForEvery);
+        $user->send([
+          "title"   => auth()->user()->name,
+          "body"    => "New Suscriber for ".$interval." months",
+          "type"    => "suscription",
+          "data"    => $this->chat->id,
+          "sound"   => "default",
+        ]);
         // add to plans
         $this->usersSuscribed()->save($user);
         // plus 1 suscriber
