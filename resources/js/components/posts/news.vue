@@ -84,14 +84,18 @@ export default {
          this.scrolledToBottom = true // replace it with your code
          if(this.scrolling== false)
          {
-            this.getPosts()
+           if(this.wall === false) {
+             this.getPosts();
+           } else {
+             this.getPostsUser();
+           }
          }
 
         }
       }
     },
     getPostsUser() {
-      console.log('KASCIAIWDISNAISIOSANDSANDLKNSADSADI SCAIOSNC')
+      console.log('POSTS OF USER')
       var self = this
       console.log(self.current)
       // alert('hey')
