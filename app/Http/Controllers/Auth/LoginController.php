@@ -66,7 +66,7 @@ class LoginController extends Controller
 
     // Obtenemos los datos del usuario
     $social_user = Socialite::driver($provider)->stateless()->user();
-    // dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
+    dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
     // debemos ver si existe usuario o no,
     // si existe ->  login
     // si no existe-> creamos user y login
@@ -97,24 +97,6 @@ class LoginController extends Controller
     }
     return $this->loginWithToken($user);
 
-
-    // if ($user = User::where('email', $social_user->email)->first()) {
-    //   return $this->authAndRedirect($user); // Login y redirección
-    // } else {
-    //    // add user to database
-    //     if ($social_user->getName()==null) {
-    //       $social_user->name = $social_user->nickname;
-    //     }
-    //     $user = User::create([
-    //       // 'token' => $user->token;
-    //       'name' => $social_user->getName(),
-    //       'email' => $social_user->getEmail(),
-    //       'password' => Hash::make(Str::random(24)),
-    //       'avatar' => $social_user->avatar,
-    //       'provider' => $provider
-    //     ]);
-    //     return $this->authAndRedirect($user); // Login y redirección
-    // }
   }
 
   // Login y redirección
