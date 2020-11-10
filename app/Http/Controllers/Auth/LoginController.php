@@ -66,7 +66,7 @@ class LoginController extends Controller
 
     // Obtenemos los datos del usuario
     $social_user = Socialite::driver($provider)->stateless()->user();
-    dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
+    // dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
     // debemos ver si existe usuario o no,
     // si existe ->  login
     // si no existe-> creamos user y login
