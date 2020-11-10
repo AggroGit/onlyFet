@@ -29,7 +29,9 @@ Route::group(['middleware' => ['auth:api','hasStripe']], function()
   Enterprise::auth();
   //
   Route::post('/main/users',  'ProfilesController@getAllUsers');
-
+  Route::post('/faqs',        'faqsConttroller@getFaqs');
   //
 });
 Route::post('/main/nologged/users',  'ProfilesController@getAllUsers');
+
+Route::post('/faqs',        'faqsConttroller@getFaqs');
