@@ -52,7 +52,7 @@ export default {
   methods: {
     getPosts() {
       var self = this
-      console.log(self.current)
+      console.log('GENERAL POSTS')
       // alert('hey')
       if(self.current<self.total && self.scrolling==false)
         self.scrolling = true
@@ -122,19 +122,19 @@ export default {
         })
       },
 
-      scroll () {
-      window.onscroll = () => {
-        let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
-        if (bottomOfWindow) {
-         this.scrolledToBottom = true // replace it with your code
-         if(this.scrolling== false)
-         {
-            this.getPosts()
-         }
-
-        }
-      }
-    }
+    //   scroll () {
+    //   window.onscroll = () => {
+    //     let bottomOfWindow = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + window.innerHeight === document.documentElement.offsetHeight
+    //     if (bottomOfWindow) {
+    //      this.scrolledToBottom = true // replace it with your code
+    //      if(this.scrolling== false)
+    //      {
+    //         this.getPosts()
+    //      }
+    //
+    //     }
+    //   }
+    // }
 
     }
   }
