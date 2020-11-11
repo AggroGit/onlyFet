@@ -95,6 +95,9 @@ export default {
       }
     },
     getPostsUser() {
+      if(this.scrolling) {
+        return true;
+      }
       console.log('POSTS OF USER')
       var self = this
       console.log(self.current)
