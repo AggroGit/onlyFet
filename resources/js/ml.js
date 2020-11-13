@@ -28,6 +28,8 @@ export default new MLCreate({
           notAvailable: "Este chat ya no está disponible"
         },
         auth: {
+          socialGoogle: "Log In con Google",
+          socialFacebook: "Log In con Google",
           recoverEmail : "Te hemos enviado un correo de recuperación",
           forget: "¿Has perdido la contraseña?",
           recu: "Recuperar contraseña",

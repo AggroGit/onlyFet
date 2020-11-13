@@ -445,7 +445,7 @@ input {
 }
 
 .contieneIconoEditar {
-  background: var(--rojo1);
+  background: #c1c1c1 !important;
   display: flex;
   width: 30px;
   height: 30px;

@@ -65,13 +65,12 @@
                 </router-link>
               </div>
               <div class="col-8 ContieneDatosperfil">
-                <h4> <router-link class="noLink" :to="'/user/'+auth.nickname">{{auth.name}}</router-link> </h4>
+                <h4> <router-link class="noLink" :to="'/user/'+auth.nickname">{{$store.state.auth.name}}</router-link> </h4>
                 <br>
                 <p><strong>{{$ml.get('auth').nickname}}: </strong>{{$store.state.auth.nickname}}</p>
                 <p><strong>{{$ml.get('auth').email}}: </strong> {{$store.state.auth.email}}</p>
                 <p><strong>{{$ml.get('auth').name}}: </strong> {{$store.state.auth.name}}</p>
                 <router-link class="rojo" to="/profile">{{$ml.get('auth').editProfile}}</router-link>
-
               </div>
             </div>
           </div>

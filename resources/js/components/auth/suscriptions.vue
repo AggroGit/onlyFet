@@ -1,5 +1,5 @@
 <template>
-    <div class="container down-2 aparecer">
+    <div class="container contenedor down-2 aparecer">
       <div class="row justify-content-center">
         <div class="col-md-12 text-center">
           <h2>{{$ml.get('auth').suscriptions}}</h2>

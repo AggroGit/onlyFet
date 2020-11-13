@@ -78,7 +78,7 @@
                       <div class="form-group row ">
                           <a href="/login/facebook" class="col-md-12 offset-md-12">
                               <button class="btn btn-primary boton facebook">
-                                  Login with Facebook
+                                  {{$ml.get('auth').socialFacebook}}
                                   <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                               </button>
                           </a>
@@ -88,7 +88,7 @@
                       <div  class="form-group row ">
                           <a disabled href="/login/google" class="col-md-12 offset-md-12">
                               <button class="btn btn-primary boton Google">
-                                  Login with Google
+                                  {{$ml.get('auth').socialGoogle}}
                                   <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                               </button>
                           </a>
