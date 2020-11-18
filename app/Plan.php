@@ -24,7 +24,8 @@ class Plan extends Model
       $new = new Plan();
       $new->payForEvery = $key;
       $new->price = $suscriptions;
-      if($new->oldPrice >= $this->price) {
+      // si el precio antiguo es menor entonces
+      if($this->price > $suscriptions) {
         $new->oldPrice = $this->price;
       }
       $new->user_id = $this->user->id;
