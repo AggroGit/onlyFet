@@ -43,7 +43,7 @@ img {
   border-bottom: solid 0.8px #f3f3f3 !important;
 }
 .remvongg {
-  animation: shake 1s;
+  /* animation: shake 1s; */
    animation-iteration-count: infinite;
 }
 .remvongg:nth-child(n+1) {
