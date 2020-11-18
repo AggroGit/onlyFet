@@ -59,11 +59,11 @@ export default {
         this.loading = false;
       }
       // idioma de la app
-      var userLang = navigator.language || navigator.userLanguage;
-      console.log('idioma '+userLang)
-      // país de la app
-      $.get("http://ip-api.com/json", function(response) {
-        console.log('pais '+response.countryCode);}, "jsonp");
+
+      this.initLang();
+      // // país de la app
+      // $.get("http://ip-api.com/json", function(response) {
+      //   console.log('pais '+response.countryCode);}, "jsonp");
 
     },
     // comprueba si existe token
@@ -79,10 +79,25 @@ export default {
         return "contenedor"
       }
     },
+    // a no haber un usuario logeado o registrado deberá coger un dioma predeterminado
+    initLang() {
+      // el primero de todos es el idioma del navagdor
+      var userLang = navigator.language || navigator.userLanguage;
+      userLang = userLang.toLowerCase()
+      if(userLang == "es" || userLang == "ES" || userLang == "es-es") {
+        userLang = "es"
+      } else {
+        userLang = "en"
+      }
+      this.$ml.change(userLang)
+      console.log('LANGUAGE -> '+userLang)
+      //
+    },
     // add the user info
     addUser: (data,self) => {
       // add the user info
       self.$store.state.auth = data;
+      console.log(data)
       // init conection
       self.$store.state.initConection(self.$store.state.token);
       // global
@@ -92,7 +107,7 @@ export default {
       self.$store.state.authChannel = window.Echo.join(appCode+'.User.'+user.id);//+self.$store.state.auth.id);
       self.$store.state.appchannel = window.Echo.join(appCode+'.App');//+self.$store.state.auth.id);
       // IDIOMA DE LA APP
-      self.$ml.change(user.lang)
+      self.$ml.change(data.lang)
 
     },
     // validate the token with server

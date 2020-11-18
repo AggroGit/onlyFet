@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('provider')->nullable(); // RRSS
             $table->string('email')->unique();
             $table->string('nickname')->nullable()->unique();
-            $table->string('lang')->default('es');
+            $table->string('lang')->default('en');
             $table->boolean('want_emails')->default(true);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

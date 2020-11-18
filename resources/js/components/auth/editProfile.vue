@@ -60,7 +60,7 @@
               <!-- </div> -->
 
               <label class="down-2" for="country">{{$ml.get('auth').lang}} :</label>
-              <b-form-select v-model="form.lang" name="country" :options="languages" class=""></b-form-select>
+              <b-form-select v-model="form.lang" name="country" :options="languages" @change="changeLang()" class=""></b-form-select>
 
               <div class="form-group row ">
                 <div class="col-md-12 contieneInput">
@@ -382,7 +382,7 @@ export default {
       ],
       languages: [
       {text: 'Español', value: 'es'},
-      {text: 'Inglés', value: 'en'}
+      {text: 'English', value: 'en'}
       ]
     }
 
@@ -464,6 +464,12 @@ export default {
       // finally
       .finally(() => this.loading = false)
 
+    },
+    changeLang() {
+      var lang = event.target.value
+      this.$ml.change(lang)
+      this.$store.state.auth.lang = lang
+      this.form.lang = lang
     }
   }
 };
