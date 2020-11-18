@@ -24,7 +24,9 @@ class Plan extends Model
       $new = new Plan();
       $new->payForEvery = $key;
       $new->price = $suscriptions;
-      $new->oldPrice = $this->price;
+      if($new->oldPrice >= $this->price) {
+        $new->oldPrice = $this->price;
+      }
       $new->user_id = $this->user->id;
       $new->save();
       // ahora en stripe
