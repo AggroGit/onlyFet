@@ -22,6 +22,10 @@ export default new MLCreate({
       "notAvailable": "This chat is no longer available"
    },
    "auth": {
+      "socialFacebook" : "Login with Facebook",
+      "socialGoogle" : "Login with Google",
+      "registerFacebook": "Register with Facebook",
+      "registerGoogle": "Register with Google",
       "recoverEmail": "We´ve sent you a recovery email",
       "forget": "Did you forget your password?",
       "recu": "Recover password",
@@ -142,6 +146,10 @@ export default new MLCreate({
       "notAvailable": "Este chat ya no está disponible"
    },
    "auth": {
+      "socialFacebook" : "Login with Facebook",
+      "socialGoogle" : "Login with Google",
+      "registerFacebook": "Registro con Facebook",
+      "registerGoogle": "Registro con Google",
       "recoverEmail": "Te hemos enviado un correo de recuperación",
       "forget": "¿Has perdido la contraseña?",
       "recu": "Recuperar contraseña",

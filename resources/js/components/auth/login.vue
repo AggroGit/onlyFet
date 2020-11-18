@@ -58,7 +58,7 @@
 
                           <div class="form-group row ">
                               <router-link to="/register" class="col-md-12 offset-md-12">
-                                  <button class="btn btn-primary boton">
+                                  <button class="btn btn-secondary boton">
                                       {{$ml.get('auth').changeRgister}}
                                       <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                   </button>

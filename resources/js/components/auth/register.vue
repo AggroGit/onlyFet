@@ -86,7 +86,7 @@
                             <div class="form-group row ">
                                 <a href="/login/facebook" class="col-md-12 offset-md-12">
                                     <button class="btn btn-primary boton facebook">
-                                        Register with Facebook
+                                        {{$ml.get('auth').registerFacebook}}
                                         <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     </button>
                                 </a>
@@ -96,7 +96,7 @@
                             <div  class="form-group row ">
                                 <a disabled href="/login/google" class="col-md-12 offset-md-12">
                                     <button class="btn btn-primary boton Google">
-                                        Register with Google
+                                        {{$ml.get('auth').registerGoogle}}
                                         <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     </button>
                                 </a>
