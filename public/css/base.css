@@ -881,13 +881,14 @@ height: 100% !important;
   width: 300px;
 }
 .PerfilMainImagen > img {
-  height: 110%;
-  width: auto;
+  height: auto;
+  width: 150%;
   transition: all 0.2s ease;
 
 }
 .PerfilMainImagen:hover  >img {
-  height: 116%;
+  height: auto;
+  width: 140%;
 }
 @media only screen and (max-width: 600px) {
   .PerfilMainImagen {
