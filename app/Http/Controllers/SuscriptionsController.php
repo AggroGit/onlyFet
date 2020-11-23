@@ -106,6 +106,9 @@ class SuscriptionsController extends Controller
     // list all your suscriptions
     public function listPlans()
     {
+      foreach (auth()->user()->suscribedPlans as $plan) {
+        $plan->fechaSuscri = $plan->pivot->diffForHumans();
+      }
       return $this->correct(auth()->user()->suscribedPlans);
     }
 

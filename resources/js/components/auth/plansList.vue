@@ -40,7 +40,7 @@
               <div class="opcionesPost">
                 {{givePrice(data)}}
                 <br>
-                {{$ml.get('stripe').suscribed}} {{giveData(data)}}
+                {{$ml.get('stripe').suscribed}} {{data.fechaSuscri}}
               </div>
 
 
@@ -242,7 +242,7 @@ Eliminar(plan) {
 },
 giveData(time) {
   var date = new Date(time.pivot.created_at);
-  return date.getFullYear()+"/"+date.getMonth() 
+  return date.getFullYear()+"/"+date.getMonth()
 },
 giveMeRoute(noti) {
   if(noti.type == "chat") {
