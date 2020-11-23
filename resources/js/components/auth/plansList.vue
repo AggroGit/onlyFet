@@ -148,6 +148,7 @@ getPlans() {
     }
   })
   .then(response => {
+    console.log(response)
     //
     if(response.data.rc == 1) {
       self.plans  = response.data.data
