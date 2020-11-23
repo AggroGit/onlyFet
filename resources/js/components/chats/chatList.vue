@@ -30,7 +30,7 @@
                 <input class="form-check-input bigger" type="checkbox" id="chatremove" name="idremove" :ref="chat" @change="SelectChat(chat)" :value="chat.id">
               </div>
 
-              <div v-if="chat.lastMessage" class="d-flex w-100 justify-content-between">
+              <div v-if="chat.lastMessage" class="justify-content-between lastMessageList">
                 <p  class="mb-1">{{chat.lastMessage.message}}</p>
                 <small class="hourchat">{{chat.lastMessage.fecha}}</small>
                 <div v-if="chat.lastMessage.read === false && chat.lastMessage.user_id !== $store.state.auth.id" class="noLeido"></div>
