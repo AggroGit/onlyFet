@@ -10,7 +10,7 @@
 
         <!-- CACEBZERA FOTO  -->
         <div v-if="!this.loading" class="row justify-content-center down-2 contenedor">
-          <div class="col-6 text-center">
+          <div class="col-xs-6 text-center">
             <div class="ProfileImgCon">
               <avatar :conection="true" class="ProfileImgCon" :us="this.user" :size="'Small'"></avatar>
             </div>
