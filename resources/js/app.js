@@ -361,6 +361,10 @@ const store = new Vuex.Store({
     time: (time) => {
       var date = new Date(time);
       return date.getHours() +":"+date.getMinutes()
+    },
+    date: (time) => {
+      var date = new Date(time);
+      return date.getFullYear()+" / "+date.getMonths() + " / "+date.getDays()
     }
 
 
