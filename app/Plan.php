@@ -147,7 +147,10 @@ class Plan extends Model
           "sound"   => "default",
         ]);
         // add to plans
-        $this->usersSuscribed()->save($user);
+        $this->usersSuscribed()->create([
+          'user_id'     => $user->id,
+          'created_at'  => now()
+        ]);
         // plus 1 suscriber
         $user = $this->user;
         $user->numSuscriptions = $user->numSuscriptions+1;
