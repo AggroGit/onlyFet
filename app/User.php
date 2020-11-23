@@ -220,7 +220,7 @@ class User extends Authenticatable
     // planes a los que estas suscrito
     public function suscribedPlans()
     {
-      return $this->belongsToMany('App\Plan','users_plans')->withTimestamps()->with('user')->orderBy('updated_at','DESC');
+      return $this->belongsToMany('App\Plan','users_plans')->with('user')->withTimestamps()->orderBy('updated_at','DESC');
     }
 
     // planes que tu has creado
