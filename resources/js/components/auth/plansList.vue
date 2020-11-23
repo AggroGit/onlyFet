@@ -242,7 +242,7 @@ Eliminar(plan) {
 },
 giveData(time) {
   var date = new Date(time.pivot.created_at);
-  return date.getFullYear()+" / "+date.getMonth() + " / "+date.getDay()
+  return date.getFullYear()+" / "+date.getMonth() 
 },
 giveMeRoute(noti) {
   if(noti.type == "chat") {
