@@ -40,7 +40,7 @@
               <div class="opcionesPost">
                 {{givePrice(data)}}
                 <br>
-                {{$ml.get('stripe').suscribed}} {{data.fecha}}
+                {{$ml.get('stripe').suscribed}} {{data.pivot.created_at}}
               </div>
 
 
