@@ -32,7 +32,7 @@
 
               <div v-if="chat.lastMessage" class="justify-content-between lastMessageList">
                 <p  class="mb-1">{{chat.lastMessage.message}}</p>
-                <small class="hourchat">{{chat.lastMessage.fecha}}</small>
+                <p class="hourchat">{{chat.lastMessage.fecha}}</p>
                 <div v-if="chat.lastMessage.read === false && chat.lastMessage.user_id !== $store.state.auth.id" class="noLeido"></div>
               </div>
           </b-list-group-item>
