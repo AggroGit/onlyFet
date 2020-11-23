@@ -15,7 +15,7 @@
               <avatar :conection="true" class="ProfileImgCon" :us="this.user" :size="'Small'"></avatar>
             </div>
           </div>
-          <div class="col-6 ContieneDatosperfil ">
+          <div class="col-xs-6 ContieneDatosperfil ">
             <h4>{{user.name}}</h4>
             <br>
             <p ><strong>@</strong>{{this.user.nickname}}
