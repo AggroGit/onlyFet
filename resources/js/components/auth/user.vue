@@ -10,12 +10,12 @@
 
         <!-- CACEBZERA FOTO  -->
         <div v-if="!this.loading" class="row justify-content-center down-2 contenedor">
-          <div class="col-md-6 text-center">
+          <div class="col-6 text-center">
             <div class="ProfileImgCon">
               <avatar :conection="true" class="ProfileImgCon" :us="this.user" :size="'Small'"></avatar>
             </div>
           </div>
-          <div class="col-md-6 ContieneDatosperfil ">
+          <div class="col-6 ContieneDatosperfil ">
             <h4>{{user.name}}</h4>
             <br>
             <p ><strong>@</strong>{{this.user.nickname}}
