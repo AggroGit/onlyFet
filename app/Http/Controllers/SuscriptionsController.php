@@ -106,6 +106,7 @@ class SuscriptionsController extends Controller
     // list all your suscriptions
     public function listPlans()
     {
+      Carbon::setLocale(auth()->user()->lang?? 'es');
       foreach (auth()->user()->suscribedPlans as $plan) {
         $plan->fechaSuscri = $plan->pivot->created_at->diffForHumans();
       }
