@@ -132,6 +132,7 @@ export default {
         }
       }
       this.removing = !this.removing
+      this.idsToRemove = [];
       console.log(this.$refs.chat)
     },
     SelectChat(chat) {
