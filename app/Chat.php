@@ -123,7 +123,7 @@ class Chat extends Model
         $this->users()->updateExistingPivot($user->id,[
           "blocked" => $bool
         ]);
-        $this->open = true;
+        $this->open = !$bool;
         return $this->save();
       }
     }
