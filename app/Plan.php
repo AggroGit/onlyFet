@@ -40,7 +40,7 @@ class Plan extends Model
         // lo añadimos al plan nuevo
         $new->usersSuscribed()->save($suscriber);
         // lo actualizamos de cara a Stripe
-        $suscriber->subscription('default',$this->stripe_tarifa_id)->swap($new->stripe_tarifa_id);
+        $suscriber->subscription('default',$this->stripe_tarifa_id)->swapAndInvoice($new->stripe_tarifa_id);
         // ahora lo quitamos
         $this->usersSuscribed()->detach($suscriber);
         // lo notificamos
