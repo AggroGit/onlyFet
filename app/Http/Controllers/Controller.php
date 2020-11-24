@@ -98,7 +98,7 @@ class Controller extends BaseController
         return $request;
      }
 
-
+     // convert from a list to array
      public function listToArray($list)
      {
        return explode(',',$list);

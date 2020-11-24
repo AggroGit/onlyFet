@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PublicationServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Publication as Post;
+use App\Comment;
 use Carbon\Carbon;
 use App\Video;
 use App\Image;
@@ -12,9 +14,13 @@ use App\User;
 
 class PublicationController extends Controller
 {
+    protected $prov;
+
     public function __construct()
     {
+      $this->provider = new PublicationServiceProvider();
       Carbon::setLocale(auth()->user()->lang?? 'es');
+
         // $this->middleware('auth');
     }
 
@@ -47,29 +53,15 @@ class PublicationController extends Controller
       return $this->correct($request->post);
     }
 
-    public function create(Request $request)
+    public function create(Request $request )
     {
-      // $this->quitNulls($request);
-      //
-      if($request->has('publish_at') and $request->publish_at !== null) {
-        $c = Carbon::create($request->publish_at)->setTimezone('Europe/Madrid');
-        $c = $c->format("Y.m.d H:i");
-      }
-
-
-      //
+      // verify data
       if ($missings = $this->hasError($request->all(),'validation.addPost')) {
         return $this->incorrect(0,$missings);
       }
-      //
-      $post = new Post([
-        "content" => $request->content,
-        "user_id" => auth()->user()->id,
-        "publish_at" => $c?? now(),
-      ]);
-      $post->save();
+      // hastag to array
       $h = $this->listToArray($request->hastags);
-      $post->addHastags($h);
+      $post = $this->provider->createPublication($request,$h);
       //
       return $this->correct(Post::find($post->id));
 
@@ -80,11 +72,10 @@ class PublicationController extends Controller
       if ($missings = $this->hasError($request->all(),'validation.addComment')) {
         return $this->incorrect(0,$missings);
       }
-      if($com = $request->post->comment($request->comment)) {
-        return $this->correct($com);
-      } else {
-        $this->incorrect();
-      }
+      //
+      $comment = $this->provider->commentPublication($request->post,$request);
+      //
+      return $this->correct(Comment::find($comment->id));
 
     }
 
@@ -164,7 +155,6 @@ class PublicationController extends Controller
           "user" => $user,
           "images" => Image::where('user_id',$user->id)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
         ]);
-
       }
       return $this->incorrect();
     }
