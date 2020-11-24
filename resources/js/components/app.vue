@@ -61,9 +61,7 @@ export default {
       // idioma de la app
 
       this.initLang();
-      // // país de la app
-      // $.get("http://ip-api.com/json", function(response) {
-      //   console.log('pais '+response.countryCode);}, "jsonp");
+
 
     },
     // comprueba si existe token

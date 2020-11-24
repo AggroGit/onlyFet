@@ -28,8 +28,6 @@ class AuthController extends Controller
     // return the logged user
     public function currentUser(Request $request)
     {
-      $test = new Algo("alejandro");
-      $test->saludar();
       return auth()->user()?
       $this->correct(User::with('plans')->find(auth()->user()->id)) : $this->incorrect(13);
     }
