@@ -94,29 +94,7 @@ class PublicationController extends Controller
 
     public function upload($post_id, Request $request)
     {
-      $post = $request->post;
-      $image = ['file'=> 'image:mimes:jpg,jpeg,png'];
-      $video = ['file'=> 'video:mimes:mp4,mov'];
-
-      $validator = Validator::make($request->all(),$image);
-      if($validator->fails()) {
-        // probamos vídeo
-        $video = new Video();
-        $video->create($request->file,"video/$post->id");
-        $video->user_id = $post->user_id?? null;
-        $video->post_id = $post->id;
-        $video->save();
-        $post->videos()->save($video);
-
-      } else {
-        // imagen
-        $image = new Image();
-        $image->create($request->file,"image/$post->id");
-        $image->user_id = $post->user_id?? null;
-        $image->post_id = $post->id;
-        $image->save();
-        $post->images()->save($image);
-      }
+      $this->provider->uploadToPublication($request);
       return $this->correct();
     }
 

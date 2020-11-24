@@ -2,13 +2,15 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Publication as Post;
+use Carbon\Carbon;
 use App\Comment;
 use App\Video;
 use App\Image;
 use App\User;
-use Carbon\Carbon;
+
 
 
 
@@ -62,7 +64,29 @@ class PublicationServiceProvider
   // add images or vídeo to the Publication
   public function uploadToPublication()
   {
-    // code...
+    $post = $request->post;
+    $image = ['file'=> 'image:mimes:jpg,jpeg,png'];
+    $video = ['file'=> 'video:mimes:mp4,mov'];
+
+    $validator = Validator::make($request->all(),$image);
+    if($validator->fails()) {
+      // probamos vídeo
+      $video = new Video();
+      $video->create($request->file,"video/$post->id");
+      $video->user_id = $post->user_id?? null;
+      $video->post_id = $post->id;
+      $video->save();
+      $post->videos()->save($video);
+
+    } else {
+      // imagen
+      $image = new Image();
+      $image->create($request->file,"image/$post->id");
+      $image->user_id = $post->user_id?? null;
+      $image->post_id = $post->id;
+      $image->save();
+      $post->images()->save($image);
+    }
   }
 
 
