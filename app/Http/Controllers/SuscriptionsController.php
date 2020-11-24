@@ -108,7 +108,8 @@ class SuscriptionsController extends Controller
     {
       Carbon::setLocale(auth()->user()->lang?? 'es');
       foreach (auth()->user()->suscribedPlans as $plan) {
-        $plan->fechaSuscri = $plan->pivot->created_at->diffForHumans()?? null;
+        if($plan->pivot->created_at !== null)
+        $plan->fechaSuscri = $plan->pivot->created_at->diffForHumans();
       }
       return $this->correct(auth()->user()->suscribedPlans);
     }
