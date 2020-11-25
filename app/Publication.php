@@ -138,18 +138,6 @@ class Publication extends Model
       return parent::delete();
     }
 
-    public function comment($message)
-    {
-      $comment = new Comment([
-        'publication_id'  => $this->id,
-        'user_id'         => auth()->user()->id,
-        'comment'         => $message
-      ]);
-      //
-      $comment->save();
-      //
-      return $comment;
-    }
 
 
 

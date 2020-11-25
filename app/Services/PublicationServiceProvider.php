@@ -62,7 +62,7 @@ class PublicationServiceProvider
   }
 
   // add images or vídeo to the Publication
-  public function uploadToPublication()
+  public function uploadToPublication(Request $request)
   {
     $post = $request->post;
     $image = ['file'=> 'image:mimes:jpg,jpeg,png'];
