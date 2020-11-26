@@ -56,7 +56,7 @@ class ChatDomain
   // send a nptification to the user
   public function sendMessageNotification(User $user, Message $message)
   {
-    if($message->chat->isUserConnected($message->chat->otherUser)) {
+    if($message->chat->isUserConnected($user)) {
       $user->send([
         "title"   => $user->name,
         "body"    => "$message->message",

@@ -41,7 +41,7 @@ class ChatsServiceProvider extends ChatDomain
       $this->addImageToMessage($message, $request);
     }
     // notify to the users
-    $this->sendMessageNotification($user,$message);
+    $this->sendMessageNotification($message->chat->otherUser,$message);
     // broadcast
     broadcast(new MessageEvent(Message::without('user')->find($message->id)));
 
