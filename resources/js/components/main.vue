@@ -94,8 +94,8 @@ export default {
       var self = this
       this.loading = true;
       // if(force) {
-        this.profiles = []
-        this.search = ""
+      this.profiles = []
+      this.search = ""
       //   this.total = 1,
       //   this.current = 1,
       //   this.scrolling = false;
