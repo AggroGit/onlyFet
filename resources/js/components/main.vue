@@ -116,7 +116,8 @@ export default {
          .then(response => {
            console.log(response)
            if(response.data.rc == 1) {
-             response.data.data.data.forEach(element => this.profiles.push(element));
+             this.profiles = response.data.data.data
+           // response.data.data.data.forEach(element => this.profiles.push(element));
              this.total = response.data.data.last_page
            }
            if(response.data.rc == 13) {
