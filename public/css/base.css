@@ -153,6 +153,7 @@ img {
    float:left;
 }
 .globoMensaje {
+  margin-top: 16px !important;
    border-radius: 20px 20px 20px 0px;
    background: #ffbbbb;
    padding: 18px;
