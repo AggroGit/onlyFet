@@ -61,7 +61,7 @@ class ChatDomain
         "title"   => $user->name,
         "body"    => "$message->message",
         "type"    => "chat",
-        "data"    => $chat->id,
+        "data"    => $message->chat->id,
         "sound"   => "default",
       ]);
     // }
