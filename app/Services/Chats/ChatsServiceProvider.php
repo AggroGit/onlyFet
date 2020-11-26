@@ -44,7 +44,9 @@ class ChatsServiceProvider extends ChatDomain
     $this->sendMessageNotification($message->chat->otherUser,$message);
     // broadcast
     broadcast(new MessageEvent(Message::without('user')->find($message->id)));
-
+    // update the time
+    $chat->updated_at = now();
+    $chat->save();
     return true;
   }
 
