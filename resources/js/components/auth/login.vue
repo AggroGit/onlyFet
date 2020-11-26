@@ -111,12 +111,14 @@
       <div v-if="this.forget" class="contienePantallaCompletaDark aparecer">
         <div class="container text-center contieneCargador aparecer">
           <div class="ContienecONTRAfoRGET">
+            <form  @submit.stop.prevent="forgetPass()" >
               <label for="forgetEmail">{{$ml.get('auth').email}}</label>
-              <input name="forgetEmail"  v-model="form.email" type="email">
-              <button @click="forgetPass()" class="btn btn-primary boton">
+              <input name="forgetEmail" required  v-model="form.email" type="email">
+              <button type="submit" class="btn btn-primary boton">
                   {{$ml.get('auth').recu}}
                   <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               </button>
+            </form>
           </div>
           <!-- <h3>Suscribiendo</h3> -->
         </div>
