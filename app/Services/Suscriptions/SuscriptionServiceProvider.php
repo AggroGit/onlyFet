@@ -30,7 +30,6 @@ class SuscriptionServiceProvider extends SuscriptionDomain
     // make the user influencer
     $user->influencer = true;
     $user->save();
-
     //
     return true;
 

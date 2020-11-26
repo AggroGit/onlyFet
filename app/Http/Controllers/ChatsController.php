@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Chats\ChatsServiceProvider;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Message;
@@ -13,24 +14,20 @@ class ChatsController extends Controller
 
     public function __construct()
     {
-      Carbon::setLocale(auth()->user()->lang?? 'es');
-        // $this->middleware('auth');
+      Carbon::setLocale(auth()->user()->lang?? 'en');
+      $this->provider = new ChatsServiceProvider();
+      // $this->middleware('auth');
     }
     // it sends the message
     public function send(int $chat_id,Request $request)
     {
-      if(!$request->chat->open) {
-        return $this->incorrect();
-      }
       // validation
-      if ($missings = $this->hasError($request->all(),'validation.sendChat')) {
+      if($missings = $this->hasError($request->all(),'validation.sendChat')) {
         return $this->incorrect(0,$missings);
       }
-      $message = new Message();
-      // we create the message
-      $message->createMessage($request,$chat_id);
-      $message->refresh();
-      return $this->correct();
+      //
+      return ($code = $this->provider->sendMessageToChat(auth()->user(),$request->chat,$request) == true)?
+      $this->correct() : $this->incorrect($code);
 
     }
 
