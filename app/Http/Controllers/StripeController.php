@@ -67,8 +67,6 @@ class StripeController extends Controller
         return $this->incorrect(206);
       }
 
-
-
     }
 
     // we return of the Stripe url and then we create the user account
@@ -76,6 +74,7 @@ class StripeController extends Controller
     {
       // first we have to recive the data
       if ($request->has('code') and $request->has('state')) {
+        
         // now we have to retrive the user by the state
         if ($user = User::where('temporal_token',$request->state)->first()) {
           // if exists then we create and asociate

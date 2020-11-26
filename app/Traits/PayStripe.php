@@ -55,7 +55,7 @@ trait PayStripe
       // we create a token
       $this->temporal_token = uniqid().md5(rand(1, 10) . microtime());
       // we have to return the url with some params
-      $base = "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IK821qLZnsOMlZWYcmlpY72lDn2jNQh7&scope=read_write"
+      $base = "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HNOD9Fp5xf66fpj2ic4ZJKldwWtIHWl3&scope=read_write"
       ."stripe_user[email]=$this->email&"
       ."stripe_user[first_name]=$this->name&"
       ."stripe_user[last_name]=$this->surnames&"
@@ -95,10 +95,10 @@ trait PayStripe
   // crea en Stripe un producto
   public function createAsAProduct()
   {
-    try {
+
       $product = $this->stripe()->products->create([
         'name'  =>  $this->name,
-        'id'    =>  $this->id,
+        'id'    =>  env('APP_NAME','no_name').$this->id,
         'metadata'  => [
           'user_onlyFet_id' => $this->id,
           'description' => $this->name,
@@ -109,9 +109,7 @@ trait PayStripe
         ]
       ]);
       $this->influencer = true;
-    } catch (\Exception $e) {
-      return false;
-    }
+
     $this->save();
     return true;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\Suscriptions\SuscriptionServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class AuthController extends Controller
     // return the logged user
     public function currentUser(Request $request)
     {
+
       return auth()->user()?
       $this->correct(User::with('plans')->find(auth()->user()->id)) : $this->incorrect(13);
     }

@@ -14,14 +14,12 @@ use App\User;
 
 class PublicationController extends Controller
 {
-    protected $prov;
+    protected $provider;
 
     public function __construct()
     {
       $this->provider = new PublicationServiceProvider();
       Carbon::setLocale(auth()->user()->lang?? 'es');
-
-        // $this->middleware('auth');
     }
 
     //

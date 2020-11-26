@@ -2,43 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Suscriptions\SuscriptionServiceProvider;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Plan;
 use App\User;
+
+
 class SuscriptionsController extends Controller
 {
-
+    protected $prov;
     public function __construct()
     {
+      $this->provider = new SuscriptionServiceProvider();
       Carbon::setLocale(auth()->user()->lang?? 'es');
-        // $this->middleware('auth');
     }
     //
     // creamos los planes, con nosotros y cin stripe
     public function makePremium(Request $request)
     {
-      if($request->has('influencer') and $request->influencer == true) {
-
+      if($request->influencer == false) {
+        return ($code = $this->provider->cancelUserPremium(auth()->user(),$request) == true)?
+        $this->correct(auth()->user()) : $this->incorrect($code);
+      } else {
+        // validate data
         if ($missings = $this->hasError($request->suscriptions,'validation.makePremium')) {
           return $this->incorrect(0,$missings);
         }
-          // creamos los planes, solo si ya ha hecho Stripe
-          if(auth()->user()->stripe_reciver_id == null) {
-            return $this->incorrect(4);
-          }
-          // creamos los planes
-          $this->createPlans($request);
-          auth()->user()->influencer = true;
-          auth()->user()->save();
-          return $this->correct(User::find(auth()->user()->id));
-      } else {
-        if($request->influencer == false) {
-          auth()->user()->cancelInfluencer();
-          return $this->correct(User::find(auth()->user()->id));
-        }
-
-        return $this->incorrect();
+        return ($code = $this->provider->makeUserPremium(auth()->user(),$request) == true)?
+        $this->correct(auth()->user()) : $this->incorrect($code);
       }
 
 
@@ -58,7 +50,6 @@ class SuscriptionsController extends Controller
         }
 
       } else {
-
         foreach ($request->suscriptions as $key => $suscriptions) {
           $plan = new Plan();
           $plan->payForEvery = $key;
