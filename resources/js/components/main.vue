@@ -98,7 +98,7 @@ export default {
         this.current = 1,
         this.scrolling = false;
       }
-      if(self.current<self.total && self.scrolling==false || force == true) {
+      // if(self.current<self.total && self.scrolling==false || force == true) {
         this.searching = true
         var url = "/api/main/users"
         if(this.auth == false) {
@@ -134,7 +134,7 @@ export default {
             self.searching = false
          })
          this.loading = false;
-       }
+       // }
      },
      OrderByClick(select) {
        if(select !== undefined) {
