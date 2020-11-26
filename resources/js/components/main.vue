@@ -86,9 +86,9 @@ export default {
   methods: {
     getProfiles(force) {
 
-      if(this.searching) {
-        return true;
-      }
+      // if(this.searching) {
+      //   return true;
+      // }
       this.searching = true;
       var self = this
       this.loading = true;
