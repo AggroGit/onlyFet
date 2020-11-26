@@ -91,7 +91,7 @@
           <b-icon font-scale="2" style="color:black;" icon="list" aria-hidden="true" class="icon"></b-icon>
         </div>
         <router-link to="/" class="contieneLogoMenu">
-          <img src="/logo_2611.png" alt="logo">
+          <img class="logoMewnu" src="/logo_2611.png" alt="logo">
         </router-link>
 
       </nav>
