@@ -12,7 +12,7 @@
           </div>
           <br>
             <div class="col-md-12 text-center">
-              <h1>Merco</h1>
+              <h1>OnlyFet</h1>
             </div>
 
         <div class="col-md-8 down">
