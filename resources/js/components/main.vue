@@ -4,7 +4,7 @@
     <div class="row down-4">
       <div class="contieneBuscadorLogoAntes MainBuscador">
           <div class="contenedor contieneBuscadorLogo MainBuscador">
-            <b-form-input :autocomplete="'off'" type="text" v-model="search" @keyup="getProfiles(true)" id="input-small" class="col-xs-8" :placeholder="$ml.get('main').search"></b-form-input>
+            <b-form-input :autocomplete="'off'" type="text" v-model="search" @keyup="filter()" id="input-small" class="col-xs-8" :placeholder="$ml.get('main').search"></b-form-input>
             <b-icon  font-scale="2" @click="OrderByClick()" icon="filter" aria-hidden="true" class="icon"></b-icon>
           </div>
       </div>
@@ -69,6 +69,7 @@ export default {
       selecting: false,
       loading: true,
       profiles: [],
+      in: [],
       option : "populars",
       total:2,
       current:1,
@@ -80,7 +81,7 @@ export default {
     }
   },
   created() {
-    this.getProfiles();
+    this.getProfiles(true);
 
   },
   methods: {
@@ -92,13 +93,12 @@ export default {
       this.searching = true;
       var self = this
       this.loading = true;
-      if(force) {
-        this.profiles = []
-        this.total = 1,
-        this.current = 1,
-        this.scrolling = false;
-      }
-      // if(self.current<self.total && self.scrolling==false || force == true) {
+      // if(force) {
+      //   this.profiles = []
+      //   this.total = 1,
+      //   this.current = 1,
+      //   this.scrolling = false;
+      // }
         this.searching = true
         var url = "/api/main/users"
         if(this.auth == false) {
@@ -116,7 +116,7 @@ export default {
          .then(response => {
            console.log(response)
            if(response.data.rc == 1) {
-             this.profiles = response.data.data.data
+             this.profiles = this.in = response.data.data.data
            // response.data.data.data.forEach(element => this.profiles.push(element));
              this.total = response.data.data.last_page
            }
@@ -135,7 +135,7 @@ export default {
             self.searching = false
          })
          this.loading = false;
-       // }
+
      },
      OrderByClick(select) {
        if(select !== undefined) {
@@ -162,6 +162,12 @@ export default {
 
        }
      }
+   },
+   filter() {
+     this.profiles = this.in
+     this.profiles = this.profiles.filter(profile => {
+       return profile.nickname.toLowerCase().includes(this.search.toLowerCase())
+     })
    }
   }
 };

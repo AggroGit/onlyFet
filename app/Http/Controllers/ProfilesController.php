@@ -37,7 +37,7 @@ class ProfilesController extends Controller
       if($request->has('search') and $request->search !== null) {
         $users = $users->where('nickname','like',"%$request->search%");
       }
-      return $this->correct($users->paginate(20));
+      return $this->correct($users->paginate(2000));
 
     }
 }
