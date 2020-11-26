@@ -61,7 +61,7 @@ class Chat extends Model
 
     public function getCurrentHaveBlockedAttribute()
     {
-      return ($this->otherUser->pivot->blocked)? true:false;
+      return ($this->otherUser->pivot->blocked?? false)? true:false;
     }
 
     public static function giveMeorCreateChatWith($user)
