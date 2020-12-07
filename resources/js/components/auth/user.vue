@@ -119,7 +119,7 @@
             </div>
 
             <!-- Si hay subasta activa -->
-            <AuctionCurrent v-if="this.user.current_auctions.length > 0" :user="this.user"></AuctionCurrent>
+            <AuctionCurrent v-if="this.user.current_auctions.length > 0 && this.user.canSee" :user="this.user"></AuctionCurrent>
 
             </div>
 
