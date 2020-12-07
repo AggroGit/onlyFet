@@ -55,7 +55,6 @@ class AuctionDomain
 
   public function canUserBidUp(Auction $auction, User $userIn)
   {
-    return true;
     foreach ($auction->user->plans as $plan) {
       foreach ($plan->usersSuscribed as $user) {
         if($user->id == $userIn->id) {
