@@ -6,7 +6,7 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-      <post v-for="(post) in this.posts" :key="post.id" :post_id="post.id" :datos="post" ></post>
+      <post v-for="(post) in this.posts" :wantSeeAuctions="true" :key="post.id" :post_id="post.id" :datos="post" ></post>
       <div v-if="this.scrolling" class="container text-center contieneCargador">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
           <span class="sr-only">Loading...</span>

@@ -15,7 +15,8 @@
         <div class="cabecerapoST">
           <avatar :conection="true" :us="data.user"></avatar>
             <div class="contieneDetPost">
-              <p>{{data.user.name}}</p>
+              <p>{{data.user.name}} </p>
+              <span class="thersAuctionNow aparecer" v-if="wantSeeAuctions && data.user.current_auctions.length>0">Hay una puja activa</span>
               <p>{{data.fecha}}</p>
               <!-- <p> se publicará en {{data.fecha}}</p> -->
           </div>
@@ -73,6 +74,9 @@ export default {
     },
     datos:{
       default:null
+    },
+    wantSeeAuctions: {
+      default:false
     }
 
 

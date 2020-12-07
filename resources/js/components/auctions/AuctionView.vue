@@ -114,6 +114,10 @@ export default {
       }
     }
   },
+  beforeRouteLeave (to, from, next) {
+    this.unsuscribe();
+    next()
+  },
   created() {
     this.getAuction()
   },
@@ -121,6 +125,11 @@ export default {
     console.log(window.name);
   },
   methods: {
+    unsuscribe() {
+      console.log('quit suscribe')
+      Echo.leave('Auction.'+this.chat)
+      // this.channel.pusher.unsubscribe('presence-'+appCode+'.Chat.'+this.chat);
+    },
 
     bideUp() {
       var self = this;

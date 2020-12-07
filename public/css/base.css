@@ -1178,3 +1178,12 @@ margin: 20px;
 .entrarPuja>h5 {
   margin: auto;
 }
+.thersAuctionNow {
+  transition-delay: 1s;
+  background: var(--rojo2) !important;
+  color: #ffffff;
+  padding: 3px;
+  border-radius: 3px;
+  transform: scale(0.5);
+  font-size: 10px;
+}
