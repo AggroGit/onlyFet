@@ -73,6 +73,7 @@ class SuscriptionDomain
   {
     // recorremos sus usuarios y cambiamos el precio
     foreach ($plan->usersSuscribed as $user) {
+      echo "$user->name";
       $user->subscription('default', $plan->previuous_stripe_id)->swapAndInvoice($plan->stripe_tarifa_id);
     }
   }
