@@ -55,6 +55,7 @@ class SuscriptionDomain
     //   $plan->remove();
     //   return false;
     // }
+    $plan->refresh();
 
 
 
