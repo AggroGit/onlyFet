@@ -90,7 +90,8 @@ class SuscriptionServiceProvider extends SuscriptionDomain
       $sus = $this->addUserViaStripe($user,$plan);
       $this->addUserInOnlyFet($user,$plan,$sus->id);
       // create chats
-      ChatsServiceProvider::createChat(array($user,$plan->user));
+      $providerChats = new ChatsServiceProvider()
+      $providerChats->createChat(array($user,$plan->user));
       return true;
 
     }
