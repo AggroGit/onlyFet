@@ -14,16 +14,7 @@ use App\Navy\Enterprise;
 */
 
 
-//
-// // Nuestras
-// Enterprise::auth();
-// // backOffice
-// Enterprise::admin();
-// // rutas de auth de laravel
-// // Auth::routes();
-// Route::get('/',                   'HomeController@start');
-// Route::get('/home',                   'HomeController@start');
-// Route::get('/success',                 'HomeController@sucess');
+
 Route::any('/forget',                       'Auth\AuthController@requestChangePassword');
 Route::get('/password',                       'Auth\AuthController@forgetView');
 Route::post('/password',                       'Auth\AuthController@changePass');
@@ -32,7 +23,5 @@ Route::post('/password',                       'Auth\AuthController@changePass')
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('social.callback');
 
-
-// Route::get('home',     'HomeController@index');
-Route::get('/{any}',        'HomeController@index')->where('any', '.*');
-Route::get('/register', 'HomeController@index');
+// any
+Route::get('/{any}',    'HomeController@index')->where('any', '.*');

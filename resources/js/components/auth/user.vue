@@ -79,6 +79,7 @@
         <div class="container contenedor">
           <div v-if="!this.loading" class="row justify-content-center aparecer">
 
+
             <div v-if="this.user.influencer && this.user.canSee == false" class="col-md-12 down-2">
               <stripe-add-visa :redirect="'/profile/cards'" v-if="this.hasToPay" class="aparecer sombreado"></stripe-add-visa>
               <div class="ContieneSuscripcionesButton" v-if="this.hasToPay !== true">
@@ -103,7 +104,6 @@
                 <b-dropdown v-if="this.user.influencer && this.user.id==this.auth.id" size="lg" id="dropdown-1" :text="$ml.get('auth').suscriptions" class="m-md-2">
                   <b-dropdown-item to="/profile/suscriptions">{{$ml.get('auth').confSusciptions}}</b-dropdown-item>
                 </b-dropdown>
-
               </div>
 
             </div>
@@ -117,6 +117,10 @@
 
               </div>
             </div>
+
+            <!-- Si hay subasta activa -->
+            <AuctionCurrent v-if="this.user.current_auctions.length > 0" :user="this.user"></AuctionCurrent>
+
             </div>
 
         </div>

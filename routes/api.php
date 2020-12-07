@@ -20,11 +20,16 @@ Enterprise::noAuth();
 Enterprise::stripe();
 Enterprise::publications();
 
-Route::post('/upload',     'TestController@video');
+Route::any('/upload',           'TestController@video');
+
+Route::post('/image/upload',     'TestController@video');
+Route::any('/auction/upload',                   'AuctionController@uploadForDestroy');
+Route::delete('/auction/upload/{image_id}/delete',                   'AuctionController@uploadForDestroy');
+
 
 Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
-  //
+  Enterprise::auctions();
   Enterprise::chats();
   Enterprise::auth();
   //

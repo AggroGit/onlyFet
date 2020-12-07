@@ -20,7 +20,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image','plans', 'notifications'];
+    protected $with=['image','plans', 'notifications','currentAuctions'];
 
     protected $appends =['canSee'];
 
@@ -135,6 +135,19 @@ class User extends Authenticatable
       return $this->hasMany('App\Publication')->orderBy('created_at','desc')->where('publish_at', '<=',now());
     }
 
+    // subastas
+    public function auctions()
+    {
+       return $this->hasMany('App\Auction')
+                   ->orderBy('created_at','desc');
+    }
+
+    // subasta abierta
+    public function currentAuctions()
+    {
+      return $this->auctions()->without('user')->without('winner')->without('current')->where('status','open')->take(1);
+    }
+
 
 
 
@@ -211,16 +224,11 @@ class User extends Authenticatable
       $this->save();
     }
 
-    public function cancelInfluencer()
-    {
-      $this->influencer = false;
-      $this->save();
-    }
 
     // planes a los que estas suscrito
     public function suscribedPlans()
     {
-      return $this->belongsToMany('App\Plan','users_plans')->with('user')->withTimestamps()->orderBy('updated_at','DESC');
+      return $this->belongsToMany('App\Plan','users_plans')->with('user')->withTimestamps()->withPivot('stripe_suscription_id')->orderBy('updated_at','DESC');
     }
 
     // planes que tu has creado

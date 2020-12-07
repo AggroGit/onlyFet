@@ -47,23 +47,18 @@ class ChatsController extends Controller
 
     public function chat(int $chat_id)
     {
-      return $this->correct(Chat::find($chat_id));
+      return $this->correct($request->chat);
     }
 
-    public function messages(int $chat_id)
+    public function messages(int $chat_id,Request $request)
     {
-      $chat = Chat::find($chat_id);
-      $chat->messages = $chat->messagesPaginated();
-      $chat->messages()->where('messages.user_id','!=',auth()->user()->id)->update([
-        'read' => true
-      ]);
-      return $this->correct($chat);
+      return $this->correct(
+        $this->provider->getAllChat($request->chat)
+      );
     }
 
     function removeChats(Request $request) {
-      Chat::whereIn(
-        'id', $request->ids
-      )->delete();
+      $this->provider->removeChatsOfUser(auth()->user(),$request);
       return $this->chats();
     }
 

@@ -815,15 +815,15 @@ input {
 
 .imgGrid {
   margin: auto;
-  width: 120% !important;
-  height: auto;
+  width: auto !important;
+  height: 120% !important;
   transition: all 0.4s ease;
   /* width: 140% !important; */
 
 }
 .ContieneImgGrid:hover >.imgGrid, .imgGrid:hover {
-  width: 100% !important;
-  height: auto;
+  /* width: 100% !important;
+  height: auto; */
 }
 .video {
   margin: auto;
@@ -1008,8 +1008,8 @@ height: 100% !important;
 .ContieneMenuAbrir {
     top: 0;
     left: 0;
-    margin: 10px;
-    position: fixed;
+    margin: 16px;
+    position: absolute;
 }
 @media only screen and (max-width: 4000px) {
   .MenuMob {
@@ -1131,8 +1131,50 @@ margin: 20px;
 .lastMessageList {
   margin-left: 66px;
   color: #909090 !important;
-
 }
 .logoMewnu {
   height: 76px !important;
+}
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+.contieneGridIm {
+  overflow: hidden !important;
+}
+.ImgAuctionMessage {
+  width: 100%;
+}
+.AuctionInMessage {
+  padding: 20px !important;
+}
+.entrarPuja {
+  padding: 20px;
+  display: flex;
+}
+.entrarPuja>h5 {
+  margin: auto;
 }

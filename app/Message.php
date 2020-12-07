@@ -11,7 +11,7 @@ use App\Message;
 class Message extends Model
 {
 
-    protected $with = ['user','image'];
+    protected $with = ['user','image','auction'];
 
     protected $fillable = [
       'chat_id'
@@ -31,10 +31,17 @@ class Message extends Model
       return $this->belongsTo('App\Chat');
     }
 
+    // the chat of the message
+    public function auction()
+    {
+      return $this->belongsTo('App\Auction');
+    }
+
     public function user()
     {
       return $this->belongsTo('App\User')->without(['image','plans','notifications']);
     }
+
 
     // the image of the message
     public function image()

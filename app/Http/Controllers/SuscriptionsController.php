@@ -17,7 +17,7 @@ class SuscriptionsController extends Controller
       $this->provider = new SuscriptionServiceProvider();
       Carbon::setLocale(auth()->user()->lang?? 'es');
     }
-    //
+
     // creamos los planes, con nosotros y cin stripe
     public function makePremium(Request $request)
     {
@@ -32,10 +32,9 @@ class SuscriptionsController extends Controller
         return ($code = $this->provider->makeUserPremium(auth()->user(),$request) == true)?
         $this->correct(auth()->user()) : $this->incorrect($code);
       }
-
-
     }
 
+    // from request create diferent plans
     public function createPlans($request)
     {
 
@@ -48,7 +47,6 @@ class SuscriptionsController extends Controller
             $plan->updateThePlans($key,$suscriptions);
           }
         }
-
       } else {
         foreach ($request->suscriptions as $key => $suscriptions) {
           $plan = new Plan();
@@ -87,8 +85,8 @@ class SuscriptionsController extends Controller
     public function suscribeToPlan($plan_id)
     {
       if($plan = Plan::find($plan_id)) {
-        $r = $plan->suscribeUser(auth()->user());
-        return $r? $this->correct() : $this->incorrect(207);
+        return $this->provider->addUserToPlan(auth()->user(),$plan)?
+        $this->correct() : $this->incorrect(207);
       } else {
         return $this->incorrect(208);
       }
@@ -107,14 +105,11 @@ class SuscriptionsController extends Controller
 
     public function unsuscribePlan($plan_id)
     {
-
       // miremos que exista la orden
       if($plan = Plan::find($plan_id)) {
-        // que esté suscrito
-        $plan->cancelUser(auth()->user());
-        return $this->correct();
+        return $this->provider->quitUserToPlan(auth()->user(), $plan)?
+        $this->correct() : $this->incorrect();
       }
       return $this->incorrect();
-      // code...
     }
 }

@@ -16,7 +16,7 @@ import Echo from 'laravel-echo';
 
 
 
-
+import VueCountdown from '@chenfengyuan/vue-countdown';
 import VFacebookLogin from 'vue-facebook-login-component'
 import VueRouter from 'vue-router'
 import InputTag from 'vue-input-tag'
@@ -59,6 +59,8 @@ import './ml.js' // idiomas
 Vue.use(vClickOutside)
 //
 Vue.component('VFacebookLogin', VFacebookLogin)
+//
+Vue.component(VueCountdown.name, VueCountdown);
 //
 Vue.use(VueEditor)
 
@@ -155,8 +157,11 @@ Vue.component('inicio',  require('./components/main.vue').default);
 //
 Vue.component('imageView',  require('./components/posts/image.vue').default);
 //
+Vue.component('addAuction',  require('./components/auctions/createAuction.vue').default);
+//
+Vue.component('viewAuction',  require('./components/auctions/auctionView.vue').default);
+//
 Vue.component('imageChat',  require('./components/chats/image.vue').default);
-
 //
 Vue.component('propina',  require('./components/propina.vue').default);
 //
@@ -169,6 +174,8 @@ Vue.component('faqs',  require('./components/faqs.vue').default);
 Vue.use(VueVideoPlayer)
 // datetime
 Vue.component('datetime', Datetime);
+//
+Vue.component('AuctionCurrent',    require('./components/auctions/AuctionAlert.vue').default);
 
 
 
@@ -241,6 +248,9 @@ const auth = function(to, from, next) {
  {path: '/post/test',             component: Vue.component('carousel'),beforeEnter: multiguard([auth])},
  {path: '/post/:post_id',         component: Vue.component('post'),beforeEnter: multiguard([auth])},
  {path: '/post/:post_id/coments', component: Vue.component('comments')},
+ // Auctions
+ {path: '/auction/create',         component: Vue.component('addAuction'),beforeEnter: multiguard([auth])},
+ {path: '/auction/:auction_id',    component: Vue.component('viewAuction'),beforeEnter: multiguard([auth])},
 
  // home
  {  path: '/novedades',component: Vue.component('home'),

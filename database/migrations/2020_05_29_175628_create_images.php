@@ -41,6 +41,9 @@ class CreateImages extends Migration
                   ->on('posts')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            // if we want to delete the image in the future
+            $table->boolean('remove_future')
+                  ->default(false);
 
             $table->timestamps();
         });

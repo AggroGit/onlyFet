@@ -58,12 +58,9 @@ return [
     ],
 
     'addPost' => [
-      // 'media'         =>  'array',
-        'media.*'    => 'image:mimes:jpg,jpeg,png,video:mov,',
+      'media.*'    => 'image:mimes:jpg,jpeg,png,video:mov,',
       'content'   => 'required|string',
-      // 'publish_at'=> 'nullable|date_format:Y.m.d H:i'
-      // 'hastags'   => 'nullable|array',
-      //   'hastags.*'   =>  'string',
+
 
 
     ],
@@ -80,13 +77,32 @@ return [
       'month6'  => 'required|digits_between:1,400',
       'month12' => 'required|digits_between:1,400',
     ],
+
     'chooseOrder' => [
       'orderBy' => 'string|in:populars,news,mySuscriptions'
     ],
+
     'propina' => [
       'quantity'    => 'required|digits_between:1,400',
       'message' =>  'string|nullable'
-    ]
+    ],
+
+    'createAuction' => [
+      'media.*'       => 'image:mimes:jpg,jpeg,png,video:mov,',
+      'description'   => 'required|string',
+      'title'         => 'required|string',
+      'price'         => 'required|integer',
+      'finish_at'     => 'required',
+
+    ],
+    'uploadImage' => [
+      'file'       => 'required|image:mimes:jpg,jpeg,png,video:mov,'
+    ],
+
+    'bidup' => [
+      'price'         => 'required|integer',
+    ],
+
 
 
 

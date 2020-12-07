@@ -54,7 +54,7 @@
 
             <div class="separador"></div>
             <div class="contieneOpcion">
-              <a @click="Eliminar(data)" class="rojo" >Eliminar suscripción</a>
+              <a @click="Eliminar(data)" class="rojo" >{{$ml.get('post').remove}}</a>
             </div>
             <div v-if="removing" class="contienePantallaCompletaDark aparecer">
               <div class="container text-center contieneCargador">
@@ -259,6 +259,9 @@ giveMeRoute(noti) {
   }
   if(noti.type == "suscription") {
     return "/user/"+noti.data
+  }
+  if(noti.type == "auction") {
+    return "/auction/"+noti.data
   }
   return "";
 }

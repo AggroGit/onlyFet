@@ -74,11 +74,6 @@ class Publication extends Model
       return $this->likes()->count();
     }
 
-    // public function getCanSeeAttribute()
-    // {
-    //   // si el usuario es premium y estas suscrito puedes ver la publicación
-    //   return $this->user->canSee;
-    // }
 
     public function getFechaAttribute()
     {

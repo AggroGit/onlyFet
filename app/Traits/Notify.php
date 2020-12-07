@@ -20,13 +20,13 @@ trait Notify
 {
 
   // it sends the notification via socket or via push
-  public function send($data)
+  public function send($data,$other = null)
   {
     // $this->sendPush($data);
     $this->sendSocket($data);
     $noti = new Notification([
       "user_id" => $this->id?? 0,
-      "from_id" => auth()->user()->id,
+      "from_id" => $this->id?? 0,
       "title"   => $data['title'],
       "body"    => $data['body'],
       "type"    => $data['type'],

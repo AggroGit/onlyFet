@@ -50,4 +50,41 @@ class ChatsServiceProvider extends ChatDomain
     return true;
   }
 
+  // if you have a chat return it, if not then create one
+  public function giveMeorCreateChatWith(User $user, $userFrom = null) :Chat
+  {
+    // if not is the current
+    $userFrom = $userFrom?? auth()->user();
+
+    foreach ($userFrom->chats as $chat) {
+      if($chat->isUser($user)) {
+        return $chat;
+      }
+    }
+    // create array
+    $users = array($userFrom,$user);
+    // create one with users of array
+    return $this->createChat($users);
+
+
+  }
+
+  public function closeChat(Chat $chat)
+  {
+    $this->close($chat);
+  }
+
+  // return the messages of the chat and mark all readed
+  public function getAllChat(Chat $chat)
+  {
+    // mark messages as read
+    $this->markMessagesRead($chat);
+
+    return [
+      "messages"  =>  $chat->messages()->paginate(1000),
+      "otherUser" =>  $chat->otherUser,
+      "chatData"  =>  $chat
+    ];
+  }
+
 }

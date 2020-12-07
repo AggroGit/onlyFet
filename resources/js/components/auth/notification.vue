@@ -21,7 +21,6 @@ export default {
     }
   },
   mounted() {
-    console.log(window.name);
   },
   created() {
     setTimeout(() => this.elementVisible = false, 3500)
@@ -45,6 +44,9 @@ export default {
       }
       if(this.data.type == "suscription") {
         return "/user/"+this.data.data
+      }
+      if(this.data.type == "auction") {
+        return "/auction/"+this.data.data
       }
       else {
         return "/novedades/suscriptions"

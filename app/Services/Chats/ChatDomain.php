@@ -56,7 +56,6 @@ class ChatDomain
   // send a nptification to the user
   public function sendMessageNotification(User $user, Message $message)
   {
-    // if($message->chat->isUserConnected($user)) {
       $user->send([
         "title"   => $user->name,
         "body"    => "$message->message",
@@ -64,7 +63,36 @@ class ChatDomain
         "data"    => $message->chat->id,
         "sound"   => "default",
       ]);
-    // }
+  }
+
+  // create chat with given users
+  public function createChat($users)
+  {
+    $new = new Chat();
+    $new->save();
+    foreach ($users as $user) {
+      $new->addUser($user);
+    }
+    // return all the object
+    return Chat::find($new->id);
+  }
+
+  public function close(Chat $chat)
+  {
+    $chat->open = false;
+    $chat->save();
+  }
+
+  public function markMessagesRead(Chat $chat, $user = null)
+  {
+    $user = $user?? auth()->user();
+    //
+    $chat->messages()->where([
+      'user_id' => $user->id,
+      'read'  => false
+      ])->update([
+      'read' => true
+    ]);
   }
 
 }

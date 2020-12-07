@@ -17,7 +17,7 @@
             <p class="informativoGris" v-else><stripe-express></stripe-express>Para poder ser influencer debes antes configurar Stripe</p>
           </div>
           <div class="col-12">
-            <p class="informativoGris">* Requerirá pagar suscripción </p>
+            <p class="informativoGris">{{this.$ml.get('stripe').conditionPrivate}}</p>
           </div>
             <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
         </div>
@@ -177,6 +177,7 @@ export default {
       .then(response => {
         if(response.data.rc == 1) {
           self.$store.state.auth = response.data.data
+          console.log(response.data.data)
           alert(self.$ml.get('stripe').successSuscriptions)
           self.$router.push('/profile')
         } else {

@@ -57,15 +57,15 @@ class StripeController extends Controller
         return $this->incorrect(0,$missings);
       }
       $this->ifNotCreate();
-      try {
+      // try {
         auth()->user()->addPaymentMethod($request->id);
         auth()->user()->updateDefaultPaymentMethod(auth()->user()->paymentMethods()->first()->id);
         return $this->correct();
 
-      } catch (\Exception $e) {
-
-        return $this->incorrect(206);
-      }
+      // } catch (\Exception $e) {
+      //
+      //   return $this->incorrect(206);
+      // }
 
     }
 
@@ -74,7 +74,7 @@ class StripeController extends Controller
     {
       // first we have to recive the data
       if ($request->has('code') and $request->has('state')) {
-        
+
         // now we have to retrive the user by the state
         if ($user = User::where('temporal_token',$request->state)->first()) {
           // if exists then we create and asociate
@@ -82,7 +82,7 @@ class StripeController extends Controller
             if($user->createAsAProduct()) {
 
             } else {
-              return "ERROR";
+              dd($request);
             }
             $user->save();
             $user->refresh();

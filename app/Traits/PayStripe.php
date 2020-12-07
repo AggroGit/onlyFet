@@ -60,6 +60,7 @@ trait PayStripe
       ."stripe_user[first_name]=$this->name&"
       ."stripe_user[last_name]=$this->surnames&"
       ."stripe_user[phone_number]=$this->phone_number&"
+      ."redirect_uri=".url('/api/stripe/return')."&"
       ."state=$this->temporal_token&";
       // save for the token
       $this->save();
@@ -98,7 +99,7 @@ trait PayStripe
 
       $product = $this->stripe()->products->create([
         'name'  =>  $this->name,
-        'id'    =>  env('APP_NAME','no_name').$this->id,
+        'id'    =>  env('APP_ENV','local').$this->id,
         'metadata'  => [
           'user_onlyFet_id' => $this->id,
           'description' => $this->name,
@@ -217,8 +218,9 @@ trait PayStripe
 
     }
 
-
   }
+
+
 
 
 

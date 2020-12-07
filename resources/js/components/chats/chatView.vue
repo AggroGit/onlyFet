@@ -25,11 +25,37 @@
     <!-- MENSAJES -->
     <div v-if="!this.loading" class="ContieneMensajes contenedor" ref="messageDisplay">
       <div v-for="(message) in this.messages" :key="message.id" class="Mensaje" v-bind:class="ifisMe(message)">
-        <div class="globoMensaje">
+        <div v-if="message.auction ==null" class="globoMensaje">
           <router-link  :to="chat+'/'+message.image.name" v-if="message.image" class="imageChat">
             <img :src="message.image.sizes.NotSmall" alt="">
           </router-link>
           <p>{{message.message}}</p>
+        </div>
+        <!-- Auction -->
+        <div v-else class="AuctionInMessage sobreadoPlus">
+          <div class="container">
+            <div class="row">
+              <div class="col-5">
+
+                <img class="ImgAuctionMessage" v-if="message.auction.images.length >=1" :src="message.auction.images[0].sizes.NotSmall"  alt="">
+              </div>
+              <div class="col-7">
+                <div class="row">
+                  <div class="col-12">
+                    <h5>{{$ml.get('auction').congratsYouWinAuction}}</h5>
+                    <p>
+                      {{$ml.get('auction').max}} : {{message.auction.final_price }}€
+                    </p>
+                      <p>
+                        {{$ml.get('auction').detailSend}}
+                      </p>
+
+
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
         </div>
         <small>{{message.fecha}}</small>
       </div>
@@ -88,9 +114,8 @@ export default {
   },
   beforeRouteLeave (to, from, next) {
     console.log("ADIOS  ")
-    Echo.leave('97.Chat.1')
-    this.channel.pusher.unsubscribe('presence-'+appCode+'.Chat.'+this.chat);
-    // alert('desc')
+    this.unsuscribe();
+    console.log("YA SE HA IDO  ")
     next()
   },
   computed: {
@@ -101,6 +126,11 @@ export default {
   methods: {
     alertar() {
       alert('hola')
+    },
+    unsuscribe() {
+      console.log('quit suscribe')
+      Echo.leave('Chat.'+this.chat)
+      // this.channel.pusher.unsubscribe('presence-'+appCode+'.Chat.'+this.chat);
     },
 
     // check if the chat comes from url or selected

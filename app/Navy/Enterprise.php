@@ -50,5 +50,10 @@ class Enterprise
        require 'routes/publications.php';
     }
 
+    public static function auctions()
+    {
+       require 'routes/auctions.php';
+    }
+
 
 }

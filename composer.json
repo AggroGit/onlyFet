@@ -22,7 +22,8 @@
         "laravel/ui": "^2.0",
         "malhal/laravel-geographical": "^1.0",
         "pbmedia/laravel-ffmpeg": "^7.2",
-        "pusher/pusher-php-server": "~4.0"
+        "pusher/pusher-php-server": "~4.0",
+        "stripe/stripe-php": "^7.66"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    const stripe = Stripe('pk_test_51HhtxnEZSaM3aAi1d0i564f4jbZeEBHtptsiC5VVt127QxDMnGEQedjNeP10ou2tvxs4GzXVc73IyEIFdgEfujw400oAwekUSt');
+    const stripe = Stripe('pk_test_uJokSRQ3iQnavXztyfmoigfy');
 
     const elements = stripe.elements();
     const cardElement = elements.create('card');

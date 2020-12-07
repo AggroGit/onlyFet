@@ -34,12 +34,13 @@ class CreatePlans extends Migration
                 ->on('plans')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-            $table->timestamps();
+          $table->string('stripe_suscription_id');
+          $table->integer('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+          $table->timestamps();
         });
     }
 

@@ -252,6 +252,28 @@ export default new MLCreate({
       "send": "Enviar",
       "mensaje": "Mensaje",
       "cantRecive": "Parece que el usuario no puede aceptar propinas"
+   },
+   "auction": {
+     "createTitle": "Crear una subasta",
+     "media": "Imágenes para la subasta",
+     "title" : "Título",
+     "description" : "Descripción",
+     "finish_at": "Fecha y hora de finalización de la puja",
+     "choosedate": "Antes debes seleccionar una fecha y hora de finalización de subasta",
+     "initial_price": "Precio inicial",
+     "description": "Descripción",
+     "createAuction": "Crear Subasta",
+     "onlyOne": "Ya tienes una subasta en marcha, debes esperar a que finalize para publicar otra",
+     "maxCurrent":"Puja máxima actual",
+     "auctionInfo": "*Un porcentaje de la cantidad recaudada irá destinada como donación a una asociación en la lucha contra el cáncer de mama.",
+     "cuntBideUp": "Canidad para subir la puja ",
+     "bideUpMore": "Subir la puja",
+     "notUser": "No puedes pujar por ru propio producto",
+     "finishedAuction": "La Subasta ha finalizado",
+     "congratsYouWinAuction": "¡Enhorabuena, has ganado la puja!",
+     "max":"Puja máxima",
+     "detailSend": "Te enviaré tan pronto como sea posible el artículo",
+     "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
    }
 })
   ]

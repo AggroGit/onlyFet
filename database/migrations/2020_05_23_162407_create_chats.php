@@ -73,6 +73,13 @@ class CreateChats extends Migration
                 ->onUpdate('cascade');
           $table->boolean('read')
                 ->default(false);
+          // auction
+          $table->integer('auction_id')
+                ->nullable()
+                ->references('id')
+                ->on('auctions')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 
     }

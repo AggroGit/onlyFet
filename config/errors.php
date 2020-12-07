@@ -81,7 +81,13 @@ return [
     "1403"  => "error to apply scratch",
 
     // posts, likes and comments
-    "1500"  => "Post not found"
+    "1500"  => "Post not found",
+
+    "1601"  => "cant create a auction now",
+    "1602"  => "cant bid up this auction",
+    "1603"  => "Price have to be bigger",
+    "1604"  => "Auction dont exists",
+
 
 
 

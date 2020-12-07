@@ -180,7 +180,6 @@ export default {
         console.log(response)
         if(response.data.rc == 1) {
           self.uploadFiles(response.data.data.id)
-
         }
         if(response.data.rc == 2) {
           self.exists = true
@@ -267,7 +266,6 @@ export default {
          }, this.fileRecordsForUpload)
         .then(function (response) {
           console.log(response)
-
         })
         // .catch(() => alert('Error al subir Archivo'))
 

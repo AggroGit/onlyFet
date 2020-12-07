@@ -1,6 +1,10 @@
 <?php
 
+
 use Illuminate\Support\Facades\Broadcast;
+
+use App\Services\Auction\AuctionServiceProvider;
+use App\Auction;
 use App\Chat;
 use App\User;
 /*
@@ -30,6 +34,14 @@ Broadcast::channel('{app_id}.Chat.{id}', function ($user,$app_id, $id) {
 // channel App
 Broadcast::channel('{app_id}.App', function ($user,$app_id) {
     return auth()->user();
+});
+
+// channel auctions
+Broadcast::channel('{app_id}.Auction.{id}', function ($user,$app_id, $id) {
+    //
+    $provider = new AuctionServiceProvider();
+    return  ($auction = Auction::find($id) and ($provider->canUserBidUp($auction,$user) or $user->id == $auction->user->id)) ?
+    $auction : false;
 });
 
 

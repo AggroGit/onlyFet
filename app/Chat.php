@@ -45,8 +45,6 @@ class Chat extends Model
                   ->first();
     }
 
-
-
     public function getOtherUserAttribute()
     {
       return $this->users()->where('id','!=',auth()->user()->id)->first();
@@ -81,13 +79,6 @@ class Chat extends Model
       $new->save();
       return Chat::find($new->id);
     }
-
-    //
-    // // nos dice si el usuario actual ha bloqueado al otro
-    // public function gethaveBlockedAttribute()
-    // {
-    //   return $this->pivot;
-    // }
 
 
     // check if is user in a chat
@@ -151,13 +142,12 @@ class Chat extends Model
 
     public function delete()
     {
-        // delete all related messages
-        foreach ($this->users as $user) {
-          $this->quitUser($user);
-        }
-        // $this->messages()->delete();
-        return parent::delete();
+      // delete all related messages
+      foreach ($this->users as $user) {
+        $this->quitUser($user);
+      }
+      $this->messages()->delete();
+      return parent::delete();
     }
-
 
 }
