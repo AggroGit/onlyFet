@@ -150,6 +150,8 @@ export default new MLCreate({
      "max":"Puja máxima",
      "detailSend": "Te enviaré tan pronto como sea posible el artículo",
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
+     "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
+     "currentAuctingUser": "Hay una puja activa"
    }
 }),
 
@@ -296,6 +298,8 @@ export default new MLCreate({
      "max":"Puja máxima",
      "detailSend": "Te enviaré tan pronto como sea posible el artículo",
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
+     "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
+     "currentAuctingUser": "Hay una puja activa"
    }
 })
   ]

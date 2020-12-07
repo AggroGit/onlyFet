@@ -55,7 +55,7 @@ trait PayStripe
       // we create a token
       $this->temporal_token = uniqid().md5(rand(1, 10) . microtime());
       // we have to return the url with some params
-      $base = "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HNOD9Fp5xf66fpj2ic4ZJKldwWtIHWl3&scope=read_write"
+      $base = env('STRIPE_URL_ACCOUNT')
       ."stripe_user[email]=$this->email&"
       ."stripe_user[first_name]=$this->name&"
       ."stripe_user[last_name]=$this->surnames&"

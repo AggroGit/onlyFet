@@ -155,6 +155,10 @@ export default {
           self.error = true
           self.errorMessage = self.$ml.get('auction').onlyOne
         }
+        if(response.data.rc == 4) {
+          self.error = true
+          self.errorMessage = self.$ml.get('auction').onlyInfluencer
+        }
 
       })
       .catch(err => {

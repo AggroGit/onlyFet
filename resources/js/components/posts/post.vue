@@ -16,7 +16,7 @@
           <avatar :conection="true" :us="data.user"></avatar>
             <div class="contieneDetPost">
               <p>{{data.user.name}} </p>
-              <span class="thersAuctionNow aparecer" v-if="wantSeeAuctions && data.user.current_auctions.length>0">Hay una puja activa</span>
+              <span class="thersAuctionNow aparecer" v-if="this.wantSeeAuctions && data.user.current_auctions.length>0">{{$ml.get('auction').currentAuctingUser}}</span>
               <p>{{data.fecha}}</p>
               <!-- <p> se publicará en {{data.fecha}}</p> -->
           </div>
