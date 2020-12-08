@@ -77,8 +77,8 @@ class SuscriptionDomain
       // $user->subscription('default', $plan->previuous_stripe_id)->swapAndInvoice($plan->stripe_tarifa_id);
       $user->stripeApi();
       //
-      $subscription = \Stripe\Subscription::retrieve($user->stripe_suscription_id);
-      \Stripe\Subscription::update($user->stripe_suscription_id, [
+      $subscription = \Stripe\Subscription::retrieve($user->pivot->stripe_suscription_id);
+      \Stripe\Subscription::update($user->pivot->stripe_suscription_id, [
         'cancel_at_period_end' => false,
         'proration_behavior' => 'always_invoice',
         'items' => [
