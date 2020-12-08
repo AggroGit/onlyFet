@@ -134,7 +134,6 @@ class SuscriptionDomain
       "expand" => ["latest_invoice.payment_intent"],
       "transfer_data" => [
         "destination" => $plan->user->stripe_reciver_id,
-
       ]
     ]);
     return $subscription;

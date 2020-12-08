@@ -175,6 +175,8 @@ class Image extends Model
   {
       // take the editable
       $edit = $this->editable();
+      // fix the orientation of the camera
+      $edit->orientate();
       // Full
       $edit->resize(1200, null, function ($constraint) {
           $constraint->aspectRatio();
