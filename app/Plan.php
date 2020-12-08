@@ -23,7 +23,7 @@ class Plan extends Model
     // usuarios suscritos al plan
     public function usersSuscribed()
     {
-      return $this->belongsToMany('App\User', 'users_plans');
+      return $this->belongsToMany('App\User', 'users_plans')->withPivot(['stripe_suscription_id']);
     }
 
     // usuario quien hace el plan

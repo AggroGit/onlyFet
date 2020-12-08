@@ -31,7 +31,7 @@ class SuscriptionDomain
   }
 
   // create a new plan, if is an iupdate we have to pass the old one
-  public function createNewPlan(User $user, $price,$forEvery,$old = false)
+  public function createNewPlan(User $user, $price, $forEvery, $old = false)
   {
     // si hay antiguo entonces creamos uno de zero
     if($old === false) {
@@ -73,8 +73,22 @@ class SuscriptionDomain
   {
     // recorremos sus usuarios y cambiamos el precio
     foreach ($plan->usersSuscribed as $user) {
-      echo "$user->name";
-      $user->subscription('default', $plan->previuous_stripe_id)->swapAndInvoice($plan->stripe_tarifa_id);
+      // antiguo
+      // $user->subscription('default', $plan->previuous_stripe_id)->swapAndInvoice($plan->stripe_tarifa_id);
+      $user->stripeApi();
+      //
+      $subscription = \Stripe\Subscription::retrieve($user->stripe_suscription_id);
+      \Stripe\Subscription::update($user->stripe_suscription_id, [
+        'cancel_at_period_end' => false,
+        'proration_behavior' => 'always_invoice',
+        'items' => [
+          [
+            'id' => $subscription->items->data[0]->id,
+            'price' => $plan->stripe_tarifa_id,
+          ],
+        ],
+      ]);
+
     }
   }
 
