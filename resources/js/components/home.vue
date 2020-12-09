@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-4 text-center enrutadorMen">
-              <router-link class="noLink" to="/novedades/suscriptions">
+              <router-link class="noLink enrutadorMen" to="/novedades/suscriptions">
                 {{$ml.get('auth').suscriptionsAndNotis}}
               </router-link>
               <div v-if="this.$route.name == 'suscriptions'"  class="lineaSeparadora aparecerDerecha"></div>
