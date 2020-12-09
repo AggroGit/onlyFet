@@ -52,6 +52,17 @@ img {
 .contieneBuscadorLogoAntes {
   background: var(--rojo2);
 }
+.buscaProductos {
+  display: flex;
+  margin: auto;
+  padding: 10px;
+}
+.buscaProductos >input {
+  border-radius: 14px !important;
+}
+.sinFondo {
+  background: none !important;
+}
 .logoLogin {
   max-width: 250px;
   padding: 30px;
@@ -1172,8 +1183,7 @@ margin: 20px;
   padding: 20px !important;
 }
 .entrarPuja {
-  padding: 20px;
-  display: flex;
+  padding: 10px !important;
 }
 .entrarPuja>h5 {
   margin: auto;
