@@ -451,6 +451,9 @@ input {
   /* display: flex; */
   padding-left: 20px;
 }
+.ContieneDatosperfil >p {
+  margin-bottom: 0px !important;
+}
 
 .ContieneDatosperfil > * {
   margin: auto;
