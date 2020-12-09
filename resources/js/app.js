@@ -232,7 +232,8 @@ const auth = function(to, from, next) {
      path:'pics',
      component: Vue.component('images'),
      name:'pics',
-     beforeEnter: multiguard([auth])
+     beforeEnter: multiguard([auth]),
+     key:"asd"
    },
    {
      path:'videos',
