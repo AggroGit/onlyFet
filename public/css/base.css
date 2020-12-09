@@ -825,7 +825,7 @@ input {
   max-height: 250px;
   overflow: hidden;
   margin: auto;
-  background: grey;
+  background: #e6e6e6;
   display: flex;
 }
 .MainBuscador {
