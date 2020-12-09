@@ -11,7 +11,7 @@
       <navBar v-if="!this.loading"  class="navbarsUP sombreado" :auth="this.auth"></navBar>
       <!-- THE VIEW -->
       <div v-if="!this.loading" >
-        <router-view v-bind:class="{ 'entero': this.$store.state.entero }"   v-bind:data="this"></router-view>
+        <router-view v-bind:class="{ 'entero': this.$store.state.entero }" :key="$route.path"  v-bind:data="this"></router-view>
       </div>
       <!-- THE VIEW -->
       <!-- <div v-if="!this.loading" v-bind:class="{ 'entero': this.$store.state.entero }">
@@ -39,9 +39,10 @@ export default {
       d:false
     }
   },
-  watch: { $route(to, from) { // react to route changes...
-    if(to !== from){ location.reload(); } } },
+
   mounted() {
+    console.log(this.$route)
+
      this.initApp();
      window.appCode = this.app_code;
 
