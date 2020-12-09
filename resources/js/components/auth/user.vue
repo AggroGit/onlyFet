@@ -39,7 +39,7 @@
 
 
 
-        <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior">
+        <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior contenedor">
 
             <div class="col-4 text-center">
               <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/wall'">
