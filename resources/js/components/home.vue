@@ -2,15 +2,15 @@
       <div class="container-fluid">
         <div class="row justify-content-center contieneEnrutador sombreado">
 
-            <div class="">
-              <router-link class="noLink" to="/novedades/news">
+            <div class="col-4 text-center">
+              <router-link class="noLink enrutadorMen" to="/novedades/news">
                 {{$ml.get('menu').news}}
               </router-link>
               <div v-if="this.$route.name == 'news'"  class="lineaSeparadora aparecerIzquierda"></div>
 
             </div>
 
-            <div class="">
+            <div class="col-4 text-center enrutadorMen">
               <router-link class="noLink" to="/novedades/suscriptions">
                 {{$ml.get('auth').suscriptionsAndNotis}}
               </router-link>
