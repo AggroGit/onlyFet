@@ -26,6 +26,9 @@ img {
 .contieneDesc {
   max-width: 200px;
 }
+p::first-letter{
+   text-transform: uppercase;
+}
 
 .contenedor {
   transition: all 0.3s ease;
