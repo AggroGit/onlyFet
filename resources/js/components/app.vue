@@ -11,7 +11,7 @@
       <navBar v-if="!this.loading"  class="navbarsUP sombreado" :auth="this.auth"></navBar>
       <!-- THE VIEW -->
       <div v-if="!this.loading" >
-        <router-view v-bind:class="{ 'entero': this.$store.state.entero }" :key="$route.path"  v-bind:data="this"></router-view>
+        <router-view v-bind:class="{ 'entero': this.$store.state.entero }" :key="$route.name"  v-bind:data="this"></router-view>
       </div>
       <!-- THE VIEW -->
       <!-- <div v-if="!this.loading" v-bind:class="{ 'entero': this.$store.state.entero }">
