@@ -94,8 +94,8 @@ class AuctionDomain
     foreach ($auction->user->plans as $plan) {
       foreach ($plan->usersSuscribed as $user) {
         $user->send([
-          "title"   => $auction->title,
-          "body"    => $plan->user->name." ha iniciado una puja",
+          "title"   => $plan->user->name." ha iniciado una puja",,
+          "body"    => "Se puja $auction->name, a partir de $auction->initial_price €",
           "type"    => "auction",
           "data"    => $auction->id,
           "sound"   => "default",

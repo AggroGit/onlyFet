@@ -122,7 +122,7 @@ class AuctionServiceProvider extends AuctionDomain
 
 
     if($auction->user->id == $user->id)
-      return Auction::find($auction_id);
+      return Auction::find($auction_id)
 
     if(!$this->canUserBidUp($auction,$user))
       return 1602;
