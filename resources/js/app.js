@@ -227,26 +227,23 @@ const auth = function(to, from, next) {
      path:'',
      component: Vue.component('wall'),
      name:'wall',
-     key:"same",
    },
    {
      path:'pics',
      component: Vue.component('images'),
      name:'pics',
      beforeEnter: multiguard([auth]),
-     key:"same",
+     
    },
    {
      path:'videos',
      component: Vue.component('videos'),
      name:'videos',
-     key:"same",
      beforeEnter: multiguard([auth])
    },
    {
      path:'wall',
      name:'wall',
-     key:"same",
      component: Vue.component('wall'),
    }
  ]
