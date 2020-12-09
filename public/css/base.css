@@ -739,6 +739,7 @@ input {
 }
 .contieneEnrutador {
   background: #ffffff !important;
+  margin-top: 10px;
 }
 .contieneEnrutador >div{
   padding: 0px;

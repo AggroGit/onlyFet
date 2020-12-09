@@ -17,16 +17,13 @@
           </div>
           <div class="col-6 ContieneDatosperfil ">
             <h4>{{user.name}}</h4>
-            <br>
             <p ><strong>@</strong>{{this.user.nickname}}
-              <br>
               </p>
               <p v-html="this.user.description">
               </p>
 
 
             <div v-if="user.influencer && auth.id !== user.id">
-              <br>
               <propina :otherUser="user"></propina>
             </div>
 
@@ -45,7 +42,7 @@
         <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior">
 
             <div class="">
-              <router-link class="noLink" :to="'/user/'+this.user.nickname+'/wall'">
+              <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/wall'">
                 Muro
               </router-link>
               <div v-if="this.$route.name == 'wall'"  class="lineaSeparadora aparecerIzquierda"></div>
@@ -53,14 +50,14 @@
             </div>
 
             <div class="">
-              <router-link class="noLink" :to="'/user/'+this.user.nickname+'/pics'">
+              <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/pics'">
                 Fotos
               </router-link>
               <div v-if="this.$route.name == 'pics'"  class="lineaSeparadora aparecerDerecha"></div>
             </div>
 
             <div class="">
-              <router-link class="noLink" :to="'/user/'+this.user.nickname+'/videos'">
+              <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/videos'">
                 Vídeos
               </router-link>
               <div v-if="this.$route.name == 'videos'"  class="lineaSeparadora aparecerDerecha"></div>

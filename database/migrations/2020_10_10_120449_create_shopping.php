@@ -19,8 +19,9 @@ class CreateShopping extends Migration
             $table->timestamps();
             $table->string('name')
                   ->nullable();
-            $table->string('description')
+            $table->text('description')
                   ->nullable();
+            $table->integer('order')->nullable();
             $table->boolean('hidden')->default(false);
             $table->double('price', 8, 2)->nullable();
             $table->double('offer_price', 8, 2)->nullable();
@@ -29,19 +30,24 @@ class CreateShopping extends Migration
             // price per unit, pack_of_units, ml, g, kg, L
             $table->string('price_per')
                   ->default("unit");
-            //
-            // $table->integer('business_id')
-            //       ->references('id')
-            //       ->on('business')
-            //       ->onDelete('cascade')
-            //       ->onUpdate('cascade');
-            //
             $table->integer('category_id')
                   ->nullable()
                   ->references('id')
                   ->on('categories')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+        });
+
+        // productos
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name')
+                  ->nullable();
+            $table->text('description')
+                  ->nullable();
+            $table->string('icon')
+                  ->nullable();
         });
 
         // imagenes de productos
@@ -78,7 +84,7 @@ class CreateShopping extends Migration
             // guarda el price_per del producto, por si el priducto cambia
             $table->string('price_per');
             // descripcion
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             // usuario quien hace la orden
             $table->integer('user_id')
                   ->references('id')
@@ -156,16 +162,11 @@ class CreateShopping extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            // $table->integer('business_id')
-            //       ->references('id')
-            //       ->on('business')
-            //       ->onDelete('cascade')
-            //       ->onUpdate('cascade');
+
             $table->integer('percentage_dicount');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

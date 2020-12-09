@@ -98,6 +98,12 @@ return [
     'uploadImage' => [
       'file'       => 'required|image:mimes:jpg,jpeg,png,video:mov,'
     ],
+    'searchProducts' => [
+      'orderBy' => 'string',
+      'categories'  => 'array',
+      'search'  => 'string',
+
+    ],
 
     'bidup' => [
       'price'         => 'required|integer',

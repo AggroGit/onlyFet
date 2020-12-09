@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    //
+    protected $with = ['category'];
+    //
+    protected $fillable =['name','description','price','category_id'];
     // ordenes
     public function orders()
     {
@@ -31,17 +35,8 @@ class Product extends Model
       return $this->belongsTo('App\User');
     }
 
-    // // // sizes of the product
-    // public function sizes()
-    // {
-    //    return $this->hasMany('App\Sizes');
-    // }
-    //
-    //
-    // // business of the product
-    // public function business()
-    // {
-    //   return $this->belongsTo('App\Business')->distance(auth()->user()->latitude, auth()->user()->longitude);
-    // }
+
+
+
 
 }

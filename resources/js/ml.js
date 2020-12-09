@@ -151,7 +151,14 @@ export default new MLCreate({
      "detailSend": "Te enviaré tan pronto como sea posible el artículo",
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
      "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
-     "currentAuctingUser": "Hay una puja activa"
+     "currentAuctingUser": "Tiene una puja activa"
+   },
+   "shop": {
+     "search": "🔍  Buscar Producto",
+     "buy": "Comprar",
+     "filter": "Filtrar",
+     "addCart": "Añadir al carrito",
+     "noProducts": "No se han encontrado productos",
    }
 }),
 

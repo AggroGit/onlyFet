@@ -16,7 +16,7 @@
           <avatar :conection="true" :us="data.user"></avatar>
             <div class="contieneDetPost">
               <p>{{data.user.name}} </p>
-              <span class="thersAuctionNow aparecer" v-if="this.wantSeeAuctions && data.user.current_auctions.length>0">{{$ml.get('auction').currentAuctingUser}}</span>
+              <p class="thersAuctionNow aparecer" v-if="this.wantSeeAuctions && data.user.current_auctions.length>0">{{$ml.get('auction').currentAuctingUser}}</p>
               <p>{{data.fecha}}</p>
               <!-- <p> se publicará en {{data.fecha}}</p> -->
           </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="card-body">
           <p v-html="this.interpretateContent()"></p>
-          <p v-if="this.data.hastags.length >0" class="hastags">
+          <p v-if="this.data.hastags.length >0 && this.data.hastags[0].text !==''" class="hastags">
             <span   v-for="(hastag) in this.data.hastags" :key="hastag.id" >#{{hastag.text}} </span>
           </p>
         </div>

@@ -27,6 +27,9 @@ Route::any('/auction/upload',                   'AuctionController@uploadForDest
 Route::delete('/auction/upload/{image_id}/delete',                   'AuctionController@uploadForDestroy');
 
 
+Enterprise::products();
+
+
 Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
   Enterprise::auctions();

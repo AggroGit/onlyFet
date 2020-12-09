@@ -55,5 +55,10 @@ class Enterprise
        require 'routes/auctions.php';
     }
 
+    public static function products()
+    {
+       require 'routes/products.php';
+    }
+
 
 }
