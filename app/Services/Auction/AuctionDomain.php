@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Publication as Post;
 use App\Mail\BasicMail;
 use App\Jobs\sendMail;
+use App\Notification;
 use Carbon\Carbon;
 use App\Auction;
 use App\Message;
@@ -102,6 +103,15 @@ class AuctionDomain
         ]);
       }
     }
+  }
+
+  public function removeNotifications($auction)
+  {
+    Notification::where([
+      ["type",'=','auction'],
+      ["data",'=',$auction->id]
+    ])->delete();
+    return true;
   }
 
   public function notifyNobodyBidUp(Auction $auction)

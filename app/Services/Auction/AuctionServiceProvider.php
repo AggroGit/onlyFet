@@ -104,7 +104,8 @@ class AuctionServiceProvider extends AuctionDomain
     $this->notifyAuctionWinner($auction,$chat);
     // send to the chat
     $this->sendAuctionToChat($auction,$chat);
-
+    // remove the notifications
+    $this->removeNotifications($auction);
   }
 
   public function uploadImageToAuction($request,$auction)
