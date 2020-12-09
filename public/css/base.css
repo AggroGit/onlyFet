@@ -1102,7 +1102,7 @@ height: 100% !important;
   height: 1.1rem;
   float: right;
   float: right;
-    position: relative !important;
+    position: absolute !important;
     margin: auto;
     transform: translateX(-38px) translateY(76px);
 }
