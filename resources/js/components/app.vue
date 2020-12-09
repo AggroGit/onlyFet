@@ -43,6 +43,7 @@ export default {
   mounted() {
      this.initApp();
      window.appCode = this.app_code;
+     console.log(this.$route)
 
 
   },
