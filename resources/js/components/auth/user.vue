@@ -41,7 +41,7 @@
 
         <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior">
 
-            <div class="">
+            <div class="col-4">
               <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/wall'">
                 Muro
               </router-link>
@@ -49,14 +49,14 @@
 
             </div>
 
-            <div class="">
+            <div class="col-4">
               <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/pics'">
                 Fotos
               </router-link>
               <div v-if="this.$route.name == 'pics'"  class="lineaSeparadora aparecerDerecha"></div>
             </div>
 
-            <div class="">
+            <div class="col-4">
               <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/videos'">
                 Vídeos
               </router-link>
