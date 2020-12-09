@@ -39,6 +39,8 @@ export default {
       d:false
     }
   },
+  watch: { $route(to, from) { // react to route changes...
+    if(to !== from){ location.reload(); } } },
   mounted() {
      this.initApp();
      window.appCode = this.app_code;
