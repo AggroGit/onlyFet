@@ -57,7 +57,7 @@ class ChatDomain
   public function sendMessageNotification(User $user, Message $message)
   {
       $user->send([
-        "title"   => $user->name,
+        "title"   => $message->user->name,
         "body"    => "$message->message",
         "type"    => "chat",
         "data"    => $message->chat->id,
