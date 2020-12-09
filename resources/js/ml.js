@@ -66,7 +66,7 @@ export default new MLCreate({
       "ev": "each",
       "addVisa": "You must enter a payment method beforehand",
       "create": "Create Stripe account",
-      "successSuscription": "You have successfully subscribed to",
+      "successSuscription": "You have successfully subscribed to ",
       "sureRemoveSuscriptions": "Are you sure you wish to cancel your subscriptions? Beware that you won´t be able to access this profile and your subscription won´t be reimbursed ",
       "login": "Log in to Stripe",
       "days": "days",
@@ -156,6 +156,7 @@ export default new MLCreate({
    "shop": {
      "search": "🔍  Buscar Producto",
      "buy": "Comprar",
+
      "filter": "Filtrar",
      "addCart": "Añadir al carrito",
      "noProducts": "No se han encontrado productos",
@@ -221,14 +222,14 @@ export default new MLCreate({
       "ev": "cada",
       "addVisa": "Antes debes introducir un método de pago",
       "create": "Crear cuenta de Stripe",
-      "successSuscription": "Te has suscrito correctamente a",
+      "successSuscription": "Te has suscrito correctamente a ",
       "sureRemoveSuscriptions": "¿Estás seguro que quieres eliminar tus suscripciones? Ten en cuenta que no podrás acceder de nuevo a este perfil y tu suscripción no será reembolsada.",
       "login": "Login en Stripe",
       "days": "días",
       "months": "meses",
       "onlyPremium": "Debes suscribirte para ver el contenido",
       "problem": "Vaya, parece que hay algún problema con Stripe",
-      "successSuscriptions": "Tus suscripciones han sido configuradas correctamente",
+      "successSuscriptions": "Tus suscripciones han sido configuradas correctamente ",
       "info": {
          "create": "Regístrate en Stripe para recibir dinero",
          "login": "Haz login en Stripe para ver tu dinero pendiente de envío"
