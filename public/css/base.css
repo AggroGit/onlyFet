@@ -741,7 +741,10 @@ input {
   background: #ffffff !important;
 }
 .contieneEnrutador >div{
-  padding: 20px;
+  padding: 0px;
+}
+.enrutadorMen {
+  margin: 30px;
 }
 .contieneLinea {
   width: 100%;
