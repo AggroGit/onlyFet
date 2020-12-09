@@ -2,7 +2,7 @@
       <div class="container-fluid">
         <div class="row justify-content-center contieneEnrutador sombreado">
 
-            <div class="col-4 text-center">
+            <div class="col-4 text-center enrutadorMen">
               <router-link class="noLink" to="/novedades/news">
                 {{$ml.get('menu').news}}
               </router-link>
