@@ -176,7 +176,14 @@ Vue.use(VueVideoPlayer)
 Vue.component('datetime', Datetime);
 //
 Vue.component('AuctionCurrent',    require('./components/auctions/AuctionAlert.vue').default);
-
+//
+Vue.component('productsList',    require('./components/shop/productsList.vue').default);
+//
+Vue.component('product',    require('./components/shop/productView.vue').default);
+//
+Vue.component('cart',    require('./components/shop/shoppingCart.vue').default);
+//
+Vue.component('history',    require('./components/shop/shoppingHistory.vue').default);
 
 
 
@@ -251,6 +258,11 @@ const auth = function(to, from, next) {
  // Auctions
  {path: '/auction/create',         component: Vue.component('addAuction'),beforeEnter: multiguard([auth])},
  {path: '/auction/:auction_id',    component: Vue.component('viewAuction'),beforeEnter: multiguard([auth])},
+//shop
+{path: '/shop/',                  component: Vue.component('productsList'),beforeEnter: multiguard([auth])},
+{path: '/shop/:product_id',       component: Vue.component('product'),beforeEnter: multiguard([auth])},
+{path: '/shop/history',       component: Vue.component('history'),beforeEnter: multiguard([auth])},
+
 
  // home
  {  path: '/novedades',component: Vue.component('home'),
