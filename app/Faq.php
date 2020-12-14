@@ -11,7 +11,7 @@ class Faq extends Model
     public  static function tabletate($data = null) {
       return [
         'headers' => [
-          'Titulo' =>  'name',
+          'Titulo' =>  'title',
           'Texto'  => 'content',
           'Idioma (código país)' => 'lang',
 
