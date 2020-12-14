@@ -16,14 +16,17 @@
         no-animation
         indicators
         controls
-        img-height="300"
+        img-height="400"
         class=""
       >
+
 
         <b-carousel-slide
           v-for="(image) in this.product.images" :key="image.id"
           :img-src="image.sizes.Big"
-          img-height="300"
+          img-height="400"
+          to="asd"
+          href="easd"
           class="ImagenProducto"
         ></b-carousel-slide>
 
