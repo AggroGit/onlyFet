@@ -12,9 +12,7 @@ class faqsConttroller extends Controller
     {
 
       if(auth()->user()) {
-        echo "esta logeado";
         $lang = auth()->user()->lang?? "es";
-        echo "$lang";
         return $this->correct(
           Faq::where('lang',$lang)->get()
         );
