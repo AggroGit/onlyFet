@@ -277,14 +277,16 @@ class User extends Authenticatable
     public  static function tabletate($data) {
       return [
         'headers' => [
-          'identificador' =>  'id',
-          'correo'  => 'email',
+          'Identificador' =>  'id',
+          'Correo'  => 'email',
           'Nombre' =>  'name',
           'Dirección de envío' => "direction",
           "Influencer" => "influencer",
           'Quiere ser influencer' => "wantToBeInfluencer",
           'nickname' => 'nickname',
           '% para el usuario' => 'percentage_for_user',
+          'Idiona' => 'lang',
+          'País' => 'country'
         ],
         'data'  =>  $data,
         'options' => [
