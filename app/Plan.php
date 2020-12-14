@@ -95,6 +95,7 @@ class Plan extends Model
           'Paga cada (meses)' => 'months',
           'Precio' => 'price',
           'Precio anterior' => 'oldPrice',
+          'Creado el' => 'created_at',
           'Creador nombre' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
