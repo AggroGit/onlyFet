@@ -159,7 +159,10 @@
                                 @foreach($model->usersSuscribed as $user)
                                 <tr>
                                   <td>
-                                    <a href="{{url('admin/user/edit/'.$user->id)}}">{{$user->nickname}}</a>
+                                    <a href="{{url('admin/user/edit/'.$user->id)}}">
+                                      {{$user->nickname}} ({{$user->nickname}})
+                                    </a>
+
                                   </td>
                                   <td>
                                     {{$user->pivot->created_at}}
