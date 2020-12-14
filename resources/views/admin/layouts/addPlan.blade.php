@@ -164,7 +164,7 @@
                                   </td>
 
                                   <td>
-                                    <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$plan->pivot->stripe_suscription_id}}</a>
+                                    <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$user->pivot->stripe_suscription_id}}</a>
                                   </td>
                                 </tr>
                               @endforeach
