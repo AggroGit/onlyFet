@@ -142,45 +142,29 @@
                   </div>
 
                   <div class=" row">
-                    <h5>Planes a los que está suscrito</h5>
+                    <h5>Usuarios suscritos</h5>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                  <th>Influencer </th>
-                                  <th>Plan</th>
-                                  <th>Precio</th>
-                                  <th>Precio antiguo</th>
-                                  <th>Cada (meses)</th>
+                                  <th>Usuario </th>
                                   <th>Fecha suscripción</th>
+                                  <th>Cada (meses)</th>
+                                  <th>Precio</th>
                                   <th>suscription_stripe</th>
 
                                 </tr>
                               </thead>
                               <tbody>
-                                @foreach($model->suscribedPlans as $plan)
+                                @foreach($model->usersSuscribed as $user)
                                 <tr>
                                   <td>
-                                    <a href="{{url('admin/user/edit/'.$plan->user->id)}}">{{$plan->user->nickname}}</a>
+                                    <a href="{{url('admin/user/edit/'.$user->id)}}">{{$user->nickname}}</a>
 
                                   </td>
+
                                   <td>
-                                    <a href="{{url('admin/plan/edit/'.$plan->id)}}">Plan de {{$plan->user->nickname}}</a>
-                                  </td>
-                                  <td>
-                                    {{$plan->price}}
-                                  </td>
-                                  <td>
-                                    {{$plan->oldPrice}}
-                                  </td>
-                                  <td>
-                                    {{$plan->months}}
-                                  </td>
-                                  <td>
-                                    {{$plan->pivot->created_at}}
-                                  </td>
-                                  <td>
-                                    <a href="https://dashboard.stripe.com/subscriptions/{{$plan->pivot->stripe_suscription_id}}">{{$plan->pivot->stripe_suscription_id}}</a>
+                                    <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$plan->pivot->stripe_suscription_id}}</a>
                                   </td>
                                 </tr>
                               @endforeach
