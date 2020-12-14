@@ -11,7 +11,7 @@ use App\User;
 
 class Plan extends Model
 {
-    protected $appends = ["fecha","userCount"];
+    protected $appends = ["fecha","userCount",'months'];
     // cuando se actualiza un precio entonces deberíamos cambiar de plan todos los uaurios.
     public function getFechaAttribute()
     {
@@ -92,6 +92,7 @@ class Plan extends Model
       return [
         'headers' => [
           'Id' => 'id',
+          'Paga cada' => 'months',
           'Creador' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
