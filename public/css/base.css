@@ -1269,7 +1269,7 @@ border-radius: 50% !important;
     height: calc(100vh - 50px);
     background: #ffffff;
     width: 100%;
-    z-index: 9999999 !important;
+    z-index: 800 !important;
     box-shadow: 1px -6px 2px 4px #f1f1f14a, 0 6px 20px 0 rgb(214 214 214 / 19%);
     transition: all 0.4s ease;
     transform: translateY(100vh) ;
