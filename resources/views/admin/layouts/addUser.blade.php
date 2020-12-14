@@ -142,8 +142,41 @@
                   </div>
 
                   <div class=" row">
-                    
+                    <h5>Planes a los que está suscrito</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                  <th>Influencer </th>
+                                  <th>Precio</th>
+                                  <th>Precio antiguo</th>
+                                  <th>Cada</th>
+                                  <th>suscription_stripe</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach($model->suscribedPlans as $plan)
+                                <tr>
+                                  <td>
+                                    {{$plan->user->nickname}}
+                                  </td>
+                                  <td>
+                                    {{$plan->price}}
+                                  </td>
+                                  <td>
+                                    {{$plan->oldPrice}}
+                                  </td>
+                                  <td>
+                                    {{$plan->payForEvery}}
+                                  </td>
+                                  <td>
+                                    {{$plan->pivot->stripe_suscription_id}}
+                                  </td>
+                                </tr>
+                              @endforeach
+                            </table>
 
+                  </div>
                   </div>
 
 
