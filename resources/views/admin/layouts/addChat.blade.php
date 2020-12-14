@@ -30,22 +30,7 @@
                               @endif
                             @else
                             <!-- Si no es un campo de texto -->
-                            <label class="small mb-1" for="{{$key}}">{{$key}}</label>
-                            <!-- MULTISELECT -->
-                            @if($header['multiple']?? false)
-                            <select class=" form-control multiselect selectpicker" name="{{$header['model_name']}}[]" multiple data-live-search="true">
-                              @foreach($header['select'] as $select)
-                                <option
-                                @if ($model->{$header['model_name'].'s'}->find($select->id))
-                                  selected
-                                @endif
-                                 value="{{$select['id']}}">{{$select[$header['show']]}}
-                               </option>
-                              @endforeach
-                            </select>
-                            @else
-
-                            @endif
+                            
 
 
                             @endif
