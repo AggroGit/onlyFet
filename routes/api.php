@@ -33,6 +33,8 @@ Enterprise::products();
 Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
 
+  Route::post('/faqs',        'faqsConttroller@getFaqs');
+
   Route::post('/product/{product_id}/add',  'productsController@addToCart');
   Route::post('/cart',                      'productsController@getCart');
   Route::post('/buy',                       'productsController@buy');
@@ -50,5 +52,3 @@ Route::group(['middleware' => ['auth:api','hasStripe']], function()
   //
 });
 Route::post('/main/nologged/users',  'ProfilesController@getAllUsers');
-
-Route::post('/faqs',        'faqsConttroller@getFaqs');
