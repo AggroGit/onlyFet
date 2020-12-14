@@ -164,7 +164,6 @@
                                   </td>
                                   <td>
                                     <a href="{{url('admin/plan/edit/'.$plan->id)}}">Plan de {{$plan->user->nickname}}</a>
-
                                   </td>
                                   <td>
                                     {{$plan->price}}

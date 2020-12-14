@@ -84,4 +84,28 @@ class Plan extends Model
           break;
       }
     }
+
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Creador' => [
+            'model_name' => 'user',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'url'        => "admin/user/edit"
+          ],
+
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+          'add'     => true,
+          'remove'  => true,
+        ],
+        'singular' => 'category',
+        'name'  => 'Categorias',
+
+      ];
+
+    }
 }
