@@ -142,7 +142,8 @@ class Publication extends Model
       return [
         'headers' => [
           'Identificador' =>  'id',
-          'contenido' => 'content',
+          'Contenido' => 'content',
+          'Se publica' = 'publish_at',
           'nickname' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
