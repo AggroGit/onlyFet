@@ -13,7 +13,7 @@ class faqsConttroller extends Controller
       if(auth()->user()) {
         $lang = auth()->user()->lang?? "es";
         return $this->correct(
-          Faq::where('lang',"es")->get()
+          Faq::where('lang',$lang)->get()
         );
       }
       return $this->correct(faq::all());
