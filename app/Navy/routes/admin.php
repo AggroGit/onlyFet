@@ -21,6 +21,8 @@
     Route::get('/admin/plan/edit/{plan_id}/',    'AdminController@planmView');
     // user
     Route::get('/admin/user/edit/{user_id}/',    'AdminController@userView');
+    // chats
+    Route::get('/admin/chat/edit/{chat_id}/',    'AdminController@chatView');
 
 
     // DEFAULT

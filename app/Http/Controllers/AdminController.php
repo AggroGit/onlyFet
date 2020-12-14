@@ -312,4 +312,19 @@ class AdminController extends Controller
       }
 
 
+      public function chatView($chat_id)
+      {
+        $model = $this->getModel('chat')->find($chat_id);
+
+        if($cat = $model::find($chat_id)) {
+          $tabletate = $model::tabletate($cat);
+          //
+          return view('admin.layouts.addChat')->with([
+            'tabletate' => $tabletate,
+            'model'     => $model
+          ]);
+        }
+      }
+
+
 }
