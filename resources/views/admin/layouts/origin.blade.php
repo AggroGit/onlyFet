@@ -76,6 +76,10 @@
                             <a class="nav-link" href="{{url('admin/business')}}">
                                 Negocio
                             </a>
+                            <br>
+                            <a class="nav-link" href="{{url('admin/publication')}}">
+                                Publicaciones
+                            </a>
 
 
                         </div>
