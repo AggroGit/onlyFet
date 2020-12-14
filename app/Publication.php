@@ -133,6 +133,37 @@ class Publication extends Model
       return parent::delete();
     }
 
+    public function getVideoPath()
+    {
+
+    }
+
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Identificador' =>  'id',
+          'nickname' => [
+            'model_name' => 'user',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'nickname',
+            'multiple'   => false,
+            'url'        => "admin/user/edit"
+          ],
+          'num likes' => 'numLikes',
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+          'remove'  => true,
+          'image'   => true
+        ],
+        'singular' => 'category',
+        'name'  => 'Categorias',
+
+      ];
+
+    }
+
 
 
 

@@ -46,12 +46,12 @@ class SuscriptionDomain
     $plan->save();
     // create In Stripe
     // try {
-      $id = $this->createPlanInStripe($plan);
-      // expecificamos el antiguo
-      $plan->previuous_stripe_id = $plan->stripe_tarifa_id;
-      $plan->stripe_tarifa_id = $id;
-      $plan->save();
-
+    $id = $this->createPlanInStripe($plan);
+    // expecificamos el antiguo
+    $plan->previuous_stripe_id = $plan->stripe_tarifa_id;
+    $plan->stripe_tarifa_id = $id;
+    $plan->save();
+    
     // } catch (\Exception $e) {
     //   $plan->remove();
     //   return false;
