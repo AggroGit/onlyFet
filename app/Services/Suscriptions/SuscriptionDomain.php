@@ -50,6 +50,7 @@ class SuscriptionDomain
       // expecificamos el antiguo
       $plan->previuous_stripe_id = $plan->stripe_tarifa_id;
       $plan->stripe_tarifa_id = $id;
+      $plan->save();
 
     // } catch (\Exception $e) {
     //   $plan->remove();
