@@ -1291,7 +1291,9 @@ border-radius: 50% !important;
   position: absolute;
     width: 100% !important;
     bottom: 0;
+    margin-left: 0px !important;
     margin-bottom: 40px;
+    left: 0;
 }
 .botonFiltro {
   max-width: 800px ;
