@@ -75,6 +75,11 @@
                             <a class="nav-link" href="{{url('admin/chat')}}">
                                 Chats
                             </a>
+                            <a class="nav-link" href="{{url('admin/faq')}}">
+                                Faqs
+                            </a>
+
+
                             <div class="sb-sidenav-menu-heading">Tienda</div>
 
 
