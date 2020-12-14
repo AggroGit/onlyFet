@@ -97,7 +97,7 @@
 
           <div class="row contieneCates">
             <div v-for="(category) in this.categories" :key="category.id" class="col-md-4">
-              <div class="form-check form-check-inline down-2">
+              <div class="form-check form-check-inline down-15">
                 <input class="form-check-input " type="checkbox" :id="category.name" v-model="filters.categories"  :value="category.id">
                 <label class="form-check-label" :for="category.name">{{category.name}}</label>
               </div>
