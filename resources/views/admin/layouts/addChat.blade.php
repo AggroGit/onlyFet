@@ -92,7 +92,6 @@
                             @if($model->images->count()>1)
                             <br>
                             <h4>Imágenes</h4>
-
                             <br>
                             <br>
                             @endif
@@ -143,46 +142,14 @@
 
                   <br>
                   <div class=" row">
+                    <h5>Mensajes</h5>
+                    <div class="container">
+                        @foreach ($model->messagesPaginated as $message)
+                            {{ $message->message }}
+                        @endforeach
+                    </div>
 
-                    <h5>Usuarios suscritos</h5>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                  <th>Usuario </th>
-                                  <th>Fecha suscripción</th>
-                                  <th>Cada (meses)</th>
-                                  <th>Precio</th>
-                                  <th>suscription_stripe</th>
-
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach($model->usersSuscribed as $user)
-                                <tr>
-                                  <td>
-                                    <a href="{{url('admin/user/edit/'.$user->id)}}">
-                                      {{$user->name}} ({{$user->nickname}})
-                                    </a>
-
-                                  </td>
-                                  <td>
-                                    {{$user->pivot->created_at}}
-                                  </td>
-                                  <td>
-                                    {{$model->months}}
-                                  </td>
-                                  <td>
-                                    {{$model->price}}
-                                  </td>
-                                  <td>
-                                    <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$user->pivot->stripe_suscription_id}}</a>
-                                  </td>
-                                </tr>
-                              @endforeach
-                            </table>
-
-                  </div>
+                    {{ $users->links() }}
                   </div>
 
 
