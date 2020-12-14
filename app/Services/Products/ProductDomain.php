@@ -52,7 +52,7 @@ class ProductDomain
 
   public function getProducts()
   {
-    return Product::with('images')->where('hidden',false)->orderBy('order','DESC');
+    return Product::with('images')->where('hidden',false)->orderBy('order','ASC')->orderBy('order','DESC');
   }
 
   public function addProduct(Request $request)
