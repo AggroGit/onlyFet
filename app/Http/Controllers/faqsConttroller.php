@@ -10,6 +10,7 @@ class faqsConttroller extends Controller
     //
     public function getFaqs()
     {
+      echo "string";
       if(auth()->user()) {
         $lang = auth()->user()->lang?? "es";
         return $this->correct(
