@@ -155,7 +155,7 @@ class Chat extends Model
         'headers' => [
           'Identificador' =>  'name',
           'Categoría' => [
-            'model_name' => 'users',
+            'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
             'show'       => 'name',
             'multiple'   => true,
