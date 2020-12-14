@@ -1392,3 +1392,6 @@ margin-top: 2px;
 .carousel-inner {
   background: #e2e2e2;
 }
+.sb-nav-fixed .sb-topnav {
+    z-index: 999999 !important;
+}

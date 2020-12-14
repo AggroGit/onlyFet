@@ -160,12 +160,12 @@ class Video extends Model
         }
         rmdir($dir);
     }
-    
+
     public function delete()
     {
       try {
         $base = $this->getPathToSave()."/".$this->name;
-        rmdir_recursive($base);
+        $this->rmdir_recursive($base);
       } catch (\Exception $e) {
 
       }

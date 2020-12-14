@@ -15,6 +15,9 @@
     // ENTREGAS
     Route::any('/prof/purchase/{purchase_id}/deliver','AdminController@deliver');
     Route::any('/admin/purchase/edit/{purchase_id}', 'AdminController@purchaseView');
+    // publicaciones
+    Route::get('/admin/publication/edit/{post_id}/',    'AdminController@publicationView');
+
     // DEFAULT
     Route::get('/admin',                        'AdminController@dashboard');
     Route::get('/admin/{modelName}',            'AdminController@listModel');

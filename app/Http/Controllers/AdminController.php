@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
+use App\Publication;
 use App\Purchase;
 use App\Business;
 use App\Category;
@@ -267,6 +268,20 @@ class AdminController extends Controller
       }
       return view('admin.layouts.addPurchase')->with('purchase',$purchase);
     }
+
+    public function publicationView($post_id)
+    {
+      $model = $this->getModel('publication')->find($post_id);
+
+      if($cat = $model::find($post_id)) {
+        $tabletate = $model::tabletate($cat);
+        //
+        return view('admin.layouts.addPublication')->with([
+          'tabletate' => $tabletate,
+          'model'     => $model
+        ]);
+      }
+     }
 
 
 }

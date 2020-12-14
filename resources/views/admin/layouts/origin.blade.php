@@ -60,10 +60,18 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
 
-
                             <a class="nav-link" href="{{url('admin/user')}}">
                                 Usuarios
                             </a>
+                            <a class="nav-link" href="{{url('admin/publication')}}">
+                                Publicaciones
+                            </a>
+                            <a class="nav-link" href="{{url('admin/auction')}}">
+                                Subastas
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Tienda</div>
+
+
                             <a class="nav-link" href="{{url('/admin/category')}}">
                                 Categorías
                             </a>
@@ -76,10 +84,7 @@
                             <a class="nav-link" href="{{url('admin/business')}}">
                                 Negocio
                             </a>
-                            <br>
-                            <a class="nav-link" href="{{url('admin/publication')}}">
-                                Publicaciones
-                            </a>
+
 
 
                         </div>
