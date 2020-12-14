@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('surnames')->nullable();
-            $table->integer('percentage_for_user')->default(90);
+            $table->integer('percentage_for_user')->default(80);
             $table->integer('numSuscriptions')->default(0);
             $table->string('phone_number')->nullable();
             $table->boolean('wantToBeInfluencer')->default(false);

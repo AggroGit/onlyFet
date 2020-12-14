@@ -284,7 +284,8 @@ class User extends Authenticatable
           "Influencer" => "influencer",
           'Quiere ser influencer' => "wantToBeInfluencer",
           'nickname' => 'nickname',
-
+          '% para el usuario' => 'percentage_for_user',
+          
 
 
         ],
