@@ -144,12 +144,12 @@
                   <div class=" row">
                     <h5>Mensajes</h5>
                     <div class="container">
-                        @foreach ($model->messages()->paginate(100) as $message)
+                        @foreach ($model->messages()->messagesPaginated() as $message)
                             {{ $message->message }}
                         @endforeach
                     </div>
 
-                    {{ $model->messages()->links() }}
+                    {{ $model->messages->links() }}
                   </div>
 
 
