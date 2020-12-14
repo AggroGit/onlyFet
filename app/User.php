@@ -286,7 +286,8 @@ class User extends Authenticatable
           'nickname' => 'nickname',
           '% para el usuario' => 'percentage_for_user',
           'Idioma' => 'lang',
-          'País' => 'country'
+          'País' => 'country',
+          
         ],
         'data'  =>  $data,
         'options' => [
