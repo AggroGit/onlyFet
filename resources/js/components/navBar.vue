@@ -98,7 +98,7 @@
           <img class="logoMewnu" src="/logo_2611.png" alt="logo">
         </router-link>
 
-        <router-link v-if="auth && auth.country == 'ES'" :to="this.shopRoute()" class="ContieneTiendaIcon noLink">
+        <router-link v-if="this.$store.state.auth && this.$store.state.auth.country == 'ES'" :to="this.shopRoute()" class="ContieneTiendaIcon noLink">
            <b-icon icon="cart-2" class="icon" scale="2"></b-icon>
            <div v-if="this.$store.state.numProducts>0" class="">{{this.$store.state.numProducts}}</div>
         </router-link>
