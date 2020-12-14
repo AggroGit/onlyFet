@@ -171,7 +171,6 @@
                                     {{$model->price}}
                                   </td>
                                   <td>
-                                    {{$user->pivot}}
                                     <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$user->pivot->stripe_suscription_id}}</a>
                                   </td>
                                 </tr>
