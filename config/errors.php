@@ -41,6 +41,8 @@ return [
     "208"   =>    "Suscription not found",
     "209"   =>    "Error sending the money",
     "210"   =>    "User cannot recive money",
+    "211"   =>    "Missing direction",
+
 
     //800 business
     "800"   =>    "missing business id",

@@ -61,7 +61,7 @@
     /*
      * This path will be used to register the necessary routes for the package.
      */
-    'path' => 'admin',
+    'path' => 'admin_sockets',
 
     /*
      * Dashboard Routes Middleware

@@ -12,7 +12,9 @@
   Route::group(['middleware' => ['auth','onlyAdmin']], function()
   {
     // CUSTOM
-    // Route::any('/admin/business/remove/{id}', 'profesionalController@removeBusiness');
+    // ENTREGAS
+    Route::any('/prof/purchase/{purchase_id}/deliver','AdminController@deliver');
+    Route::any('/admin/purchase/edit/{purchase_id}', 'AdminController@purchaseView');
     // DEFAULT
     Route::get('/admin',                        'AdminController@dashboard');
     Route::get('/admin/{modelName}',            'AdminController@listModel');

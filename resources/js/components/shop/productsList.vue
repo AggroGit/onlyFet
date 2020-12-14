@@ -1,14 +1,5 @@
 <template>
-  <div class="">
-
-    <!-- BUSCADOR Y BORRAR CHATS-->
-    <div class="contieneBuscadorLogoAntes sinFondo">
-        <div class="contenedor  buscaProductos">
-          <b-form-input autocomplete="off" v-model="search" @keyup="filteredList()" id="input-small" class="col-xs-8" :placeholder="$ml.get('shop').search"></b-form-input>
-          <b-icon  font-scale="2" @click="openFilter()" icon="filter" aria-hidden="true" class="icon"></b-icon>
-        </div>
-
-    </div>
+  <div class="contenedor">
 
     <div v-if="this.loading" class="container text-center contieneCargador">
       <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
@@ -16,28 +7,121 @@
       </div>
     </div>
 
-    <div v-if="!this.loading" class="col-md-12 down-3">
-      <div v-if="this.chats.length == 0" class="Empty text-center">
+    <!-- BUSCADOR Y BORRAR CHATS-->
+    <div class="contieneBuscadorLogoAntes sinFondo">
+        <div class="contenedor  buscaProductos">
+          <b-form-input autocomplete="off" v-model="search" @keyup="filteredList()" id="input-small" class="col-xs-8" :placeholder="$ml.get('shop').search" :autofocus="true"></b-form-input>
+          <b-icon  font-scale="2" @click="openFilter()" icon="filter" aria-hidden="true" class="icon"></b-icon>
+        </div>
+
+    </div>
+
+    <div v-if="!this.loading" class="">
+
+      <b-carousel
+      id="carousel-no-animation"
+      style="text-shadow: 0px 0px 2px #000"
+      no-animation
+      indicators
+      controls
+      img-height="300"
+      class="carouselShop"
+    >
+
+      <b-carousel-slide
+        v-for="(image) in this.images" :key="image.id"
+        :img-src="image.sizes.Big"
+      ></b-carousel-slide>
+
+
+    </b-carousel>
+
+    </div>
+
+    <div v-if="this.loading == false && this.searching == false" class="ContieneProductos down-4">
+      <div v-for="(product) in this.products" :key="product.id" class="container productList down-2 aparecer">
+        <router-link :to="'/shop/'+product.id" class="row noLink">
+          <div class="col-4 contieneImProduct">
+            <img class="productImagelist" v-if="product.images[0]" :src="product.images[0].sizes.NotSmall" alt="">
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="col-12">
+                <h5>{{product.name}}</h5>
+              </div>
+              <div class="col-12">
+                <p class="descriptionProduct">{{product.description}}</p>
+              </div>
+              <div class="col-12 atBottom">
+                <strong>{{$ml.get('shop').price}}   {{product.price}} €</strong>
+              </div>
+            </div>
+          </div>
+          <div class="lineaSeparadora grisacea down-2"></div>
+        </router-link>
+      </div>
+      <div v-if="this.products.length == 0" class="Empty text-center">
         <img src="/iconos/empty-tag.png" alt="">
         <h5>{{$ml.get('shop').noProducts}}</h5>
       </div>
-      <b-list-group class=" contenedor aparecer down-3">
-          <b-list-group-item v-for="(chat) in this.chats" :key="chat.id"   :to="getUrlChat(chat)" class="flex-column align-items-start chatListItem" v-bind:class="{remvongg:removing}">
-              <avatar :conection="true" :us="chat.otherUser"></avatar>
-              <span class="mr-auto">{{chat.otherUser.name}}</span>
-
-              <div v-if="removing" class="custom-control elimichat">
-                <input class="form-check-input bigger" type="checkbox" id="chatremove" name="idremove" :ref="chat" @change="SelectChat(chat)" :value="chat.id">
-              </div>
-
-              <div v-if="chat.lastMessage" class="justify-content-between lastMessageList">
-                <p  class="mb-1">{{chat.lastMessage.message}}</p>
-                <p class="hourchat">{{chat.lastMessage.fecha}}</p>
-                <div v-if="chat.lastMessage.read === false && chat.lastMessage.user_id !== $store.state.auth.id" class="noLeido"></div>
-              </div>
-          </b-list-group-item>
-      </b-list-group>
     </div>
+
+    <div v-else class="container text-center contieneCargador">
+      <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="PantallaFiltro" v-bind:class="{filering:filering}">
+      <div class="contieneFiltros">
+        <div class="container contenedor">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" v-model="expensive" @change="check('expensiveFirst')" type="checkbox" id="expensiveFirst" value="expensiveFirst">
+                <label class="form-check-label" for="expensiveFirst">{{$ml.get('shop').expensiveFirst}}</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" v-model="cheaper" @change="check('cheapestFirst')" type="checkbox" id="cheapestFirst" value="cheapestFirst">
+                <label class="form-check-label" for="cheapestFirst">{{$ml.get('shop').cheapestFirst}}</label>
+              </div>
+            </div>
+          </div>
+          <div  class="row down-2">
+            <div class="col-12">
+              <h4>Categorias: </h4>
+            </div>
+          </div>
+
+          <div class="row contieneCates">
+            <div v-for="(category) in this.categories" :key="category.id" class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" :id="category.name" v-model="filters.categories"  :value="category.id">
+                <label class="form-check-label" :for="category.name">{{category.name}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="botonFiltroAbajo row">
+          <div class="col-12 flex">
+              <button @click="openFilter()"  class="btn btn-primary boton botonFiltro">
+                  {{$ml.get('shop').filter}}
+                  <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+          </div>
+      </div>
+
+
+    </div>
+
+
+
+
   </div>
 
 </template>
@@ -45,110 +129,119 @@
 <script>
 
 
-
 export default {
-  props:['chat','full'],
   data() {
     return{
-      chats:[],
-      list:[],
-      search:null,
-      idsToRemove:[],
-      loading: true,
-      removing:false,
+      loading:false,
+      searching:false,
+      search:"",
+      filering:false,
+      categories: [],
+      cheaper:false,
+      expensive:false,
+      filters: {
+        orderBy:'default',
+        categories: [],
+
+      },
+      images: [],
+      products:[],
       in:[]
+
     }
   },
   mounted() {
-    this.getChats()
-    console.log('keu')
-    console.log(this)
+    this.getInfo()
+
   },
   methods: {
-
-
-    getUrlChat(chat){
-
-      if(this.removing == false) {
-        if(this.full) {
-          return "/full/chats/"+chat.id
-        }
-        return "chats/"+chat.id
+    getInfo() {
+      if(this.searching) {
+        return false;
       }
-
-    },
-
-
-    getChats() {
-      // call
-      axios.post('/api/chats', null, {
-        headers:{
-           Authorization: `Bearer `+ this.$store.state.token
-        }
-      })
-      .then(response => {
+      var self = this;
+      axios.post('/api/products', this.filters,
+      {
+         headers:{
+            Authorization: `Bearer `+ this.$store.state.token
+         }
+       })
+      // then
+      .then(function (response) {
+        console.log(response)
         if(response.data.rc == 1) {
-          console.log(response)
-          this.chats = this.in = response.data.data;
+          self.images = response.data.data.business.images
+          self.products = self.in = response.data.data.products
+          self.categories = response.data.data.categories
         }
-      })
-      .finally(response => {
-        this.loading = false;
-      })
-    },
-
-
-    // format better the time
-    time(time) {
-      var date = new Date(time);
-      return date.getHours() +":"+date.getMinutes()
-    },
-    Remove() {
-      if(this.removing) {
-        if(this.idsToRemove.length > 0) {
-          var r = confirm("¿Deseas eliminar "+this.idsToRemove.length+' chats?');
-          if(r) {
-            var self = this;
-            this.loading = true,
-            axios.post('/api/chats/remove', {
-              ids:self.idsToRemove
-            }, {
-              headers:{
-                 Authorization: `Bearer `+ this.$store.state.token
-              }
-            })
-            .then(response => {
-              if(response.data.rc == 1) {
-                console.log(response)
-                this.chats  = this.in = response.data.data;
-              }
-            })
-            .finally(response => {
-              this.loading = false;
-            })
-          }
-
-
+        if(response.data.rc == 13) {
+          self.$router.push('/login')
         }
+
+      })
+      .catch(() => alert('Server Error'))
+      // finally
+      .finally(() => this.loading = false)
+
+
+    },
+    check(value) {
+      if(value == this.filters.orderBy) {
+        this.filters.orderBy = "default"
+        return
       }
-      this.removing = !this.removing
-      this.idsToRemove = [];
-      console.log(this.$refs.chat)
-    },
-    SelectChat(chat) {
-      if(event.target.checked) {
-        this.idsToRemove.push(chat.id)
+      this.filters.orderBy = value
+      if(this.expensive) {
+        this.cheaper = false;
       } else {
-        this.idsToRemove = this.idsToRemove.filter(item => item !== chat.id)
+        this.expensive = false;
       }
+
+
     },
+
     filteredList() {
-      this.chats = this.in,
-      this.chats = this.chats.filter(chat => {
-        return chat.otherUser.name.toLowerCase().includes(this.search.toLowerCase())
+      this.products = this.in,
+      this.products = this.products.filter(product => {
+        return product.name.toLowerCase().includes(this.search.toLowerCase())
       })
+    },
+    searchFromFilter() {
+      if(this.searching) {
+        return false;
+      }
+      this.searching = true;
+      var self = this;
+      axios.post('/api/products', this.filters,
+      {
+         headers:{
+            Authorization: `Bearer `+ this.$store.state.token
+         }
+       })
+      // then
+      .then(function (response) {
+        console.log(response)
+        if(response.data.rc == 1) {
+          self.products = self.in = response.data.data.products
+        }
+        if(response.data.rc == 13) {
+          self.$router.push('/login')
+        }
 
+      })
+      .catch(() => alert('Server Error'))
+      // finally
+      .finally(function () {
+        self.searching = false
+        self.filteredList()
 
+      })
+    },
+    openFilter() {
+      this.filering = !this.filering;
+      if(!this.filering) {
+        this.searchFromFilter();
+      }
     }
   }
 };

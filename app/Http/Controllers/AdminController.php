@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
-use App\Association;
+use App\Purchase;
 use App\Business;
 use App\Category;
+use App\Product;
+use App\Order;
 use App\Image;
 use App\User;
 
@@ -19,13 +21,14 @@ class AdminController extends Controller
       if(!$model) {
         return back();
       }
-      $tabletate = $model::tabletate($model::all());
+      $tabletate = $model::tabletate($model::orderBy('created_at','DESC')->get());
       //
       return view('admin.layouts.tableList')->with([
         'tabletate' => $tabletate,
         'noTypeScript'  => true
       ]);
     }
+
 
 
     public function addModel($modelName)
@@ -41,7 +44,7 @@ class AdminController extends Controller
 
     public function editModelExists($model,$id)
     {
-      $model = $this->getModel($model);
+      $model = $this->getModel($model)->find($id);
 
       if($cat = $model::find($id)) {
         $tabletate = $model::tabletate($cat);
@@ -57,27 +60,70 @@ class AdminController extends Controller
     public function addDataModel($modelName, Request $request)
     {
       $model = $this->getModel($modelName);
-      if($request->id !== false and $model::find($request->id))  {
+      if($request->id !== false and $request->id !== null and $model::find($request->id))  {
         $model = $model::find($request->id);
       }
+      // campos
+      foreach ($request->all() as $key => $value) {
+        if($key !== '_token') {
+          if (Schema::hasColumn($model->getTable(), $key)) {
+            // excepciones
+            if($key == "price") {
+              $value = str_replace(',','.',$value);
+            }
+            $model[$key] = $value;
+
+          }
+
+          else {
+              $model->save();
+              // para un multiselect
+              if($key !== "image" and $key !== "images")
+              $a = $model->{$key.'s'}()->sync($value);
+          }
+
+        }
+
+      }
       //
-      if($request->has('image')) {
-        if (Schema::hasColumn($model->getTable(), 'image_id')) {
+        if (Schema::hasColumn($model->getTable(), 'image_id') and $request->has('image')) {
           $image = new Image();
           $image->create($request->image,$modelName);
           $model->image_id = $image->id;
-        } else if($model->images) {
+        } else {
+          // es multi-image?
+          // debemos mirar primero si hay de nuevas
+          if ($request->has('images'))
+          foreach ($request->images as $newImage) {
+            // code...
+            // try {
+              $image = new Image();
+              $image->create($newImage);
+              $model->images()->save($image);
+            // } catch (\Exception $e) {}
+          }
+          // ahora actualizar las viejas
+          //cogemos las imagenes del modelo
+
+          // les sacamos su id
+          if ($modelImages = $model->images)
+          foreach ($modelImages as $oldImage) {
+            // si hay una imagen que coincida con el nombre, entonces se elimina
+            if($request->has('image_'.$oldImage->id)) {
+              // creamos la nueva
+              $image = new Image();
+              $image->create($request->all()['image_'.$oldImage->id]);
+              $model->images()->save($image);
+              // borramos la antogua
+              $oldImage->delete();
+            }
+          }
+
 
         }
 
-      }
-      foreach ($request->all() as $key => $value) {
-        if($key !== '_token') {
-          if (Schema::hasColumn($model->getTable(), $key))
-          $model[$key] = $value;
-        }
 
-      }
+
 
       $model->save();
       return redirect("admin/$modelName");
@@ -87,21 +133,25 @@ class AdminController extends Controller
     {
       $model = $this->getModel($modelName);
       if($model = $model::find($id))  {
-        if($model->image)
-        $model->image->destroyImage();
-        if($model->images) {
-          foreach ($model->images as $image) {
-            $image->destroyImage();
-          }
-        }
         $model->delete();
+      } else {
+        return "ERROR";
       }
-      return redirect("admin/$modelName");
+      if($modelName == "image" ) {
+        return back();
+      }
+      return redirect("admin");
     }
 
     public function dashboard()
     {
-      return view('admin.layouts.dashboard');
+      return view('admin.layouts.dashboard')->with([
+        'numProducts' => Product::count(),
+        'numBusiness' => Business::count(),
+        'numUsers'    => User::count(),
+        'numOrders'   => Order::count(),
+        'numImages'   => Image::count()
+      ]);
     }
 
     //
@@ -189,6 +239,31 @@ class AdminController extends Controller
       $new->save();
       return redirect("/admin/categories");
 
+    }
+
+    public function deliver($purchase_id)
+    {
+      //
+      if(!$purchase = Purchase::find($purchase_id)){
+        return redirect('');
+      }
+      //
+      $purchase->completed = true;
+      $purchase->status = "delivered";
+      $purchase->orders()->update([
+        "status" => "delivered"
+      ]);
+      $purchase->save();
+      return redirect('/admin/purchase/edit/'.$purchase_id);
+
+    }
+
+    public function purchaseView($purchase_id)
+    {
+      if(!$purchase = Purchase::find($purchase_id)){
+        return redirect('');
+      }
+      return view('admin.layouts.addPurchase')->with('purchase',$purchase);
     }
 
 

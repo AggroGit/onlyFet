@@ -36,6 +36,13 @@ class CreateShopping extends Migration
                   ->on('categories')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            //
+            $table->integer('business_id')
+                  ->default(1)
+                  ->references('id')
+                  ->on('business')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
 
         // productos
@@ -63,8 +70,39 @@ class CreateShopping extends Migration
                 ->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
           $table->timestamps();
         });
+
+        Schema::create('business', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('phone')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('direction')->nullable();
+            $table->text('description')->nullable();
+            $table->double('sending_price', 8, 2)->default(0);
+            $table->text('link')->nullable();
+            //
+            $table->boolean('verified')->default(false);
+            $table->timestamps();
+        });
+
+        // imagenes de la tienda, puede haber más de una
+      Schema::create('business_images', function (Blueprint $table) {
+        $table->integer('image_id')
+              ->references('id')
+              ->on('images')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
+        $table->integer('business_id')
+            ->default(1)
+              ->references('id')
+              ->on('business')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
+        $table->timestamps();
+      });
 
         // ordenes
         Schema::create('orders', function (Blueprint $table) {
@@ -106,7 +144,7 @@ class CreateShopping extends Migration
                   ->onUpdate('cascade');
             // the business
             $table->integer('business_id')
-                  ->nullable()
+                  ->default(1)
                   ->references('id')
                   ->on('business')
                   ->onDelete('cascade')
@@ -126,6 +164,8 @@ class CreateShopping extends Migration
             $table->id();
             // el precio que se cobra al cliente
             $table->double('total_price', 8, 2);
+            // precio de envío
+            $table->double('sending_price', 8, 2)->default(0);
             // el id del pago al cliente
             $table->string('stripe_payment_id')->nullable();
              // en caso que se devuelva
@@ -136,8 +176,7 @@ class CreateShopping extends Migration
             $table->integer('payment_tries')->default(0);
             //
             $table->boolean('paid')->default(false);
-            // cuando se hará el proximo intento de pago
-            $table->timestamp('nextTry')->nullable();
+
             // comisiones de Stripe
             $table->double('stripe_commisions', 8, 2)->nullable();
             // nuestra comision
@@ -145,7 +184,7 @@ class CreateShopping extends Migration
             // solo será true cuando esté finished
             $table->boolean('completed')->default(false);
             // si es pago en mano
-            $table->boolean('pay_in_hand');
+            $table->boolean('pay_in_hand')->default(false);
             // usuario que compra
             $table->integer('user_id')
                   ->references('id')
@@ -174,9 +213,13 @@ class CreateShopping extends Migration
      */
     public function down()
     {
+
+        Schema::dropIfExists('business_images');
         Schema::dropIfExists('products');
+        Schema::dropIfExists('business');
         Schema::dropIfExists('products_images');
         Schema::dropIfExists('orders');
+        Schema::dropIfExists('categories');
         Schema::dropIfExists('purchases');
         Schema::dropIfExists('discounts');
     }

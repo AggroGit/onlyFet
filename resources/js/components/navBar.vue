@@ -82,6 +82,9 @@
             <b-nav-item class="" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
             <b-nav-item class="" to='/auction/create'>{{$ml.get('auction').createAuction}}</b-nav-item>
             <b-nav-item to='/chats'>{{$ml.get('menu').chats}}</b-nav-item>
+            <b-nav-item to='/shop'>{{$ml.get('shop').shop}}</b-nav-item>
+            <b-nav-item to='/shop/cart'>{{$ml.get('shop').cart}}</b-nav-item>
+            <b-nav-item to='/shop/history'>{{$ml.get('shop').history}}</b-nav-item>
             <b-nav-item v-if="this.$store.state.auth !==false" @click="logout()">{{$ml.get('menu').logout}}</b-nav-item>
             <b-nav-item v-if="this.$store.state.auth ===false"  to='/login'>{{$ml.get('menu').login}}</b-nav-item>
             <b-nav-item v-if="this.$store.state.auth ===false"  to='/register'>{{$ml.get('menu').register}}</b-nav-item>
@@ -93,6 +96,11 @@
         </div>
         <router-link to="/" class="contieneLogoMenu">
           <img class="logoMewnu" src="/logo_2611.png" alt="logo">
+        </router-link>
+
+        <router-link :to="this.shopRoute()" class="ContieneTiendaIcon noLink">
+           <b-icon icon="cart-2" class="icon" scale="2"></b-icon>
+           <div v-if="this.$store.state.numProducts>0" class="">{{this.$store.state.numProducts}}</div>
         </router-link>
 
       </nav>
@@ -110,7 +118,7 @@ export default {
     return {
       name: 'OnlyFet',
       auth:  this.$store.state.auth,
-      open: false
+      open: false,
     }
 
   },
@@ -139,6 +147,15 @@ export default {
     },
     AbrirCerrar(){
       this.open = !this.open;
+    },
+    shopRoute() {
+      console.log('RUTA')
+      console.log(this.$route)
+      if(this.$route.path.includes('shop')) {
+        return "/shop/cart"
+      } else {
+        return "/shop"
+      }
     }
   }
 

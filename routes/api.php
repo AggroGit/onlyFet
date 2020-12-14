@@ -32,6 +32,15 @@ Enterprise::products();
 
 Route::group(['middleware' => ['auth:api','hasStripe']], function()
 {
+
+  Route::post('/product/{product_id}/add',  'productsController@addToCart');
+  Route::post('/cart',                      'productsController@getCart');
+  Route::post('/buy',                       'productsController@buy');
+  Route::post('/history',                   'productsController@history');
+  Route::post('/cart/remove',               'productsController@removeFromCart');
+
+
+
   Enterprise::auctions();
   Enterprise::chats();
   Enterprise::auth();

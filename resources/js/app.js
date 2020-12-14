@@ -181,7 +181,7 @@ Vue.component('productsList',    require('./components/shop/productsList.vue').d
 //
 Vue.component('product',    require('./components/shop/productView.vue').default);
 //
-Vue.component('cart',    require('./components/shop/shoppingCart.vue').default);
+Vue.component('carrito',    require('./components/shop/carrito.vue').default);
 //
 Vue.component('history',    require('./components/shop/shoppingHistory.vue').default);
 
@@ -233,7 +233,7 @@ const auth = function(to, from, next) {
      component: Vue.component('images'),
      name:'pics',
      beforeEnter: multiguard([auth]),
-     
+
    },
    {
      path:'videos',
@@ -261,8 +261,9 @@ const auth = function(to, from, next) {
  {path: '/auction/:auction_id',    component: Vue.component('viewAuction'),beforeEnter: multiguard([auth])},
 //shop
 {path: '/shop/',                  component: Vue.component('productsList'),beforeEnter: multiguard([auth])},
+{path: '/shop/history',           component: Vue.component('history'),beforeEnter: multiguard([auth])},
+{path: '/shop/cart',              component: Vue.component('carrito'),beforeEnter: multiguard([auth])},
 {path: '/shop/:product_id',       component: Vue.component('product'),beforeEnter: multiguard([auth])},
-{path: '/shop/history',       component: Vue.component('history'),beforeEnter: multiguard([auth])},
 
 
  // home
@@ -324,6 +325,8 @@ const store = new Vuex.Store({
   state: {
     // user info
     auth:false,
+    // num products shop
+    numProducts:0,
     // token
     token: t,
     // conexion

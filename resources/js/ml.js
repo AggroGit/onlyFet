@@ -58,7 +58,8 @@ export default new MLCreate({
       "description": "Description",
       "price": "Price",
       "noSus": "You are not subscribed to any Influencer profile yet",
-      "confSusciptions": "Manage subscriptions"
+      "confSusciptions": "Manage subscriptions",
+
    },
    "stripe": {
       "suscribed": "Subscribed",
@@ -156,10 +157,30 @@ export default new MLCreate({
    "shop": {
      "search": "🔍  Buscar Producto",
      "buy": "Comprar",
-
+     "price": "Precio:",
+     "noProducts": "No se han encontrado productos",
      "filter": "Filtrar",
      "addCart": "Añadir al carrito",
      "noProducts": "No se han encontrado productos",
+     "expensiveFirst": "Más caros primeros",
+     "cheapestFirst": "Más baratos primeros",
+     "haveLoggin": "Tienes que iniciar sesión para poder comprar",
+     "haveAddDirection": "Tienes que añadir una dirección de envío",
+     "cart": "Carrito",
+     "direction":"Dirección de envío",
+     "totalPriceOrders": "Precio subtotal",
+     "sendingCost": "Precio de envío",
+     "totalPrice": "Precio total",
+     "problemwithyourVisa" : "Parece que hay un problema con tu tarjeta de credito",
+     "noMinPrice": "No llegas al precio mínimo de compra (5€)",
+     "ordered_at": "Pedido el",
+     "needHelp": "¿Necesitas ayuda?",
+     "correoAyudaShop": "shop@onlyfet.com",
+     "history": "Historial",
+     "shop": "Tienda",
+     "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
+
+
    }
 }),
 
@@ -308,6 +329,34 @@ export default new MLCreate({
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
      "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
      "currentAuctingUser": "Hay una puja activa"
+   },
+   "shop": {
+
+     "search": "🔍  Buscar Producto",
+     "buy": "Comprar",
+     "price": "Precio:",
+     "noProducts": "No se han encontrado productos",
+     "filter": "Filtrar",
+     "addCart": "Añadir al carrito",
+     "noProducts": "No se han encontrado productos",
+     "expensiveFirst": "Más caros primeros",
+     "cheapestFirst": "Más baratos primeros",
+     "haveLoggin": "Tienes que iniciar sesión para poder comprar",
+     "haveAddDirection": "Tienes que añadir una dirección de envío",
+     "cart": "Carrito",
+     "direction":"Dirección de envío",
+     "totalPriceOrders": "Precio subtotal",
+     "sendingCost": "Precio de envío",
+     "totalPrice": "Precio total",
+     "problemwithyourVisa" : "Parece que hay un problema con tu tarjeta de credito",
+     "noMinPrice": "No llegas al precio mínimo de compra (5€)",
+     "ordered_at": "Pedido el",
+     "needHelp": "¿Necesitas ayuda?",
+     "correoAyudaShop": "shop@onlyfet.com",
+     "history": "Historial",
+     "shop": "Tienda",
+     "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
+
    }
 })
   ]

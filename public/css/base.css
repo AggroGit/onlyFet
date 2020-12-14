@@ -1013,6 +1013,7 @@ height: 100% !important;
 .contieneLogoMenu {
   margin: auto;
 }
+
 .ContienePerfilNav {
   display: none;
 }
@@ -1032,7 +1033,7 @@ height: 100% !important;
 .ContieneMenuAbrir {
     top: 0;
     left: 0;
-    margin: 16px;
+    margin: 10px;
     position: absolute;
 }
 @media only screen and (max-width: 4000px) {
@@ -1157,7 +1158,8 @@ margin: 20px;
   color: #909090 !important;
 }
 .logoMewnu {
-  height: 76px !important;
+  height: 50px !important;
+  padding: 10px;
 }
 .column {
   flex: 25%;
@@ -1206,4 +1208,172 @@ margin: 20px;
   color: var(--rojo2) !important;
   font-size: 14px;
   font-weight: bold;
+}
+.sinFondo {
+  padding: 10px;
+}
+.imagenTienda {
+  height: auto ;
+
+  width: auto;
+  max-height: 300px;
+  margin: auto;
+
+}
+.carousel-indicators > li {
+  height: 10px !important;
+width: 10px !important;
+border-radius: 50% !important;
+}
+.carouselShop {
+  max-height: 180px;
+  overflow: hidden;
+}
+
+.descriptionProduct {
+  font-size: 14px;
+}
+.productImagelist {
+  width: 100%;
+  max-width: 180px;
+
+  margin: auto;
+  margin-top: 0px;
+
+}
+.grisacea {
+  height: 1px;
+  width: 90%;
+  margin: auto;
+  background: #BDBDBD;
+}
+.atBottom {
+  position: absolute;
+  bottom: 0;
+}
+.contieneImProduct {
+  display: flex;
+}
+.PantallaFiltro {
+  padding: 20px;
+  position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 10vh;
+    height: 90vh;
+    background: #ffffff;
+    width: 100%;
+    z-index: 9999999 !important;
+    box-shadow: 1px -6px 2px 4px #f1f1f14a, 0 6px 20px 0 rgb(214 214 214 / 19%);
+    transition: all 0.4s ease;
+    transform: translateY(100vh) ;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.contieneCates {
+  padding: 10px;
+  text-align: left;
+}
+.filering {
+  transform: translateY(0vh);
+}
+
+.botonFiltroAbajo {
+  position: absolute;
+    width: 100% !important;
+    bottom: 0;
+    margin-bottom: 40px;
+}
+.botonFiltro {
+  max-width: 800px ;
+  margin: auto;
+
+}
+.ImagenProducto {
+  height: 300px;
+  display: flex;
+  background: #BDBDBD;
+}
+.ImagenProducto>img {
+  height: 100% !important;
+  width: auto !important;
+  margin: auto;
+
+}
+.downed {
+  position: fixed !important;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    display: flex;
+}
+.downed> .boton {
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.contienePrecios >p{
+  text-align: right;
+}
+.contienePrecios >div {
+  margin-top: 3px;
+}
+.contienePrecios >div>span{
+  float: right;
+}
+.iconMaster {
+  margin-top: 2px;
+  float: left;
+}
+
+.contieneMasterCard >span {
+  float: left !important;
+  margin-left: 10px;
+margin-top: 2px;
+}
+.contienePedido {
+  display: grid;
+}
+.historyElement {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 9px 0px #00000024, 0 6px 20px 0 rgb(214 214 214 / 19%);
+
+
+}
+.fondoGris {
+  height: 100%;
+  min-height: 100vh;
+  padding-bottom: 5vh;
+  background: #D5D5D5;
+  display: inline-block;
+  width: 100%;
+}
+.ContieneTiendaIcon {
+  position: absolute;
+  top:0;
+  right: 0;
+  margin: 7px;
+  color:black;
+  margin-right: 20px;
+}
+.iconShop {
+  margin: 10px;
+}
+.ContieneTiendaIcon>div {
+  width: 15px;
+  height:15px;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 50%;
+  background: red;
+  color: #ffffffff;
+  transform: translateX(-10px);
+  transition: all 0.4s ease;
+}
+.contieneIconoBorrarProduct {
+  position: absolute;
+  right: 0;
+  margin-right: 5%;
 }

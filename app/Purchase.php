@@ -3,11 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use App\Business;
 
 class Purchase extends Model
 {
+
+
     protected $fillable = [
       'user_id', 'pay_in_hand'
+    ];
+
+    protected $appends = [
+        'fecha'
     ];
 
 
@@ -35,20 +43,51 @@ class Purchase extends Model
       $this->status = "canceled";
       $this->orders()->update([
         "status" => "canceled"
-      ])
+      ]);
       $this-calcPrice();
     }
 
-
-    public function checkIfComplete()
+    public function getFechaAttribute()
     {
-      if($this->orders()->count() == 0) {
-        $this->status = "delivered";
-        $this->save();
-        return true;
-      }
-      return false;
+      return Carbon::parse($this->created_at)->format('d/m/Y')?? "Uknown";
     }
+
+    public function getOurPriceAttribute()
+    {
+      return $this->total_price - $this->stripe_commisions;
+    }
+
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Creado el'  => 'created_at',
+          'Estado'  => 'EstadoPedido',
+          'Cobrado a cliente'  => 'total_price',
+          'Comisión Stripe' => 'stripe_commisions',
+          'Total Resultante'   => 'ourPrice',
+          'Dirección' => 'DirectionClient',
+          'Usuario' => [
+            'model_name' => 'user',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => false,
+            'url'        => "admin/user/edit"
+          ],
+
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+        ],
+        'singular' => 'purchase',
+        'name'  => 'Pedidos',
+
+      ];
+
+    }
+
+
+
 
 
 }

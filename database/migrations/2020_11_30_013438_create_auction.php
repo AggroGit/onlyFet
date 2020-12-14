@@ -25,6 +25,7 @@ class CreateAuction extends Migration
             $table->datetime('start_at')->nullable();
             $table->datetime('finish_at');
             $table->double('stripe_comision', 8, 2)->nullable();
+            $table->double('stripe_payment_id', 8, 2)->nullable();
             $table->integer('user_id')
                   ->references('id')
                   ->on('users')

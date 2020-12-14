@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
+    protected $with=["product"];
+    //
     protected $fillable = [
       'product_id', 'description', 'quantity', 'howmuch', 'user_id', 'price_per'
     ];
@@ -40,16 +42,11 @@ class Order extends Model
       return $this->belongsTo('App\Business');
     }
 
-    // usuario
-    public function business()
-    {
-      return $this->belongsTo('App\User');
-    }
 
     // the product o f the order
     public function product()
     {
-      return $this->belongsTo('App\Product');
+      return $this->belongsTo('App\Product')->with('images');
     }
 
     // the discount of the order

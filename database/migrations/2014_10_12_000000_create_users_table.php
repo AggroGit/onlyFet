@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
                   ->nullable()
                   ->default('ES');
             $table->text('description')->nullable();
+            $table->text('direction')->nullable();
             $table->string('type')
                   ->nullable()
                   ->default('client');

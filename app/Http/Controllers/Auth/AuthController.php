@@ -20,6 +20,7 @@ use App\User;
 class AuthController extends Controller
 {
 
+
     public function __construct()
     {
       Carbon::setLocale(auth()->user()->lang?? 'es');
@@ -276,6 +277,11 @@ class AuthController extends Controller
       auth()->user()->want_emails = true;
       auth()->user()->save();
       return redirect('/success');
+    }
+
+    public function classicLogin()
+    {
+      return view('auth/login');
     }
 
 

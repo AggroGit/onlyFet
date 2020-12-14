@@ -5,10 +5,11 @@
   <!-- Imagen logo -->
   <div class="row justify-content-center">
     <div class="col-md-3 logoLogin">
-      <img class="img-fluid" src="{{asset('logo.png')}}" alt="">
+      <img class="img-fluid" src="{{asset('logos/merco.png')}}" alt="">
     </div>
   </div>
-
+<br>
+<br>
   <!-- Formulario login -->
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -52,12 +53,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" required name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <a class="form-check-label" href="{{url('legal/privacidad.pdf')}}" for="remember">
                                         {{ __('Política de privacidad') }}
-                                    </label>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="form-group row ">
                             <div class="col-md-12 offset-md-12">
@@ -66,13 +69,13 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                           <div class="col-md-12 text-center">
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                           </div>
-                        </div> -->
+                        </div>
                     </form>
                 </div>
             </div>

@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     protected $with=['image','plans', 'notifications','currentAuctions'];
 
-    protected $appends =['canSee'];
+    protected $appends =['canSee','numProducts'];
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surnames', 'email', 'password', 'device_token','social_name','social_token','nickname','country','description', 'provider', 'lang'
+        'name','surnames', 'direction','email', 'password', 'device_token','social_name','social_token','nickname','country','description', 'provider', 'lang'
     ];
 
     /**
@@ -120,7 +120,13 @@ class User extends Authenticatable
     // all the orders opf the users
     public function orders()
     {
-       return $this->hasMany('App\Order');
+       return $this->hasMany('App\Order')->orderBy('created_at','DESC');
+    }
+
+    // all the purchases opf the users
+    public function purchases()
+    {
+       return $this->hasMany('App\Purchase')->with('orders')->orderBy('created_at','DESC');
     }
 
     // orders selected
@@ -147,6 +153,12 @@ class User extends Authenticatable
     {
       return $this->auctions()->without('user')->without('winner')->without('current')->where('status','open')->take(1);
     }
+
+    public function getnumProductsAttribute()
+    {
+      return $this->shoppingCart->count();
+    }
+
 
 
 
@@ -260,6 +272,33 @@ class User extends Authenticatable
         $this->image()->delete();
         $this->notifications()->delete();
         return parent::delete();
+    }
+
+    public  static function tabletate($data) {
+      return [
+        'headers' => [
+          'identificador' =>  'id',
+          'correo'  => 'email',
+          'Nombre' =>  'name',
+          'Dirección de envío' => "direction",
+          "Influencer" => "influencer",
+          'Quiere ser influencer' => "wantToBeInfluencer",
+          'nickname' => 'nickname',
+
+
+
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'remove'  => true,
+          'edit' => true,
+          'image'   => true,
+        ],
+        'singular' => 'user',
+        'name'  => 'Usuarios',
+
+      ];
+
     }
 
 

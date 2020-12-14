@@ -13,6 +13,12 @@ use App\Navy\Enterprise;
 |
 */
 
+Route::get('admin/login', 'Auth\AuthController@classicLogin');
+ Route::post('admin/login', 'Auth\AuthController@login');
+ Route::get('admin/logout', 'Auth\AuthController@logout');
+Enterprise::admin();
+
+
 
 
 Route::any('/forget',                       'Auth\AuthController@requestChangePassword');
@@ -25,3 +31,4 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 
 // any
 Route::get('/{any}',    'HomeController@index')->where('any', '.*');
+Auth::routes();

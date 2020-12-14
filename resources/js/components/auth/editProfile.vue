@@ -72,6 +72,13 @@
                   <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
               </div>
 
+              <div class="form-group row down-2">
+                <div class="col-md-12 contieneInput">
+                    <label for="direction" class="entrada detextarea" >{{$ml.get('shop').direction}}</label>
+                    <textarea ref="direction" required v-model="form.direction" rows="3"  name="post" class="form-control"  autocomplete="direction" autofocus="true"></textarea>
+                </div>
+              </div>
+
 
 
               <div class="row down-2">
@@ -134,6 +141,7 @@ export default {
         country:this.$store.state.auth.country,
         lang:this.$store.state.auth.lang,
         description:this.$store.state.auth.description,
+        direction:this.$store.state.auth.direction,
       },
       options: [
         {text: 'Afghanistan', value: 'AF'},

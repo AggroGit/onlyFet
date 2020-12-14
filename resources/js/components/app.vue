@@ -96,7 +96,8 @@ export default {
     addUser: (data,self) => {
       // add the user info
       self.$store.state.auth = data;
-      console.log(data)
+      // the num of products
+      self.$store.state.numProducts = data.numProducts;
       // init conection
       self.$store.state.initConection(self.$store.state.token);
       // global

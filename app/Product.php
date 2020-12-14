@@ -35,6 +35,42 @@ class Product extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function delete()
+    {
+        $this->images()->delete();
+        return parent::delete();
+    }
+
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Nombre' =>  'name',
+          'Precio'  => 'price',
+          'Descripción'  => 'description',
+          'Orden' => 'order',
+          'Categoría' => [
+            'model_name' => 'category',
+            'select'     => Category::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => false,
+            'url'        => "admin/category/edit"
+          ],
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+          'add'     => true,
+          'remove'  => true,
+          'image'   => true,
+          'images'  => true,
+        ],
+        'singular' => 'product',
+        'name'  => 'Productos',
+
+      ];
+
+    }
+
 
 
 

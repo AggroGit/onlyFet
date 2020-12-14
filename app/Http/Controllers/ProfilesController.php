@@ -40,4 +40,6 @@ class ProfilesController extends Controller
       return $this->correct($users->paginate(2000));
 
     }
+
+    
 }

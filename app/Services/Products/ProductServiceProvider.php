@@ -8,6 +8,7 @@ use App\Services\Products\ProductDomain;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Business;
 use App\Product;
 use App\Image;
 use App\User;
@@ -26,7 +27,12 @@ class ProductServiceProvider extends ProductDomain
 
   public function filterProducts(Request $request)
   {
-    return $this->filter($request)->get();
+    return [
+      "products"  => $this->filter($request)->get(),
+      "business"  => $this->getBusiness(),
+      "categories" => $this->getCategories()->get()
+    ];
+
   }
 
   public function createProduct(Request $request)
@@ -34,6 +40,8 @@ class ProductServiceProvider extends ProductDomain
     $this->addProduct($request);
     return $this->product;
   }
+
+
 
 
 

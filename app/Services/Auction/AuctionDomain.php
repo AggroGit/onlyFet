@@ -130,16 +130,13 @@ class AuctionDomain
   public function chargeToWinner($auction)
   {
     $comision = 0;
-    try {
-      $auction->winner->cobrar($auction->final_price,$comision);
+    if($payment = $auction->winner->cobrar($auction->final_price,$comision)) {
       $auction->stripe_comision = $comision;
+      $auction->stripe_payment_id = $payment->id;
       $auction->save();
-    } catch (\Exception $e) {
-      return false;
-
+      return true;
     }
-    return true;
-
+    return false;
   }
 
   // marca como no pagado
