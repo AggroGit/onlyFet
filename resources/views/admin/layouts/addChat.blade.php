@@ -30,13 +30,21 @@
                               @endif
                             @else
                             <!-- Si no es un campo de texto -->
-                            
+
 
 
                             @endif
                           </div>
                       </div>
                     @endforeach
+
+                    <div class="col-md-6">
+                      Usuarios :
+                      @forEach($model->users as $user)
+                      {{$user->name}} 
+                      @endforeach
+
+                    </div>
 
 
                     @if($tabletate['options']['image']?? false)
