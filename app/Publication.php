@@ -157,8 +157,8 @@ class Publication extends Model
           'remove'  => true,
           'image'   => true
         ],
-        'singular' => 'category',
-        'name'  => 'Categorias',
+        'singular' => 'publication',
+        'name'  => 'Publicaciones',
 
       ];
 
