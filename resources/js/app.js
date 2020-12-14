@@ -184,6 +184,7 @@ Vue.component('product',    require('./components/shop/productView.vue').default
 Vue.component('carrito',    require('./components/shop/carrito.vue').default);
 //
 Vue.component('history',    require('./components/shop/shoppingHistory.vue').default);
+Vue.component('imageShop',    require('./components/shop/imageShop.vue').default);
 
 
 
@@ -264,6 +265,7 @@ const auth = function(to, from, next) {
 {path: '/shop/history',           component: Vue.component('history'),beforeEnter: multiguard([auth])},
 {path: '/shop/cart',              component: Vue.component('carrito'),beforeEnter: multiguard([auth])},
 {path: '/shop/:product_id',       component: Vue.component('product'),beforeEnter: multiguard([auth])},
+{path: '/image/:image_name',      component: Vue.component('imageShop'),beforeEnter: multiguard([auth])},
 
 
  // home

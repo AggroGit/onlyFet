@@ -23,11 +23,18 @@
 
         <b-carousel-slide
           v-for="(image) in this.product.images" :key="image.id"
-          :img-src="image.sizes.Big"
-          img-height="400"
-          @click="abrirImagen(image)"
+
+        >
+        <template #img>
+        <router-link class="allA"  :to="'/image/'+image.name">
+          <img
+          :src="image.sizes.Big"
+          alt=""
           class="ImagenProducto"
-        ></b-carousel-slide>
+            >
+        </router-link>
+      </template>
+      </b-carousel-slide>
 
 
       </b-carousel>
@@ -141,7 +148,7 @@ export default {
     }
   },
   abrirImagen(imagen) {
-    alert(imagen.id)
+    this.$router.push('/image/'+imagen.name)
 
   }
 
