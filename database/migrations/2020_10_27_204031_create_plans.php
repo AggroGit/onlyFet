@@ -40,6 +40,8 @@ class CreatePlans extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+          $table->integer('withPercentage') // porcentaje que se lleva plataforma al suscribirse
+                ->nullable();
           $table->timestamps();
         });
     }

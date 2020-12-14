@@ -103,13 +103,10 @@ class Plan extends Model
             'url'        => "admin/user/edit"
           ],
           'Usuarios Suscritos' => 'userCount'
-
         ],
         'data'  =>  $data,
         'options' => [
           'edit'    => true,
-          'add'     => true,
-          'remove'  => true,
         ],
         'singular' => 'plan',
         'name'  => 'Planes',
