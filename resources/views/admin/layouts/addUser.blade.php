@@ -170,7 +170,7 @@
                                     {{$plan->payForEvery}}
                                   </td>
                                   <td>
-                                    {{$plan->pivot->stripe_suscription_id}}
+                                    <a href="https://dashboard.stripe.com/subscriptions/{{$plan->pivot->stripe_suscription_id}}">{{$plan->pivot->stripe_suscription_id}}</a>
                                   </td>
                                 </tr>
                               @endforeach
