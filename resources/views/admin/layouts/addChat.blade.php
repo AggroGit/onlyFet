@@ -44,7 +44,7 @@
                               @endforeach
                             </select>
                             @else
-                            
+
                             @endif
 
 
@@ -105,7 +105,7 @@
                                   <td>
                                     {{$message->message}}
                                   </td>
-                                  <td>{{message->created_at}}</td>
+                                  <td>{{$message->created_at}}</td>
                                 </tr>
                               @endforeach
                             </table>
