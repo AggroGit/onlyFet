@@ -1389,3 +1389,6 @@ margin-top: 2px;
   right: 0;
   margin-right: 5%;
 }
+.carousel-inner {
+  background: #e2e2e2;
+}

@@ -1,13 +1,6 @@
 <template>
-    <div class="container-fluid">
-      <div class="card">
-        <div class="card-header">
-          cabezera
-        </div>
-        <div class="card-body">
-          cuerpo
-        </div>
-      </div>
+    <div class="container-fluid entero">
+      <img v-if="!this.loading" class="adaptativa" :src="this.image.sizes.Full" alt="">
     </div>
 </template>
 

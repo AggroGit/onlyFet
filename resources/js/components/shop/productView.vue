@@ -26,13 +26,13 @@
 
         >
         <template #img>
-        <router-link class="allA"  :to="'/image/'+image.name">
+        <a class="allA"  :href="image.sizes.Big">
           <img
           :src="image.sizes.Big"
           alt=""
           class="ImagenProducto"
             >
-        </router-link>
+        </a>
       </template>
       </b-carousel-slide>
 
