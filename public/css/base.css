@@ -63,6 +63,9 @@ p::first-letter{
 .buscaProductos >input {
   border-radius: 14px !important;
 }
+.buscaProductos>svg {
+  margin-left: 10px;
+}
 .sinFondo {
   background: none !important;
 }
