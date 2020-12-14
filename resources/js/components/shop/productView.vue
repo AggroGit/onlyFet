@@ -25,8 +25,7 @@
           v-for="(image) in this.product.images" :key="image.id"
           :img-src="image.sizes.Big"
           img-height="400"
-          to="asd"
-          href="easd"
+          @click="abrirImagen(image)"
           class="ImagenProducto"
         ></b-carousel-slide>
 
@@ -140,6 +139,10 @@ export default {
       });
 
     }
+  },
+  abrirImagen(imagen) {
+    alert(imagen.id)
+
   }
 
 
