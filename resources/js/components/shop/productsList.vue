@@ -76,13 +76,13 @@
       <div class="contieneFiltros">
         <div class="container contenedor">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-6">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" v-model="expensive" @change="check('expensiveFirst')" type="checkbox" id="expensiveFirst" value="expensiveFirst">
                 <label class="form-check-label" for="expensiveFirst">{{$ml.get('shop').expensiveFirst}}</label>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-6">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" v-model="cheaper" @change="check('cheapestFirst')" type="checkbox" id="cheapestFirst" value="cheapestFirst">
                 <label class="form-check-label" for="cheapestFirst">{{$ml.get('shop').cheapestFirst}}</label>
@@ -97,8 +97,8 @@
 
           <div class="row contieneCates">
             <div v-for="(category) in this.categories" :key="category.id" class="col-md-4">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" :id="category.name" v-model="filters.categories"  :value="category.id">
+              <div class="form-check form-check-inline down-2">
+                <input class="form-check-input " type="checkbox" :id="category.name" v-model="filters.categories"  :value="category.id">
                 <label class="form-check-label" :for="category.name">{{category.name}}</label>
               </div>
             </div>
