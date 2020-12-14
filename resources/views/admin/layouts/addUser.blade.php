@@ -158,7 +158,8 @@
                                 @foreach($model->suscribedPlans as $plan)
                                 <tr>
                                   <td>
-                                    {{$plan->user->nickname}}
+                                    <a href="{{url('admin/user/edit/'.$plan->user->id)}}">{{$plan->user->nickname}}</a>
+
                                   </td>
                                   <td>
                                     {{$plan->price}}
