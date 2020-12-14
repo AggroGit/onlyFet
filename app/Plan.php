@@ -104,7 +104,7 @@ class Plan extends Model
           ],
           'num Usuarios Suscritos' => 'userCount',
           'suscriptores' => [
-            'model_name' => 'usersSuscribed',
+            'model_name' => 'users_suscribed',
             'select'     => User::all(), // data al seleccionar en crear
             'show'       => 'name',
             'multiple'   => true,
