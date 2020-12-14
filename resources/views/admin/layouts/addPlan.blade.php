@@ -160,9 +160,16 @@
                                 <tr>
                                   <td>
                                     <a href="{{url('admin/user/edit/'.$user->id)}}">{{$user->nickname}}</a>
-
                                   </td>
-
+                                  <td>
+                                    {{$user->pivot->created_at}}
+                                  </td>
+                                  <td>
+                                    {{$model->months}}
+                                  </td>
+                                  <td>
+                                    {{$model->price}}
+                                  </td>
                                   <td>
                                     <a href="https://dashboard.stripe.com/subscriptions/{{$user->pivot->stripe_suscription_id}}">{{$user->pivot->stripe_suscription_id}}</a>
                                   </td>
