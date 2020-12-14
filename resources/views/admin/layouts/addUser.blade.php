@@ -148,6 +148,7 @@
                             <thead>
                                 <tr>
                                   <th>Influencer </th>
+                                  <th>Plan</th>
                                   <th>Precio</th>
                                   <th>Precio antiguo</th>
                                   <th>Cada</th>
@@ -159,6 +160,10 @@
                                 <tr>
                                   <td>
                                     <a href="{{url('admin/user/edit/'.$plan->user->id)}}">{{$plan->user->nickname}}</a>
+
+                                  </td>
+                                  <td>
+                                    <a href="{{url('admin/plan/edit/'.$plan->id)}}">Plan de {{$plan->user->nickname}}</a>
 
                                   </td>
                                   <td>
