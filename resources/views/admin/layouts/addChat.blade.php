@@ -149,7 +149,7 @@
                         @endforeach
                     </div>
 
-                    {{ $message->links() }}
+                    {{ $model->messages->links() }}
                   </div>
 
 
