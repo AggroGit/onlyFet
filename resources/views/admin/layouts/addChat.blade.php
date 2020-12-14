@@ -143,13 +143,30 @@
                   <br>
                   <div class=" row">
                     <h5>Mensajes</h5>
-                    <div class="container">
-                        @foreach ($model->messagesPaginated as $message)
-                            {{ $message->message }}
-                        @endforeach
-                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                  <th>Usuario </th>
+                                  <th>Mensaje</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach($model->messages as $message)
+                                <tr>
+                                  <td>
+                                    <a href="{{url('admin/user/edit/'.$message->user->id)}}">
+                                      {{$message->user->name}}
+                                    </a>
+                                  </td>
+                                  <td>
+                                    {{$message->message}}
+                                  </td>
+                                </tr>
+                              @endforeach
+                            </table>
 
-                    {{ $model->messagesPaginated->links() }}
+                          </div>
                   </div>
 
 
