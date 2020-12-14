@@ -154,7 +154,7 @@ class Chat extends Model
       return [
         'headers' => [
           'Identificador' =>  'name',
-          'Categoría' => [
+          'Usuarios' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
             'show'       => 'name',
@@ -167,8 +167,8 @@ class Chat extends Model
           'edit'    => true,
           'add'     => true,
           'remove'  => true,
-          'image'   => true,
-          'images'  => true,
+          'image'   => false,
+          'images'  => false,
         ],
         'singular' => 'chat',
         'name'  => 'Chats',
