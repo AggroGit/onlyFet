@@ -152,7 +152,9 @@
                                   <th>Precio</th>
                                   <th>Precio antiguo</th>
                                   <th>Cada (meses)</th>
+                                  <th>Fecha suscripción</th>
                                   <th>suscription_stripe</th>
+
                                 </tr>
                               </thead>
                               <tbody>
@@ -172,7 +174,10 @@
                                     {{$plan->oldPrice}}
                                   </td>
                                   <td>
-                                    {{$plan->month}}
+                                    {{$plan->months}}
+                                  </td>
+                                  <td>
+                                    {{$plan->pivot->created_at}}
                                   </td>
                                   <td>
                                     <a href="https://dashboard.stripe.com/subscriptions/{{$plan->pivot->stripe_suscription_id}}">{{$plan->pivot->stripe_suscription_id}}</a>
