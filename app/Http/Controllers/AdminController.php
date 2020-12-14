@@ -297,5 +297,19 @@ class AdminController extends Controller
        }
       }
 
+      public function planmView($plan_id)
+      {
+        $model = $this->getModel('plan')->find($plan_id);
+
+        if($cat = $model::find($plan_id)) {
+          $tabletate = $model::tabletate($cat);
+          //
+          return view('admin.layouts.addPlan')->with([
+            'tabletate' => $tabletate,
+            'model'     => $model
+          ]);
+        }
+      }
+
 
 }
