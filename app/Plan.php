@@ -102,7 +102,15 @@ class Plan extends Model
             'multiple'   => false,
             'url'        => "admin/user/edit"
           ],
-          'Usuarios Suscritos' => 'userCount'
+          'num Usuarios Suscritos' => 'userCount',
+          'suscriptores' => [
+            'model_name' => 'usersSuscribed',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => true,
+            'url'        => "admin/user/edit"
+          ],
+
         ],
         'data'  =>  $data,
         'options' => [
