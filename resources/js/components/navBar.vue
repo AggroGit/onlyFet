@@ -153,7 +153,7 @@ export default {
       console.log(this.$route)
       if(this.$route.path == "/shop/cart") {
         return "/shop"
-      } 
+      }
       if(this.$route.path.includes('shop')) {
         return "/shop/cart"
       } else {
