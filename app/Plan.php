@@ -92,7 +92,7 @@ class Plan extends Model
       return [
         'headers' => [
           'Id' => 'id',
-          'Paga cada' => 'months',
+          'Paga cada (meses)' => 'months',
           'Creador' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
