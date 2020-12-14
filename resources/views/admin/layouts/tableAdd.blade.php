@@ -77,7 +77,7 @@
                                 width="200"
                                 height="200"
                                 margin="16"
-                                accept="image/jpeg,image/png"
+                                accept="image/jpeg,image/png,image/jpg"
                                 size="10"
                                 @if($tabletate['data']['image']?? $tabletate['data']['images'][0]?? false)
                                 prefill="{{$tabletate['data']['image']['sizes']['Big']?? $tabletate['data']['images'][0]['sizes']['Big']?? $tabletate['data']['images'][0]?? ''}}"
