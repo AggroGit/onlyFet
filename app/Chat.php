@@ -153,7 +153,7 @@ class Chat extends Model
     public  static function tabletate($data = null) {
       return [
         'headers' => [
-          'Identificador' =>  'name',
+          'Identificador' =>  'id',
           'Usuarios' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
