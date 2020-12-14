@@ -143,6 +143,7 @@
 
                   <div class=" row">
                     <h5>Usuarios suscritos</h5>
+                    {{$plan->usersSuscribed}}
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
