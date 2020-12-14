@@ -102,7 +102,6 @@
            <b-icon icon="cart-2" class="icon" scale="2"></b-icon>
            <div v-if="this.$store.state.numProducts>0" class="">{{this.$store.state.numProducts}}</div>
         </router-link>
-
       </nav>
   </div>
 
