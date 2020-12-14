@@ -44,18 +44,7 @@
                               @endforeach
                             </select>
                             @else
-                            <!-- SELECT UNICO -->
-                            <select class="form-control" name="{{$header['model_name'].'_id'}}" id="sel1">
-                                <option></option>
-                                @foreach($header['select'] as $select)
-                                  <option
-                                  @if ($tabletate['data']?? false and $tabletate['data'][$header['model_name'].'_id']==$select['id'])
-                                    selected
-                                  @endif
-                                   value="{{$select['id']}}">{{$select[$header['show']]}}
-                                 </option>
-                                @endforeach
-                            </select>
+                            
                             @endif
 
 
@@ -87,54 +76,7 @@
                             </div>
                         </div>
                       @else
-                      <div class="col-md-12">
-                          <div class="form-group">
-                            @if($model->images->count()>1)
-                            <br>
-                            <h4>Imágenes</h4>
-                            <br>
-                            <br>
-                            @endif
-                            <div class="row down-2">
-                              @foreach($model->images as $image)
-                              <div class="col-md-4 down-2">
-                                <br>
-                                <br>
-                                <picture-input
-                                  name="image_{{$image->id}}"
-                                  ref="image"
-                                  width="200"
-                                  height="200"
-                                  margin="16"
-                                  accept="image/jpeg,image/png,image/jpg"
-                                  size="10"
-                                  customStrings="{
-                                    change: 'Cambiar imágen'
-                                  }"
-                                  prefill="{{$image['sizes']['Big']?? ''}}"
-                                  buttonClass="btn"
-                                  >
-                                </picture-input>
-                                <div class="text-center">
-                                  <a class="text-danger text-center" href="{{url('/admin/image/remove/'.$image->id)}}">
-                                      Eliminar imágen
-                                  </a>
-                                </div>
 
-                              </div>
-                              @endforeach
-                              <div class="col-md-3">
-                                <br>
-                                <br>
-
-                                <h4>Añadir Imágenes</h4>
-                                <input type="file" id="files" accept="image/jpeg,image/png,image/jpg" name="images[]" multiple><br><br>
-
-                              </div>
-
-                            </div>
-                          </div>
-                      </div>
                       @endif
                     @endif
 
@@ -149,6 +91,7 @@
                                 <tr>
                                   <th>Usuario </th>
                                   <th>Mensaje</th>
+                                  <th>Fecha</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -162,6 +105,7 @@
                                   <td>
                                     {{$message->message}}
                                   </td>
+                                  <td>{{message->created_at}}</td>
                                 </tr>
                               @endforeach
                             </table>
