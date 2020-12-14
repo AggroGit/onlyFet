@@ -160,7 +160,7 @@
                                 <tr>
                                   <td>
                                     <a href="{{url('admin/user/edit/'.$user->id)}}">
-                                      {{$user->nickname}} ({{$user->nickname}})
+                                      {{$user->name}} ({{$user->nickname}})
                                     </a>
 
                                   </td>
