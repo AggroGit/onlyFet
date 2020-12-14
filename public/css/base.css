@@ -1270,6 +1270,9 @@ border-radius: 50% !important;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.contieneCates>.col-md-4:nth-child(1)>div {
+  margin-top: 0px !important;
+}
 .contieneCates {
   padding: 10px;
   text-align: left;
