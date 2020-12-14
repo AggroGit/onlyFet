@@ -44,4 +44,47 @@ class Auction extends Model
     {
       return Carbon::parse(now())->diffInSeconds($this->finish_at?? now(), false);
     }
+
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Titulo' =>  'title',
+          'Creador' => [
+            'model_name' => 'user',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => false,
+            'url'        => "admin/user/edit"
+          ],
+          'Actual pujador' => [
+            'model_name' => 'current',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => false,
+            'url'        => "admin/user/edit"
+          ],
+          'Ganador' => [
+            'model_name' => 'winner',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => false,
+            'url'        => "admin/user/edit"
+          ],
+          'Puja actual' => 'current_auction',
+          'Precio inicial' => 'initial_price',
+          'Precio final' => 'final_price',
+          'Finaliza el' => 'finish_at',
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+          'remove'  => true,
+          'image'   => true
+        ],
+        'singular' => 'auction',
+        'name'  => 'Subastas',
+
+      ];
+
+    }
 }
