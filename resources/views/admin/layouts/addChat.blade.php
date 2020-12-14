@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                       Usuarios :
                       @forEach($model->users as $user)
-                      {{$user->name}}
+                      {{$user->name}} ||
                       @endforeach
 
                     </div>
