@@ -93,6 +93,8 @@ class Plan extends Model
         'headers' => [
           'Id' => 'id',
           'Paga cada (meses)' => 'months',
+          'Precio' => 'price',
+          'Precio anterior' => 'oldPrice',
           'Creador' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
