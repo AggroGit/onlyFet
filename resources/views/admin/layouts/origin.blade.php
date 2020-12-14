@@ -69,8 +69,11 @@
                             <a class="nav-link" href="{{url('admin/auction')}}">
                                 Subastas
                             </a>
-                            <a class="nav-link" href="{{url('admin/Plan')}}">
+                            <a class="nav-link" href="{{url('admin/plan')}}">
                                 Suscripciones
+                            </a>
+                            <a class="nav-link" href="{{url('admin/chat')}}">
+                                Chats
                             </a>
                             <div class="sb-sidenav-menu-heading">Tienda</div>
 

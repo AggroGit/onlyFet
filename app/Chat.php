@@ -150,4 +150,31 @@ class Chat extends Model
       return parent::delete();
     }
 
+    public  static function tabletate($data = null) {
+      return [
+        'headers' => [
+          'Identificador' =>  'name',
+          'Categoría' => [
+            'model_name' => 'users',
+            'select'     => User::all(), // data al seleccionar en crear
+            'show'       => 'name',
+            'multiple'   => true,
+            'url'        => "admin/user/edit"
+          ],
+        ],
+        'data'  =>  $data,
+        'options' => [
+          'edit'    => true,
+          'add'     => true,
+          'remove'  => true,
+          'image'   => true,
+          'images'  => true,
+        ],
+        'singular' => 'chat',
+        'name'  => 'Chats',
+
+      ];
+
+    }
+
 }
