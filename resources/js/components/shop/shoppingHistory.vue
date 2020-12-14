@@ -27,7 +27,9 @@
         </div>
         <div v-for="(order) in purchase.orders" :key="order.id" >
           <div v-if="order.product" class="contienePedido">
-            <span><strong>{{order.product.name}}</strong></span>
+            <router-link class="noLink" :to="'/shop/'+order.product.id">
+              <span><strong>{{order.product.name}}</strong></span>
+            </router-link>
             <span>{{$ml.get('shop').price}} {{order.product.price}}€</span>
           </div>
         </div>
