@@ -17,6 +17,9 @@
     Route::any('/admin/purchase/edit/{purchase_id}', 'AdminController@purchaseView');
     // publicaciones
     Route::get('/admin/publication/edit/{post_id}/',    'AdminController@publicationView');
+    // user
+    Route::get('/admin/user/edit/{user_id}/',    'AdminController@userView');
+
 
     // DEFAULT
     Route::get('/admin',                        'AdminController@dashboard');

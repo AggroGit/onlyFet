@@ -69,6 +69,9 @@
                             <a class="nav-link" href="{{url('admin/auction')}}">
                                 Subastas
                             </a>
+                            <a class="nav-link" href="{{url('admin/Plan')}}">
+                                Suscripciones
+                            </a>
                             <div class="sb-sidenav-menu-heading">Tienda</div>
 
 

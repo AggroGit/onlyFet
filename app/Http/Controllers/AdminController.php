@@ -283,5 +283,19 @@ class AdminController extends Controller
       }
      }
 
+     public function userView($user_id)
+     {
+       $model = $this->getModel('user')->find($user_id);
+
+       if($cat = $model::find($user_id)) {
+         $tabletate = $model::tabletate($cat);
+         //
+         return view('admin.layouts.addUser')->with([
+           'tabletate' => $tabletate,
+           'model'     => $model
+         ]);
+       }
+      }
+
 
 }
