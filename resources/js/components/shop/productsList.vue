@@ -91,7 +91,7 @@
           </div>
           <div  class="row down-2">
             <div class="col-12">
-              <h4>Categorias: </h4>
+              <h5>Categorias: </h5>
             </div>
           </div>
 
