@@ -11,14 +11,12 @@ use App\User;
 
 class Plan extends Model
 {
-    protected $appends = ["fecha"];
+    protected $appends = ["fecha","userCount"];
     // cuando se actualiza un precio entonces deberíamos cambiar de plan todos los uaurios.
     public function getFechaAttribute()
     {
       return $this->created_at->diffForHumans();
     }
-
-
 
     // usuarios suscritos al plan
     public function usersSuscribed()
@@ -64,6 +62,11 @@ class Plan extends Model
       }
     }
 
+    public function getUserCountAttribute()
+    {
+      return $this->usersSuscribed->count();
+    }
+
     public function getMonthsAttribute()
     {
       switch ($this->payForEvery) {
@@ -88,6 +91,7 @@ class Plan extends Model
     public  static function tabletate($data = null) {
       return [
         'headers' => [
+          'Id' => 'id',
           'Creador' => [
             'model_name' => 'user',
             'select'     => User::all(), // data al seleccionar en crear
@@ -95,6 +99,7 @@ class Plan extends Model
             'multiple'   => false,
             'url'        => "admin/user/edit"
           ],
+          'Usuarios Suscritos' => 'userCount'
 
         ],
         'data'  =>  $data,
@@ -103,8 +108,8 @@ class Plan extends Model
           'add'     => true,
           'remove'  => true,
         ],
-        'singular' => 'category',
-        'name'  => 'Categorias',
+        'singular' => 'plan',
+        'name'  => 'Planes',
 
       ];
 
