@@ -20,9 +20,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image','plans','currentAuctions'];
+    protected $with=['image','currentAuctions'];
 
-    protected $appends =['canSee','numProducts'];
+    protected $appends =['canSee'];
 
     /**
      * The attributes that are mass assignable.
