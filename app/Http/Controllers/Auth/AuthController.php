@@ -32,7 +32,7 @@ class AuthController extends Controller
     {
 
       return auth()->user()?
-      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)->append('numProducts')) : $this->incorrect(13);
+      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)->append('numProducts')->toArray()) : $this->incorrect(13);
     }
 
     /**
