@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     protected $with=['image','currentAuctions'];
 
-    protected $appends =['canSee'];
+    protected $appends =['canSee','numProducts'];
 
     /**
      * The attributes that are mass assignable.
