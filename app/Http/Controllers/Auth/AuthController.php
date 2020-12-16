@@ -35,6 +35,7 @@ class AuthController extends Controller
       $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)) : $this->incorrect(13);
     }
 
+
     /**
      * make the login via API
      *
