@@ -20,7 +20,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image','plans', 'notifications','currentAuctions'];
+    protected $with=['image','plans','currentAuctions'];
 
     protected $appends =['canSee','numProducts'];
 
@@ -287,7 +287,7 @@ class User extends Authenticatable
           '% para el usuario' => 'percentage_for_user',
           'Idioma' => 'lang',
           'País' => 'country',
-          
+
         ],
         'data'  =>  $data,
         'options' => [
