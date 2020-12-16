@@ -32,9 +32,8 @@ class AuthController extends Controller
     {
 
       return auth()->user()?
-      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)) : $this->incorrect(13);
+      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id))->append('numProducts') : $this->incorrect(13);
     }
-
 
     /**
      * make the login via API
