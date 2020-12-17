@@ -65,7 +65,7 @@
               <div class="form-group row ">
                 <div class="col-md-12 contieneInput">
                     <label for="post" class="entrada detextarea" >{{$ml.get('auth').description}}</label>
-                    <vue-editor :editorToolbar="custom" v-model="form.description"></vue-editor>
+                    <textarea ref="description" v-model="form.description" rows="3"  name="post" class="form-control"   autofocus="false"></textarea>
                     <!-- <VueEditor v-model="form.description"></VueEditor> -->
                     <!-- <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea> -->
                 </div>
