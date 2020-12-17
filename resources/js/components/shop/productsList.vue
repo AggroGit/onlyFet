@@ -35,6 +35,7 @@
       <a class="allA"  :href="image.sizes.Big">
         <img
         :src="image.sizes.Big"
+        class="ImagenProducto"
         alt=""
           >
       </a>
