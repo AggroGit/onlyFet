@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- CACHE CLEAN -->
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 20 Feb 2012 00:00:01 GMT">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
