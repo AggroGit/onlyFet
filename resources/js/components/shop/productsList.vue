@@ -30,10 +30,13 @@
 
       <b-carousel-slide
         v-for="(image) in this.images" :key="image.id"
-        :img-src="image.sizes.Big"
       >
       <a class="allA"  :href="image.sizes.Big">
-
+        <img
+        :src="image.sizes.Big"
+        alt=""
+        class="carouselShop"
+          >
       </a>
     </b-carousel-slide>
 
