@@ -27,12 +27,13 @@
       img-height="300"
       class="carouselShop"
     >
-
+    <a :href="image.sizes.Big">
       <b-carousel-slide
         v-for="(image) in this.images" :key="image.id"
         :img-src="image.sizes.Big"
         @click="alertat()"
       ></b-carousel-slide>
+      </a>
 
 
     </b-carousel>
