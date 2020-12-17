@@ -31,6 +31,7 @@
       <b-carousel-slide
         v-for="(image) in this.images" :key="image.id"
         :img-src="image.sizes.Big"
+        @click="alertat()"
       ></b-carousel-slide>
 
 
@@ -242,6 +243,9 @@ export default {
       if(!this.filering) {
         this.searchFromFilter();
       }
+    },
+    alertat() {
+      alert('hey')
     }
   }
 };
