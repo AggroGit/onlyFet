@@ -12,7 +12,7 @@
   <script src="https://js.stripe.com/v3/"></script>
   <!-- Scripts -->
   @if(!isset($noTypeScript))
-  <script src="{{ asset('js/app.js').'=v1.0' }}" defer></script>
+  <script src="{{asset('js/app.js')}}?v=1.0" defer></script>
   @endif
 
   <!-- Fonts -->
