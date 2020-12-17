@@ -216,7 +216,7 @@ const auth = function(to, from, next) {
  // auth
  {path: '/login',         component: Vue.component('login')},
  {path: '/register',      component: Vue.component('register')},
- {path: '/faqs',          component: Vue.component('faqs')},
+ {path: '/faqs',          component: Vue.component('faqs'),beforeEnter: multiguard([auth])},
  // user
  {path: '/profile',       component: Vue.component('profile'),beforeEnter: multiguard([auth])},
  {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
