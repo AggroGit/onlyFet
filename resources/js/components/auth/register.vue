@@ -48,7 +48,7 @@
                                   <div class="form-check">
                                       <input class="form-check-input" type="checkbox" required name="legal" id="legal" >
                                       <label class="form-check-label" for="legal">
-                                        {{$ml.get('auth').legalTerms}}
+                                        <a class="rojo" href="/legal/terms.pdf">{{this.$ml.get('auth').legalTerms}}</a>
                                       </label>
                                   </div>
                               </div>

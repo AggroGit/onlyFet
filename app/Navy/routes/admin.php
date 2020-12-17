@@ -32,5 +32,8 @@
     Route::post('/admin/{modelName}/add',       'AdminController@addDataModel');
     Route::get('/admin/{modelName}/edit/{id}',  'AdminController@editModelExists');
     Route::any('/admin/{modelName}/remove/{id}','AdminController@deleteDataModel');
+    // logout
+    Route::any('/admin/logout',                               'Auth\AuthController@logout');
+
 
 });

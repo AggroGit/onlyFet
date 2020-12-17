@@ -6,7 +6,7 @@
   --gris:#6C777D;
   --rojoStripe: #EF0000;
   --granate: #750300;
-  
+
 
 }
 #app {
@@ -516,7 +516,7 @@ input {
 }
 .rojo {
   /* background: red; */
-  color: red !important;
+  color: var(--rojo1) !important;
 }
 
 .Empty {
