@@ -12,7 +12,7 @@
   <script src="https://js.stripe.com/v3/"></script>
   <!-- Scripts -->
   @if(!isset($noTypeScript))
-  <script src="{{asset('js/app.js')}}?v=1.0" defer></script>
+  <script src="{{asset('js/app.js')}}?v={{env('APP_VERSION', 0)}}" defer></script>
   @endif
 
   <!-- Fonts -->
@@ -22,7 +22,7 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <!-- Base -->
-  <link href="{{ asset('css/base.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/base.css') }}?v={{env('APP_VERSION', 0)}}" rel="stylesheet">
   <!-- Own Styles -->
 
 </head>
