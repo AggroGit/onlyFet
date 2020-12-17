@@ -20,6 +20,7 @@
                           <div class="form-group">
                             <!-- SI ES UN CAMPO DE TEXTO  -->
                             @if(!is_array($header)?? false)
+                              <!-- SI EXISTE EN LA BASE DE DATOS -->
                               @if(Schema::hasColumn($model->getTable(), $header))
                                 @if($header !== "expires_at")
                                 <label class="small mb-1" for="{{$key}}">{{$key}}</label>
