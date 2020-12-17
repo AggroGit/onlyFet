@@ -30,8 +30,7 @@
           <img
           :src="image.sizes.Big"
           alt=""
-          class="ImagenProducto"
-            >
+          class="ImagenProducto">
         </a>
       </template>
       </b-carousel-slide>
