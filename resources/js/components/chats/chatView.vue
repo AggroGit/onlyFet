@@ -15,6 +15,7 @@
           <template v-slot:button-content>
             <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
           </template>
+          {{chatData}}
           <b-dropdown-item >pruebas</b-dropdown-item>
 
           <b-dropdown-item v-if="chatData.open" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
