@@ -15,7 +15,6 @@
           <template v-slot:button-content>
             <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
           </template>
-          {{chatData.open}}
           <b-dropdown-item v-if="chatData.open == true" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
           <b-dropdown-item v-if="chatData.open == true" @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
           <b-dropdown-item v-if="chatData.open == false && chatData.currentHaveBlocked" @click="unblock()">{{$ml.get('chat').unBlock}}</b-dropdown-item>
@@ -161,7 +160,7 @@ export default {
           console.log(response)
           self.messages = response.data.data.messages.data.slice().reverse()
           self.otherUser = response.data.data.otherUser
-          self.chatData = response.data.data
+          self.chatData = response.data.data.chatData
 
           if(response.data.data.open == false) {
             self.messages = false;
