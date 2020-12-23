@@ -19,6 +19,7 @@ class Purchase extends Model
     ];
 
 
+
     // all the orders of the purchasde
     public function orders()
     {

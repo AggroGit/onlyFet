@@ -142,6 +142,7 @@ export default {
         lang:this.$store.state.auth.lang,
         description:this.$store.state.auth.description,
         direction:this.$store.state.auth.direction,
+        nickname: this.$store.state.auth.nickname,
       },
       options: [
         {text: 'Afghanistan', value: 'AF'},

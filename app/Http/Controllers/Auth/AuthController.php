@@ -227,6 +227,7 @@ class AuthController extends Controller
           return $this->incorrect(2);
         }
       }
+      // 
       if($request->has('nickname')){
         if(User::where('nickname',$request->nickname)->first()) {
           return $this->incorrect(6);
