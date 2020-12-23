@@ -18,8 +18,8 @@
           {{chatData}}
           <b-dropdown-item >pruebas</b-dropdown-item>
 
-          <b-dropdown-item v-if="chatData.open" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
-          <b-dropdown-item v-if="chatData.open" @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
+          <b-dropdown-item v-if="chatData.open == true" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
+          <b-dropdown-item v-if="chatData.open == true" @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
           <b-dropdown-item v-if="chatData.open == false && chatData.currentHaveBlocked" @click="unblock()">{{$ml.get('chat').unBlock}}</b-dropdown-item>
         </b-dropdown>
       </div>
