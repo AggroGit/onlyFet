@@ -15,8 +15,7 @@
           <template v-slot:button-content>
             <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
           </template>
-          <b-dropdown-item >pruebas</b-dropdown-item>
-
+          {{chatData.open}}
           <b-dropdown-item v-if="chatData.open == true" @click="block()">{{$ml.get('chat').block}}</b-dropdown-item>
           <b-dropdown-item v-if="chatData.open == true" @click="report()">{{$ml.get('chat').report}}</b-dropdown-item>
           <b-dropdown-item v-if="chatData.open == false && chatData.currentHaveBlocked" @click="unblock()">{{$ml.get('chat').unBlock}}</b-dropdown-item>
