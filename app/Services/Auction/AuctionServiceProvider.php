@@ -98,6 +98,7 @@ class AuctionServiceProvider extends AuctionDomain
     // get the chat
     $chatProvider = new ChatsServiceProvider();
     $chat = $chatProvider->giveMeorCreateChatWith($auction->user,$auction->winner);
+    echo "echo 1;";
     // notify the user
     $this->notifyAuctionFinished($auction,$chat);
     // notify the winner
