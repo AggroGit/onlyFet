@@ -113,7 +113,6 @@ export default {
         title:"",
         finish_at:"",
         price:null,
-
       },
 
       fileRecords: [],

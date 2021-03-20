@@ -58,7 +58,7 @@
 
                           <div class="form-group row ">
                               <router-link to="/register" class="col-md-12 offset-md-12">
-                                  <button class="btn btn-secondary boton">
+                                  <button class="btn  boton grisfondo">
                                       {{$ml.get('auth').changeRgister}}
                                       <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                   </button>
@@ -72,6 +72,16 @@
 
                       <div  class="form-group row contieneSeparadorRRSS down-2">
                           <div class="separadorRRSS"></div>
+                      </div>
+
+                      <!-- Twitter -->
+                      <div  class="form-group row ">
+                          <a disabled href="/login/twitter" class="col-md-12 offset-md-12">
+                              <button class="btn btn-primary boton Twitter">
+                                  {{$ml.get('auth').socialTwitter}}
+                                  <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                              </button>
+                          </a>
                       </div>
 
                       <!-- FACEBOOK -->
@@ -93,15 +103,6 @@
                               </button>
                           </a>
                       </div>
-
-
-
-
-
-
-
-
-
                   </div>
               </div>
           </div>
@@ -120,7 +121,6 @@
               </button>
             </form>
           </div>
-          <!-- <h3>Suscribiendo</h3> -->
         </div>
       </div>
 

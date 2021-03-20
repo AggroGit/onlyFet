@@ -4,8 +4,8 @@ namespace App\Services\Suscriptions;
 
 use App\Services\Suscriptions\SuscriptionDomain;
 
+use App\Services\Influencer\InfluencerServiceProvider;
 use App\Services\Chats\ChatsServiceProvider;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Publication as Post;
@@ -25,19 +25,21 @@ class SuscriptionServiceProvider extends SuscriptionDomain
   // make user premium, only if the user can accept money from stripe
   public function makeUserPremium(User $user,Request $request) : int
   {
-    // check the user can recibe money
-    if($user->stripe_reciver_id == null)
-    return 4;
+    if($user->wantToBeInfluencer and $user->verified == false) {
+      return 4;
+    }
     // if user dont have plans create, else update
     if($user->plans->count() !== 0)
       $this->updatePlansOfUser($user,$request->suscriptions);
      else
       $this->createPlansOfUser($user,$request->suscriptions);
-    // make the user influencer
-    $user->influencer = true;
+
+    $user->prices_added = true;
     $user->save();
     $user->refresh();
-    //
+    // call the request influencer
+    $provider = new InfluencerServiceProvider($user);
+    $provider->requestInfluencer();
     return true;
   }
 
@@ -76,10 +78,8 @@ class SuscriptionServiceProvider extends SuscriptionDomain
     foreach ($suscriptions as $name => $price) {
       // creamos el nuevo plan
       $this->createNewPlan($user,$price,$name);
-
-
-
     }
+
     return true;
   }
 

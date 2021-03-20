@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    const stripe = Stripe(window.public_stripe);
+    const stripe = Stripe('pk_test_uJokSRQ3iQnavXztyfmoigfy');
 
     const elements = stripe.elements();
     const cardElement = elements.create('card');
@@ -79,7 +79,6 @@ export default {
              alert(this.$ml.get('stripe').problem)
 
            }
-
 
          })
          .catch(response => {

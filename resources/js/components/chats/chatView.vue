@@ -49,8 +49,6 @@
                       <p>
                         {{$ml.get('auction').detailSend}}
                       </p>
-
-
                   </div>
                 </div>
               </div>

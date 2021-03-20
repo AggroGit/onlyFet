@@ -51,31 +51,49 @@
           </div>
       </div>
 
-      <!-- STRIPE -->
-      <div v-if="!auth.influecer" class="row justify-content-center">
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+          <div class="separadorRRSS"></div>
+        </div>
+
+      </div>
+
+
+
+      <!-- Became a infuencer -->
+      <div v-if="!auth.wantToBeInfluencer" class="row justify-content-center">
           <div class="col-md-6">
-             <stripe-express></stripe-express>
+             <router-link to="/request/influencer">
+                <button  class="btn btn-primary boton">
+                    {{$ml.get('auth').becameInfluencer}}
+                </button>
+            </router-link>
           </div>
       </div>
 
       <!-- STRIPE -->
+      <!-- <div v-if="!auth.influecer" class="row justify-content-center">
+          <div class="col-md-6">
+             <stripe-express></stripe-express>
+          </div>
+      </div> -->
+
+      <!-- STRIPE -->
       <div class="row justify-content-center">
-          <div v-if="auth.stripe_reciver_id !== null" class="col-md-6">
-             <router-link to="/profile/suscriptions">
+          <div v-if="auth.wantToBeInfluencer && auth.stripe_created" class="col-md-6">
+             <router-link v-if="auth.wantToBeInfluencer && auth.stripe_created" to="/profile/suscriptions">
                 <button  class="btn btn-primary boton">
                     {{$ml.get('auth').confSuscriptions}}
                 </button>
             </router-link>
+
           </div>
-          <div v-else class="col-md-6">
-            <b-button  v-b-tooltip.hover.bottom="$ml.get('auth').uHaveToStripe" class="btn btn-primary boton stripe">
+          <div v-if="auth.wantToBeInfluencer && auth.stripe_created==false" class="col-md-6">
+            <b-button   v-b-tooltip.hover.bottom="$ml.get('verification').havetoBeVerified" class="btn btn-primary boton stripe">
                   {{$ml.get('auth').confSuscriptions}}
             </b-button>
           </div>
       </div>
-
-
-
     </div>
 </template>
 

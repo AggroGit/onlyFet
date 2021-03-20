@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Influencer\InfluencerServiceProvider;
 use Illuminate\Http\Request;
 use App\Events\StripeEvent;
 use App\Jobs\sendMail;
@@ -84,13 +85,15 @@ class StripeController extends Controller
             } else {
               dd($request);
             }
+
             $user->save();
             $user->refresh();
+            // call the service Providers
+            $provider = new InfluencerServiceProvider($user);
+            $provider->validateInfluencer();
             //
-            return redirect('/profile/suscriptions');
-            // return $this->correct($user);
+            return redirect('/admin/user/validate/'.$user->id);
           }
-
         }
       }
       return redirect('/');
@@ -136,7 +139,6 @@ class StripeController extends Controller
 
             //
             return $this->correct();
-
 
           } else {
             return $this->incorrect(210);

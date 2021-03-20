@@ -51,22 +51,22 @@ trait PayStripe
   public function createAccountURL()
   {
     // if the user has not the reciver id
-    if ($this->stripe_reciver_id == null) {
+    if ($this->influencer == false) {
       // we create a token
       $this->temporal_token = uniqid().md5(rand(1, 10) . microtime());
       // we have to return the url with some params
-      $base = env('STRIPE_URL_ACCOUNT')
-      ."stripe_user[email]=$this->email&"
-      ."stripe_user[first_name]=$this->name&"
-      ."stripe_user[last_name]=$this->surnames&"
-      ."stripe_user[phone_number]=$this->phone_number&"
+      $base = env('STRIPE_URL_ACCOUNT').'&'
+      // ."stripe_user[email]=$this->email&"
+      // ."stripe_user[first_name]=$this->name&"
+      // ."stripe_user[last_name]=$this->surnames&"
+      // ."stripe_user[phone_number]=$this->phone_number&"
       ."redirect_uri=".url('/api/stripe/return')."&"
       ."state=$this->temporal_token&";
       // save for the token
       $this->save();
       return $base;
     }
-    return false;
+    return $this->loginLink();
   }
 
   // with the code we have to create the account for recive money
@@ -97,9 +97,10 @@ trait PayStripe
   public function createAsAProduct()
   {
 
+      $id =  env('APP_ENV','local').'sep'.uniqid().'sep'.$this->id;
       $product = $this->stripe()->products->create([
         'name'  =>  $this->name,
-        'id'    =>  env('APP_ENV','local').$this->id,
+        'id'    => $id,
         'metadata'  => [
           'user_onlyFet_id' => $this->id,
           'description' => $this->name,
@@ -109,8 +110,8 @@ trait PayStripe
           $this->image->sizes->Big?? "no-image",
         ]
       ]);
-      $this->influencer = true;
-
+    //
+    $this->stripe_product_id = $id;
     $this->save();
     return true;
 

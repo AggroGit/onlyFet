@@ -12,9 +12,15 @@ return [
     */
 
     'register' => [
-          'email'     => 'required|string|email|unique:users',
-          'password'  => 'required|string',
-          'name'      => 'required|string'
+          'email'      => 'required|string|email|unique:users',
+          'password'   => 'required|string',
+          'name'       => 'required|string',
+          'influencer' => 'required|boolean'
+    ],
+
+    'registerInfluencer' => [
+          'birthday'  => 'date',
+
     ],
 
     'register_rrss' => [
@@ -47,7 +53,7 @@ return [
 
     'editAuth' => [
       'name'          => 'nullable|string',
-      'email'         => 'nullable|string|email|unique:users',
+      'email'         => 'nullable|string|email',
       'phone_number'  => 'nullable|string',
       'password'      => 'nullable|string',
       'image'     => 'image:mimes:jpg,jpeg,png'
@@ -70,7 +76,6 @@ return [
     ],
 
     'makePremium' => [
-      'influencer'  => 'boolean',
       'suscriptions'  => 'array',
       'month1'  => 'required|digits_between:1,400',
       'month3'  => 'required|digits_between:1,400',

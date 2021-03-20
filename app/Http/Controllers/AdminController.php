@@ -55,7 +55,6 @@ class AdminController extends Controller
           'model'     => $model
         ]);
       }
-
     }
 
     public function addDataModel($modelName, Request $request)
@@ -324,6 +323,36 @@ class AdminController extends Controller
             'model'     => $model
           ]);
         }
+      }
+
+      public function validateView($user_id)
+      {
+        $model = $this->getModel('user')->find($user_id);
+
+        if($cat = $model::find($user_id)) {
+          $tabletate = $model::tabletate($cat);
+          //
+          return view('admin.layouts.validateUser')->with([
+            'tabletate'   => $tabletate,
+            'model'       => $model,
+            'stripe_url'  => $model->createAccountURL()
+          ]);
+        }
+      }
+
+      public function seeUsersValidate()
+      {
+        $model = new User();
+        $tabletate = $model->tabletate($model::where([
+          ['verified',false],
+          ['wantToBeInfluencer',true]
+        ])->orderBy('created_at','DESC')->get());
+        $tabletate['name']="Usuarios pendientes de validación";
+        //
+        return view('admin.layouts.validateList')->with([
+          'tabletate' => $tabletate,
+          'noTypeScript'  => true
+        ]);
       }
 
 

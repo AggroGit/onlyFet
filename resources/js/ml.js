@@ -22,9 +22,17 @@ export default new MLCreate({
       "notAvailable": "This chat is no longer available"
    },
    "auth": {
+     "startWiningMoney": "Start to earn money",
+     "becameInfluencer":"Became Influencer User",
+     "documents": "Documents",
+     "normalUser": "Normal User",
+     "influencerUser":"Influencer User",
+     "requisistsInfluencer": "Se requieren de 3 documentos de verificación:\n-Documento de identidad o acreditativo, parte frontal y trasero\n-Selfie con documento en la mano y que se ve bien el documento",
       "socialFacebook" : "Login with Facebook",
       "socialGoogle" : "Login with Google",
+      "socialTwitter" : "Login with Twitter",
       "registerFacebook": "Register with Facebook",
+      "registerTwitter": "Register with Twitter",
       "registerGoogle": "Register with Google",
       "recoverEmail": "We´ve sent you a recovery email",
       "forget": "Did you forget your password?",
@@ -34,7 +42,7 @@ export default new MLCreate({
       "influencerQ": "Do you consider yourself an Influencer?",
       "confSuscriptions": "Manage subscriptions",
       "suscriptions": "Subscriptions",
-      "suscriptionsAndNotis": "Notifications and subscriptions",
+      "suscriptionsAndNotis": "Notifications",
       "uHaveToStripe": "You must set up Stripe to start your subscriptions ",
       "prError": "Oops",
       "error": "It seems that this user does not exist or you may have entered it incorrectly ",
@@ -59,6 +67,10 @@ export default new MLCreate({
       "price": "Price",
       "noSus": "You are not subscribed to any Influencer profile yet",
       "confSusciptions": "Manage subscriptions",
+      "adulttext": "I accept that I am of legal age",
+      "bank_account": "Bank account",
+      "birthday": "Birthday date",
+      "promotionalCode": "Promotional code",
 
    },
    "stripe": {
@@ -179,8 +191,12 @@ export default new MLCreate({
      "history": "Historial",
      "shop": "Tienda",
      "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
-
-
+   },
+   "verification": {
+     "pending": "Tu perfil está pendiente de verificación. En breve tendrás una respuesta de la plataforma",
+     "pricePending": "Debes introducir los precios de tu suscripción",
+     "postPending": "Para empezar a ganar dinero y ser usuario influencer pedimos un mínimo de 10 publicaciones. Actualmente ",
+     "havetoBeVerified": "Tu perfil debe ser validado antes"
    }
 }),
 
@@ -199,8 +215,16 @@ export default new MLCreate({
       "notAvailable": "Este chat ya no está disponible"
    },
    "auth": {
+     "startWiningMoney": "Comienza a ganar dinero",
+     "becameInfluencer":"Ser Usuario Influencer",
+     "documents": "Documentos",
+     "normalUser": "Usuario normal",
+     "influencerUser":"Usuario Influencer",
+     "requisistsInfluencer": "Se requieren de 3 documentos de verificación:\n-Documento de identidad o acreditativo, parte frontal y trasero\n-Selfie con documento en la mano y que se ve bien el documento",
       "socialFacebook" : "Login with Facebook",
       "socialGoogle" : "Login with Google",
+      "socialTwitter" : "Login with Twitter",
+      "registerTwitter": "Registro con Twitter",
       "registerFacebook": "Registro con Facebook",
       "registerGoogle": "Registro con Google",
       "recoverEmail": "Te hemos enviado un correo de recuperación",
@@ -235,7 +259,11 @@ export default new MLCreate({
       "description": "Descripción",
       "price": "Precio",
       "noSus": "Aún no te has suscrito a ningún Influencer",
-      "confSusciptions": "Configurar suscripciones"
+      "confSusciptions": "Configurar suscripciones",
+      "adulttext": "Acepto que soy mayor de edad",
+      "bank_account": "Cuenta bancaria",
+      "birthday": "Fecha de nacimiento",
+      "promotionalCode": "Código promocional",
    },
    "stripe": {
       "suscribed": "Suscrito",
@@ -357,6 +385,12 @@ export default new MLCreate({
      "shop": "Tienda",
      "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
 
+   },
+   "verification": {
+     "pending": "Tu perfil está pendiente de verificación. En breve tendrás una respuesta de la plataforma",
+     "pricePending": "Debes introducir los precios de tu suscripción",
+     "postPending": "Para empezar a ganar dinero y ser usuario influencer pedimos un mínimo de 10 publicaciones. Actualmente ",
+     "havetoBeVerified": "Tu perfil debe ser validado antes"
    }
 })
   ]

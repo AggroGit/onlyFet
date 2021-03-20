@@ -24,9 +24,9 @@ class imageServiceProvider extends ImageDomain
   public function uploadImage(Request $request,$name=null,$destroy = false)
   {
     $image = $this->upload($request,$name,$destroy);
-    if($destroy) {
-      $this->programDestruction($image);
-    }
+    // if($destroy) {
+    //   $this->programDestruction($image);
+    // }
     return $image;
   }
 

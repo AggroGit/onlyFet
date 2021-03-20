@@ -21,3 +21,7 @@ Route::post('/auth/notifications',                  'Auth\AuthController@notific
 Route::post('/auth/plans/{plan_id}/unsuscribe',     'SuscriptionsController@unsuscribePlan');
 // unsuscribe mails
 Route::get('/unsuscribe',     'Auth\AuthController@unsuscribe'); //mails
+
+// the upload of documents
+Route::any('/register/documents/upload',   'Auth\AuthController@uploadDocuments');
+Route::any('/register/influencer',         'Auth\AuthController@becomeInfluencer');

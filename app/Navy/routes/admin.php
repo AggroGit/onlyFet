@@ -11,6 +11,9 @@
 
   Route::group(['middleware' => ['auth','onlyAdmin']], function()
   {
+    // validate Users
+    Route::get('/admin/validateUsers/',          'AdminController@seeUsersValidate');
+
     // CUSTOM
     // ENTREGAS
     Route::any('/prof/purchase/{purchase_id}/deliver','AdminController@deliver');
@@ -21,8 +24,12 @@
     Route::get('/admin/plan/edit/{plan_id}/',    'AdminController@planmView');
     // user
     Route::get('/admin/user/edit/{user_id}/',    'AdminController@userView');
+    // validate
+    Route::get('/admin/user/validate/{user_id}/',    'AdminController@validateView');
     // chats
     Route::get('/admin/chat/edit/{chat_id}/',    'AdminController@chatView');
+
+
 
 
     // DEFAULT

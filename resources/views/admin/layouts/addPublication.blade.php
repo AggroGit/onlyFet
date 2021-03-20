@@ -7,6 +7,13 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
+            @if($tabletate['options']['remove']?? false)
+              <a href="{{url('admin/'.$tabletate['singular'].'/remove/'.$model->id)}}">
+                <button type="button" class="btn btn-danger btn-sm">
+                  Eliminar
+                </button>
+              </a>
+            @endif
         </div>
         <div class="card-body">
           <div class="card-body">

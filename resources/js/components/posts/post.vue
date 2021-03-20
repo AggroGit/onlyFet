@@ -42,22 +42,31 @@
             <span   v-for="(hastag) in this.data.hastags" :key="hastag.id" >#{{hastag.text}} </span>
           </p>
         </div>
-        <div class="contieneLikeComents">
+        <div v-if="this.data.user.canSee" class="contieneLikeComents">
           <div class="likes" @click="like()">
             <b-icon  v-if="this.liked" style="color: red;" icon="heart-fill" font-scale="1.5"></b-icon>
             <b-icon v-else style="color: black;" icon="heart-fill" font-scale="1.5"></b-icon>
             {{this.data.numLikes}}
           </div>
           <div  class="comments">
-            <router-link class="noLink" v-if="this.data.user.canSee" :to="'/post/'+this.data.id+'/coments'">
+            <router-link class="noLink"  :to="'/post/'+this.data.id+'/coments'">
               {{this.data.numComments}} {{$ml.get('post').comments}}
             </router-link>
           </div>
         </div>
         <div  v-if="this.data.user.canSee" class="separador"></div>
         <div  v-if="this.data.user.canSee"  class="contieneOpcion">
-          <b-icon style="color: black;" class="left" icon="chat-left" font-scale="1.2"></b-icon>
-          <router-link v-if="this.data.user.canSee" :to="'/post/'+this.data.id+'/coments'" class="noLink"  name="button">Comentar</router-link>
+
+          <router-link v-if="this.data.user.canSee" :to="'/post/'+this.data.id+'/coments'" class="noLink"  name="button">
+            <b-icon style="color: black;" class="left" icon="chat-left" font-scale="1.5"></b-icon>
+          </router-link>
+          <div class=" left iconPost euro ml-3">€</div>
+          <b-icon style="color: black;" class="left iconPost " icon="euro-sign" font-scale="1.5"></b-icon>
+          <a class="twitter-share-button"
+              :href="'https://twitter.com/intent/tweet?text='+this.data.content+' - OnlyFet&url='+this.currentUrl+'/post/'+this.data.id"
+              data-size="large">
+              <b-icon style="color: black;" class="right " icon="share-fill" font-scale="1.5"></b-icon>
+          </a>
         </div>
       </div>
     </div>
@@ -89,7 +98,9 @@ export default {
       exist:true,
       data:null,
       removing:false,
-      liked:false
+      liked:false,
+      currentUrl: window.location.hostname,
+
     }
 
   },

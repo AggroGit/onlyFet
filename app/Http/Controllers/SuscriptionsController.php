@@ -21,17 +21,12 @@ class SuscriptionsController extends Controller
     // creamos los planes, con nosotros y cin stripe
     public function makePremium(Request $request)
     {
-      if($request->influencer == false) {
-        return ($code = $this->provider->cancelUserPremium(auth()->user(),$request) == true)?
-        $this->correct(auth()->user()) : $this->incorrect($code);
-      } else {
-        // validate data
         if ($missings = $this->hasError($request->suscriptions,'validation.makePremium')) {
           return $this->incorrect(0,$missings);
         }
         return ($code = $this->provider->makeUserPremium(auth()->user(),$request) == true)?
         $this->correct(auth()->user()) : $this->incorrect($code);
-      }
+
     }
 
     // from request create diferent plans

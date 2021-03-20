@@ -273,6 +273,8 @@ export default {
         .finally(function (response) {
           self.fileRecordsForUpload = [];
           self.$router.push('/post/'+id)
+          window.location.reload()
+
         })
 
       },

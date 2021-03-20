@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PublicationServiceProvider;
+use App\Services\Publications\PublicationServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Publication as Post;

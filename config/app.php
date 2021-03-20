@@ -167,6 +167,7 @@ return [
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         // test
         App\Providers\testServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         //
         // App\Providers\PassportServiceProvider::class,
 
@@ -235,7 +236,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'ImageEditor' => Intervention\Image\Facades\Image::class,
-        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+
 
     ],
 

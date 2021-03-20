@@ -11,7 +11,6 @@
             <b-icon v-if="!this.loadingImage" icon="pencil-fill"></b-icon>
             <span v-if="this.loadingImage" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </div>
-
         </div>
         <div class="col-xs-6 ContieneDatosperfil">
           <h4>{{auth.name}}</h4>
@@ -134,14 +133,14 @@ export default {
       custom: [["bold", "italic", "underline"], [{ list: "ordered" }, { list: "bullet" }], ["link"]],
       test:"",
       form: {
-        email:null,
-        password:null,
+        email: this.$store.state.auth.email,
+        password: null,
         passwordRepeat:null,
-        name:null,
-        country:this.$store.state.auth.country,
-        lang:this.$store.state.auth.lang,
-        description:this.$store.state.auth.description,
-        direction:this.$store.state.auth.direction,
+        name: this.$store.state.auth.name,
+        country: this.$store.state.auth.country,
+        lang: this.$store.state.auth.lang,
+        description: this.$store.state.auth.description,
+        direction: this.$store.state.auth.direction,
         nickname: this.$store.state.auth.nickname,
       },
       options: [

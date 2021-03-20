@@ -1,6 +1,13 @@
 <template>
   <div class="container">
     <!-- Imagen logo -->
+    <div v-if="this.loading" class="contienePantallaCompletaDark aparecer">
+      <div class="container text-center contieneCargador">
+        <div class="spinner-border cargador cargaBlanco" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
 
 
     <div class="row justify-content-center">
@@ -9,7 +16,7 @@
       </div>
     </div>
 
-    <div v-if="this.temporal.status && this.temporal.success" class="row justify-content-center aparecer">
+    <div v-if="this.temporal.status && this.temporal.success" class="row | justify-content-center | aparecer ">
       <div class="col-md-8 text-center">
         <h3>Ya estás registrado en OnlyFet, esperamos verte pronto</h3>
       </div>
@@ -39,7 +46,65 @@
                               <entrada v-model="form.passwordRepeat" :label="$ml.get('auth').RepPassword" :name="'password_confirmation'" :type="'password'" autocomplete="new-password" :required="true"></entrada>
                           </div>
 
-                          <label for="country">{{$ml.get('auth').country}} :</label>
+                          <div class="form-group">
+                            <h4 class="form-check-label" for="influencer">
+                              Tipo de usuario
+                            </h4>
+
+                            <div class="custom-control custom-switch mt-2">
+                              <input type="checkbox" class="custom-control-input" v-model="form.influencer" id="influencer">
+                              <label v-if="!this.form.influencer" class="custom-control-label" for="influencer">Usuario normal</label>
+                              <label v-else class="custom-control-label" for="influencer">Usuario Influencer</label>
+                            </div>
+                          </div>
+
+                          <div v-if="this.form.influencer" class="mt-2 | ">
+                            <div class="form-group">
+                              <h5>Documentos </h5>
+                              <span style=" white-space: pre-wrap; word-wrap: break-word;">{{$ml.get('auth').requisistsInfluencer}}
+                              </span>
+                            </div>
+
+                            <!-- DOCUMENTOS -->
+                            <VueFileAgent
+                              ref="vueFileAgent"
+                              required
+                              :theme="'grid'"
+                              :multiple="true"
+                              :deletable="true"
+                              :meta="true"
+                              :accept="'.jpg,.png,.jpeg'"
+                              :maxSize="'500MB'"
+                              :maxFiles="6"
+                              :minFiles="3"
+                              :helpText="this.$ml.get('auth').documents"
+                              :errorText="{
+                                type: 'Invalid file type. Only images Allowed',
+                                size: 'Files should not exceed 100MB in size',
+                              }"
+                              @select="filesSelected($event)"
+                              @beforedelete="onBeforeDelete($event)"
+                              @delete="fileDeleted($event)"
+                              v-model="fileRecords"
+                            ></VueFileAgent>
+
+                            <div class="form-group row mt-5">
+                              <entrada v-model="form.promotionalCode" :label="$ml.get('auth').promotionalCode" :name="'promotionalCode'" :type="'text'" autocomplete="none"></entrada>
+                            </div>
+                            <div class="form-group row formgroupDate">
+                              <div  class="col-md-12 ">
+                                  <label for="datetime" class=" entrada labelHastags" >{{$ml.get('auth').birthday}}</label>
+                                  <datetime type="date" v-model="form.birthday" name='birthday' class="theme-orange" ></datetime>
+                              </div>
+                            </div>
+                            <div class="form-group row mt-5">
+                              <entrada v-model="form.bank_account" :label="$ml.get('auth').bank_account" :name="'bank_account'" :type="'text'" autocomplete="bank_account" :required="true"></entrada>
+                            </div>
+
+                          </div>
+
+
+                          <label class="mt-2" for="country">{{$ml.get('auth').country}} :</label>
                           <b-form-select v-model="form.country" name="country" :options="options" class=""></b-form-select>
 
 
@@ -54,12 +119,23 @@
                               </div>
                           </div>
 
-                          <div class="form-group row">
+                          <!-- <div class="form-group row">
                               <div class="col-md-12">
                                   <div class="form-check">
                                       <input v-model="form.influencer" class="form-check-input" type="checkbox" name="influencer" id="influencer" >
                                       <label class="form-check-label" for="influencer">
                                           {{$ml.get('auth').influencerQ}}
+                                      </label>
+                                  </div>
+                              </div>
+                          </div> -->
+
+                          <div class="form-group row">
+                              <div class="col-md-12">
+                                  <div class="form-check">
+                                      <input  required class="form-check-input" type="checkbox" name="adult" id="adult" >
+                                      <label class="form-check-label" for="adult">
+                                          {{$ml.get('auth').adulttext}}
                                       </label>
                                   </div>
                               </div>
@@ -75,11 +151,33 @@
                                 </div>
                             </div>
 
+                            <div v-if="!this.temporal.status" class="form-group row ">
+                                <div class="col-md-12 offset-md-12">
+                                   <router-link to="/login">
+                                      <button  class="btn btn-primary btn-secondary boton grisfondo">
+                                          {{$ml.get('auth').changelogin}}
+                                          <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                                      </button>
+                                  </router-link>
+                                </div>
+                            </div>
+
+
                             </form>
 
 
                             <div  class="form-group row contieneSeparadorRRSS down-2">
                                 <div class="separadorRRSS"></div>
+                            </div>
+
+                            <!-- Twitter -->
+                            <div  class="form-group row ">
+                                <a disabled href="/login/twitter" class="col-md-12 offset-md-12">
+                                    <button class="btn btn-primary boton Twitter">
+                                        {{$ml.get('auth').registerTwitter}}
+                                        <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </a>
                             </div>
 
                             <!-- FACEBOOK -->
@@ -102,27 +200,6 @@
                                 </a>
                             </div>
 
-                            <div  class="form-group row contieneSeparadorRRSS down-2">
-                                <div class="separadorRRSS"></div>
-                            </div>
-
-
-
-
-
-
-
-
-                          <div v-if="!this.temporal.status" class="form-group row ">
-                              <div class="col-md-12 offset-md-12">
-                                 <router-link to="/login">
-                                    <button  class="btn btn-primary btn-secondary boton">
-                                        {{$ml.get('auth').changelogin}}
-                                        <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
-                                    </button>
-                                </router-link>
-                              </div>
-                          </div>
 
                           <div class="row down-2">
                             <div class="col-md-12">
@@ -151,18 +228,24 @@ export default {
       loading:false,
       error:false,
       exists:false,
+      fileRecords:[],
+      fileRecordsForUpload:[],
       temporal: {
         status:false,
         success:false
       },
       test:"",
       form: {
+        files:[],
         email:null,
         password:"",
         passwordRepeat:"",
         name:null,
         influencer:false,
-        country:""
+        country:"",
+        promotionalCode: null,
+        birthday: null,
+        bank_account: null,
       },
       options: [
         {text: 'Afghanistan', value: 'AF'},
@@ -423,6 +506,62 @@ export default {
 
   },
   methods: {
+    uploadFiles: function () {
+      var self = this;
+      // Using the default uploader. You may use another uploader instead.
+      this.$refs.vueFileAgent.upload('/api/register/documents/upload',{
+            Authorization: `Bearer `+ self.$store.state.token
+       },this.fileRecordsForUpload)
+       //
+       .then(function (response) {
+
+         self.fileRecordsForUpload = [];
+         self.loading = false
+         self.$router.push('/')
+       })
+       //
+       .catch(err => {
+         console.log(err)
+         self.error = true;
+       })
+
+
+      this.fileRecordsForUpload = [];
+    },
+    deleteUploadedFile: function (fileRecord) {
+      console.log(fileRecord)
+      // Using the default uploader. You may use another uploader instead.
+      this.$refs.vueFileAgent.deleteUpload(this.uploadUrl, this.uploadHeaders, fileRecord);
+    },
+    filesSelected: function (fileRecordsNewlySelected) {
+      var validFileRecords = fileRecordsNewlySelected.filter((fileRecord) => !fileRecord.error);
+      this.fileRecordsForUpload = this.fileRecordsForUpload.concat(validFileRecords);
+      // this.uploadFiles();
+    },
+    onBeforeDelete: function (fileRecord) {
+      console.log('antes')
+      console.log(fileRecord)
+      console.log('despues')
+      var i = this.fileRecordsForUpload.indexOf(fileRecord);
+      if (i !== -1) {
+      // queued file, not yet uploaded. Just remove from the arrays
+        this.fileRecordsForUpload.splice(i, 1);
+        var k = this.fileRecords.indexOf(fileRecord);
+        if (k !== -1) this.fileRecords.splice(k, 1);
+      } else {
+        if (confirm('Are you sure you want to delete?')) {
+          this.$refs.vueFileAgent.deleteFileRecord(fileRecord); // will trigger 'delete' event
+        }
+      }
+    },
+    fileDeleted: function (fileRecord) {
+      var i = this.fileRecordsForUpload.indexOf(fileRecord);
+      if (i !== -1) {
+        this.fileRecordsForUpload.splice(i, 1);
+      } else {
+        this.deleteUploadedFile(fileRecord);
+      }
+    },
 
     getCountryCode() {
       var self = this
@@ -439,6 +578,12 @@ export default {
         alert('vaya, las contraseñas no coinciden')
         return true;
       }
+      if(this.form.influencer==true ) {
+        if(this.fileRecordsForUpload.length == 0) {
+          alert('Documents Required')
+          return false;
+        }
+      }
       this.loading=true
       //
       var self = this;
@@ -446,10 +591,19 @@ export default {
       .post('/api/register',this.form)
       // then
       .then(function (response) {
+
         self.interpretate(response)
+        // self.uploadFiles(auction_id);
+      })
+      .catch(function(){
+        alert('Error');
+        self.loading = false;
       })
       // finally
-      .finally(() => this.loading = false)
+      .finally(function() {
+          self.loading == false;
+      })
+
     },
 
     interpretate(response) {
@@ -470,7 +624,12 @@ export default {
         this.$store.state.authChannel = window.Echo.join(appCode+'.User.'+user.id);//+self.$store.state.auth.id);
         this.$store.state.appchannel = window.Echo.join(appCode+'.App');//+self.$store.state.auth.id);
         //
-        this.$router.push('/')
+        if(this.form.influencer) {
+          this.uploadFiles();
+        } else {
+          this.$router.push('/')
+        }
+        //
 
       } else {
         if(response.data.rc == 2) {

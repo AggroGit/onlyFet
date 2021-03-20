@@ -77,7 +77,7 @@
           <div class="ContieneElementosMenu ">
             <b-nav-item to='/'>{{$ml.get('menu').home}}</b-nav-item>
             <b-nav-item to='/novedades'>{{$ml.get('menu').news}}</b-nav-item>
-            <b-nav-item to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
+            <b-nav-item v-if="auth.wantToBeInfluencer" to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
             <b-nav-item class="" to='/profile'>{{$ml.get('menu').profile}}</b-nav-item>
             <b-nav-item class="" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
             <b-nav-item class="" to='/auction/create'>{{$ml.get('auction').createAuction}}</b-nav-item>

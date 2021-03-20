@@ -63,6 +63,9 @@
                             <a class="nav-link" href="{{url('admin/user')}}">
                                 Usuarios
                             </a>
+                            <a class="nav-link" href="{{url('admin/validateUsers')}}">
+                                Validar Usuarios
+                            </a>
                             <a class="nav-link" href="{{url('admin/publication')}}">
                                 Publicaciones
                             </a>

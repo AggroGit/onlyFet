@@ -130,6 +130,9 @@ Vue.component('user',require('./components/auth/user.vue').default);
 Vue.component('editProfile',require('./components/auth/editProfile.vue').default);
 //input image
 Vue.component('picture-input',      require('vue-picture-input').default);
+// menu cisual
+Vue.component('menuVisual',      require('./components/menuVisual.vue').default);
+
 // stripe button for add account
 Vue.component('stripe-express',      require('./components/stripe/addExpress.vue').default);
 // stripe add visa
@@ -167,6 +170,9 @@ Vue.component('propina',  require('./components/propina.vue').default);
 //
 Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
 //
+Vue.component('validationNotis',  require('./components/auth/validationNotis.vue').default);
+
+//
 Vue.component('listPlans',  require('./components/auth/plansList.vue').default);
 //
 Vue.component('faqs',  require('./components/faqs.vue').default);
@@ -184,7 +190,10 @@ Vue.component('product',    require('./components/shop/productView.vue').default
 Vue.component('carrito',    require('./components/shop/carrito.vue').default);
 //
 Vue.component('history',    require('./components/shop/shoppingHistory.vue').default);
+//
 Vue.component('imageShop',    require('./components/shop/imageShop.vue').default);
+//
+Vue.component('request-influencer',    require('./components/auth/requestInfluencer.vue').default);
 
 
 
@@ -251,7 +260,10 @@ const auth = function(to, from, next) {
 
 },
  // stripe
- {path: '/profile/cards',  component: Vue.component('stripe-cards'),beforeEnter: multiguard([auth])},
+ {path: '/profile/cards',       component: Vue.component('stripe-cards'),beforeEnter: multiguard([auth])},
+ // be influencer auth
+ {path: '/request/influencer',  component: Vue.component('request-influencer'),beforeEnter: multiguard([auth])},
+
  // posts
  {path: '/post/create',           component: Vue.component('postear'),beforeEnter: multiguard([auth])},
  {path: '/post/test',             component: Vue.component('carousel'),beforeEnter: multiguard([auth])},

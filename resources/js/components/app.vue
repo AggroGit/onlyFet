@@ -9,6 +9,8 @@
 
       <!-- NAVBAR -->
       <navBar v-if="!this.loading"  class="navbarsUP sombreado" :auth="this.auth"></navBar>
+      <!-- THE NOTIS OF THE STATE OF VALIDATION -->
+      <validationNotis v-if="!this.loading && this.$store.state.auth"/>
       <!-- THE VIEW -->
       <div v-if="!this.loading" >
         <router-view v-bind:class="{ 'entero': this.$store.state.entero }" :key="$route.params.nickname"  v-bind:data="this"></router-view>
@@ -19,7 +21,7 @@
       </div> -->
       <!-- NOTIFICATIONS -->
       <notifications v-if="!this.loading && this.$store.state.auth"></notifications>
-
+      <menuVisual v-if="!this.loading"/>
 
     </div>
 </template>

@@ -8,7 +8,7 @@
 
 
       <form  @submit.stop.prevent="edit()" >
-        <div class="form-group down-2 row justify-content-center">
+        <!-- <div class="form-group down-2 row justify-content-center">
           <div class="col-6 ">
               <label >Perfil privado</label>
           </div>
@@ -19,10 +19,9 @@
           <div class="col-12">
             <p class="informativoGris">{{this.$ml.get('stripe').conditionPrivate}}</p>
           </div>
-            <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
-        </div>
+        </div> -->
 
-        <div v-if="form.influencer" class="down-3 aparecer">
+        <div class="down-3 aparecer mt-5">
             <div class="row ">
               <div class="col-8">
                 <label>{{$ml.get('stripe').sus1}}</label>
@@ -119,7 +118,6 @@ export default {
       error:false,
       auth: this.$store.state.auth,
       form: {
-        influencer:this.$store.state.auth.influencer,
         suscriptions: {
           month1: null,
           month3:null,
@@ -136,6 +134,12 @@ export default {
   methods: {
 
     init() {
+      if(this.auth.wantToBeInfluencer == false && this.auth.verified == false) {
+        this.$router.push('/profile');
+      }
+       else if(!this.auth.influencer && this.auth.wantToBeInfluencer == false) {
+        this.$router.push('/profile')
+      }
       if(this.auth.plans !== null) {
         this.form.suscriptions.month1 = this.priceOf('month1');
         this.form.suscriptions.month3 = this.priceOf('month3');
@@ -180,6 +184,8 @@ export default {
           console.log(response.data.data)
           alert(self.$ml.get('stripe').successSuscriptions)
           self.$router.push('/profile')
+          window.location.reload()
+
         } else {
           self.error = true
         }

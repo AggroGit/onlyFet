@@ -4,19 +4,24 @@
   --rojo1:#F20505;
   --rojo2:#F3343B;
   --gris:#6C777D;
+  --grisdesign:#9c9c9c;
   --rojoStripe: #EF0000;
   --granate: #750300;
 
 
 }
 #app {
-  padding-bottom: 10%;
+  padding-bottom: 150px !important;
+
 }
 
 img {
     pointer-events: none !important;
 }
-
+.grisfondo {
+  background: var(--grisdesign) !important;
+  color: white !important;
+}
 
 *:focus {
     outline: none !important;
@@ -419,7 +424,7 @@ input {
   background: var(--rojo1) !important;
 }
 .btn-secondary {
-  background: var(--rojo2) !important;
+  background: var(--grisdesign) !important;
 }
 .down-1 {
   margin-top: 10px !important;
@@ -494,7 +499,7 @@ input {
   position: fixed;
   bottom: 0;
   left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 120px;
   width: 100vw;
   z-index: 9999 !important !important;
 }
@@ -752,10 +757,11 @@ input {
 }
 .contieneEnrutador {
   background: #ffffff !important;
-  margin-top: 16px !important;
+  margin-top: 0px !important;
 }
 .contieneEnrutador >div{
   padding: 0px;
+  margin-bottom: 0px !important;
 }
 .enrutadorMen {
   margin: 30px;
@@ -1149,7 +1155,10 @@ margin: 20px;
   background: #2975e7 !important;
 }
 .Google {
-  background: #dd4c39 !important;
+  background: #DF4A32 !important;
+}
+.Twitter {
+  background: #00acee !important;
 }
 .contieneSeparadorRRSS {
   display: flex;
@@ -1398,4 +1407,78 @@ margin-top: 2px;
 }
 .sb-nav-fixed .sb-topnav {
     z-index: 999999 !important;
+}
+.iconPost {
+  font-size: 34px;
+  transform: translateY(10px) translateY(-24px);
+}
+.euro {
+  margin-bottom: -24px !important;
+}
+.contieneOpcionesUser > * {
+  margin-right: 10px;
+}
+
+.contieneOpcionesUser {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: right;
+  margin: auto;
+  display: flex;
+  margin-right: 0;
+}
+.ContieneDatosperfil h4{
+}
+.contieneNombreYOpciones {
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+.contieneOpcionesUser > .euro {
+  margin: 0 !important;
+
+}
+.conntieneLogoPropina {
+  display: flex;
+
+}
+
+.contieneOpcionesUser  > .conntieneLogoPropina {
+  float: left;
+}
+
+.formgroupDate  {
+  margin-top: -20px !important;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  background: var(--rojo1) !important;
+  border-color: var(--rojo1) !important;
+}
+.contieneMenuVisual {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999 !important;
+
+}
+.carousel-indicators li {
+  z-index: 999 !important;
+}
+.menuVisual {
+  width: 100%;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 20px 20px 0px 0px;
+  padding: 20px;
+  max-width: 900px;
+  display: flex;
+  box-shadow: 1px -5px 20px 0px #9e9e9e4a, 0 6px 20px 0 rgb(214 214 214 / 19%);
+
+}
+.menuVisual > * {
+  margin: auto;
+
+}
+#dropdown-1>button  {
+  background: var(--rojo1) !important;
 }

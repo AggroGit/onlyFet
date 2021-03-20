@@ -51,7 +51,7 @@ class SuscriptionDomain
     $plan->previuous_stripe_id = $plan->stripe_tarifa_id;
     $plan->stripe_tarifa_id = $id;
     $plan->save();
-    
+
     // } catch (\Exception $e) {
     //   $plan->remove();
     //   return false;
@@ -103,7 +103,7 @@ class SuscriptionDomain
         'interval'        => 'month',
         'interval_count'  => $plan->months
       ],
-      'product' => env('APP_ENV','local').$plan->user->id,
+      'product' => $plan->user->stripe_product_id,
     ])->id;
   }
 

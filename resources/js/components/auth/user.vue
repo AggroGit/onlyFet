@@ -6,8 +6,6 @@
           </div>
         </div>
 
-
-
         <!-- CACEBZERA FOTO  -->
         <div v-if="!this.loading" class="row justify-content-center down-2 contenedor">
           <div class="col-6 text-center">
@@ -16,21 +14,27 @@
             </div>
           </div>
           <div class="col-6 ContieneDatosperfil ">
-            <h4>{{user.name}}</h4>
-            <p ><strong>@</strong>{{this.user.nickname}}
+
+            <div class="contieneNombreYOpciones">
+              <h4 class="">{{user.name}}</h4>
+              <div class="contieneOpcionesUser ">
+                  <a class="twitter-share-button"
+                      target="_blank" :href="'https://twitter.com/intent/tweet?text=See on OnlyFet '+this.user.nickname+' - OnlyFet&url='+this.currentUrl"
+                      data-size="large">
+                      <b-icon style="color: black;" class="left " icon="share-fill" font-scale="1.5"></b-icon>
+                  </a>
+                  <b-icon style="color: black;" class="left " icon="star" font-scale="1.5"></b-icon>
+                  <propina  v-if="user.influencer && auth.id !== user.id" :otherUser="user"></propina>
+              </div>
+            </div>
+
+              <p><strong>@</strong>{{this.user.nickname}}
               </p>
               <p v-html="this.user.description">
               </p>
 
+            <router-link to='/request/influecer' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">{{$ml.get('auth').startWiningMoney}}</router-link>
 
-            <div v-if="user.influencer && auth.id !== user.id">
-              <propina :otherUser="user"></propina>
-            </div>
-
-            <router-link to='/profile/suscriptions' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">Comienza a ganar dinero</router-link>
-            <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{user.phone_number}}</p>
-            <p><strong>{{$ml.get('auth').email}}: </strong> {{user.email}}</p>
-            <p><strong>{{$ml.get('auth').name}}: </strong> {{user.name}}</p> -->
           </div>
         </div>
 
@@ -39,7 +43,7 @@
 
 
 
-        <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior contenedor">
+        <div v-if="!this.loading" class="row justify-content-center contieneEnrutador sombreadoInferior contenedor mt-5">
 
             <div class="col-4 text-center">
               <router-link class="noLink enrutadorMen" :to="'/user/'+this.user.nickname+'/wall'">
@@ -129,7 +133,7 @@
         <div class="row justify-content-center aparecer">
           <div v-if="auth == false" class="col-md-6 ">
              <router-link to="/login">
-                <button  class="btn btn-primary btn-secondary boton">
+                <button  class="btn btn-primary boton">
                     {{$ml.get('auth').changelogin}}
                     <!-- <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
                 </button>
@@ -156,6 +160,7 @@ export default {
       loading:true,
       suscribing:false,
       auth:this.$store.state.auth,
+      currentUrl: window.location.href
 
     }
   },

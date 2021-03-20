@@ -15,7 +15,10 @@ class ProfilesController extends Controller
         return $this->incorrect(0,$missings);
       }
       // usuarios
-      $users = User::where('nickname','!=',auth()->user()->nickname?? null);
+      $users = User::where([
+        ['nickname','!=',auth()->user()->nickname?? null],
+        ['influencer',true]
+      ]);
       // mis suscripciones
       if($request->orderBy == "mySuscriptions") {
         if(!auth()->user()) {
@@ -37,9 +40,9 @@ class ProfilesController extends Controller
       if($request->has('search') and $request->search !== null) {
         $users = $users->where('nickname','like',"%$request->search%");
       }
-      return $this->correct($users->paginate(2000));
+      return $this->correct($users->paginate(20000));
 
     }
 
-    
+
 }

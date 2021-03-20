@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Services\Suscriptions\SuscriptionServiceProvider;
+use App\Services\Influencer\InfluencerServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Services\Images\imageServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -79,8 +81,20 @@ class AuthController extends Controller
       $new->save();
       $new->nickname = $request->name.$new->id;
       $new->save();
+      // si el usuario quiere ser influencer llamamos al servicio
       if($request->influencer == true) {
-        $new->influencerEmail();
+        if ($missings = $this->hasError($request->all(),'validation.registerInfluencer')) {
+          return $this->incorrect(0,$missings);
+        }
+        try {
+          $provider = new InfluencerServiceProvider($new);
+          $provider->registerInfluencer($request);
+        } catch (\Exception $e) {
+          $new->delete();
+          return $this->incorrect($e->getCode(),$e->getMessage());
+        }
+        return $this->login($request);
+
       }
       // devolvemos logeado
       return $this->login($request);
@@ -223,13 +237,14 @@ class AuthController extends Controller
     public function editCurrent(Request $request)
     {
       if($request->has('email')){
-        if(User::where('email',$request->email)->first()) {
+        if($user = User::where('email',$request->email)->first() and $user->id !== auth()->user()->id) {
           return $this->incorrect(2);
         }
       }
-      // 
+      //
       if($request->has('nickname')){
-        if(User::where('nickname',$request->nickname)->first()) {
+        if($user = User::where('nickname',$request->nickname)->first()
+          and auth()->user()->id !== $user->id) {
           return $this->incorrect(6);
         }
       }
@@ -275,7 +290,7 @@ class AuthController extends Controller
     public function unsuscribe()
     {
       // code...
-      auth()->user()->want_emails = true;
+      auth()->user()->want_emails = false;
       auth()->user()->save();
       return redirect('/success');
     }
@@ -283,6 +298,32 @@ class AuthController extends Controller
     public function classicLogin()
     {
       return view('auth/login');
+    }
+
+    public function uploadDocuments(Request $request)
+    {
+      if($missings = $this->hasError($request->all(),'validation.uploadImage')) {
+        return $this->incorrect(0,$missings);
+      }
+      $improv = new imageServiceProvider();
+      $id = auth()->user()->id;
+      $image = $improv->uploadImage($request,"documents/",true);
+      auth()->user()->documents()->save($image);
+      return $this->correct();
+    }
+
+    public function becomeInfluencer(Request $request)
+    {
+      if($missings = $this->hasError($request->all(),'validation.registerInfluencer')) {
+        return $this->incorrect(0,$missings);
+      }
+      try {
+        $provider = new InfluencerServiceProvider(auth()->user());
+        $provider->registerInfluencer($request);
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode(),$e->getMessage());
+      }
+      return $this->correct(auth()->user());
     }
 
 

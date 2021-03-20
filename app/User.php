@@ -50,7 +50,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'influencer' => 'boolean',
     ];
 
 
@@ -97,6 +96,13 @@ class User extends Authenticatable
     public function allChats()
     {
       return $this->belongsToMany('App\Chat','chats_users')->orderBy('updated_at','DESC');
+    }
+
+    //
+    public function documents()
+    {
+      return $this->belongsToMany('App\Image','users_documents')
+                  ->orderBy('updated_at','DESC');
     }
 
     //
@@ -274,7 +280,7 @@ class User extends Authenticatable
         return parent::delete();
     }
 
-    public  static function tabletate($data) {
+    public static function tabletate($data) {
       return [
         'headers' => [
           'Identificador' =>  'id',
@@ -283,10 +289,12 @@ class User extends Authenticatable
           'Dirección de envío' => "direction",
           "Influencer" => "influencer",
           'Quiere ser influencer' => "wantToBeInfluencer",
+          'Validado' => 'verified',
           'nickname' => 'nickname',
           '% para el usuario' => 'percentage_for_user',
           'Idioma' => 'lang',
           'País' => 'country',
+          'IBAN'=> 'bank_account'
 
         ],
         'data'  =>  $data,

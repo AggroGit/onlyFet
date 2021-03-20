@@ -36,7 +36,7 @@
                             <select class=" form-control multiselect selectpicker" name="{{$header['model_name']}}[]" multiple data-live-search="true">
                               @foreach($header['select'] as $select)
                                 <option
-                                @if ($model->{$header['model_name'].'s'}->find($select->id))
+                                @if($model->{$header['model_name'].'s'}->find($select->id))
                                   selected
                                 @endif
                                  value="{{$select['id']}}">{{$select[$header['show']]}}
@@ -57,8 +57,6 @@
                                 @endforeach
                             </select>
                             @endif
-
-
                             @endif
                           </div>
                       </div>
@@ -198,6 +196,20 @@
                       <button type="submit" class="btn btn-success btn-sm">
                         Actualizar
                       </button>
+                      @if($model->wantToBeInfluencer)
+                        <a href="{{url('admin/'.$tabletate['singular'].'/validate/'.$model->id)}}">
+                          <button type="button" class="btn btn-warning btn-sm mr-5">
+                            Validación
+                          </button>
+                        </a>
+                      @endif
+                      @if($tabletate['options']['remove']?? false)
+                        <a href="{{url('admin/'.$tabletate['singular'].'/remove/'.$model->id)}}">
+                          <button type="button" class="btn btn-danger btn-sm ml-5">
+                            Eliminar
+                          </button>
+                        </a>
+                      @endif
                   </div>
               </form>
           </div>

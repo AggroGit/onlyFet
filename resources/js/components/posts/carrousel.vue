@@ -1,5 +1,5 @@
 <template>
-  <div class="carrousel">
+  <div class="carrousel" @click="interpretateClick()">
     <b-carousel
       id="carousel-1"
       :interval="40000000"
@@ -12,6 +12,7 @@
       style="text-shadow: 1px 1px 2px #333;transition:all 0.4s ease;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
+
     >
       <!-- Text slides with image -->
       <!-- <b-carousel-slide
@@ -141,10 +142,17 @@ console.log(this.post)
       },
       giveMeUrl(media,post) {
         if(post.user.canSee == false) {
-          return ""
+          return "";
         }
         return "/"+post.id+"/image/"+media.name
 
+      },
+      interpretateClick() {
+          if(this.post.user.canSee == false) {
+
+            alert(this.$ml.get('stripe').onlyPremium)
+            this.$router.push('/user/'+this.post.user.nickname+'#')
+          }
       },
       giveMeOptions(media) {
         return {

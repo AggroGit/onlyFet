@@ -23,31 +23,47 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                          @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
+                            <th>Opciones</th>
+                          @endif
                           @if($tabletate['options']['image']?? false)
                             <th> Imagen </th>
                           @endif
                           @foreach($tabletate['headers'] as $key => $table)
                             <th>{{$key}}</th>
                           @endforeach
-                          @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
-                            <th>Opciones</th>
-                          @endif
+
                         </tr>
                     </thead>
                     <tfoot>
+                      @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
+                        <th>Opciones</th>
+                      @endif
                         @if($tabletate['options']['image']?? false)
                           <th><!-- Imagen --></th>
                         @endif
                         @foreach($tabletate['headers'] as $key => $table)
                           <th>{{$key}}</th>
                         @endforeach
-                        @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
-                          <th>Opciones</th>
-                        @endif
+
                     </tfoot>
                     <tbody>
                       @foreach($tabletate['data'] as $key => $data)
                       <tr>
+                        <!-- OPCIONES -->
+                        @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
+                        <td>
+                          @if($tabletate['options']['edit']?? false)
+                            <a href="{{url('admin/'.$tabletate['singular'].'/edit/'.$data['id'])}}">
+                              <button type="button" class="btn btn-success btn-sm">
+                                Editar
+                              </button>
+                            </a>
+                          @endif
+
+
+                        </td>
+                        @endif
                           @if($tabletate['options']['image']?? false)
                             <td class="text-center">
                               <img src="{{$data['image']['sizes']['VerySmall']?? $data['images'][0]['sizes']['VerySmall']?? ''}}" alt="">
@@ -86,26 +102,7 @@
 
                             </td>
                           @endforeach
-                          <!-- OPCIONES -->
-                          @if($tabletate['options']['edit']?? false or $tabletate['options']['remove']?? false)
-                          <td>
-                            @if($tabletate['options']['edit']?? false)
-                              <a href="{{url('admin/'.$tabletate['singular'].'/edit/'.$data['id'])}}">
-                                <button type="button" class="btn btn-success btn-sm">
-                                  Editar
-                                </button>
-                              </a>
-                            @endif
 
-                            @if($tabletate['options']['remove']?? false)
-                              <a href="{{url('admin/'.$tabletate['singular'].'/remove/'.$data['id'])}}">
-                                <button type="button" class="btn btn-danger btn-sm">
-                                  Eliminar
-                                </button>
-                              </a>
-                            @endif
-                          </td>
-                          @endif
                       </tr>
                         @endforeach
                     </tbody>
