@@ -65,8 +65,9 @@ class SuscriptionDomain
     if($old !== false)
       $this->changePriceOfPlanStripe($plan);
 
-
   }
+
+  
 
 
 

@@ -3,9 +3,12 @@
 namespace App\Services\Chats;
 
 use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Http\Request;
+use App\Events\MessageEvent;
 use Carbon\Carbon;
 use App\Message;
+use App\Video;
 use App\Image;
 use App\User;
 use App\Chat;
@@ -85,7 +88,7 @@ class ChatDomain
 
   public function markMessagesRead(Chat $chat, $user = null)
   {
-    $user = $user?? auth()->user();
+    $user = $user?? $chat->otherUser;
     //
     $chat->messages()->where([
       'user_id' => $user->id,
@@ -93,6 +96,80 @@ class ChatDomain
       ])->update([
       'read' => true
     ]);
+  }
+
+  public function uploadImageWithToken($chat, $token, Request $request)
+  {
+    $image = ['file'=> 'image:mimes:jpg,jpeg,png'];
+    $video = ['file'=> 'video:mimes:mp4,mov'];
+
+    $validator = Validator::make($request->all(),$image);
+
+    if($validator->fails()) {
+      // probamos vídeo
+      $video = new Video();
+      $video->create($request->file,"video/$chat->id");
+      $video->user_id = auth()->user()->id;
+      $video->token = $token;
+      $video->save();
+
+    } else {
+      // imagen
+      $image = new Image();
+      $image->create($request->file,"image/$chat->id");
+      $image->user_id = auth()->user()->id;
+      $image->token = $token;
+      $image->save();
+    }
+  }
+
+  public function createMessageWithToken($chat,$token, Request $request)
+  {
+    $new = new Message();
+    $new->message = "📸";
+    $new->chat_id = $chat->id;
+    $new->user_id = auth()->user()->id;
+    $new->token   = $token;
+    if($request->forPay == true and $request->price >=1) {
+      $new->forPay = true;
+      $new->price = $request->price;
+      $new->message = "🔒 📸";
+    }
+    $new->save();
+    //
+    $chat->updated_at = now();
+    $chat->save();
+    //
+    return $new;
+  }
+
+  public function loadMediaToMessage($token,$message)
+  {
+    // get the videos with token
+    $videos = Video::where('token', $token)->get();
+    // get the images with token
+    $images = Image::where('token', $token)->get();
+    // save the videos
+    foreach ($videos as $video) {
+      $message->videos()->save($video);
+    }
+    // save the images
+    foreach ($images as $image) {
+      $message->images()->save($image);
+    }
+  }
+
+  public function broadcastMessage($message)
+  {
+    broadcast(new MessageEvent(Message::without('user')->find($message->id)));
+
+  }
+
+  public function unblockTheMessage(Message $message)
+  {
+    $message->forPay = false;
+    $message->message = "📸 🗝 🔓";
+    $message->save();
   }
 
 }

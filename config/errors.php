@@ -30,7 +30,7 @@ return [
     "100"   =>    "missing chat id",
     "101"   =>    "the chat does not exists",
     "102"   =>    "the chat is closed",
-    "103"   =>    "",
+    "103"   =>    "message not private",
     "104"   =>    "",
     // payments
     "200"   =>    "user has no payment Method",

@@ -221,6 +221,7 @@ export default {
         this.$store.state.appchannel = window.Echo.join(appCode+'.App');//+self.$store.state.auth.id);
         //
         this.$router.push('/')
+        window.location.reload()
 
       } else {
         this.error = true;

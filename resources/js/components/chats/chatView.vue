@@ -26,17 +26,15 @@
     <div v-if="!this.loading" class="ContieneMensajes contenedor" ref="messageDisplay">
       <div v-for="(message) in this.messages" :key="message.id" class="Mensaje" v-bind:class="ifisMe(message)">
         <div v-if="message.auction ==null" class="globoMensaje">
-          <router-link  :to="chat+'/'+message.image.name" v-if="message.image" class="imageChat">
-            <img :src="message.image.sizes.NotSmall" alt="">
-          </router-link>
-          <p>{{message.message}}</p>
+          <!-- Contenido multimedia -->
+          <mediaMessage :message="message" />
+          <p v-if="message.images.length==0 && message.videos.length==0">{{message.message}}</p>
         </div>
         <!-- Auction -->
         <div v-else class="AuctionInMessage sobreadoPlus">
           <div class="container">
             <div class="row">
               <div class="col-5">
-
                 <img class="ImgAuctionMessage" v-if="message.auction.images.length >=1" :src="message.auction.images[0].sizes.NotSmall"  alt="">
               </div>
               <div class="col-7">
@@ -67,8 +65,9 @@
         <div class="ContieneIconosEnviar">
           <input type="file" ref="file" style="display: none" accept="image/x-png,image/gif,image/jpeg,image/jpg" @change="sendImage">
           <!-- <b-icon font-scale="1.7" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon> -->
-          <propina :chat_id="this.chat" :otherUser="this.otherUser" class="icon"></propina>
-          <b-icon font-scale="1.7" @click="$refs.file.click()" style="color:#383d41;" icon="camera-fill" aria-hidden="true" class="icon"></b-icon>
+          <propina v-if="this.otherUser.influencer" :chat_id="this.chat" :otherUser="this.otherUser" class="icon"></propina>
+          <sendPics :chat='this.chatData'/>
+          <!-- <b-icon font-scale="1.7" @click="$refs.file.click()" style="color:#383d41;" icon="camera-fill" aria-hidden="true" class="icon"></b-icon> -->
           <b-icon @click="sendMessage()" font-scale="1.7" style="color: #F20505;" icon="arrow-up-right-circle-fill" aria-hidden="true" class="icon iconshadow"></b-icon>
         </div>
       </div>
@@ -94,6 +93,7 @@ export default {
       channel:false,
       otherUser:false,
       chatData: null,
+
     }
 
   },
@@ -104,11 +104,11 @@ export default {
     this.initChannel();
     this.channel.pusher.subscribe('presence-'+appCode+'.Chat.'+this.chat);
 
-
-
   },
   mounted() {
-    console.log('MPUNTED')
+    setTimeout(function() {
+         this.ScrollBottom();
+    }, 300);
   },
   beforeRouteLeave (to, from, next) {
     console.log("ADIOS  ")

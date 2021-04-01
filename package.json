@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.21.1",
         "bootstrap": "^4.5.3",
         "cross-env": "^7.0",
         "jquery": "^3.2",
@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@algoz098/vue-player": "^0.4.3",
         "@chenfengyuan/vue-countdown": "^1.1.5",
         "babel-runtime": "^6.26.0",
         "bootstrap-vue": "^2.18.1",
@@ -38,6 +39,7 @@
         "vee-validate": "^3.4.3",
         "vue-click-outside": "^1.1.0",
         "vue-cookies": "^1.7.4",
+        "vue-core-video-player": "^0.2.0",
         "vue-credit-card-validation": "^0.1.10",
         "vue-datetime": "^1.0.0-beta.14",
         "vue-facebook-login-component": "^3.0.0",

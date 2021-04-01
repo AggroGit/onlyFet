@@ -185,7 +185,6 @@ export default {
              },this.fileRecordsForUpload)
              //
              .then(function (response) {
-
                self.fileRecordsForUpload = [];
                self.$router.push('/auction/'+auction_id)
              })

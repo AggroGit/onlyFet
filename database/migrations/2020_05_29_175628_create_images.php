@@ -21,6 +21,8 @@ class CreateImages extends Migration
                   ->nullable();
             $table->string("format")
                   ->nullable();
+            $table->string("token")
+                  ->nullable();
             $table->string("url")
                   ->nullable();
             $table->string("base")

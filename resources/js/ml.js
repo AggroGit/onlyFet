@@ -19,7 +19,12 @@ export default new MLCreate({
       "report": "Report",
       "confBlock": "Are you sure you wish to block this user?",
       "confReport": "Are you sure you wish to report this user?",
-      "notAvailable": "This chat is no longer available"
+      "notAvailable": "This chat is no longer available",
+      "selectMedia": "Upload Images or videos (max 6)",
+      "sendImage": "Upload Media",
+      "privateMessage" : "Payment message",
+      "priceMessage" : "Message price",
+      "unlockMessage": "Unlock for ",
    },
    "auth": {
      "startWiningMoney": "Start to earn money",
@@ -212,7 +217,13 @@ export default new MLCreate({
       "report": "Reportar",
       "confBlock": "¿Estás seguro que quieres bloquear a",
       "confReport": "¿Estás seguro que quieres reportar a",
-      "notAvailable": "Este chat ya no está disponible"
+      "notAvailable": "Este chat ya no está disponible",
+      "selectMedia": "Selecciona hasta 6 videos o imágenes",
+      "sendImage": "Seleccionar Archivos",
+      "privateMessage" : "Mensaje de pago",
+      "priceMessage": "Precio",
+      "unlockMessage": "Desbloquear por ",
+
    },
    "auth": {
      "startWiningMoney": "Comienza a ganar dinero",

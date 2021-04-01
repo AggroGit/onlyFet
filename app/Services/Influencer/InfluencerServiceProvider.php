@@ -77,6 +77,7 @@ class InfluencerServiceProvider extends InfluencerDomain
       $this->convertToInfluencer();
     }
 
+
   }
 
   public function convertToInfluencer()
@@ -84,8 +85,9 @@ class InfluencerServiceProvider extends InfluencerDomain
     $this->user->influencer = true;
     $this->user->save();
     // notify via email
-
   }
+
+
 
 
 

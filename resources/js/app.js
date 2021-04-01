@@ -44,6 +44,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueFileAgent from 'vue-file-agent';
 import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
 import multiguard from 'vue-router-multiguard';
+import vuePlayer  from  '@algoz098/vue-player'
+import VueCoreVideoPlayer from 'vue-core-video-player'
+
+
 // import { Editor, EditorContent, EditorMenuBar, EditorMenuBubble, EditorFloatingMenu } from 'tiptap';
 // Basic Use - Covers most scenarios
 // import { VueEditor } from "vue2-editor";
@@ -57,6 +61,12 @@ import { VueEditor, Quill } from "vue2-editor";
 import './ml.js' // idiomas
 
 Vue.use(vClickOutside)
+//
+Vue.use(VueCoreVideoPlayer)
+
+//
+// Vue.component('repro',vuePlayer)
+
 //
 Vue.component('VFacebookLogin', VFacebookLogin)
 //
@@ -166,6 +176,9 @@ Vue.component('viewAuction',  require('./components/auctions/auctionView.vue').d
 //
 Vue.component('imageChat',  require('./components/chats/image.vue').default);
 //
+Vue.component('unlockMessage',  require('./components/chats/unlockMessage.vue').default);
+
+//
 Vue.component('propina',  require('./components/propina.vue').default);
 //
 Vue.component('suscriptions',  require('./components/auth/suscriptions.vue').default);
@@ -194,6 +207,12 @@ Vue.component('history',    require('./components/shop/shoppingHistory.vue').def
 Vue.component('imageShop',    require('./components/shop/imageShop.vue').default);
 //
 Vue.component('request-influencer',    require('./components/auth/requestInfluencer.vue').default);
+//
+Vue.component('mediaMessage',    require('./components/chats/mediaMessage.vue').default);
+//
+Vue.component('sendPics',      require('./components/chats/sendPics.vue').default);
+//
+Vue.component('chatMassive',      require('./components/chats/chatMassive.vue').default);
 
 
 
@@ -308,24 +327,13 @@ const auth = function(to, from, next) {
  {path: '/chats',         component: Vue.component('chatsList'),beforeEnter: multiguard([auth])},
  {path: '/chats/:id',     component: Vue.component('chatView'),beforeEnter: multiguard([auth])},
  {path: '/chats/:id/:image_name',     component: Vue.component('imageChat'),beforeEnter: multiguard([auth])},
+ {path: '/chats/massive', component: Vue.component('chatMassive'),beforeEnter: multiguard([auth])},
 
  // {path: '/full/chats',    component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
  // {path: '/full/chats/:id',component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
 
 
 ]
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

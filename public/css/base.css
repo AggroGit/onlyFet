@@ -124,13 +124,14 @@ p::first-letter{
   min-height: 70vh;
   max-height: 70vh;
   width: 100%;
-   height: 100%;
-   display: block;
-   margin-bottom: 25vh;
+  height: 100%;
+  display: block;
+  margin-bottom: 40px !important
 }
 .ContieneEntradaChat {
   display: flex;
   background: #ffffff;
+  z-index: 9999 !important;
 }
 .ContieneEntradaChat >* {
   margin: auto;
@@ -181,7 +182,7 @@ p::first-letter{
 .globoMensaje {
   margin-top: 16px !important;
    border-radius: 20px 20px 20px 0px;
-   background: #ffbbbb;
+   background: #ffffff;
    padding: 18px;
    max-width: 100%;
    min-width:100px;
@@ -346,12 +347,16 @@ input {
   background: #4bff4b;
 }
 .imageChat {
-  min-width: 100px;
+  min-width: 140px;
   height: auto;
   display: flex;
 }
 .imageChat > img {
   width: 100%;
+}
+.imageChatHidded {
+  width: 100% !important;
+  min-width: 150px;
 }
 .ContieneNotificaciones {
 
@@ -501,7 +506,10 @@ input {
   left: 0;
   margin-bottom: 120px;
   width: 100vw;
-  z-index: 9999 !important !important;
+  z-index: 9999 !important;
+}
+.hiddenImageChat {
+  min-width: 300px !important;
 }
 
 
@@ -1129,7 +1137,7 @@ height: 100% !important;
   margin: auto;
 }
 .fromMe > .globoMensaje{
-  background: #ffffff !important;
+  background: #ffbbbb !important;
 }
 .faqsButton {
   width: 100%;
@@ -1481,4 +1489,16 @@ margin-top: 2px;
 }
 #dropdown-1>button  {
   background: var(--rojo1) !important;
+}
+.sendPics {
+  background: #ffffff;
+  width: 95%;
+  margin: auto;
+  margin-top: 100px !important;
+  padding: 50px;
+  border-radius: 30px;
+
+}
+.bfBla >button {
+  background: none !important;
 }

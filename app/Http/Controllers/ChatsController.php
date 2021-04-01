@@ -85,6 +85,44 @@ class ChatsController extends Controller
       return $this->correct();
     }
 
+    public function multipleMedia(int $chat_id, $token,Request $request)
+    {
+      $chat = Chat::find($chat_id);
+      $this->provider->uploadMedia($chat,$token,$request);
+      return $this->correct();
+    }
+
+    public function createMediaMessage(int $chat_id, $token,Request $request)
+    {
+      $chat = Chat::find($chat_id);
+      $this->provider->sendMessageByToken($chat,$token,$request);
+      return $this->correct();
+    }
+
+    public function sendMassiveMessage($token, Request $request)
+    {
+      try {
+        return $this->correct($this->provider->sendMassiveMessage(auth()->user(),$token,$request));
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode());
+      }
+      $this->provider->sendMassiveMessage(auth()->user(),$token,$request);
+    }
+
+    public function unlockMessage(int $chat_id, $message_id, Request $request)
+    {
+      if(!$message = Message::find($message_id)) {
+        return $this->incorrect();
+      }
+      try {
+        $this->provider->unlockMessage($message);
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode());
+      }
+      return $this->correct();
+
+    }
+
 
 
 

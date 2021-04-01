@@ -21,6 +21,8 @@ class CreateVideos extends Migration
                 ->nullable();
           $table->string("url")
                 ->nullable();
+          $table->string("token")
+                ->nullable();
           $table->string("base")
                 ->default("storage")
                 ->nullable();

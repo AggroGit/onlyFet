@@ -74,6 +74,32 @@ class ChatsServiceProvider extends ChatDomain
     $this->close($chat);
   }
 
+  public function uploadMedia(Chat $chat,$media_hash,Request $request)
+  {
+    $this->uploadImageWithToken($chat, $media_hash, $request);
+  }
+
+  public function sendMessageByToken(Chat $chat, $token, Request $request)
+  {
+    $message = $this->createMessageWithToken($chat,$token,$request);
+    $this->loadMediaToMessage($token,$message);
+    $this->broadcastMessage($message);
+  }
+
+  public function unlockMessage($message)
+  {
+    if(auth()->user()->card_brand == null or auth()->user()->card_last_four == null)
+      throw new \Exception('Falta método de pago',200);
+    if($message->forPay !== true)
+      throw new \Exception('Este mensaje no es de pago',103);
+    if(!auth()->user()->cobrar($message->price))
+      throw new \Exception('El método de pago ha fallado',201);
+
+    $this->unblockTheMessage($message);
+    return true;
+
+  }
+
   // return the messages of the chat and mark all readed
   public function getAllChat(Chat $chat)
   {
@@ -86,5 +112,29 @@ class ChatsServiceProvider extends ChatDomain
       "chatData"  =>  $chat
     ];
   }
+
+  // massive message to users
+  public function sendMassiveMessage($userFrom, $token, Request $request)
+  {
+    // usuarios de un plan
+    $num = 0;
+    $planes = Plan::where('user_id',$userFrom->id)->get();
+    foreach ($planes as $plan) {
+      foreach ($plan->usersSuscribed as $userSuscribed) {
+        $num++;
+        // cogemos el chat de los dos usuarios
+        $chatComun = $this->giveMeorCreateChatWith($userFrom,$userSuscribed);
+        $message = $this->createMessage($userFrom,$chatComun,$request);
+        // adjuntamos media
+        $this->loadMediaToMessage($token,$message);
+        //
+      }
+    }
+    return $num;
+  }
+
+
+
+
 
 }

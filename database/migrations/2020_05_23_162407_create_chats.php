@@ -50,9 +50,46 @@ class CreateChats extends Migration
 
         });
 
+
+        // images of a message
+        Schema::create('messages_images', function (Blueprint $table) {
+
+          $table->integer('message_id')
+                ->references('id')
+                ->on('messages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+          $table->integer('image_id')
+                ->references('id')
+                ->on('image')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+        });
+
+        // videos of a message
+        Schema::create('messages_videos', function (Blueprint $table) {
+          $table->integer('message_id')
+                ->references('id')
+                ->on('messages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+          $table->integer('video_id')
+                ->references('id')
+                ->on('videos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
+
         // the message of a chat
         Schema::create('messages', function (Blueprint $table) {
           $table->id();
+          $table->boolean('forPay')
+                ->default(false);
+          $table->integer('price')
+                ->nullable();
           $table->integer('user_id')
                 ->references('id')
                 ->on('users')
@@ -65,12 +102,8 @@ class CreateChats extends Migration
                 ->on('chats')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-          $table->integer('image_id')
-                ->nullable()
-                ->references('id')
-                ->on('images')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+          $table->string('token')
+                ->nullable();
           $table->boolean('read')
                 ->default(false);
           // auction
@@ -95,5 +128,7 @@ class CreateChats extends Migration
         Schema::dropIfExists('chats');
         Schema::dropIfExists('chats_users');
         Schema::dropIfExists('messages');
+        Schema::dropIfExists('messages_images');
+        Schema::dropIfExists('messages_videos');
     }
 }

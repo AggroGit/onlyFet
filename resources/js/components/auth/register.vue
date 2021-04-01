@@ -500,7 +500,7 @@ export default {
 
     // si ya hay usuario lo echamos
     if(this.$store.state.auth) {
-      this.$router.push('home')
+      this.$router.push('/')
     }
     this.getCountryCode();
 
@@ -518,6 +518,7 @@ export default {
          self.fileRecordsForUpload = [];
          self.loading = false
          self.$router.push('/')
+        window.location.reload()
        })
        //
        .catch(err => {
@@ -628,6 +629,7 @@ export default {
           this.uploadFiles();
         } else {
           this.$router.push('/')
+           window.location.reload()
         }
         //
 

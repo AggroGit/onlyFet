@@ -11,7 +11,7 @@ use App\Message;
 class Message extends Model
 {
 
-    protected $with = ['user','image','auction'];
+    protected $with = ['user','images', 'videos','auction'];
 
     protected $fillable = [
       'chat_id'
@@ -22,7 +22,8 @@ class Message extends Model
     ];
 
     protected $casts = [
-        'read' => 'boolean',
+        'read'    => 'boolean',
+        'forPay'  => 'boolean'
     ];
 
     // the chat of the message
@@ -43,10 +44,16 @@ class Message extends Model
     }
 
 
-    // the image of the message
-    public function image()
+    // the images of the message
+    public function images()
     {
-      return $this->belongsTo('App\Image');
+      return $this->belongsToMany('App\Image','messages_images');
+    }
+
+    // the videos of the message
+    public function videos()
+    {
+      return $this->belongsToMany('App\Video','messages_videos');
     }
 
     // send the message
