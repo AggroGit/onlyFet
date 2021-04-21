@@ -36,7 +36,7 @@ export default new MLCreate({
      "documents": "Documents",
      "normalUser": "Normal User",
      "influencerUser":"Influencer User",
-     "requisistsInfluencer": "3 verification documents are required: \n-Identity or accreditation document, front and back \n-Selfie with document in hand and that the document looks good",
+     "requisistsInfluencer": "3 verification documents are required:\n-Identity or accreditation document, front and back\n-Selfie with document in hand and that the document looks good",
       "socialFacebook" : "Login with Facebook",
       "socialGoogle" : "Login with Google",
       "socialTwitter" : "Login with Twitter",
