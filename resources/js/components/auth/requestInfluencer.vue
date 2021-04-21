@@ -215,8 +215,6 @@ export default {
           self.errorMessage = "Error"
         else
           self.errorMessage = "Error"
-
-
       })
       // finally
       .finally(function (response) {
@@ -235,8 +233,6 @@ export default {
         //
         this.uploadFiles();
         //
-
-
       } else {
         if(response.data.rc == 2) {
           this.exists = true;
