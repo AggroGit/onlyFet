@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-
+use App\Events\BoubleNotifications;
 use App\User;
 
 class NotificationEvent implements ShouldBroadcastNow
@@ -31,6 +31,7 @@ class NotificationEvent implements ShouldBroadcastNow
       $this->user   = $user?? auth()->user();
       $this->object = $object;
       $this->app_id = env('APP_ID', '97');
+      broadcast(new BoubleNotifications($user));
     }
 
     /**

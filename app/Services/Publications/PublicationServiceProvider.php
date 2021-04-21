@@ -4,6 +4,7 @@ namespace App\Services\Publications;
 
 use App\Services\Influencer\InfluencerServiceProvider as influencerService;
 use App\Services\Publications\PublicationDomain;
+use App\Services\Propina\PropinaServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Publication as Post;
@@ -19,11 +20,6 @@ use App\User;
 class PublicationServiceProvider extends PublicationDomain
 {
 
-  function __construct($n = "sin nombre")
-  {
-    $this->name = $n;
-  }
-
   public function saludar()
   {
     echo "Hola $this->name, estoy saludando";
@@ -37,10 +33,20 @@ class PublicationServiceProvider extends PublicationDomain
     // check the reqs of influencer
     $influencer = new influencerService(auth()->user());
     $influencer->plusPostToVerifie();
+    //
+    if($request->private == true) {
+      $this->makePostPrivate($request->price);
+    }
 
     // return the created post
     return $this->publication;
 
+  }
+
+  public function makePostPrivate($price)
+  {
+    $this->privatePost($price);
+    $this->publication->save();
   }
 
   // create a comment for a publication with request
@@ -83,6 +89,25 @@ class PublicationServiceProvider extends PublicationDomain
       $post->images()->save($image);
     }
   }
+
+  public function payToUnlock()
+  {
+    if(!$this->checkIfCanPayUnlock())
+      throw new \Exception("User Cannot Unlock this content", 2);
+    // creamos un pay out de tipo publucation
+    $propi = new PropinaServiceProvider(auth()->user(),$this->publication->user,$this->publication->price,"publication_private");
+    //
+    $propi->sendPropina();
+    // ahora le agregamos como usario que sí que puede usar la publicacion
+    $this->unlockForUser();
+    //
+    $this->publication->save();
+    //
+    return $this->publication;
+
+  }
+
+
 
 
 }

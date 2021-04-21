@@ -1,5 +1,6 @@
 <template>
   <a  :href="this.urlStripe">
+    {{this.auth}}
      <b-button  v-b-tooltip.hover.bottom="$ml.get('stripe').info[text]" class="btn btn-primary boton stripe">
          <!-- {{$ml.get('auth').stripe}} -->
          <span v-if="this.stripeLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -22,7 +23,6 @@ export default {
   },
   created() {
     this.getUrlStripe()
-
   },
   methods: {
     getUrlStripe() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="container down-2">
+    <div class="container down-2 aparecer">
       <div class="row justify-content-center contenedor">
         <div class="col-md-12">
           <div v-if="this.loading" class="container text-center contieneCargador aparecer">
@@ -87,6 +87,17 @@
               </div>
             </div>
 
+            <div class="form-group row down-2">
+              <div class="checkbox col-md-12">
+                <label><input type="checkbox" v-model="form.private" value=""> {{$ml.get('post').makePrivate}}</label>
+              </div>
+              <div v-if="form.private" class="col-md-12 contieneInput aparecer">
+                <div class="form-group row mt-4">
+                  <entrada v-model="form.price" :label="$ml.get('post').price+' €'" :name="'price'" :autocomplete="'none'" :inputmode="'numeric'" :type="'number'" :min='1' :max="'400'" :step="'1'" :autofocus="true" :required="true"></entrada>
+                </div>
+              </div>
+            </div>
+
 
             <div class="form-group row down-2">
                 <div class="col-md-12 offset-md-12">
@@ -103,13 +114,7 @@
 
         </div>
       </div>
-      <!-- <div v-if="this.loading" class="contienePantallaCompletaDark aparecer">
-        <div class="container text-center contieneCargador">
-          <div class="spinner-border cargador cargaBlanco" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-      </div> -->
+
     </div>
 </template>
 
@@ -137,7 +142,9 @@ export default {
         content: "",
         hastags:[],
         tags:[],
-        program_date: null
+        program_date: null,
+        private: false,
+        price: null
 
       }
     }
@@ -168,6 +175,11 @@ export default {
 	    formData.append('media', this.form.files);
       formData.append('content',this.form.content);
       formData.append('hastags',hastags);
+      if(this.form.private) {
+        formData.append('private', true);
+        formData.append('price',this.form.price);
+      }
+
       var self = this;
       axios.post('/api/post/create', formData,
       {

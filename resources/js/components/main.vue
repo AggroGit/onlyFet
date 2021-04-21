@@ -15,6 +15,7 @@
         <h4 v-if="this.option == 'populars'">{{$ml.get('main').popu}}</h4>
         <h4 v-if="this.option == 'news'">{{$ml.get('main').news}}</h4>
         <h4 v-if="this.option == 'mySuscriptions'">{{$ml.get('main').susc}}</h4>
+        <h4 v-if="this.option == 'favs'">{{$ml.get('main').favs}}</h4>
       </div>
     </div>
     <!-- NO USERS -->
@@ -50,6 +51,7 @@
           <div class="OpcionMain linkeable" @click="OrderByClick('populars')">{{$ml.get('main').popu}}</div>
           <div class="OpcionMain linkeable" @click="OrderByClick('news')">{{$ml.get('main').news}}</div>
           <div class="OpcionMain linkeable" @click="OrderByClick('mySuscriptions')">{{$ml.get('main').susc}}</div>
+          <div class="OpcionMain linkeable" @click="OrderByClick('favs')">{{$ml.get('main').favs}}</div>
         </div>
         <!-- <h3>Suscribiendo</h3> -->
       </div>

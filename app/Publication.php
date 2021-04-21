@@ -15,11 +15,11 @@ class Publication extends Model
     ];
     //
     protected $fillable = [
-      'content', 'user_id', 'publish_at'
+      'content', 'user_id', 'publish_at', 'private'
     ];
     //
     protected $appends = [
-      'numLikes', 'numComments', 'haveLiked', 'fecha',
+      'numLikes', 'numComments', 'haveLiked', 'fecha', 'canSee',
     ];
 
     // likes
@@ -53,6 +53,25 @@ class Publication extends Model
       return $this->belongsToMany('App\Video', 'publications_videos');
     }
 
+    public function getCanSeeAttribute()
+    {
+      if($this->user->id == auth()->user()->id)
+        return true;
+      if($this->private and $this->user->CanSee) {
+        if($this->users_unlocked === null)
+          return false;
+        //
+        $ids = json_decode($this->users_unlocked);
+        foreach ($ids as $id) {
+          if(auth()->user()->id == $id)
+            return true;
+        }
+        return false;
+
+      }
+      return true;
+    }
+
     public function like()
     {
        if($like = $this->likes()->where('user_id',auth()->user()->id)->first()) {
@@ -77,6 +96,7 @@ class Publication extends Model
 
     public function getFechaAttribute()
     {
+      Carbon::setLocale(auth()->user()->lang?? 'es');
       return Carbon::create($this->publish_at)->diffForHumans();
       // return $this->created_at-
     }

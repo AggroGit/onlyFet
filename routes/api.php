@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api','hasStripe']], function()
   Route::post('/buy',                       'productsController@buy');
   Route::post('/history',                   'productsController@history');
   Route::post('/cart/remove',               'productsController@removeFromCart');
+  Route::post('/fav/{user_id}',             'ProfilesController@addFavorite');
 
 
 

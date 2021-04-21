@@ -2,11 +2,13 @@
 
 namespace App\Jobs;
 
-use Illuminate\Bus\Queueable;
+
+use App\Services\Propina\PropinaServiceProvider;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Bus\Queueable;
 use App\PayOut;
 
 class sendMoney implements ShouldQueue
@@ -20,10 +22,11 @@ class sendMoney implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(PayOut $payment)
+    public function __construct(PayOut $payOut)
     {
         //
-        $this->payment = $payment;
+        $payOut->refresh();
+        $this->payment = $payOut;
     }
 
     /**
@@ -33,11 +36,6 @@ class sendMoney implements ShouldQueue
      */
     public function handle()
     {
-        //
-        if($this->payment->sended == false) {
-          $this->payment->pagar();
-        }
-
-
+      PropinaServiceProvider::payToUser($this->payment);
     }
 }

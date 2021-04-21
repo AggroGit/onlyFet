@@ -23,8 +23,10 @@
                               <!-- SI EXISTE EN LA BASE DE DATOS -->
                               @if(Schema::hasColumn($model->getTable(), $header))
                                 <!-- SI ES UNA FECHA -->
-                                @if()
-                                @else
+
+
+                                <!-- AQUI ME QUEDÉ -->
+
                                 @if($header !== "expires_at")
                                 <label class="small mb-1" for="{{$key}}">{{$key}}</label>
                                 <input class="form-control py-4" id="inputLastName" type="text" value="{{$tabletate['data'][$header]?? ''}}" name="{{$header}}" placeholder="{{$key}}" />

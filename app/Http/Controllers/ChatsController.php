@@ -85,10 +85,9 @@ class ChatsController extends Controller
       return $this->correct();
     }
 
-    public function multipleMedia(int $chat_id, $token,Request $request)
+    public function multipleMedia($token,Request $request)
     {
-      $chat = Chat::find($chat_id);
-      $this->provider->uploadMedia($chat,$token,$request);
+      $this->provider->uploadMedia($token,$request);
       return $this->correct();
     }
 
@@ -106,7 +105,6 @@ class ChatsController extends Controller
       } catch (\Exception $e) {
         return $this->incorrect($e->getCode());
       }
-      $this->provider->sendMassiveMessage(auth()->user(),$token,$request);
     }
 
     public function unlockMessage(int $chat_id, $message_id, Request $request)

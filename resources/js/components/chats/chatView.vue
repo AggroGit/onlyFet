@@ -65,7 +65,7 @@
         <div class="ContieneIconosEnviar">
           <input type="file" ref="file" style="display: none" accept="image/x-png,image/gif,image/jpeg,image/jpg" @change="sendImage">
           <!-- <b-icon font-scale="1.7" style="color:#383d41;" icon="credit-card" aria-hidden="true" class="icon"></b-icon> -->
-          <propina v-if="this.otherUser.influencer" :chat_id="this.chat" :otherUser="this.otherUser" class="icon"></propina>
+          <propina :type="'chat'" v-if="this.otherUser.influencer" :chat_id="this.chat" :otherUser="this.otherUser" class="icon"></propina>
           <sendPics :chat='this.chatData'/>
           <!-- <b-icon font-scale="1.7" @click="$refs.file.click()" style="color:#383d41;" icon="camera-fill" aria-hidden="true" class="icon"></b-icon> -->
           <b-icon @click="sendMessage()" font-scale="1.7" style="color: #F20505;" icon="arrow-up-right-circle-fill" aria-hidden="true" class="icon iconshadow"></b-icon>

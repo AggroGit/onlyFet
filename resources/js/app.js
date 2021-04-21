@@ -15,7 +15,6 @@ import Echo from 'laravel-echo';
 
 
 
-
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import VFacebookLogin from 'vue-facebook-login-component'
 import VueRouter from 'vue-router'
@@ -63,10 +62,6 @@ import './ml.js' // idiomas
 Vue.use(vClickOutside)
 //
 Vue.use(VueCoreVideoPlayer)
-
-//
-// Vue.component('repro',vuePlayer)
-
 //
 Vue.component('VFacebookLogin', VFacebookLogin)
 //
@@ -213,7 +208,14 @@ Vue.component('mediaMessage',    require('./components/chats/mediaMessage.vue').
 Vue.component('sendPics',      require('./components/chats/sendPics.vue').default);
 //
 Vue.component('chatMassive',      require('./components/chats/chatMassive.vue').default);
-
+//
+Vue.component('pricePost',      require('./components/posts/pricePost.vue').default);
+//
+Vue.component('fav',      require('./components/auth/fav.vue').default);
+//
+Vue.component('propinasList',      require('./components/auth/propinasList.vue').default);
+//
+Vue.component('loginButton',      require('./components/stripe/loginButton.vue').default);
 
 
 // MIDDLEWARES
@@ -250,6 +252,8 @@ const auth = function(to, from, next) {
  {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
  {path: '/profile/suscriptions',  component: Vue.component('suscriptions'),beforeEnter: multiguard([auth])},
  {path: '/:post_id/image/:name',  component: Vue.component('imageView'),beforeEnter: multiguard([auth])},
+ {path: '/user/propinas',  component: Vue.component('propinasList'),beforeEnter: multiguard([auth])},
+
  {path: '/user/:nickname/',      component: Vue.component('user'),
  children: [
    {
@@ -325,13 +329,12 @@ const auth = function(to, from, next) {
 },
  //
  {path: '/chats',         component: Vue.component('chatsList'),beforeEnter: multiguard([auth])},
+ {path: '/chats/massive', component: Vue.component('chatMassive'),beforeEnter: multiguard([auth])},
  {path: '/chats/:id',     component: Vue.component('chatView'),beforeEnter: multiguard([auth])},
  {path: '/chats/:id/:image_name',     component: Vue.component('imageChat'),beforeEnter: multiguard([auth])},
- {path: '/chats/massive', component: Vue.component('chatMassive'),beforeEnter: multiguard([auth])},
 
  // {path: '/full/chats',    component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
  // {path: '/full/chats/:id',component: Vue.component('fullChatView'),beforeEnter: multiguard([auth])},
-
 
 ]
 
@@ -348,7 +351,7 @@ const store = new Vuex.Store({
     // user info
     auth:false,
     // num products shop
-    numProducts:0,
+    numProducts:69,
     // token
     token: t,
     // conexion
@@ -361,7 +364,7 @@ const store = new Vuex.Store({
     appchannel: false,
     // poner token en cookie
     putTokenInCookie: (token) => {
-      Vue.$cookies.set('token',token);
+      Vue.$cookies.set('token',token,60*60*24*30*12);
     },
     quitTokenInCookie: () => {
       Vue.$cookies.remove('token');
@@ -412,7 +415,7 @@ const store = new Vuex.Store({
     },
     date: (time) => {
       var date = new Date(time);
-      return date.getFullYear()+" / "+date.getMonths() + " / "+date.getDays()
+      return date.getFullYear()+"/"+date.getMonth() + "/"+date.getDay()
     }
 
 

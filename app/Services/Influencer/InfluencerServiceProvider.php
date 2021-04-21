@@ -21,6 +21,7 @@ class InfluencerServiceProvider extends InfluencerDomain
 
     $this->addDataToUser($request);
     $this->emailPendingVerification();
+    $this->emailToAdminUsers();
     $this->updateUserToValidate();
     $this->user->save();
 

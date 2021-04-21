@@ -1,5 +1,6 @@
 <template>
     <div class="container contenedor esPost down-4">
+
       <div v-if="this.loading" class="container text-center contieneCargador aparecer">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
           <span class="sr-only">Loading...</span>
@@ -15,10 +16,9 @@
         <div class="cabecerapoST">
           <avatar :conection="true" :us="data.user"></avatar>
             <div class="contieneDetPost">
-              <p>{{data.user.name}} </p>
+              <p>{{data.user.name}}</p>
               <p class="thersAuctionNow aparecer" v-if="this.wantSeeAuctions && data.user.current_auctions.length>0">{{$ml.get('auction').currentAuctingUser}}</p>
               <p>{{data.fecha}}</p>
-              <!-- <p> se publicará en {{data.fecha}}</p> -->
           </div>
           <div v-if="this.data.user.id == this.$store.state.auth.id" class="opcionesPost">
             <b-dropdown id="dropdown-right" right text="Right align" variant="primary" class="m-2 dropdown">
@@ -27,8 +27,7 @@
                 <span v-if="removing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               </template>
               <b-dropdown-item  @click="remove()" href="#">{{$ml.get('post').remove}}</b-dropdown-item>
-              <!-- <b-dropdown-item  href="#">Another action</b-dropdown-item>
-              <b-dropdown-item  href="#">Something else here</b-dropdown-item> -->
+              <b-dropdown-item v-if="this.data.private==false && this.data.user.id == this.auth.id"  @click="openPrice()" href="#">{{$ml.get('post').makePrivate}}</b-dropdown-item>
             </b-dropdown>
           </div>
 
@@ -49,18 +48,23 @@
             {{this.data.numLikes}}
           </div>
           <div  class="comments">
-            <router-link class="noLink"  :to="'/post/'+this.data.id+'/coments'">
+            <router-link v-if="this.data.canSee" class="noLink"  :to="'/post/'+this.data.id+'/coments'">
               {{this.data.numComments}} {{$ml.get('post').comments}}
             </router-link>
           </div>
         </div>
-        <div  v-if="this.data.user.canSee" class="separador"></div>
-        <div  v-if="this.data.user.canSee"  class="contieneOpcion">
-
+        <div v-if="this.data.user.canSee" class="separador"></div>
+        <div v-if="this.data.canSee"  class="contieneOpcion">
           <router-link v-if="this.data.user.canSee" :to="'/post/'+this.data.id+'/coments'" class="noLink"  name="button">
             <b-icon style="color: black;" class="left" icon="chat-left" font-scale="1.5"></b-icon>
           </router-link>
-          <div class=" left iconPost euro ml-3">€</div>
+          <div v-if="this.data.private && this.data.user.id == this.auth.id" class="flex">
+            <b-icon  style="color: black; margin-left:10px; margin-top:-1px" class="left" icon="lock" font-scale="1.6"></b-icon>
+            <p>{{this.data.price}} €</p>
+          </div>
+          <!-- <div class=" left iconPost euro ml-3">€</div> -->
+          <propina :type="'publication'" class="propinaInPost" :otherUser="this.data.user" v-if="this.data.user.id !== this.$store.state.auth.id"></propina>
+
           <b-icon style="color: black;" class="left iconPost " icon="euro-sign" font-scale="1.5"></b-icon>
           <a class="twitter-share-button"
               :href="'https://twitter.com/intent/tweet?text='+this.data.content+' - OnlyFet&url='+this.currentUrl+'/post/'+this.data.id"
@@ -68,6 +72,18 @@
               <b-icon style="color: black;" class="right " icon="share-fill" font-scale="1.5"></b-icon>
           </a>
         </div>
+
+
+        <div v-else-if="this.data.private" class="contieneOpcion contieneDesblokPost">
+          <b-icon  icon="lock-fill" font-scale="2.5" aria-hidden="true"></b-icon>
+          <p>{{this.data.price}} €</p>
+          <button @click="unlock()" class="btn btn-primary ml-4">
+              {{this.$ml.get('post').unlock}}
+              <span v-if="this.loadingUnlock" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+        <pricePost :data="this.data" v-if="this.lock" />
+
       </div>
     </div>
 </template>
@@ -95,11 +111,15 @@ export default {
       post:null,
       id:null,
       loading:true,
+      loadingUnlock: false,
       exist:true,
       data:null,
       removing:false,
       liked:false,
+      auth: this.$store.state.auth,
       currentUrl: window.location.hostname,
+      setPrice:true,
+      lock: false
 
     }
 
@@ -122,6 +142,36 @@ export default {
         this.liked = this.datos.haveLiked
       }
 
+    },
+    unlock() {
+      if(this.loadingUnlock)
+        return true
+
+      this.loadingUnlock = true
+      var self = this;
+      axios.post('/api/post/'+this.id+'/pay', null,
+      {
+         headers:{
+            Authorization: `Bearer `+ this.$store.state.token
+         }
+       })
+       .then(function (response)  {
+         if(response.data.rc == 1) {
+            self.data.canSee = true
+           }
+           else {
+             alert('Error')
+           }
+         })
+         .catch(err => {
+           self.error = true;
+         })
+         // finally
+         .finally(() => self.loadingUnlock = false)
+
+    },
+    openPrice() {
+      this.lock = true;
     },
     getPost() {
       var self = this

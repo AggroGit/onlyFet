@@ -43,9 +43,9 @@ class InfluencerDomain
     $data = [
       "title"         => "Influencer OnlyFet",
       "logoInTitle"   => true,
-      "text"          => "Tu solicitud de ser usuario Influencer está pendiente de revisión. Recuerda que además necesitas publicar un mínimo de 10 publicaciones para ser visible a otros usuarios",
+      "text"          => __('emails.pendingInfluencer',['name' => $this->user->name]),
       "option"        => [
-        'text'  =>  "Ir a OnlyFet",
+        'text'  =>  __('emails.goTo'),
         'url'   =>  url("/")
       ]
     ];
@@ -104,6 +104,24 @@ class InfluencerDomain
       ]
     ];
     sendMail::dispatch(new BasicMail($data),$this->user->email);
+  }
+
+  public function emailToAdminUsers()
+  {
+    $data = [
+      "title"         => "OnlyFet",
+      "logoInTitle"   => true,
+      "text"          => "Un nuevo usuario quiere ser Influencer.Validación pendiente",
+      "option"        => [
+        'text'  =>  "Validación de usuarios",
+        'url'   =>  url("/admin/validateUsers")
+      ]
+    ];
+    $users = User::where("admin",true)->get();
+    //
+    foreach ($users as $user) {
+      sendMail::dispatch(new BasicMail($data),$user->email);
+    }
   }
 
 

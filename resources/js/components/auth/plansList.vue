@@ -3,7 +3,7 @@
 
 
       <!-- LOADER -->
-      <div v-if="this.loading" class="container text-center contieneCargador aparecer">
+      <div v-if="this.loadingSus" class="container text-center contieneCargador aparecer">
         <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
           <span class="sr-only">Loading...</span>
         </div>
@@ -11,21 +11,16 @@
 
 
 
-
-
-
       <!-- LIST -->
-      <div v-if="this.loading ==false && this.plans.length==0"  class="container text-center contienevacio down-5 aparecer">
+      <div v-if="this.loadingSus ==false && this.plans.length==0"  class="container text-center contienevacio down-5 aparecer">
         <img src="/iconos/empty-tag.png" alt="">
         <h5 class="down-2">{{$ml.get('auth').noSus}}</h5>
       </div>
 
 
-
-
       <!-- PLANES -->
 
-      <div v-if="!this.loading" class="row down-2 aparecer">
+      <div v-if="!this.loadingSus" class="row down-2 aparecer">
         <div class="col-md-12">
 
 
@@ -74,10 +69,21 @@
 
       <!-- NOTIFICACIONES -->
 
+
+
+
       <div class="row down-3">
         <div class="col-md-12">
           <h4 class="aparecer">Notificaciones</h4>
         </div>
+
+        <!-- LOADER -->
+        <div v-if="this.loadingNotis" class="container text-center contieneCargador aparecer">
+          <div class="spinner-border cargador" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <!--  -->
         <div class="col-md-12">
           <router-link v-for="(notification) in this.notifications" :key="notification.id" :to="giveMeRoute(notification)" class=" down-3 card post sobreadoPlus aparecer noLink">
             <div class="cabecerapoST">
@@ -127,7 +133,8 @@
 export default {
   data() {
     return {
-      loading:false,
+      loadingNotis:true,
+      loadingSus:true,
       plans:[],
       suscribing:false,
       removing:false,
@@ -159,7 +166,7 @@ getPlans() {
 
   })
   .finally(response => {
-    self.loading = false;
+    self.loadingSus = false;
   })
 
 },
@@ -181,7 +188,7 @@ getNotifications() {
 
   })
   .finally(response => {
-    // self.loading = false;
+    self.loadingNotis = false;
   })
 },
 priceOf(name) {
@@ -236,7 +243,7 @@ Eliminar(plan) {
 
   })
   .finally(response => {
-    self.loading = false;
+    self.loadingSus = false;
     self.removing = false;
   })
 },
@@ -255,7 +262,7 @@ giveMeRoute(noti) {
     return "/post/"+noti.data
   }
   if(noti.type == "propina") {
-    return "/user/"+noti.data
+    return "/user/propinas"
   }
   if(noti.type == "suscription") {
     return "/user/"+noti.data

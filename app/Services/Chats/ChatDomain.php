@@ -4,6 +4,7 @@ namespace App\Services\Chats;
 
 use Illuminate\Support\Facades\Validator;
 
+use App\Events\BoubleNotifications;
 use Illuminate\Http\Request;
 use App\Events\MessageEvent;
 use Carbon\Carbon;
@@ -35,11 +36,11 @@ class ChatDomain
   }
 
   // create the message and add text
-  public function createMessage(User $user, Chat $chat, Request $request) :Message
+  public function createMessage(User $user, Chat $chat, $messageIn) :Message
   {
     $message = new Message();
     $message->chat_id = $chat->id;
-    $message->message = $request->message?? "";
+    $message->message = $messageIn?? "";
     $message->user_id = $user->id;
     $message->save();
     return $message;
@@ -66,6 +67,7 @@ class ChatDomain
         "data"    => $message->chat->id,
         "sound"   => "default",
       ]);
+      broadcast(new BoubleNotifications($user));
   }
 
   // create chat with given users
@@ -98,7 +100,7 @@ class ChatDomain
     ]);
   }
 
-  public function uploadImageWithToken($chat, $token, Request $request)
+  public function uploadImageWithToken($token, Request $request,$chat="media")
   {
     $image = ['file'=> 'image:mimes:jpg,jpeg,png'];
     $video = ['file'=> 'video:mimes:mp4,mov'];
@@ -108,7 +110,7 @@ class ChatDomain
     if($validator->fails()) {
       // probamos vídeo
       $video = new Video();
-      $video->create($request->file,"video/$chat->id");
+      $video->create($request->file,"video/$chat");
       $video->user_id = auth()->user()->id;
       $video->token = $token;
       $video->save();
@@ -116,7 +118,7 @@ class ChatDomain
     } else {
       // imagen
       $image = new Image();
-      $image->create($request->file,"image/$chat->id");
+      $image->create($request->file,"image/$chat");
       $image->user_id = auth()->user()->id;
       $image->token = $token;
       $image->save();
@@ -170,6 +172,16 @@ class ChatDomain
     $message->forPay = false;
     $message->message = "📸 🗝 🔓";
     $message->save();
+  }
+
+  public function quitNotificationsChat($chat)
+  {
+    auth()->user()->notifications()
+                  ->where("type","chat")
+                  ->where('data',$chat->id)
+                  ->update([
+                    "read"=>true
+                  ]);
   }
 
 }

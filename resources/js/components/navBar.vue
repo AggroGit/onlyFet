@@ -80,6 +80,7 @@
             <b-nav-item v-if="auth.wantToBeInfluencer" to='/post/create'>{{$ml.get('menu').publi}}</b-nav-item>
             <b-nav-item class="" to='/profile'>{{$ml.get('menu').profile}}</b-nav-item>
             <b-nav-item class="" to='/faqs'>{{$ml.get('menu').faqs}}</b-nav-item>
+            <b-nav-item v-if="auth.wantToBeInfluencer" class="" to='/user/propinas'>{{$ml.get('propina').payments}}</b-nav-item>
             <b-nav-item class="" to='/auction/create'>{{$ml.get('auction').createAuction}}</b-nav-item>
             <b-nav-item to='/chats'>{{$ml.get('menu').chats}}</b-nav-item>
             <b-nav-item to='/shop'>{{$ml.get('shop').shop}}</b-nav-item>

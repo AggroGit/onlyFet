@@ -4,15 +4,14 @@
       id="carousel-1"
       :interval="40000000"
       v-model="slide"
-      controls
-      indicators
+      :controls="post.images.length >1 || post.videos.length>1"
+      :indicators="post.images.length >1 || post.videos.length>1"
       background="#ababab"
       img-width="1024"
       img-height="480"
       style="text-shadow: 1px 1px 2px #333;transition:all 0.4s ease;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
-
     >
       <!-- Text slides with image -->
       <!-- <b-carousel-slide
@@ -35,7 +34,7 @@
             <img
               class="imagenCompleta"
               :src="media.sizes.Big"
-              v-if="post.user.canSee || post.user.id == auth.id"
+              v-if="post.canSee || post.user.id == auth.id"
               alt="image slot"
             >
             <img
@@ -53,30 +52,30 @@
         <img
           class="imagenCompleta"
           :src="'/iconos/video.png'"
-          v-if="!post.user.canSee"
+          v-if="!post.canSee"
           alt="image slot"
         >
 
         <video-player
-        class="video"
-                         ref="videoPlayer"
-                         v-else
-                         :options="giveMeOptions(media)"
-                         :playsinline="false"
-                         @play="onPlayerPlay($event)"
+         class="video"
+         ref="videoPlayer"
+         v-else
+         :options="giveMeOptions(media)"
+         :playsinline="false"
+         @play="onPlayerPlay($event)"
 
-                         @pause="onPlayerPause($event)"
-                         @ended="onPlayerEnded($event)"
-                         @loadeddata="onPlayerLoadeddata($event)"
-                         @waiting="onPlayerWaiting($event)"
-                         @playing="onPlayerPlaying($event)"
-                         @timeupdate="onPlayerTimeupdate($event)"
-                         @canplay="onPlayerCanplay($event)"
-                         @canplaythrough="onPlayerCanplaythrough($event)"
-                         @ready="playerReadied"
-                         @statechanged="playerStateChanged($event)"
-                          oncontextmenu="return false;"
-                         >
+         @pause="onPlayerPause($event)"
+         @ended="onPlayerEnded($event)"
+         @loadeddata="onPlayerLoadeddata($event)"
+         @waiting="onPlayerWaiting($event)"
+         @playing="onPlayerPlaying($event)"
+         @timeupdate="onPlayerTimeupdate($event)"
+         @canplay="onPlayerCanplay($event)"
+         @canplaythrough="onPlayerCanplaythrough($event)"
+         @ready="playerReadied"
+         @statechanged="playerStateChanged($event)"
+          oncontextmenu="return false;"
+         >
 
 
          </video-player>
@@ -141,15 +140,14 @@ console.log(this.post)
 
       },
       giveMeUrl(media,post) {
-        if(post.user.canSee == false) {
+        if(post.canSee == false) {
           return "";
         }
         return "/"+post.id+"/image/"+media.name
 
       },
       interpretateClick() {
-          if(this.post.user.canSee == false) {
-
+          if(this.post.canSee == false && this.post.private == false) {
             alert(this.$ml.get('stripe').onlyPremium)
             this.$router.push('/user/'+this.post.user.nickname+'#')
           }

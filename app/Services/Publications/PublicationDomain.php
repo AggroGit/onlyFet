@@ -18,7 +18,7 @@ class PublicationDomain
 {
   protected $publication;
 
-  function __construct(int $post_id = null)
+  function __construct($post_id = null)
   {
     $this->publication = Post::find($post_id);
   }
@@ -40,4 +40,35 @@ class PublicationDomain
     // return the created post
     $this->publication = $post;
   }
+
+  public function privatePost($price)
+  {
+    $this->publication->price = $price;
+    $this->publication->private = true;
+  }
+
+  public function checkIfCanPayUnlock()
+  {
+    return !$this->publication->canSee;
+  }
+
+  public function unlockForUser($user = null)
+  {
+    $user = $user?? auth()->user();
+    $users = $this->publication->users_unlocked;
+    if($users !== null) {
+      $ids = json_decode($users);
+      $ids[] = $user->id;
+    } else {
+      $ids = array($user->id);
+    }
+    $this->publication->users_unlocked = json_encode($ids);
+  }
+
+  public function checkIfCanBeLocked()
+  {
+    return (auth()->user()->id == $this->publication->user->id and $this->publication->private);
+  }
+
+
 }

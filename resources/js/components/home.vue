@@ -30,8 +30,6 @@
 
 
 export default {
-  mounted() {
-    console.log(window.name);
-  }
+
 };
 </script>

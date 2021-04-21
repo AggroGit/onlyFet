@@ -9,6 +9,7 @@ use App\Services\Images\imageServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Events\BoubleNotifications;
 use Illuminate\Http\Request;
 use App\Services\Algo;
 use App\Notification;
@@ -32,9 +33,8 @@ class AuthController extends Controller
     // return the logged user
     public function currentUser(Request $request)
     {
-
       return auth()->user()?
-      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)) : $this->incorrect(13);
+      $this->correct(User::with(['plans','notifications'])->find(auth()->user()->id)->setAppends(['chat_notis','other_notis'])->toArray()) : $this->incorrect(13);
     }
 
     /**
@@ -264,7 +264,7 @@ class AuthController extends Controller
         auth()->user()->save();
         return $this->correct(User::find(auth()->user()->id));
       }
-      $this->quitNulls($request);
+      // $this->quitNulls($request);
       // fill
       auth()->user()->fill($request->all());
       // encrypt pass
@@ -281,10 +281,13 @@ class AuthController extends Controller
     public function notifications()
     {
       $notifications = auth()->user()->allNotifications();//->where('type','chat');
-      $notis = $notifications->get();
+      $notifications->update([
+        "read" => true
+      ]);
+      broadcast(new BoubleNotifications());
       // $notifications->delete();
       auth()->user()->allNotifications()->where('type','chat')->delete();
-      return $this->correct($notis);
+      return $this->correct($notifications->get());
     }
 
     public function unsuscribe()

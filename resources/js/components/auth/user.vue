@@ -13,8 +13,7 @@
               <avatar :conection="true" class="ProfileImgCon" :us="this.user" :size="'Small'"></avatar>
             </div>
           </div>
-          <div class="col-6 ContieneDatosperfil ">
-
+          <div class="col-6 ContieneDatosperfil">
             <div class="contieneNombreYOpciones">
               <h4 class="">{{user.name}}</h4>
               <div class="contieneOpcionesUser ">
@@ -23,7 +22,7 @@
                       data-size="large">
                       <b-icon style="color: black;" class="left " icon="share-fill" font-scale="1.5"></b-icon>
                   </a>
-                  <b-icon style="color: black;" class="left " icon="star" font-scale="1.5"></b-icon>
+                  <fav v-if="auth.id !== user.id" :user = "this.user"/>
                   <propina  v-if="user.influencer && auth.id !== user.id" :otherUser="user"></propina>
               </div>
             </div>

@@ -39,17 +39,21 @@ class CreateUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('stripe_reciver_id')->nullable();
             $table->rememberToken();
-            $table->boolean('admin')->default(false);
+            $table->boolean('admin')
+                  ->default(false);
             $table->string('country')
                   ->nullable()
                   ->default('ES');
             $table->text('description')->nullable();
-            $table->string('cp')->nullable();
-            $table->string('city')->nullable();
-            $table->string('province')->nullable();
-            $table->string('direction')->nullable();
-            $table->text('direction_details')->nullable();
+            // Tienda
 
+              $table->string('cp')->nullable();
+              $table->string('city')->nullable();
+              $table->string('province')->nullable();
+              $table->string('direction')->nullable();
+              $table->text('direction_details')->nullable();
+            //
+            $table->text('welcomeMessage')->nullable();
             $table->string('type')
                   ->nullable()
                   ->default('client');
@@ -63,6 +67,9 @@ class CreateUsersTable extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade')
                   ->nullable();
+            $table->json('users_favs')
+                  ->nullable();
+
 
             // Redes sociales
             $table->text('social_token')->nullable();

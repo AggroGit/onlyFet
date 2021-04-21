@@ -6,10 +6,13 @@ use App\Services\Chats\ChatDomain;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Events\BoubleNotifications;
+
 use App\Events\MessageEvent;
 use App\Publication as Post;
 use Carbon\Carbon;
 use App\Message;
+use App\Plan;
 use App\Chat;
 use App\User;
 
@@ -35,7 +38,7 @@ class ChatsServiceProvider extends ChatDomain
       return 102;
     }
     // create the message
-    $message = $this->createMessage($user, $chat, $request);
+    $message = $this->createMessage($user, $chat, $request->message);
     // if there are an image then add it
     if($request->has('image')) {
       $this->addImageToMessage($message, $request);
@@ -43,7 +46,7 @@ class ChatsServiceProvider extends ChatDomain
     // notify to the users
     $this->sendMessageNotification($message->chat->otherUser,$message);
     // broadcast
-    broadcast(new MessageEvent(Message::without('user')->find($message->id)));
+    $this->broadcastMessage($message);
     // update the time
     $chat->updated_at = now();
     $chat->save();
@@ -74,9 +77,9 @@ class ChatsServiceProvider extends ChatDomain
     $this->close($chat);
   }
 
-  public function uploadMedia(Chat $chat,$media_hash,Request $request)
+  public function uploadMedia($media_hash,Request $request)
   {
-    $this->uploadImageWithToken($chat, $media_hash, $request);
+    $this->uploadImageWithToken($media_hash, $request);
   }
 
   public function sendMessageByToken(Chat $chat, $token, Request $request)
@@ -105,6 +108,11 @@ class ChatsServiceProvider extends ChatDomain
   {
     // mark messages as read
     $this->markMessagesRead($chat);
+    //
+    $this->quitNotificationsChat($chat);
+    //
+    broadcast(new BoubleNotifications());
+
 
     return [
       "messages"  =>  $chat->messages()->paginate(1000),
@@ -124,13 +132,30 @@ class ChatsServiceProvider extends ChatDomain
         $num++;
         // cogemos el chat de los dos usuarios
         $chatComun = $this->giveMeorCreateChatWith($userFrom,$userSuscribed);
-        $message = $this->createMessage($userFrom,$chatComun,$request);
+        //
+        $message = $this->createMessage($userFrom,$chatComun,$request->message);
         // adjuntamos media
         $this->loadMediaToMessage($token,$message);
-        //
+        // notify to the users
+        $this->sendMessageNotification($message->chat->otherUser,$message);
+        // broadcast
+        $this->broadcastMessage($message);
       }
     }
     return $num;
+  }
+
+  public function sendWelcomeMessage(User $userFrom,Chat $chat)
+  {
+      if($userFrom->welcomeMessage == null or $userFrom->welcomeMessage == "") {
+        return false;
+      }
+      $message = $this->createMessage($userFrom, $chat, $userFrom->welcomeMessage);
+      // notify to the users
+      $this->sendMessageNotification($chat->otherUser,$message);
+      //
+      return true;
+
   }
 
 

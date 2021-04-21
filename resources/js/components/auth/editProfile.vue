@@ -61,20 +61,48 @@
               <label class="down-2" for="country">{{$ml.get('auth').lang}} :</label>
               <b-form-select v-model="form.lang" name="country" :options="languages" @change="changeLang()" class=""></b-form-select>
 
-              <div class="form-group row ">
+              <div v-if="auth.wantToBeInfluencer" class="form-group row ">
                 <div class="col-md-12 contieneInput">
                     <label for="post" class="entrada detextarea" >{{$ml.get('auth').description}}</label>
                     <textarea ref="description" v-model="form.description" rows="3"  name="post" class="form-control"   autofocus="false"></textarea>
-                    <!-- <VueEditor v-model="form.description"></VueEditor> -->
-                    <!-- <textarea ref="content" v-model="form.description" rows="5"  name="post" class="form-control" autocomplete="off" autofocus="true"></textarea> -->
                 </div>
-                  <!-- <entradaText v-model="form.content" @change="detectPeople()" :rows="4" :label="$ml.get('post').post" :name="'name'" autocomplete="off" :type="'text'" :autofocus="true" :required="true"></entradaText> -->
               </div>
 
-              <div class="form-group row down-2">
+              <div v-if="this.auth.wantToBeInfluencer" class="form-group row ">
+                <div class="col-md-12 contieneInput">
+                    <label for="post" class="entrada detextarea" >{{$ml.get('chat').welcomeMessage}}</label>
+                    <textarea ref="description" v-model="form.welcomeMessage" rows="3"  name="post" class="form-control"   autofocus="false"></textarea>
+                </div>
+              </div>
+
+
+              <!-- TIENDA -->
+
+              <h5 class="mt-4">{{this.$ml.get('auth').shop}} 🛒</h5>
+
+              <div class="form-group row down-1">
                 <div class="col-md-12 contieneInput">
                     <label for="direction" class="entrada detextarea" >{{$ml.get('shop').direction}}</label>
-                    <textarea ref="direction" required v-model="form.direction" rows="3"  name="post" class="form-control"  autocomplete="direction" autofocus="true"></textarea>
+                    <textarea ref="direction" v-model="form.direction" rows="3"  name="post" class="form-control"  autocomplete="direction" autofocus="true"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row down-3">
+                  <entrada v-model="form.province" :label="$ml.get('auth').province" :name="'province'" :type="'text'" autocomplete="province" :required="false"></entrada>
+              </div>
+
+              <div class="form-group row ">
+                  <entrada v-model="form.city" :label="$ml.get('auth').city" :name="'city'" :type="'text'" autocomplete="city" :required="false"></entrada>
+              </div>
+
+              <div class="form-group row ">
+                  <entrada v-model="form.cp" :label="$ml.get('auth').cp" :name="'cp'" :type="'text'" autocomplete="cp" :required="false"></entrada>
+              </div>
+
+              <div class="form-group row parriba">
+                <div class="col-md-12 contieneInput">
+                    <label for="direction" class="entrada detextarea" >{{$ml.get('auth').direction_details}}</label>
+                    <textarea ref="direction_details" v-model="form.direction_details" rows="3"  name="direction_details" class="form-control"  autocomplete="direction_details" autofocus="false"></textarea>
                 </div>
               </div>
 
@@ -140,11 +168,18 @@ export default {
         country: this.$store.state.auth.country,
         lang: this.$store.state.auth.lang,
         description: this.$store.state.auth.description,
-        direction: this.$store.state.auth.direction,
         nickname: this.$store.state.auth.nickname,
+        welcomeMessage: this.$store.state.auth.welcomeMessage,
+        direction: this.$store.state.auth.direction,
+        cp: this.$store.state.auth.cp,
+        city: this.$store.state.auth.city,
+        province: this.$store.state.auth.province,
+        direction_details: this.$store.state.auth.direction_details,
+
+
       },
       options: [
-        {text: 'Afghanistan', value: 'AF'},
+          {text: 'Afghanistan', value: 'AF'},
           {text: 'Åland Islands', value: 'AX'},
           {text: 'Albania', value: 'AL'},
           {text: 'Algeria', value: 'DZ'},

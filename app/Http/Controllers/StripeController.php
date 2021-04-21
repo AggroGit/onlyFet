@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Services\Influencer\InfluencerServiceProvider;
+use App\Services\Propina\PropinaServiceProvider;
 use Illuminate\Http\Request;
 use App\Events\StripeEvent;
 use App\Jobs\sendMail;
 use App\Jobs\sendMoney;
 use App\Message;
-
 use App\PayOut;
 use App\User;
 
@@ -113,6 +113,11 @@ class StripeController extends Controller
 
     }
 
+    public function loginLink()
+    {
+      return $this->correct(auth()->user()->loginLink());
+    }
+
     public function cardsList()
     {
       $this->ifNotCreate();
@@ -125,29 +130,25 @@ class StripeController extends Controller
         return $this->incorrect(0,$missings);
       }
 
-      if($user = User::find($user_id)) {
-          if($user->canReciveMoney()) {
-            $comision = 0;
-            try {
-              auth()->user()->cobrar($request->quantity,$comision);
-            } catch (\Exception $e) {
-              return $this->incorrect(201);
-            }
-            // si llegamos hasta aqui es que se ha cobrado
-            $cant = number_format($request->quantity - $comision,2);
-            $payment = PayOut::create($cant,$user,null,$request->quantity,$request->message);
-
-            //
-            return $this->correct();
-
-          } else {
-            return $this->incorrect(210);
-          }
-          return $this->incorrect(809);
-      } else {
-        $this->incorrect();
+      if(!$userTo = User::find($user_id)) {
+        return $this->incorrect(3);
       }
-      return $this->incorrect();
+      try {
+        $provider = new PropinaServiceProvider(auth()->user(),$userTo,$request->quantity,$request->type);
+        return $this->correct($provider->sendPropina($request->message));
+      } catch (\Exception $e) {
+        $this->incorrect($e->getCode(),$e->getMessage());
+      }
+    }
+
+    public function getPropinas()
+    {
+      try {
+        return $this->correct(PropinaServiceProvider::propinasRepositery()->get());
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode(),$e->getMessage());
+      }
+
     }
 
 

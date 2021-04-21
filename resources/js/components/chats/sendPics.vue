@@ -71,7 +71,7 @@
 export default {
   props: {
       chat: {
-
+        default:false
       },
       massive: {
         default: false
@@ -88,19 +88,26 @@ export default {
       form: {
         forPay:false,
         price: 1
-      }
+      },
+      url:"/api/chat/massive"
     }
   },
-  created() {
-    this.createToken();
-  },
   methods: {
-    createToken() {
+    createTokenAndUrl() {
       this.token =  Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+      if(this.chat !== false) {
+        this.url = '/api/chat/'+this.chat.id+'/media/'+this.token+'/create'
+      } else {
+        this.url = '/api/chat/massive/'+this.token
+      }
+
+
     },
     cerrar() {
       this.open = !this.open
-      this.createToken();
+      this.createTokenAndUrl()
+      this.fileRecords=[],
+      this.fileRecordsForUpload=[],
       this.form = {
         forPay:false,
         price:1,
@@ -110,7 +117,7 @@ export default {
     uploadFiles: function () {
       var self = this;
       // Using the default uploader. You may use another uploader instead.
-      this.$refs.vueFileAgent.upload('/api/chat/'+this.chat.id+'/token/'+this.token,{
+      this.$refs.vueFileAgent.upload('/api/chat/media/'+this.token,{
             Authorization: `Bearer `+ self.$store.state.token
        },this.fileRecordsForUpload)
        //
@@ -170,7 +177,7 @@ export default {
       // e
     },
     send() {
-      if(this.loading) {
+      if(this.loading || this.fileRecords.length == 0) {
         return true;
       }
       this.loading = true;
@@ -179,7 +186,7 @@ export default {
     // ata el mensaje con las imágenes
     mediaToMessage() {
         var self = this
-        axios.post('/api/chat/'+this.chat.id+'/token/'+this.token+'/create', this.form,
+        axios.post(this.url, this.form,
         {
            headers:{
               Authorization: `Bearer `+ this.$store.state.token
@@ -193,10 +200,14 @@ export default {
         })
         .catch(err => {
           self.error = true;
-          console.log(err)
+          alert('Error')
         })
         // finally
-        .finally(() => self.loading = false)
+        .finally(() => {
+          self.loading = false
+          if(self.massive)
+            alert(self.$ml.get('chat').success)
+        })
 
     }
   }

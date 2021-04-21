@@ -86,12 +86,16 @@ class SuscriptionServiceProvider extends SuscriptionDomain
   public function addUserToPlan(User $user, Plan $plan)
   {
     if(!$this->isSuscribed($user,$plan)) {
-      //
+      // add
       $sus = $this->addUserViaStripe($user,$plan);
       $this->addUserInOnlyFet($user,$plan,$sus->id);
       // create chats
       $providerChats = new ChatsServiceProvider();
-      $providerChats->createChat(array($user,$plan->user));
+      $chat = $providerChats->createChat(array($user,$plan->user));
+      $providerChats->sendWelcomeMessage($plan->user,$chat);
+      // plus
+      $this->plusSuscriptor($plan);
+      //
       return true;
 
     }

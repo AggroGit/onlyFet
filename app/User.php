@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surnames', 'direction','email', 'password', 'device_token','social_name','social_token','nickname','country','description', 'provider', 'lang'
+        'name','surnames','email', 'password', 'device_token','social_name','social_token','nickname','country','description', 'provider', 'lang','welcomeMessage','cp','city','province','direction','direction_details'
     ];
 
     /**
@@ -90,6 +90,29 @@ class User extends Authenticatable
       }
       return true;
     }
+
+    public function getIsFavAttribute()
+    {
+      if(!$user = auth()->user())
+        return false;
+      if($user->users_favs == null)
+        return false;
+      $ids = json_decode($user->users_favs);
+      if(array_search($this->id,$ids) !== false)
+        return true;
+      return false;
+    }
+
+    public function getChatNotisAttribute()
+    {
+      return $this->notifications()->where('type',"chat")->count();
+    }
+
+    public function getOtherNotisAttribute()
+    {
+      return $this->notifications()->where('type',"!=","chat")->count();
+    }
+
 
 
     //

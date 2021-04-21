@@ -31,7 +31,7 @@ class PayOut extends Model
       $new->price_sended = $cantidad;
       $new->money_send_at = now()->addDays(8);
       $new->save();
-      sendMoney::dispatch(PayOut::find($new->id));
+      sendMoney::dispatch($this->payOut);
       $new->notiMoneySended($to,$from,$cantidad,$mensaje,$original);
       //
 

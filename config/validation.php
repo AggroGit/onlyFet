@@ -44,7 +44,6 @@ return [
 
     'sendChat' => [
           'message'   => 'required|string',
-          'image'     => 'image:mimes:jpg,jpeg,png'
     ],
 
     'pay' => [
@@ -84,12 +83,13 @@ return [
     ],
 
     'chooseOrder' => [
-      'orderBy' => 'string|in:populars,news,mySuscriptions'
+      'orderBy' => 'string|in:populars,news,mySuscriptions,favs'
     ],
 
     'propina' => [
       'quantity'    => 'required|digits_between:1,400',
-      'message' =>  'string|nullable'
+      'message' =>  'string|nullable',
+      'type' => "string|nullable"
     ],
 
     'createAuction' => [
@@ -98,7 +98,6 @@ return [
       'title'         => 'required|string',
       'price'         => 'required|integer',
       'finish_at'     => 'required',
-
     ],
     'uploadImage' => [
       'file'       => 'required|image:mimes:jpg,jpeg,png,video:mov,'
@@ -113,10 +112,7 @@ return [
     'bidup' => [
       'price'         => 'required|integer',
     ],
-
-
-
-
-
-
+    'makePrivate' => [
+      'price'         => 'required|integer',
+    ]
 ];

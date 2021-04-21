@@ -67,7 +67,7 @@ class SuscriptionDomain
 
   }
 
-  
+
 
 
 
@@ -193,6 +193,13 @@ class SuscriptionDomain
       }
     }
     return false;
+  }
+
+  public function plusSuscriptor($plan)
+  {
+    $user = $plan->user;
+    $user->numSuscriptions++;
+    $user->save();
   }
 
 

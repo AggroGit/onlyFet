@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container justify-content-center">
     <!-- Imagen logo -->
     <div v-if="this.loading" class="contienePantallaCompletaDark aparecer">
       <div class="container text-center contieneCargador">

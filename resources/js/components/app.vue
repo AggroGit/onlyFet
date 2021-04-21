@@ -91,7 +91,6 @@ export default {
         userLang = "en"
       }
       this.$ml.change(userLang)
-      console.log('LANGUAGE -> '+userLang)
       //
     },
     // add the user info

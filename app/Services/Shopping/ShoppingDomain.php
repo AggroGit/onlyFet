@@ -60,7 +60,7 @@ class ShoppingDomain
 
   public function buy()
   {
-    if($this->user->direction == null or $this->user->direction == "")
+    if($this->user->direction == null or $this->user->direction == "" or $this->user->cp == "" or $this->user->direction == null)
     throw new Exception('Falta dirección de envio',211);
 
 
@@ -130,6 +130,11 @@ class ShoppingDomain
       ]
     ];
     sendMail::dispatch(new BasicMail($data),"shop@onlyfet.com");
+    //
+    $users = User::where("admin",true)->get();
+    foreach ($users as $user) {
+      sendMail::dispatch(new BasicMail($data),$user->email);
+    }
   }
 
   public function notifyCostumer(Purchase $purchase)

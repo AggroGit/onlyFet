@@ -22,8 +22,7 @@ trait Notify
   // it sends the notification via socket or via push
   public function send($data,$other = null)
   {
-    // $this->sendPush($data);
-    $this->sendSocket($data);
+
     $noti = new Notification([
       "user_id" => $this->id?? 0,
       "from_id" => $this->id?? 0,
@@ -33,6 +32,8 @@ trait Notify
       "data"    => $data['data']
     ]);
     $noti->save();
+    // $this->sendPush($data);
+    $this->sendSocket($data);
     return true;
   }
 

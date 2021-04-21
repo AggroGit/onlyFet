@@ -13,7 +13,7 @@
     {
         Route::post('/user/{nickcname}',       'PublicationController@wallOfUser');
         Route::post('/posts',                  'PublicationController@posts');
-        Route::post('/publis/news',             'PublicationController@novedadesPosts');
+        Route::post('/publis/news',            'PublicationController@novedadesPosts');
         Route::post('/user/{user_id}/posts',   'PublicationController@postsOfUser');
         Route::post('/post/create',            'PublicationController@create');
         Route::post('/post/recomend',          'PublicationController@recomendUser');
@@ -27,6 +27,9 @@
         Route::post('/images/{name}',  'PublicationController@imagesUser');
         Route::post('/videos/{name}',  'PublicationController@videosUser');
         Route::post('/post/{post_id}',          'PublicationController@see');
+        Route::post('/post/{post_id}/pay',      'PublicationController@payAndUnlock');
+        Route::post('/post/{post_id}/private',  'PublicationController@makePrivate');
+
 
 
     });

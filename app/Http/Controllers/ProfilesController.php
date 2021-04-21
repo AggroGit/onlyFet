@@ -36,11 +36,38 @@ class ProfilesController extends Controller
       if($request->orderBy == "news") {
         $users = $users->orderBy('created_at','desc');
       }
+      // favoritos
+      if($request->orderBy == "favs" and auth()->user()->users_favs !== null) {
+        $ids = json_decode(auth()->user()->users_favs);
+        $users = $users->whereIn('id', $ids);
+      }
+
       // texto
       if($request->has('search') and $request->search !== null) {
         $users = $users->where('nickname','like',"%$request->search%");
       }
       return $this->correct($users->paginate(20000));
+
+    }
+
+    public function addFavorite($user_id)
+    {
+      if(!$user = User::find($user_id))
+        return $this->incorrect();
+
+      if(auth()->user()->users_favs == null) {
+        $ids = [];
+      } else {
+        $ids = json_decode(auth()->user()->users_favs);
+      }
+      if (($key = array_search($user_id, $ids)) !== false) {
+            unset($ids[$key]);
+        } else {
+          $ids[] = $user_id;
+        }
+
+      auth()->user()->users_favs = json_encode($ids);
+      auth()->user()->save();
 
     }
 

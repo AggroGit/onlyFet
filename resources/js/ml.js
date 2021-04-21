@@ -25,6 +25,10 @@ export default new MLCreate({
       "privateMessage" : "Payment message",
       "priceMessage" : "Message price",
       "unlockMessage": "Unlock for ",
+      "sendMassive": "Send Massive Message",
+      "sending": "Sending...",
+      "success": "Success",
+      "welcomeMessage": "Welcome message",
    },
    "auth": {
      "startWiningMoney": "Start to earn money",
@@ -76,7 +80,11 @@ export default new MLCreate({
       "bank_account": "Bank account",
       "birthday": "Birthday date",
       "promotionalCode": "Promotional code",
-
+      "shop": "In-store shipping settings",
+      "province": "Region/province",
+      "city": "City",
+      "cp": "Postal code",
+      "direction_details": "Direction details",
    },
    "stripe": {
       "suscribed": "Subscribed",
@@ -105,7 +113,10 @@ export default new MLCreate({
       "sus3": "6 months subscription",
       "sus4": "12 months subscription",
       "conditionsSuscriptions": "*For each subscription the TPV and OnlyFet platforms charge a commission to continue to operate and improve the site for you and your subscribers.",
-      "conditionPrivate": "* Requires to pay for a subscription"
+      "conditionPrivate": "* Requires to pay for a subscription",
+      "balance": "Stripe balance",
+      "infoLogin": "Log in to Stripe to see your balance"
+
    },
    "post": {
       "nowCan": "You can now make purchases, payments and subscriptions ",
@@ -120,7 +131,11 @@ export default new MLCreate({
       "comment": "Leave a comment",
       "comments": "Comments",
       "remove": "Delete",
-      "noposts": "There are no more posts"
+      "noposts": "There are no more posts",
+      "makePrivate" : "Make it private",
+      "unlock": "Unlock Post",
+      "price" : "Price",
+      "successPrivate" : "Your Publication has been private successfully"
    },
    "main": {
       "search": "🔍   User search",
@@ -128,7 +143,8 @@ export default new MLCreate({
       "news": "New users",
       "susc": "My subscriptions",
       "title": "Recommended profiles",
-      "nop": "There are no more users to show"
+      "nop": "There are no more users to show",
+      "favs": "Favorites"
    },
    "menu": {
       "home": "Start",
@@ -145,7 +161,13 @@ export default new MLCreate({
       "label": "Tip amount",
       "send": "Send",
       "mensaje": "Message",
-      "cantRecive": "It seems this user cannot accept tips"
+      "cantRecive": "It seems this user cannot accept tips",
+      "title": "Tip",
+      "pending": "Pending",
+      "sended": "Sended",
+      "failed": "Failed",
+      "message": "Message",
+      "payments": "Payments"
    },
    "auction": {
      "createTitle": "Crear una subasta",
@@ -223,6 +245,10 @@ export default new MLCreate({
       "privateMessage" : "Mensaje de pago",
       "priceMessage": "Precio",
       "unlockMessage": "Desbloquear por ",
+      "sendMassive": "Enviar mensaje massivo",
+      "sending": "Enviando...",
+      "success": "Se ha enviado el mensaje",
+      "welcomeMessage": "Mensaje de bienvenida",
 
    },
    "auth": {
@@ -275,6 +301,12 @@ export default new MLCreate({
       "bank_account": "Cuenta bancaria",
       "birthday": "Fecha de nacimiento",
       "promotionalCode": "Código promocional",
+      "shop": "Ajustes de envío en tienda",
+      "province": "Provincia",
+      "city": "Ciudad",
+      "cp": "Código postal",
+      "direction_details": "Detalles de dirección",
+
    },
    "stripe": {
       "suscribed": "Suscrito",
@@ -303,7 +335,9 @@ export default new MLCreate({
       "sus3": "Suscripción por 6 meses",
       "sus4": "Suscripción por 12 meses",
       "conditionsSuscriptions": "*Por cada suscripción la plataforma TPV y la plataforma OnlyFet comisiona un porcentaje para poder continuar operando y mejorando el sitio para ti y tus suscriptores.",
-      "conditionPrivate": "* Requerirá pagar suscripción"
+      "conditionPrivate": "* Requerirá pagar suscripción",
+      "balance" : "Balance de Stripe",
+      "infoLogin": "Login en Stripe para ver balance"
    },
    "post": {
       "nowCan": "Ya puedes realizar compras, pagos y suscripciones",
@@ -318,7 +352,11 @@ export default new MLCreate({
       "comment": "Comentar",
       "comments": "Comentarios",
       "remove": "Eliminar",
-      "noposts": "Vaya, parece que no hay más publicaciones"
+      "noposts": "Vaya, parece que no hay más publicaciones",
+      "makePrivate" : "Hacer publicación de pago",
+      "price" : "Precio",
+      "unlock": "Desbloquear",
+      "successPrivate" : "Tu publicación ahora es de pago"
    },
    "main": {
       "search": "🔍   Búsqueda de usuario",
@@ -326,7 +364,8 @@ export default new MLCreate({
       "news": "Nuevos usuarios",
       "susc": "Mis suscripciones",
       "title": "Perfiles recomendados",
-      "nop": "Vaya, parece que no hay usuarios que mostrar"
+      "nop": "Vaya, parece que no hay usuarios que mostrar",
+      "favs": "Favoritos"
    },
    "menu": {
       "home": "Inicio",
@@ -343,7 +382,13 @@ export default new MLCreate({
       "label": "Cantidad de propina",
       "send": "Enviar",
       "mensaje": "Mensaje",
-      "cantRecive": "Parece que el usuario no puede aceptar propinas"
+      "cantRecive": "Parece que el usuario no puede aceptar propinas",
+      "title": "Propina",
+      "pending": "Pendiente",
+      "sended": "Enviado",
+      "failed": "Fallado",
+      "message": "Mensaje",
+      "payments": "Pagos"
    },
    "auction": {
      "createTitle": "Crear una subasta",

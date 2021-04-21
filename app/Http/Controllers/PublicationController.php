@@ -18,8 +18,9 @@ class PublicationController extends Controller
 
     public function __construct()
     {
-      $this->provider = new PublicationServiceProvider();
       Carbon::setLocale(auth()->user()->lang?? 'es');
+      $this->provider = new PublicationServiceProvider();
+
     }
 
     //
@@ -98,7 +99,7 @@ class PublicationController extends Controller
 
     public function wallOfUser($nickcname, Request $request)
     {
-      if($user = User::where('nickname',$nickcname)->first()){
+      if($user = User::where('nickname',$nickcname)->first()->append('is_fav')->toArray()){
         return $this->correct([
           "user"  => $user
           // "posts" => $user->publications
@@ -129,7 +130,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Image::where('user_id',$user->id)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
+          "images" => Image::where('user_id',$user->id)->where('post_id','!=',null)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
         ]);
       }
       return $this->incorrect();
@@ -140,7 +141,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Video::where('user_id',$user->id)->orderBy('created_at','desc')->get()
+          "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->orderBy('created_at','desc')->get()
         ]);
 
       }
@@ -151,6 +152,29 @@ class PublicationController extends Controller
     {
       $ids = auth()->user()->suscribedPlans->pluck('user_id');
       return $this->correct(Post::orderBy('created_at','DESC')->whereIn('user_id',$ids)->where('publish_at', '<=',now())->paginate(4));
+    }
+
+    public function payAndUnlock($post_id )
+    {
+      try {
+        $p = new PublicationServiceProvider($post_id);
+        return $this->correct($p->payToUnlock());
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode(),$e->getMessage());
+      }
+    }
+
+    public function makePrivate(Request $request, $post_id)
+    {
+      if ($missings = $this->hasError($request->all(),'validation.makePrivate')) {
+        return $this->incorrect(0,$missings);
+      }
+      try {
+        $p = new PublicationServiceProvider($post_id);
+        return $this->correct($p->makePostPrivate($request->price));
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode(),$e->getMessage());
+      }
     }
 
 

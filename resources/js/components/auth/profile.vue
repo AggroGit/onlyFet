@@ -16,7 +16,7 @@
           <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{auth.phone_number}}</p> -->
           <p><strong>{{$ml.get('auth').email}}: </strong> {{auth.email}}</p>
           <p><strong>{{$ml.get('auth').name}}: </strong> {{auth.name}}</p>
-
+          
         </div>
 
       </div>

@@ -14,6 +14,9 @@
   padding-bottom: 150px !important;
 
 }
+body {
+
+}
 
 img {
     pointer-events: none !important;
@@ -148,7 +151,11 @@ p::first-letter{
   margin-top: 5px;
   margin-right: 25px;
   display: flex;
+  background: #ffffff;
 
+}
+#input-small {
+  width: 72% !important;
 }
 .ContieneIconosEnviar>* {
   margin-left: 10px;
@@ -422,7 +429,6 @@ input {
 .boton {
   width: 100%;
   margin-top: 20px;
-
   border: none !important;
 }
 .btn-primary {
@@ -468,7 +474,6 @@ input {
 }
 
 .ContieneDatosperfil {
-  /* display: flex; */
   padding-left: 20px;
 }
 .ContieneDatosperfil>p {
@@ -565,6 +570,14 @@ input {
 .left {
   float: left;
 }
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
 .right {
   float: right;
 }
@@ -977,7 +990,7 @@ height: 100% !important;
 .linkeable:hover {
   cursor: pointer;
 }
-.OpcionMain:nth-child(1),.OpcionMain:nth-child(2) {
+.OpcionMain:nth-child(1),.OpcionMain:nth-child(2),.OpcionMain:nth-child(3) {
   border-bottom: solid grey 0.5px;
 }
 .ContienecONTRAfoRGET {
@@ -1015,11 +1028,14 @@ height: 100% !important;
   list-style: none !important;
   text-decoration: none !important;
 
-
 }
+/* .propinaPostCont>.iconPost {
+  margin-left: 38px;
+} */
 .MenuMob {
   margin: auto;
   transition: all 0.4s ease;
+  padding-bottom: 30vh;
 }
 .nav-item>a {
   text-decoration: none;
@@ -1157,7 +1173,7 @@ margin: 20px;
   margin: auto;
 }
 .open {
-  z-index: 10003 !important;
+  z-index: 9999999 !important;
 }
 .facebook {
   background: #2975e7 !important;
@@ -1313,7 +1329,7 @@ border-radius: 50% !important;
     width: 100% !important;
     bottom: 0;
     margin-left: 0px !important;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
     left: 0;
 }
 .botonFiltro {
@@ -1339,6 +1355,7 @@ border-radius: 50% !important;
     left: 0;
     width: 100% !important;
     display: flex;
+    padding-bottom: 100px;
 }
 .downed> .boton {
   max-width: 900px;
@@ -1494,11 +1511,81 @@ margin-top: 2px;
   background: #ffffff;
   width: 95%;
   margin: auto;
-  margin-top: 100px !important;
+  margin-top: 10% !important;
   padding: 50px;
   border-radius: 30px;
+  max-height: 74vh;
+  overflow-y: scroll;
 
 }
 .bfBla >button {
   background: none !important;
+}
+
+.propinaInPost > .euro {
+  margin-left: 14px !important;
+}
+.contieneDesblokPost {
+  display: flex;
+  width: auto;
+  margin: auto;
+}
+.contieneDesblokPost p {
+  margin: auto;
+}
+.botonParriba {
+  margin-top: -20px;
+}
+.parriba {
+  margin-top: -20px !important;
+}
+.notiBola {
+  position: absolute;
+    background: red;
+    /* padding: 10px; */
+    height: 17px;
+    width: 17px;
+    text-align: center;
+    font-size: 10px;
+    color: #ffffff;
+    border-radius: 50%;
+}
+.abajoPropina {
+  margin-top: 11px !important;
+}
+.contieneBotonesPropina {
+  display: flex;
+  margin-bottom: 25px !important;
+}
+.contieneBotonesPropina>button {
+  margin: auto;
+  color: #4A4A4A;
+  border-radius: 16px;
+  width: 20%;
+}
+.seleccionado {
+  background: var(--rojo2) !important;
+  color: #ffffff !important;
+}
+.propina {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px 0 #bdbdbd4a, 0 6px 20px 0 rgb(214 214 214 / 19%);
+}
+.propinPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.datePrice {
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+.bigAvat {
+  transform: scale(1.2);
+}
+.botonStripe {
+  background: var(--rojo1) !important;
 }

@@ -27,7 +27,6 @@ export default {
       .listen('NotificationEvent', (e) => {
           console.log(e)
           this.notifications.push(e)
-
       })
       .here((users) => {
 

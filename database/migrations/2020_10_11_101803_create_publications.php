@@ -19,12 +19,16 @@ class CreatePublications extends Migration
             $table->text('content')->nullable();
             $table->string('type')->default('default');
             $table->datetime('publish_at')->nullable();
+            $table->boolean('private')
+                  ->default(false);
+            $table->integer('price')->nullable();
             //
             $table->integer('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->json('users_unlocked')->nullable();
         });
 
         // imagenes de publicaciones
@@ -119,6 +123,22 @@ class CreatePublications extends Migration
                         ->onUpdate('cascade');
               });
 
+              // Schema::create('publications_unlocks', function (Blueprint $table) {
+              //     $table->id();
+              //     $table->integer('user_id')
+              //           ->references('id')
+              //           ->on('users')
+              //           ->onDelete('cascade')
+              //           ->onUpdate('cascade');
+              //     $table->timestamp();
+              //     //
+              //     $table->integer('publication_id')
+              //           ->references('id')
+              //           ->on('publications')
+              //           ->onDelete('cascade')
+              //           ->onUpdate('cascade');
+              // });
+
 
 
 
@@ -141,6 +161,8 @@ class CreatePublications extends Migration
         Schema::dropIfExists('publications_videos');
         Schema::dropIfExists('publications_hastags');
         Schema::dropIfExists('hastags');
+        // Schema::dropIfExists('publications_unlocks');
+
 
     }
 }

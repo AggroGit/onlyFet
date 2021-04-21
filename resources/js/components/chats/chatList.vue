@@ -6,14 +6,15 @@
         <div class="contenedor contieneBuscadorLogo">
           <b-form-input autocomplete="off" v-model="search" @keyup="filteredList()" id="input-small" class="col-xs-8" :placeholder="$ml.get('chat').lookUser"></b-form-input>
           <b-icon  font-scale="2" @click="Remove()" icon="trash" v-bind:class="{removing:removing}" aria-hidden="true" class="icon"></b-icon>
-          <b-dropdown id="dropdown-right" right text="Right align" variant="secondary" class="m-2 bfBla">
+          <b-dropdown  v-if="this.$store.state.auth.influencer || this.$store.state.auth.wantToBeInfluencer" id="dropdown-right" right text="Right align" variant="secondary" class="m-2 bfBla">
             <template v-slot:button-content>
               <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
             </template>
-            <b-dropdown-item @click="unblock()">hey</b-dropdown-item>
+            <b-dropdown-item to="/chats/massive">{{this.$ml.get('chat').sendMassive}}</b-dropdown-item>
+            <b-dropdown-item to="/profile/edit">{{this.$ml.get('chat').welcomeMessage}}</b-dropdown-item>
+
           </b-dropdown>
         </div>
-
     </div>
 
     <div v-if="this.loading" class="container text-center contieneCargador">

@@ -146,7 +146,7 @@ class Chat extends Model
       foreach ($this->users as $user) {
         $this->quitUser($user);
       }
-      $this->messages()->delete();
+      // $this->messages()->delete();
       return parent::delete();
     }
 
