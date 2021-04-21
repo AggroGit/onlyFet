@@ -9,7 +9,6 @@
             <tr>
                 <td align="center" style="color: #ffffff; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 26px;">
 
-
                     <div style="line-height: 26px;">
                         <a href="{{$option['url']}}" style="color: #ffffff; text-decoration: none;">{{$option['text']}}</a>
                     </div>

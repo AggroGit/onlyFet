@@ -27,18 +27,25 @@
                     <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
                 </tr>
 
-                @if(isset($option))
-                  @include('mails.layouts.button')
-                @endif
-
-
-
             </table>
 
         </td>
     </tr>
 
 </table>
+
+@if(isset($option))
+  <div style="width:100%; text-align:center; margin-top:30px;" class="">
+    <a href="{{$option['url']}}" style="
+      color: #ff0000;
+      text-decoration: none;
+      font-weight: bold;">
+      {{$option['text']}} : {{$option['url']}}</a>
+  </div>
+@endif
+
+
+
 
 
 

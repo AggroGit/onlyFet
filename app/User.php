@@ -238,7 +238,7 @@ class User extends Authenticatable
       $data = [
         "title"         => "Cambiar contraseña de ",
         "logoInTitle"   => true,
-        "text"          => "Buenas $this->name, Si desea cambiar su contraseña haz click al enlace de abajo, de lo contrario ignorae éste mail",
+        "text"          => "Buenas $this->name, Si desea cambiar su contraseña haz click al enlace de abajo, de lo contrario ignora este mail",
         "option"        => [
           'text'  =>  "Cambiar Contraseña",
           'url'   =>  url('/password?token=').$token
