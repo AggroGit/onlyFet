@@ -214,11 +214,14 @@ export default {
         else if(response.data.rc == 0)
           self.errorMessage = "Error"
         else
-          self.errorMessage = response.data.data
+          self.errorMessage = "Error"
 
 
       })
       // finally
+      .finally(function (response) {
+        self.loading = false
+      })
 
     },
 
