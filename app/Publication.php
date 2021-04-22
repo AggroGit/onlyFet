@@ -69,7 +69,7 @@ class Publication extends Model
         return false;
 
       }
-      return true;
+      return $this->user->CanSee;
     }
 
     public function like()
