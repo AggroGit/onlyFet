@@ -599,10 +599,11 @@ export default {
       .catch(function(){
         alert('Error');
         self.loading = false;
+        self.error = true
       })
       // finally
       .finally(function() {
-          self.loading == false;
+          self.loading = false;
       })
 
     },
