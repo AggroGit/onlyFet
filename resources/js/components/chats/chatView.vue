@@ -73,6 +73,33 @@
       </div>
     </div>
 
+
+    <!-- REPORT -->
+    <div v-if="this.reporting" class="contienePantallaCompletaDark aparecer">
+      <b-icon  font-scale="3" @click="report()" style="color:#ffff;" icon="x" aria-hidden="true" class="icon Cerrar"></b-icon>
+      <div class="ContienePropinaSend">
+        <div class="row">
+          <div class="col-md-12">
+            <form class=""  @submit.stop.prevent="sendReport()" >
+              <h5>{{this.$ml.get('chat').report}}</h5>
+              <div class="form-group row parriba">
+                <div class="col-md-12 contieneInput">
+                    <label for="post" class="entrada detextarea" >{{$ml.get('propina').mensaje}}</label>
+                    <textarea ref="content" v-model="form.reportText" rows="5"  name="post" class="form-control" autocomplete="off" required autofocus="true"></textarea>
+                </div>
+                <div class="col-md-12 offset-md-12">
+                    <button type="submit" class="btn btn-primary boton">
+                        {{$ml.get('propina').send}}
+                        <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -93,6 +120,11 @@ export default {
       channel:false,
       otherUser:false,
       chatData: null,
+      reporting:false,
+      form: {
+        reportText: "",
+        user_id: this.$store.state.auth.id,
+      }
 
     }
 
@@ -141,6 +173,25 @@ export default {
       }
 
     },
+    sendReport() {
+      var self = this;
+      axios.post('/api/chat/'+this.chat+'/report', this.form, {
+        headers:{
+           Authorization: `Bearer `+ this.$store.state.token
+        }
+      })
+      .then(function (response) {
+        if(response.data.rc == 1) {
+          alert(self.$ml.get('chat').reported)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function (error) {
+        self.report()
+      })
+    },
     ScrollBottom(){
       var messagewindow = this.$refs.messageDisplay;
       messagewindow.scrollTop  = messagewindow.scrollHeight+300;
@@ -177,6 +228,15 @@ export default {
              self.ScrollBottom();
         }, 100);
       });
+    },
+    report() {
+      this.reporting = !this.reporting;
+      this.form = {
+        reportText: "",
+        user_id: this.$store.state.auth.id,
+        to_user_id: this.otherUser.id
+      }
+
     },
     // if message its from me or not
     ifisMe(message) {

@@ -29,6 +29,7 @@ export default new MLCreate({
       "sending": "Sending...",
       "success": "Success",
       "welcomeMessage": "Welcome message",
+      "reported": "Report sended successfully"
    },
    "auth": {
      "startWiningMoney": "Start to earn money",
@@ -249,6 +250,7 @@ export default new MLCreate({
       "sending": "Enviando...",
       "success": "Se ha enviado el mensaje",
       "welcomeMessage": "Mensaje de bienvenida",
+      "reported": "Se ha enviado tu reporte"
 
    },
    "auth": {

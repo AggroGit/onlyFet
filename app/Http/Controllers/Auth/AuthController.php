@@ -103,6 +103,7 @@ class AuthController extends Controller
 
     public function loginRRSS($social, Request $request)
     {
+      // dd($request->all());
       // if errors
       if ($missings = $this->hasError($request->all(),'validation.login_rrss')) {
         return $this->incorrect(0,$missings);
@@ -122,6 +123,7 @@ class AuthController extends Controller
 
     public function registerRRSS($social, Request $request)
     {
+      // dd($request->all());
       // if errors
       if ($missings = $this->hasError($request->all(),'validation.register_rrss')) {
         return $this->incorrect(0,$missings);

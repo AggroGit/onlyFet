@@ -82,6 +82,10 @@
                                 Faqs
                             </a>
 
+                            <a class="nav-link" href="{{url('admin/report')}}">
+                                Reportes de chats
+                            </a>
+
 
                             <div class="sb-sidenav-menu-heading">Tienda</div>
 

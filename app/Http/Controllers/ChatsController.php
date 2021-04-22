@@ -6,8 +6,12 @@ use App\Services\Chats\ChatsServiceProvider;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Message;
+use App\Report as Reporte;
+use App\Report;
 use App\Image;
 use App\Chat;
+
+
 
 class ChatsController extends Controller
 {
@@ -119,6 +123,17 @@ class ChatsController extends Controller
       }
       return $this->correct();
 
+    }
+
+    public function report(int $chat_id,Request $request)
+    {
+      $report = new Reporte([
+        "reportText" => $request->reportText,
+        "user_id" => auth()->user()->id,
+        "to_user_id" => $request->to_user_id
+      ]);
+      $report->save();
+      return $this->correct();
     }
 
 

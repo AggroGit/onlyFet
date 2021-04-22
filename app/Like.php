@@ -23,8 +23,6 @@ class Like extends Model
       return $this->belongsTo('App\Publication');
     }
 
-
-    //
     public static function boot()
     {
         parent::boot();

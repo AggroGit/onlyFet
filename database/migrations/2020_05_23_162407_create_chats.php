@@ -115,6 +115,20 @@ class CreateChats extends Migration
                 ->onUpdate('cascade');
         });
 
+        Schema::create('reports', function (Blueprint $table) {
+          $table->id();
+          $table->timestamps(0);
+          $table->text('reportText');
+          $table->integer('user_id')
+                ->nullable()
+                ->references('id')
+                ->on('users');
+          $table->integer('to_user_id')
+                ->nullable()
+                ->references('id')
+                ->on('users');
+        });
+
     }
 
     /**
@@ -130,5 +144,7 @@ class CreateChats extends Migration
         Schema::dropIfExists('messages');
         Schema::dropIfExists('messages_images');
         Schema::dropIfExists('messages_videos');
+        Schema::dropIfExists('reports');
+
     }
 }
