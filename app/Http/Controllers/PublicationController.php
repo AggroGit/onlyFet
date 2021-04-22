@@ -140,9 +140,11 @@ class PublicationController extends Controller
     public function videosUser($name)
     {
       if($user = User::where('nickname',$name)->first()){
+        $publis_private = Post::where('private',true)->pluck('id');
+
         return $this->correct([
           "user" => $user,
-          "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->where('private',false)->orderBy('created_at','desc')->get()
+          "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->whereNotIn('post_id',$publis_private)->orderBy('created_at','desc')->get()
         ]);
 
       }
