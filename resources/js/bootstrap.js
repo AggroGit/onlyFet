@@ -31,6 +31,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
  import Echo from 'laravel-echo';
-
+window.stripePublic = "pk_test_51HhtxnEZSaM3aAi1d0i564f4jbZeEBHtptsiC5VVt127QxDMnGEQedjNeP10ou2tvxs4GzXVc73IyEIFdgEfujw400oAwekUSt"
  window.Pusher = require('pusher-js');
  window.public_stripe = process.env.STRIPE_KEY

@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    const stripe = Stripe('pk_test_uJokSRQ3iQnavXztyfmoigfy');
+    const stripe = Stripe(window.stripePublic);
 
     const elements = stripe.elements();
     const cardElement = elements.create('card');
