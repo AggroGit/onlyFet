@@ -28,7 +28,7 @@ class CreatePublications extends Migration
                   ->on('users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-            $table->json('users_unlocked')->nullable();
+            $table->text('users_unlocked')->nullable();
         });
 
         // imagenes de publicaciones

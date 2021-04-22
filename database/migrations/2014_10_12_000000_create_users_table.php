@@ -67,7 +67,7 @@ class CreateUsersTable extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade')
                   ->nullable();
-            $table->json('users_favs')
+            $table->text('users_favs')
                   ->nullable();
 
 
