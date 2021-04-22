@@ -146,7 +146,6 @@ class PublicationController extends Controller
           "user" => $user,
           "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->whereNotIn('post_id',$publis_private)->orderBy('created_at','desc')->get()
         ]);
-
       }
       return $this->incorrect();
     }
