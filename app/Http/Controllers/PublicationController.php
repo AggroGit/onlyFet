@@ -130,7 +130,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Image::where('user_id',$user->id)->where('post_id','!=',null)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
+          "images" => Image::where('user_id',$user->id)->where('post_id','!=',null)->where('private',false)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
         ]);
       }
       return $this->incorrect();
@@ -141,7 +141,7 @@ class PublicationController extends Controller
       if($user = User::where('nickname',$name)->first()){
         return $this->correct([
           "user" => $user,
-          "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->orderBy('created_at','desc')->get()
+          "images" => Video::where('user_id',$user->id)->where('post_id','!=',null)->where('private',false)->orderBy('created_at','desc')->get()
         ]);
 
       }
