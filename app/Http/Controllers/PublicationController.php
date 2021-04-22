@@ -131,7 +131,7 @@ class PublicationController extends Controller
         $publis_private = Post::where('publish_at','>=',now())->where('private',true)->pluck('id');
         return $this->correct([
           "user" => $user,
-          "images" => Image::where('user_id',$user->id)->where('post_id','!=',null)->whereNotIn('post_id',$publis_private)->where('private',false)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
+          "images" => Image::where('user_id',$user->id)->where('post_id','!=',null)->whereNotIn('post_id',$publis_private)->orderBy('created_at','desc')->whereNotIn('post_id',$publis)->paginate(20)
         ]);
       }
       return $this->incorrect();
