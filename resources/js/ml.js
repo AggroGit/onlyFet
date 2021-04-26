@@ -221,6 +221,7 @@ export default new MLCreate({
      "correoAyudaShop": "shop@onlyfet.com",
      "history": "Historial",
      "shop": "Tienda",
+     "sureBuy": "¿Estas seguro que deseas realizar la compra?",
      "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
    },
    "verification": {
@@ -447,7 +448,9 @@ export default new MLCreate({
      "correoAyudaShop": "shop@onlyfet.com",
      "history": "Historial",
      "shop": "Tienda",
-     "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
+     "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?",
+     "sureBuy": "¿Estas seguro que deseas realizar la compra?",
+
 
    },
    "verification": {

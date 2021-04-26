@@ -144,6 +144,9 @@ export default {
       if(this.buying) {
         return
       }
+      if(!confirm(this.$ml.get('shop').sureBuy)) {
+        return
+      }
       this.buying = true
       var self = this
       axios.post('/api/buy', null,
