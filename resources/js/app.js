@@ -252,7 +252,7 @@ const auth = function(to, from, next) {
  {path: '/profile/edit',  component: Vue.component('editProfile'),beforeEnter: multiguard([auth])},
  {path: '/profile/suscriptions',  component: Vue.component('suscriptions'),beforeEnter: multiguard([auth])},
  {path: '/:post_id/image/:name',  component: Vue.component('imageView'),beforeEnter: multiguard([auth])},
- {path: '/user/propinas',  component: Vue.component('propinasList'),beforeEnter: multiguard([auth])},
+ {path: '/profile/propinas',  component: Vue.component('propinasList'),beforeEnter: multiguard([auth])},
 
  {path: '/user/:nickname/',      component: Vue.component('user'),
  children: [
