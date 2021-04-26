@@ -80,7 +80,7 @@ export default {
         return tr.pending
       }
     },
-    propina() {
+    texto() {
       return this.$ml.get('propina')[this.propina.type]
     }
   }
