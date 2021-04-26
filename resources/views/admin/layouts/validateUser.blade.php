@@ -90,6 +90,7 @@
 
               <div id="rechazar" class="collapse mt-2">
                 <form class="" action="{{url('/admin/user/validation/'.$model->id.'/refuse')}}" method="post">
+                  @csrf 
                   <div class="form-group">
                     <label for="comment">Motivo de rechazo: :</label>
                     <span>Se le enviará un correo al usuario</span>
