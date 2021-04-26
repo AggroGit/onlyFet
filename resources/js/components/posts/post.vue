@@ -74,7 +74,7 @@
         </div>
 
 
-        <div v-if="this.data.private && this.data.canSee == false" class="contieneOpcion contieneDesblokPost">
+        <div v-if="this.data.private && this.data.user.canSee == true" class="contieneOpcion contieneDesblokPost">
           <b-icon  icon="lock-fill" font-scale="2.5" aria-hidden="true"></b-icon>
           <p>{{this.data.price}} €</p>
           <button @click="unlock()" class="btn btn-primary ml-4">
