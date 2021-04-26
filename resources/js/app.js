@@ -415,7 +415,7 @@ const store = new Vuex.Store({
     },
     date: (time) => {
       var date = new Date(time);
-      return date.getFullYear()+"/"+date.getMonth() + "/"+date.getDay()
+      return date.getFullYear()+"/"+date.getMonth() + "/"+date.getDate()
     }
 
 
