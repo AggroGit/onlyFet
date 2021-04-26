@@ -11,7 +11,9 @@ use App\User;
 
 class Plan extends Model
 {
-    protected $appends = ["fecha","userCount",'months'];
+    protected $appends = ["fecha",'months'];
+    // protected $appends = ["userCount"];
+
     // cuando se actualiza un precio entonces deberíamos cambiar de plan todos los uaurios.
     public function getFechaAttribute()
     {
