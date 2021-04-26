@@ -222,7 +222,7 @@ export default {
       })
       // finally
       .finally(function (response) {
-        self.loading = false
+        // self.loading = false
       })
 
     },
@@ -236,6 +236,7 @@ export default {
         window.user = response.data.data;
         //
         this.uploadFiles();
+        this.loading = false
         //
       } else {
         if(response.data.rc == 2) {
