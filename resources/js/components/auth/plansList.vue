@@ -262,7 +262,7 @@ giveMeRoute(noti) {
     return "/post/"+noti.data
   }
   if(noti.type == "propina") {
-    return "/user/propinas"
+    return "/profile/propinas"
   }
   if(noti.type == "suscription") {
     return "/user/"+noti.data
