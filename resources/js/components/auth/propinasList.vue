@@ -81,7 +81,7 @@ export default {
       }
     },
     texto() {
-      return this.$ml.get('propina')[this.propina.type]
+      return this.$ml.get('propina')[propina.type]
     }
   }
 
