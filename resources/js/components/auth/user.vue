@@ -32,7 +32,7 @@
               <p v-html="this.user.description">
               </p>
 
-            <router-link to='/request/influecer' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">{{$ml.get('auth').startWiningMoney}}</router-link>
+            <router-link to='/request/influencer' v-if="!this.user.influencer && this.user.id == this.auth.id && this.auth.stripe_reciver_id == null" class="rojo" href="">{{$ml.get('auth').startWiningMoney}}</router-link>
 
           </div>
         </div>

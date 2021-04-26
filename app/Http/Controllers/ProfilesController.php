@@ -11,14 +11,17 @@ class ProfilesController extends Controller
     public function getAllUsers(Request $request)
     {
       //
-      if ($missings = $this->hasError($request->all(),'validation.chooseOrder')) {
-        return $this->incorrect(0,$missings);
-      }
+      // if ($missings = $this->hasError($request->all(),'validation.chooseOrder')) {
+      //   return $this->incorrect(0,$missings);
+      // }
       // usuarios
+      return $this->correct(User::find(1));
+
       $users = User::where([
         ['nickname','!=',auth()->user()->nickname?? null],
         ['influencer',true]
       ]);
+
       // mis suscripciones
       if($request->orderBy == "mySuscriptions") {
         if(!auth()->user()) {
