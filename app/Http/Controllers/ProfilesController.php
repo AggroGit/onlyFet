@@ -14,7 +14,6 @@ class ProfilesController extends Controller
       if ($missings = $this->hasError($request->all(),'validation.chooseOrder')) {
         return $this->incorrect(0,$missings);
       }
-      return $this->correct();
       // usuarios
       $users = User::where([
         ['nickname','!=',auth()->user()->nickname?? null],
