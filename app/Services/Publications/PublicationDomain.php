@@ -51,7 +51,7 @@ class PublicationDomain
   {
     return !$this->publication->canSee;
   }
-
+  
   public function unlockForUser($user = null)
   {
     $user = $user?? auth()->user();
