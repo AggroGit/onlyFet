@@ -65,11 +65,12 @@ export default {
   },
   methods: {
     checkEmpty() {
-      if(this.value.length !== 0 || this.value >= 0) {
-        this.empty = true
-      } else {
-        this.empty = false
-      }
+      // if(this.value.length !== 0 || this.value >= 0) {
+      //   this.empty = true
+      // } else {
+      //   this.empty = false
+      // }
+      return false
     }
   }
 };
