@@ -184,7 +184,11 @@ export default {
     },
 
     register() {
+      if(this.loading ){
+        return
+      }
       this.loading=true
+
 
       if(this.form.birthday == null || this.form.birthday == "") {
         alert(this.$ml.get('auth').birthday)
