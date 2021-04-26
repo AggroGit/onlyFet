@@ -140,7 +140,7 @@ class ShoppingDomain
   public function notifyCostumer(Purchase $purchase)
   {
     $data = [
-      "title"         => "Tienes un pedido en OnlyFet",
+      "title"         => "Tienes un pedido en ",
       "logoInTitle"   => true,
       "text"          => "Para ver el estado de tu pedido solo tienes que acceder a través de la web",
       "option"        => [

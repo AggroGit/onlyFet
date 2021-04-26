@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
+use App\Mail\BasicMail;
+use App\Jobs\sendMail;
 use App\Publication;
 use App\Purchase;
 use App\Business;
@@ -143,6 +145,21 @@ class AdminController extends Controller
         return back();
       }
       return redirect("admin");
+    }
+
+    public function refuseUser($user_id,Request $request)
+    {
+      $user = User::findOrFail($user_id, );
+      $user->wantToBeInfluencer = false;
+      $user->save();
+      $data = [
+        "title"         => "OnlyFet",
+        "logoInTitle"   => true,
+        "text"          => "Tu usuario no ha sido validado como influencer. Motivo: $request->reason",
+
+      ];
+      sendMail::dispatch(new BasicMail($data),$user->email);
+      return redirect('/admin');
     }
 
     public function dashboard()

@@ -89,11 +89,11 @@
               </a>
 
               <div id="rechazar" class="collapse mt-2">
-                <form class="" action="{{url('/')}}" method="post">
+                <form class="" action="{{url('/admin/user/validation/'.$model->id.'/refuse')}}" method="post">
                   <div class="form-group">
                     <label for="comment">Motivo de rechazo: :</label>
                     <span>Se le enviará un correo al usuario</span>
-                    <textarea required class="form-control" rows="5" id="comment"></textarea>
+                    <textarea name="reason" required class="form-control" rows="5" id="comment"></textarea>
                     <button type="submit" class="btn btn-lg btn-warning mt-3" name="button">Enviar y rechazar</button>
                   </div>
                 </form>

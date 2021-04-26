@@ -28,6 +28,8 @@
     Route::get('/admin/user/validate/{user_id}/',    'AdminController@validateView');
     // chats
     Route::get('/admin/chat/edit/{chat_id}/',    'AdminController@chatView');
+    // validation
+    Route::post('/admin/user/validation/{user_id}/refuse',    'AdminController@refuseUser');
 
 
 

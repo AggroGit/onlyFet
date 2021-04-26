@@ -23,6 +23,7 @@ class InfluencerServiceProvider extends InfluencerDomain
     $this->emailPendingVerification();
     $this->emailToAdminUsers();
     $this->updateUserToValidate();
+    $this->applyDiscount();
     $this->user->save();
 
   }
