@@ -2,6 +2,7 @@
 
     <div class="container down-2 aparecer">
       <!-- CACEBZERA FOTO  -->
+      asd
       <div class="row justify-content-center ">
         <div class="col-xs-6">
           <div class="ProfileImg down-2">
@@ -16,7 +17,7 @@
           <!-- <p><strong>{{$ml.get('auth').phone}}: </strong>{{auth.phone_number}}</p> -->
           <p><strong>{{$ml.get('auth').email}}: </strong> {{auth.email}}</p>
           <p><strong>{{$ml.get('auth').name}}: </strong> {{auth.name}}</p>
-          
+
         </div>
 
       </div>
