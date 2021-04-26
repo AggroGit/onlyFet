@@ -132,6 +132,7 @@ export default {
          self.fileRecordsForUpload = [];
          // self.$router.push('/profile')
           window.location.reload()
+          this.loading = false
        })
        //
        .catch(err => {
@@ -236,7 +237,7 @@ export default {
         window.user = response.data.data;
         //
         this.uploadFiles();
-        this.loading = false
+
         //
       } else {
         if(response.data.rc == 2) {
