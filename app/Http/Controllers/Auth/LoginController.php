@@ -86,14 +86,15 @@ class LoginController extends Controller
     // debemos ver si existe usuario o no,
     // si existe ->  login
     // si no existe-> creamos user y login
-    if(!$user = User::where('social_token',$social_user->id)
+    if(!$user = User::where('social_token',$social_user->id?? 0)
           // ->orWhere('email',$social_user->getEmail())
     ->first()) {
       // lo creamos
       // creamos el usuario
+
       $user = new User([
             'name'                => $social_user->getName(),
-            'email'               => $social_user->getEmail(),
+            'email'               => null,
             'password'            => Hash::make(Str::random(24)),
             'provider'            => $provider,
             'social_token'        => $social_user->id?? null
