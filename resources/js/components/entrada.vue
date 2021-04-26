@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12 contieneInput">
       <input  @change="checkEmpty()" v-model="inputVal" :id="name" :inputmode="inputmode" :min="min" :max="max" :step="step" :name="name" :type="type"  class="form-control" :required="required" :autocomplete="autocomplete" :autofocus="autofocus">
-      <label :for="this.name" class=" entrada" v-bind:class="{ noUp: empty }">{{this.label}}</label>
+      <label :for="this.name" class=" entrada noUp">{{this.label}}</label>
   </div>
 </template>
 
