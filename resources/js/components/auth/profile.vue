@@ -2,7 +2,6 @@
 
     <div class="container down-2 aparecer">
       <!-- CACEBZERA FOTO  -->
-      asd
       <div class="row justify-content-center ">
         <div class="col-xs-6">
           <div class="ProfileImg down-2">
@@ -40,7 +39,7 @@
             </router-link>
           </div>
       </div>
-
+      dsfdfsf
       <!-- Creditcards -->
       <div class="row justify-content-center">
           <div class="col-md-6">
