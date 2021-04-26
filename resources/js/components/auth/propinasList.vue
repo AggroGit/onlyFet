@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col-7">
                   <h5>{{$ml.get('propina').title}}</h5>
-                  <p>{{texto()}}</p>
+                  <p>{{texto(propina)}}</p>
                   <p v-if="propina.message !== null">{{$ml.get('propina').message}} : {{propina.message}}</p>
                 </div>
                 <div class="col-5 text-right bigAvat">
@@ -80,7 +80,7 @@ export default {
         return tr.pending
       }
     },
-    texto() {
+    texto(propina) {
       return this.$ml.get('propina')[propina.type]
     }
   }
