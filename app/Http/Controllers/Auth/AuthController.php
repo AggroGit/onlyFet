@@ -68,6 +68,8 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+      dd($request->all());
+
       // si hay un error saltamos el response con los mensajes
       if ($missings = $this->hasError($request->all(),'validation.register')) {
         if ($u = User::where('email',$request->email)->first()) {
@@ -103,7 +105,7 @@ class AuthController extends Controller
 
     public function loginRRSS($social, Request $request)
     {
-      // dd($request->all());
+      dd($request->all());
       // if errors
       if ($missings = $this->hasError($request->all(),'validation.login_rrss')) {
         return $this->incorrect(0,$missings);
@@ -123,7 +125,7 @@ class AuthController extends Controller
 
     public function registerRRSS($social, Request $request)
     {
-      // dd($request->all());
+      dd($request->all());
       // if errors
       if ($missings = $this->hasError($request->all(),'validation.register_rrss')) {
         return $this->incorrect(0,$missings);

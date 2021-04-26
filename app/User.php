@@ -20,7 +20,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Sockeable, Notify, Billable, PayStripe, shopping;
 
-    protected $with=['image','currentAuctions','plans'];
+    protected $with=['image','currentAuctions'];
     //
     protected $appends =['canSee','numProducts'];
 

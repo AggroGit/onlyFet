@@ -66,7 +66,7 @@ class LoginController extends Controller
 
   public function handleProviderCallback($provider, Request $request)
   {
-
+    // dd($request->all());
     // Obtenemos los datos del usuario
     if($provider == "twitter") {
       try {
@@ -76,25 +76,28 @@ class LoginController extends Controller
         return redirect('login/twitter');
       }
 
-      // dd($social_user);
 
       }
     else {
       $social_user = Socialite::driver($provider)->stateless()->user();
     }
+    // dd($social_user);
     // dd($social_user); // Sirve para visualizar que llega el callback antes de seguir con el codigo
     // debemos ver si existe usuario o no,
     // si existe ->  login
     // si no existe-> creamos user y login
-    if(!$user = User::where('email',$social_user->email)->orWhere('id',$social_user->id)->first() ) {
+    if(!$user = User::where([
+      ['provider',$provider],
+      ['social_token',$social_user->id]
+      ])->first() ) {
       // lo creamos
       // creamos el usuario
-      $user = User::create([
-            'name'      => $social_user->getName(),
-            'email'     => $social_user->getEmail(),
-            'password'  => Hash::make(Str::random(24)),
-            'provider'  => $provider,
-            'id'        => $social_user->id?? null
+      $user = new User([
+            'name'                => $social_user->getName(),
+            'email'               => $social_user->getEmail(),
+            'password'            => Hash::make(Str::random(24)),
+            'provider'            => $provider,
+            'social_token'        => $social_user->id?? null
           ]);
       // profile Image
       if($social_user->avatar_original !== null) {
@@ -110,7 +113,6 @@ class LoginController extends Controller
       if($request->influencer == true) {
         $user->influencerEmail();
       }
-
     }
     return $this->loginWithToken($user);
 
