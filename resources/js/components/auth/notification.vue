@@ -40,7 +40,7 @@ export default {
         return "/post/"+this.data.data
       }
       if(this.data.type == "propina") {
-        return "/profile/propina"
+        return "/profile/propinas"
       }
       if(this.data.type == "suscription") {
         return "/user/"+this.data.data
