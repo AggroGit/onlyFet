@@ -51,7 +51,7 @@
                 <entrada v-model="form.email" :label="$ml.get('auth').email" :name="'email'" :autocomplete="'email'" :type="'email'" :autofocus="true" :required="true"></entrada>
             </div>
             <div class="form-group row">
-              <entrada v-model="form.promotionalCode" :label="$ml.get('auth').promotionalCode" :name="'promotionalCode'" :type="'text'" autocomplete="none"></entrada>
+              <entrada v-model="form.discount" :label="$ml.get('auth').promotionalCode" :name="'discount'" :type="'text'" autocomplete="none"></entrada>
             </div>
             <div class="form-group row">
               <entrada v-model="form.bank_account" :label="$ml.get('auth').bank_account" :name="'bank_account'" :type="'text'" autocomplete="none" :required="true"></entrada>
@@ -97,7 +97,7 @@ export default {
       form: {
         files:[],
         email: null,
-        promotionalCode: null,
+        discount: null,
         birthday: null,
         bank_account: null,
       }

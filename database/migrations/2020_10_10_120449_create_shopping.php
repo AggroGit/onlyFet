@@ -201,7 +201,7 @@ class CreateShopping extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-
+            $table->date('available_until');
             $table->integer('percentage_dicount');
             $table->timestamps();
         });

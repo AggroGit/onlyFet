@@ -20,6 +20,7 @@ return [
 
     'registerInfluencer' => [
           'birthday'  => 'required|date',
+          'discount'  => 'string'
     ],
 
     'register_rrss' => [

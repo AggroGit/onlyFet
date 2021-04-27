@@ -7,6 +7,7 @@ use App\Services\Influencer\InfluencerDomain;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Discount;
 use App\User;
 
 
@@ -23,8 +24,8 @@ class InfluencerServiceProvider extends InfluencerDomain
     $this->emailPendingVerification();
     $this->emailToAdminUsers();
     $this->updateUserToValidate();
-    // if($request->has())
-    // $this->applyDiscount();
+    if($request->has('discount'))
+      $this->applyDiscount($request->discount);
     $this->user->save();
 
   }
@@ -88,6 +89,13 @@ class InfluencerServiceProvider extends InfluencerDomain
     $this->user->influencer = true;
     $this->user->save();
     // notify via email
+  }
+
+  public function applyDiscount($discount_name)
+  {
+    if($discount = Discount::where('title',$discount_name)->where('available_until','>=',now())->first()) {
+      $this->user->percentage_for_user = $discount->percentage_dicount;
+    }
   }
 
 
