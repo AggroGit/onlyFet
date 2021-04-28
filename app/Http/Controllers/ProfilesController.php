@@ -40,8 +40,11 @@ class ProfilesController extends Controller
         $users = $users->orderBy('created_at','desc');
       }
       // favoritos
-      if($request->orderBy == "favs" and auth()->user()->users_favs !== null) {
-        $ids = json_decode(auth()->user()->users_favs);
+      if($request->orderBy == "favs") {
+        if (auth()->user()->users_favs !== null)
+          $ids = json_decode(auth()->user()->users_favs);
+        else
+          $ids = [];
         $users = $users->whereIn('id', $ids);
       }
 
