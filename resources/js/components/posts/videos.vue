@@ -164,8 +164,8 @@ export default {
     giveMeOptions(media) {
       return {
           height: '360',
-          autoplay: true,
-          muted: true,
+          autoplay: false,
+          muted: false,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{

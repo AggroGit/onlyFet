@@ -63,7 +63,6 @@
          :options="giveMeOptions(media)"
          :playsinline="false"
          @play="onPlayerPlay($event)"
-
          @pause="onPlayerPause($event)"
          @ended="onPlayerEnded($event)"
          @loadeddata="onPlayerLoadeddata($event)"
@@ -156,8 +155,8 @@ console.log(this.post)
         return {
 
             height: '360',
-            autoplay: true,
-            muted: true,
+            autoplay: false,
+            muted: false,
             language: 'en',
             playbackRates: [0.7, 1.0, 1.5, 2.0],
             sources: [{
