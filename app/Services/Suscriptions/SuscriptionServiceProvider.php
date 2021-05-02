@@ -97,7 +97,7 @@ class SuscriptionServiceProvider extends SuscriptionDomain
       // plus
       $this->plusSuscriptor($plan);
       // add a propina as a suscription
-      // PropinaServiceProvider::propinaAsSuscription($user,$plan->user,$plan->price);
+      PropinaServiceProvider::propinaAsSuscription($user,$plan->user,$plan->price);
       //
       return true;
 
