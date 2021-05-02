@@ -28,7 +28,7 @@
               <div class="row text-center mt-3">
                 <span class="col-4 propinPrice">{{propina.price_sended}} €</span>
                 <span class="col-4 datePrice" >{{$store.state.date(propina.created_at)}}   {{$store.state.time(propina.created_at)}}</span>
-                <p class="col-4">{{status(propina)}}</p>
+                <p v-if="propina.type !== 'suscription'" class="col-4">{{status(propina)}}</p>
               </div>
 
             </div>
