@@ -171,7 +171,8 @@ export default new MLCreate({
       "payments": "Payments",
       'Publication': "From publication",
       'Publication_private': "From private publication",
-      'Chat': "From a chat"
+      'Chat': "From a chat",
+      'suscription': "Suscription"
    },
    "auction": {
      "createTitle": "Crear una subasta",
@@ -397,7 +398,8 @@ export default new MLCreate({
       "payments": "Pagos",
       'Publication': "De una publicación",
       'Publication_private': "De una publicación privada",
-      'Chat': "De un chat"
+      'Chat': "De un chat",
+      'suscription': "Suscripción"
    },
    "auction": {
      "createTitle": "Crear una subasta",

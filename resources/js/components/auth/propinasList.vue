@@ -17,7 +17,8 @@
             <div class="propina mt-5" v-for="propina in this.propinas.slice().reverse()"  :key="propina.id">
               <div class="row">
                 <div class="col-7">
-                  <h5>{{$ml.get('propina').title}}</h5>
+                  <h5 v-if="propina.type !== 'suscription'">{{$ml.get('propina').title}}</h5>
+                  <h5 v-else>{{$ml.get('propina').suscription}}</h5>
                   <p>{{propina.type}}</p>
                   <p v-if="propina.message !== null">{{$ml.get('propina').message}} : {{propina.message}}</p>
                 </div>
