@@ -35,7 +35,7 @@ export default new MLCreate({
      "startWiningMoney": "Start to earn money",
      "becameInfluencer":"Became Influencer User",
      "documents": "Documents",
-     "normalUser": "Normal User",
+     "normalUser": "Suscriptor User",
      "influencerUser":"Influencer User",
      "requisistsInfluencer": "3 verification documents are required:\n-Identity or accreditation document, front and back\n-Selfie with document in hand and that the document looks good",
       "socialFacebook" : "Login with Facebook",
@@ -225,10 +225,10 @@ export default new MLCreate({
      "sureRemoving": "¿Estás seguro que quieres eliminar el producto de la cesta?"
    },
    "verification": {
-     "pending": "Tu perfil está pendiente de verificación. En breve tendrás una respuesta de la plataforma",
-     "pricePending": "Debes introducir los precios de tu suscripción",
-     "postPending": "Para empezar a ganar dinero y ser usuario influencer pedimos un mínimo de 10 publicaciones. Actualmente ",
-     "havetoBeVerified": "Tu perfil debe ser validado antes"
+     "pending": "Your profile is pending verification. You will have a response from the platform shortly.",
+     "pricePending": "You must enter the prices of your subscription",
+     "postPending": "To start making money and being an influencer user, we ask for a minimum of 10 publications. Actually",
+     "havetoBeVerified": "Your profile must be validated before"
    }
 }),
 
@@ -261,7 +261,7 @@ export default new MLCreate({
      "startWiningMoney": "Comienza a ganar dinero",
      "becameInfluencer":"Ser Usuario Influencer",
      "documents": "Documentos",
-     "normalUser": "Usuario normal",
+     "normalUser": "Usuario Suscriptor",
      "influencerUser":"Usuario Influencer",
      "requisistsInfluencer": "Se requieren de 3 documentos de verificación:\n-Documento de identidad o acreditativo, parte frontal y trasero\n-Selfie con documento en la mano y que se ve bien el documento",
       "socialFacebook" : "Login with Facebook",

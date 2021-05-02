@@ -18,6 +18,13 @@
         </div>
       </router-link>
 
+      <router-link v-if="auth.verified && auth.stripe_created == false" to="/profile">
+        <div class="alert alert-warning">
+          <!-- PRICES -->
+          {{this.$ml.get('stripe').info.login}}
+        </div>
+      </router-link>
+
 
 
     </div>

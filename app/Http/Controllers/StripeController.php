@@ -92,7 +92,7 @@ class StripeController extends Controller
             $provider = new InfluencerServiceProvider($user);
             $provider->validateInfluencer();
             //
-            return redirect('/admin/user/validate/'.$user->id);
+            return redirect('/profile/suscriptions');
           }
         }
       }

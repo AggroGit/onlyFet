@@ -5,12 +5,17 @@
     <h1 class="mt-4">Validación de {{$model->name}} ({{$model->nickname}})</h1>
     @if($model->verified)
       <div class="alert alert-success">
-        <h4>Usuario ya validado</h4>
+        <h4>Usuario con documentos ya validados</h4>
       </div>
     @else
     <div class="alert alert-warning">
       <h4>Usuario sin validar</h4>
     </div>
+    @endif
+    @if($model->verified and $model->stripe_created == false)
+      <div class="alert alert-warning">
+        <h4>Usuario pendiente de Stripe</h4>
+      </div>
     @endif
 
     <br>
@@ -79,9 +84,10 @@
         <div class="card-body">
           <div class="row justify-content-center text-center">
             <div class="col-md-6">
-              <a target="_blank" href="{{$stripe_url}}">
-                <button type="button" class="btn btn-success mt-3" name="button">Hacer Stripe y Validar</button>
-              </a>
+              <form class="" action="{{url('/admin/user/validate/'.$model->id)}}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-success mt-3" name="button">Validar Documentos</button>
+              </form>
             </div>
             <div class="col-md-6">
               <a href="#rechazar" data-toggle="collapse">
@@ -90,7 +96,7 @@
 
               <div id="rechazar" class="collapse mt-2">
                 <form class="" action="{{url('/admin/user/validation/'.$model->id.'/refuse')}}" method="post">
-                  @csrf 
+                  @csrf
                   <div class="form-group">
                     <label for="comment">Motivo de rechazo: :</label>
                     <span>Se le enviará un correo al usuario</span>

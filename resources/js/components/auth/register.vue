@@ -53,8 +53,8 @@
 
                             <div class="custom-control custom-switch mt-2">
                               <input type="checkbox" class="custom-control-input" v-model="form.influencer" id="influencer">
-                              <label v-if="!this.form.influencer" class="custom-control-label" for="influencer">Usuario normal</label>
-                              <label v-else class="custom-control-label" for="influencer">Usuario Influencer</label>
+                              <label v-if="!this.form.influencer" class="custom-control-label" for="influencer">{{$ml.get('auth').normalUser}}</label>
+                              <label v-else class="custom-control-label" for="influencer">{{$ml.get('auth').influencerUser}}</label>
                             </div>
                           </div>
 

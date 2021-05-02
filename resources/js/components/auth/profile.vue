@@ -33,7 +33,7 @@
       <div class="row justify-content-center">
           <div class="col-md-6">
              <router-link to="/profile/edit">
-                <button  class="btn btn-primary boton">
+                <button  class="btn btn-secondary boton">
                     {{$ml.get('auth').edit}}
                 </button>
             </router-link>
@@ -43,7 +43,7 @@
       <div class="row justify-content-center">
           <div class="col-md-6">
              <router-link to="/profile/cards">
-                <button  class="btn btn-primary boton">
+                <button  class="btn btn-secondary boton">
                     {{$ml.get('stripe').cards}}
                 </button>
             </router-link>
@@ -54,6 +54,16 @@
         <div class="col-md-6">
           <div class="separadorRRSS"></div>
         </div>
+      </div>
+
+      <div v-if="auth.verified && auth.stripe_created == false && loading == false" class="row justify-content-center">
+          <div class="col-md-6">
+            <a target="_blank" :href="stripe_url">
+               <button  class="btn btn-primary boton">
+                   {{$ml.get('stripe').create}}
+               </button>
+           </a>
+          </div>
       </div>
 
 
@@ -87,7 +97,7 @@
 
           </div>
           <div v-if="auth.wantToBeInfluencer && auth.stripe_created==false" class="col-md-6">
-            <b-button   v-b-tooltip.hover.bottom="$ml.get('verification').havetoBeVerified" class="btn btn-primary boton stripe">
+            <b-button   v-b-tooltip.hover.bottom="$ml.get('auth').uHaveToStripe" class="btn btn-primary boton stripe">
                   {{$ml.get('auth').confSuscriptions}}
             </b-button>
           </div>
@@ -103,11 +113,33 @@ export default {
   data() {
     return {
       auth: this.$store.state.auth,
-      text:"create"
+      text:"create",
+      stripe_url: null,
+      loading:true,
     }
   },
   created() {
     console.log(window.Echo)
+    this.haveToStripe()
+  },
+  methods: {
+    haveToStripe() {
+      var self = this
+      axios.post('/api/stripe/url', null,
+      {
+         headers:{
+            Authorization: `Bearer `+ this.$store.state.token
+         }
+       })
+      .then(function (response) {
+        if(response.data.rc == 1) {
+          self.stripe_url = response.data.data
+        }
+      })
+      .finally(function (response) {
+        self.loading = false
+      })
+    }
   }
 
 

@@ -79,5 +79,16 @@ class PropinaServiceProvider extends PropinaDomain
     return PayOut::with('from')->where('user_id',$user->id);
   }
 
+  public static function propinaAsSuscription($userFrom,$userTo,$price)
+  {
+    $payOut = new PayOut();
+      $payOut->user_id = $userTo->id;
+      $payOut->from_user = $userFrom->id;
+      $payOut->quantity = $price;
+      $payOut->type = "suscription";
+    $payOut->save();
+
+  }
+
 
 }

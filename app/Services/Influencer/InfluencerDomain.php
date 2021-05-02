@@ -95,7 +95,7 @@ class InfluencerDomain
   public function emailUserIsValid()
   {
     $data = [
-      "title"         => "OnlyFet",
+      "title"         => "You have to add your prices ",
       "logoInTitle"   => true,
       "text"          => __('emails.validated',['name' => $this->user->name]),
       "option"        => [
@@ -109,7 +109,7 @@ class InfluencerDomain
   public function emailToAdminUsers()
   {
     $data = [
-      "title"         => "OnlyFet",
+      "title"         => "New user want to be influencer ",
       "logoInTitle"   => true,
       "text"          => "Un nuevo usuario quiere ser Influencer.Validación pendiente",
       "option"        => [
@@ -122,6 +122,20 @@ class InfluencerDomain
     foreach ($users as $user) {
       sendMail::dispatch(new BasicMail($data),$user->email);
     }
+  }
+
+  public function emailDocumentValidated()
+  {
+    $data = [
+      "title"         => "User verified ",
+      "logoInTitle"   => true,
+      "text"          => __('emails.documentsVerified',['name' => $this->user->name]),
+      "option"        => [
+        'text'  =>  __('emails.goTo'),
+        'url'   =>  url("/profile")
+      ]
+    ];
+    sendMail::dispatch(new BasicMail($data),$this->user->email);
   }
 
 

@@ -5,6 +5,7 @@ namespace App\Services\Suscriptions;
 use App\Services\Suscriptions\SuscriptionDomain;
 
 use App\Services\Influencer\InfluencerServiceProvider;
+use App\Services\Propina\PropinaServiceProvider;
 use App\Services\Chats\ChatsServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -95,6 +96,8 @@ class SuscriptionServiceProvider extends SuscriptionDomain
       $providerChats->sendWelcomeMessage($plan->user,$chat);
       // plus
       $this->plusSuscriptor($plan);
+      // add a propina as a suscription
+      PropinaServiceProvider::propinaAsSuscription($user,$plan->user,$plan->price);
       //
       return true;
 

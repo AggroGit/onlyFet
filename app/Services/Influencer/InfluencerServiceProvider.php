@@ -36,6 +36,7 @@ class InfluencerServiceProvider extends InfluencerDomain
     return $this->have10Posts() and $this->validatedByAdmin();
   }
 
+  // ahora es que viene de stripe y diferenciamos verficiacion de stripe con la de documentos!!!!
   public function validateInfluencer()
   {
     if(!$this->userCanBeInfluencer())
@@ -43,7 +44,6 @@ class InfluencerServiceProvider extends InfluencerDomain
 
     $this->validate();
     $this->emailUserIsValid();
-
 
   }
 
@@ -77,18 +77,15 @@ class InfluencerServiceProvider extends InfluencerDomain
     if($this->user->infleucer)
       return true;
 
-    if($this->user->wantToBeInfluencer and $this->user->verified and $this->user->numUploadedPosts>=10 and $this->user->prices_added) {
+    if($this->user->wantToBeInfluencer and $this->user->verified and $this->user->numUploadedPosts>=10 and $this->user->stripe_created and $this->user->prices_added) {
       $this->convertToInfluencer();
     }
-
-
   }
 
   public function convertToInfluencer()
   {
     $this->user->influencer = true;
     $this->user->save();
-    // notify via email
   }
 
   public function applyDiscount($discount_name)
@@ -96,6 +93,18 @@ class InfluencerServiceProvider extends InfluencerDomain
     if($discount = Discount::where('title',$discount_name)->where('available_until','>=',now())->first()) {
       $this->user->percentage_for_user = $discount->percentage_dicount;
     }
+  }
+
+  public function validateDocuments()
+  {
+    if($this->user->verified == false) {
+      $this->user->verified = true;
+      $this->user->save();
+      $this->requestInfluencer();
+      $this->emailDocumentValidated();
+    }
+    //
+
   }
 
 

@@ -320,7 +320,8 @@ class User extends Authenticatable
           '% para el usuario' => 'percentage_for_user',
           'Idioma' => 'lang',
           'País' => 'country',
-          'IBAN'=> 'bank_account'
+          'IBAN'=> 'bank_account',
+          'stripe creado' => 'stripe_created'
 
         ],
         'data'  =>  $data,

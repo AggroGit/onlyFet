@@ -24,8 +24,10 @@
     Route::get('/admin/plan/edit/{plan_id}/',    'AdminController@planmView');
     // user
     Route::get('/admin/user/edit/{user_id}/',    'AdminController@userView');
-    // validate
+    // validate view
     Route::get('/admin/user/validate/{user_id}/',    'AdminController@validateView');
+    // validate action
+    Route::post('/admin/user/validate/{user_id}/',    'AdminController@validateUser');
     // chats
     Route::get('/admin/chat/edit/{chat_id}/',    'AdminController@chatView');
     // validation

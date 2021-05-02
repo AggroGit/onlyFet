@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Influencer\InfluencerServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use App\Mail\BasicMail;
@@ -370,6 +371,15 @@ class AdminController extends Controller
           'tabletate' => $tabletate,
           'noTypeScript'  => true
         ]);
+      }
+
+      public function validateUser($user_id)
+      {
+        if($user = User::find($user_id)) {
+          $provider = new InfluencerServiceProvider($user);
+          $provider->validateDocuments();
+        }
+        return redirect("/admin/user/validate/$user->id");
       }
 
 
