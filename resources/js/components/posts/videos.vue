@@ -175,7 +175,7 @@ export default {
             // webm
             // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
           }],
-          poster: "https://onlyfet.com/logo.png",
+          poster: "/iconos/video.png",
 
         // height: '360',
         //   autoplay: false,
