@@ -85,6 +85,7 @@ class PropinaServiceProvider extends PropinaDomain
       $payOut->user_id = $userTo->id;
       $payOut->from_user = $userFrom->id;
       $payOut->quantity = $price;
+      $payOut->price_sended = $price;
       $payOut->type = "suscription";
     $payOut->save();
 
