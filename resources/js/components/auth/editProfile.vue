@@ -122,6 +122,8 @@
                 </div>
               </div>
 
+
+
                 <div class="form-group row down-2">
                     <div class="col-md-12 offset-md-12">
                         <button type="submit" class="btn btn-primary boton">
@@ -129,6 +131,12 @@
                             <span v-if="this.loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         </button>
                     </div>
+                </div>
+
+                <div class="form-group row down-2 mt-5">
+                  <div class="col-md-12 offset-md-12 removeButton">
+                      <a @click="removeUser()" class="linkeable">{{this.$ml.get('auth').remove}}</a>
+                  </div>
                 </div>
 
 
@@ -441,6 +449,33 @@ export default {
       }
       return null;
     },
+    removeUser() {
+      if(!confirm(this.$ml.get('auth').confirmRemove)){
+        return true
+      }
+      this.loading = true;
+      var self = this;
+      axios.post('/api/auth/remove', null,
+       {
+         headers:{
+            Authorization: `Bearer `+ this.$store.state.token
+         }
+       })
+     .then(response => {
+       console.log(response)
+       if(response.data.rc == 1) {
+         alert(self.$ml.get('auth').sucessRemove)
+         self.logout();
+       }
+     })
+     .catch(response => {
+       alert('Error')
+     })
+     .finally(response => {
+       self.loading = false;
+     })
+
+    },
     onChange(e) {
       this.loadingImage = true;
       var image = this.$refs['image'].file
@@ -513,7 +548,18 @@ export default {
       this.$ml.change(lang)
       this.$store.state.auth.lang = lang
       this.form.lang = lang
-    }
+    },
+    logout() {
+      this.$store.state.auth = false
+      this.$store.state.quitTokenInCookie();
+      this.auth = false;
+      window.user = false;
+      Echo.disconnect();
+      Echo = false;
+      window.authChannel = false;
+      this.$router.push({ path: '/login' })
+
+    },
   }
 };
 </script>

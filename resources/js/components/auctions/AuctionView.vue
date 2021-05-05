@@ -11,7 +11,7 @@
         <!-- TIEMPO -->
         <div v-if="!this.loading" class="row justify-content-center down-4">
           <div class="col-6">
-            <h4>Límite de tiempo: </h4>
+            <h4>{{this.$ml.get('auction').limitTime}}</h4>
           </div>
           <div class="col-6 text-right">
             <countdown :time="this.remaining*1000">
@@ -56,8 +56,8 @@
           <div class="separadorRRSS down-2"></div>
 
           <div class="col-12 down-2">
-            <h2 v-if="this.auth.id == this.auction.current_id" class=" aparecer text-center">¡Eres el máximo pujardor!</h2>
-            <h4 v-else class=" aparecer text-center">No eres el máximo pujador</h4>
+            <h2 v-if="this.auth.id == this.auction.current_id" class=" aparecer text-center">{{this.$ml.get('auction').maxUs}}</h2>
+            <h4 v-else class=" aparecer text-center">{{this.$ml.get('auction').NoMaxUs}}</h4>
           </div>
         </div>
 
@@ -83,13 +83,11 @@
             </div>
           </div>
         </div>
-
     </div>
 
     <div  v-if="!this.loading && this.auction.status !== 'open'">
       <h2 class="text-center down-2">{{this.$ml.get('auction').finishedAuction}}</h2>
     </div>
-
 
     </div>
 </template>

@@ -6,6 +6,7 @@ use App\Services\Suscriptions\SuscriptionServiceProvider;
 use App\Services\Influencer\InfluencerServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Services\Images\imageServiceProvider;
+use App\Services\User\UserServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -331,6 +332,18 @@ class AuthController extends Controller
         return $this->incorrect($e->getCode(),$e->getMessage());
       }
       return $this->correct(auth()->user());
+    }
+
+    public function removeUser()
+    {
+      $provider = new UserServiceProvider(auth()->user());
+      try {
+        $provider->removeUser();
+        return $this->correct();
+      } catch (\Exception $e) {
+        return $this->incorrect($e->getCode(),$e->getMessage());
+      }
+
     }
 
 

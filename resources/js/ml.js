@@ -86,6 +86,9 @@ export default new MLCreate({
       "city": "City",
       "cp": "Postal code",
       "direction_details": "Direction details",
+      "remove": "Remove profile",
+      "confirmRemove": "Are you sure you want to remove your profile?",
+      "sucessRemove": "Profile Removed sucessfully"
    },
    "stripe": {
       "suscribed": "Subscribed",
@@ -196,7 +199,10 @@ export default new MLCreate({
      "detailSend": "Te enviaré tan pronto como sea posible el artículo",
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
      "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
-     "currentAuctingUser": "Tiene una puja activa"
+     "currentAuctingUser": "Tiene una puja activa",
+     "limitTime": "Time limit: ",
+     "maxUs": "¡Eres el máximo pujardor!",
+     "NoMaxUs": "No eres el máximo pujardor"
    },
    "shop": {
      "search": "🔍  Buscar Producto",
@@ -313,6 +319,9 @@ export default new MLCreate({
       "city": "Ciudad",
       "cp": "Código postal",
       "direction_details": "Detalles de dirección",
+      "remove": "Eliminar perfil",
+      "confirmRemove": "¿Estás seguro que quieres eliminar tu perfil?",
+      "sucessRemove": "Tu usuario se ha eliminado"
 
    },
    "stripe": {
@@ -423,7 +432,12 @@ export default new MLCreate({
      "detailSend": "Te enviaré tan pronto como sea posible el artículo",
      "enterCurrentAuction": "¡ ENTRA A LA PUJA ACTIVA !",
      "onlyInfluencer": "Tienes que ser influencer para poder crear subastas",
-     "currentAuctingUser": "Hay una puja activa"
+     "currentAuctingUser": "Hay una puja activa",
+     "limitTime": "Límite de tiempo:",
+     "maxUs": "¡Eres el máximo pujardor!",
+     "NoMaxUs": "No eres el máximo pujardor"
+
+
    },
    "shop": {
 

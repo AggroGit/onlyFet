@@ -17,6 +17,8 @@ Route::post('/auth/edit',                           'Auth\AuthController@editCur
 Route::post('/auth/influencer',                     'SuscriptionsController@makePremium');
 Route::post('/auth/plans',                          'SuscriptionsController@listPlans');
 Route::post('/auth/notifications',                  'Auth\AuthController@notifications');
+Route::post('/auth/remove',                         'Auth\AuthController@removeUser');
+
 //
 Route::post('/auth/plans/{plan_id}/unsuscribe',     'SuscriptionsController@unsuscribePlan');
 // unsuscribe mails

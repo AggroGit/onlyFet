@@ -7,9 +7,10 @@
   --grisdesign:#9c9c9c;
   --rojoStripe: #EF0000;
   --granate: #750300;
-
+  --rojovino: #750300;
 
 }
+
 #app {
   padding-bottom: 150px !important;
 
@@ -436,6 +437,9 @@ input {
 }
 .btn-secondary {
   background: var(--grisdesign) !important;
+}
+.btn-terciario {
+  background: var(--rojovino) !important;
 }
 .down-1 {
   margin-top: 10px !important;
@@ -1588,4 +1592,7 @@ margin-top: 2px;
 }
 .botonStripe {
   background: var(--rojo1) !important;
+}
+.removeButton >a {
+  color: var(--rojovino);
 }
