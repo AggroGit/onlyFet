@@ -302,6 +302,7 @@ class User extends Authenticatable
     {
         $this->chats()->delete();
         $this->image()->delete();
+        $this->plans()->delete();
         $this->notifications()->delete();
         return parent::delete();
     }
